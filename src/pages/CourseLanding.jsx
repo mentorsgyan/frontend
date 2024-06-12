@@ -1,4 +1,4 @@
-import React from "react";
+import React , { useState } from "react";
 import Thumbnail1 from "../assets/hero/Hero.png";
 import { BiPlayCircle } from "react-icons/bi";
 import { useParams, useNavigate } from "react-router-dom";
@@ -6,6 +6,9 @@ import Navbar from "../components/Navbar/Navbar";
 import { LuLanguages } from "react-icons/lu";
 import { FaStar } from "react-icons/fa6";
 import Footer from "../components/Footer/Footer"
+import { FaCaretDown, FaPlay, FaPlayCircle } from 'react-icons/fa';
+import { FaCirclePlay } from 'react-icons/fa6';
+import ModulesDropDown from "../components/ModulesDropDown/ModulesDropDown"
 
 const CourseStructure = [
     {
@@ -31,9 +34,101 @@ const CourseStructure = [
     }
 ]
 
+const Modules2 = [
+    {
+        moduleNumber: "1",
+        title: "Module Title",
+        expanded: true,
+        lectures: [
+            {
+                lectureNumber: "1",
+                title: "Time",
+                link: "link"
+            },
+            {
+                lectureNumber: "2",
+                title: "Money",
+                link: "link"
+            },
+            {
+                lectureNumber: "3",
+                title: "Labor",
+                link: "link"
+            },
+        ]
+    },
+    {
+        moduleNumber: "2",
+        title: "Module Title",
+        expanded: false,
+        lectures: [
+            {
+                lectureNumber: "1",
+                title: "Time",
+                link: "link"
+            },
+            {
+                lectureNumber: "2",
+                title: "Money",
+                link: "link"
+            },
+            {
+                lectureNumber: "3",
+                title: "Labor",
+                link: "link"
+            },
+        ]
+    },
+    {
+        moduleNumber: "3",
+        title: "Module Title",
+        expanded: false,
+        lectures: [
+            {
+                lectureNumber: "1",
+                title: "Time",
+                link: "link"
+            },
+            {
+                lectureNumber: "2",
+                title: "Money",
+                link: "link"
+            },
+            {
+                lectureNumber: "3",
+                title: "Labor",
+                link: "link"
+            },
+        ]
+    },
+    {
+        moduleNumber: "4",
+        title: "Module Title",
+        expanded: false,
+        lectures: [
+            {
+                lectureNumber: "1",
+                title: "Time",
+                link: "link"
+            },
+            {
+                lectureNumber: "2",
+                title: "Money",
+                link: "link"
+            },
+            {
+                lectureNumber: "3",
+                title: "Labor",
+                link: "link"
+            },
+        ]
+    }
+]
+
 const CourseLanding = () => {
     const navigate = useNavigate();
     const { courseId } = useParams();
+    const [Modules, setModules] = useState(Modules2);
 
     console.log("Course ID, ", courseId);
     return (
@@ -143,29 +238,11 @@ const CourseLanding = () => {
                     Dive into the world of modern web development with our comprehensive React Web Development Course. Designed for both beginners and experienced developers, this course covers the essentials of building dynamic, responsive web pages using React. Learn to create interactive user interfaces, manage state, and integrate APIs seamlessly. By the end of the course, you'll be equipped with the skills to build and deploy professional-grade web applications.
                 </p>
             </div>
-
-            <div className="mx-40 px-5 bg-primary/10 rounded-lg shadow-md mt-6">
-                <h2 className="text-2xl font-bold mb-4 bg-primary/5">Course Videos</h2>
-                {
-                    CourseStructure.map(lecture => (
-                        <div data-aos="fade-up"
-                        data-aos-delay="100"
-                        data-aos-duration="500" key={lecture.lectureNumber} className="shadow-md py-5 my-4 gap-5 flex flex-col md:flex-row items-center">
-
-                            <div className="relative w-full max-w-40 overflow-hidden rounded-lg shadow-lg transition-transform transform hover:scale-105 duration-200 mx-auto md:mx-0">
-                                <img src={lecture.thumbnail} alt="Course Introduction Thumbnail" className="w-full h-auto" />
-                                <a href={lecture.link} className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-xl font-bold opacity-0 hover:opacity-100 transition-opacity"><BiPlayCircle className="text-7xl"/></a>
-                            </div>
-                            <div className="flex flex-col">
-                            <h3 className="text-xl font-semibold mt-2 capitalize">{lecture.lectureNumber}. {lecture.title}</h3>
-                            <p className="text-gray-700 mb-4">
-                                {lecture.description}
-                            </p>
-                            </div>
-                        </div>
-                    ))
-                }
+            <div className = "">
+                <ModulesDropDown />
+                
             </div>
+            
             <div className="mt-10"/>
             <Footer />
         </div>
