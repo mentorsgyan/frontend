@@ -4,9 +4,18 @@ import App from './App.jsx'
 import './index.css'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
+import { Auth0Provider } from '@auth0/auth0-react';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <Auth0Provider
+    domain="dev-weefbtgsubqdz2mn.au.auth0.com"
+    clientId="msZTPSJF9CzmVoLALyLvzPNQqzX01Ol0"
+    authorizationParams={{
+      redirect_uri: window.location.origin
+    }}
+  >
     <App />
+  </Auth0Provider>
   </React.StrictMode>,
 )

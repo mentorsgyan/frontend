@@ -41,7 +41,6 @@ const CourseLanding = () => {
             {/* About course */}
             {/* Title */}
             <Navbar bottom={false} />
-
             {/* Hero section */}
             <div className = "relative overflow-hidden min-h-[550px] sm:min-h-[650px] bg-gray-100 flex justify-start items-center dark:bg-gray-950 dark:text-white duration-200">
                 {/* Background */}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import BannerImg from "../assets/hero/Hero.png"
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const PaymentPage = ({price=999}) => {
     const [coupon, setCoupon] = useState('');
@@ -9,6 +10,8 @@ const PaymentPage = ({price=999}) => {
     const [css, setCss] = useState('');
     const [discount, setDiscount] = useState(0);
     const [total, setTotal] = useState(price);
+
+    const { user, isAuthenticated } = useAuth0();
   
     const handleCouponChange = (e) => {
       setCoupon(e.target.value);

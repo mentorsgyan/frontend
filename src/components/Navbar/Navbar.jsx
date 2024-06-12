@@ -2,6 +2,8 @@ import React from "react";
 import Logo from "../../assets/2.png";
 import { IoMdSearch } from "react-icons/io";
 import { FaCaretDown, FaCartShopping } from "react-icons/fa6";
+import { FaUser } from "react-icons/fa";
+import { useAuth0 } from "@auth0/auth0-react";
 const Menu = [
     {
         id: 1,
@@ -29,11 +31,12 @@ const DropdownLinks = [
 ]
 
 const Navbar = ({bottom = true}) => {
+    const { user, isAuthenticated, isLoading } = useAuth0();
     return <div className="shadow-md bg-white dark:bg-gray-900 dark:text-white duration-200 relative z-40">
         {/* upper navbar */}
         <div className="bg-primary/40 py-2">
-            <div className="container flex justify-between items-center">
-                <div>
+            <div className="flex justify-between items-center">
+                <div className="container">
                     <a href="#" className="font-bold text-2xl sm:text-3xl flex gap-2">
                         <img src={Logo} alt="Logo" 
                         className="w-10 uppercase"/>
@@ -42,7 +45,7 @@ const Navbar = ({bottom = true}) => {
                 </div>
                  {/* Buttons*/}
                     {/* search bar */}
-                 <div className="flex justify-between items-center gap-4">
+                 <div className="container flex justify-between items-center gap-4">
                     <div className="relative group hidden sm:block">
                         <input type="text" placeholder="Search"
                         className="w-[200px] sm:w-[200px] group-hover:w-[300px] 
@@ -62,10 +65,9 @@ const Navbar = ({bottom = true}) => {
                     <span className="group-hover:block hidden transition-all duration-200">Order</span>
                     <FaCartShopping className="text-xl text-white drop-shadow-sm cursor-pointer"/>
                  </button>
-                 {/* Darkmode swithc */}
-                 <div className="">
-                    <DarkMode/>  
-                 </div>
+                    <div className="">
+                        {isAuthenticated ? <div className="flex gap-4"><LogoutButton /> <Profile /></div> : <LoginSignUp />}
+                    </div>
                  </div>
             </div>
         </div>
@@ -116,10 +118,42 @@ const BottomNav = () => {
     )
 }
 
-const DarkMode = () => {
-    return <div>
-        Dark Mode
+const LoginSignUp = () => {
+    const { loginWithRedirect } = useAuth0();
+    return <div>       
+        <button className="bg-gradient-to-r from-primary to-secondary
+                    transiotion-all duration-200 text-white py-1 px-4 rounded-full flex items-center
+                    gap-3"  onClick={() => loginWithRedirect()}>Log In</button>
     </div>
 }
+
+const LogoutButton = () => {
+    const { logout } = useAuth0();
+  
+    return (
+      <button className="bg-gradient-to-r from-primary to-secondary
+      transiotion-all duration-200 text-white py-1 px-4 rounded-full flex items-center
+      gap-3" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+        Log Out
+      </button>
+    );
+};
+
+const Profile = () => {
+    const { user, isAuthenticated, isLoading } = useAuth0();
+  
+    if (isLoading) {
+      return <div>Loading ...</div>;
+    }
+  
+    return (
+      isAuthenticated && (
+        <div className="flex gap-2 items-center">
+          <img className="w-1/6 rounded-full" src={user.picture} alt={user.name} />
+          <h2>{user.name}</h2>
+        </div>
+      )
+    );
+};
 
 export default Navbar

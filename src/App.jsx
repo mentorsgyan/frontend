@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import PaymentPage from "./pages/PaymentPage";
 import { heroDataLoader } from "./pages/Home";
+import VideoPlayer from "./components/VideoPlayer/VideoPlayer";
 
 const App = () => {
   React.useEffect(() => {
@@ -33,6 +34,7 @@ const App = () => {
           <Route path=":courseId" element = {<CourseLanding />}/>
         </Route>
         <Route path = "/checkout" element = {<PaymentPage />}></Route>
+        <Route path = "/video" element={<VideoPlayer />}/>
       </Routes>
       </BrowserRouter>
     </div>
