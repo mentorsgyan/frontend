@@ -36,20 +36,6 @@ const ImageList = [
   }
 ]
 
-// Slider settings
-const settings = {
-  dots: false,
-  arrows: false,
-  infinite: true,
-  speed: 800,
-  slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 4000,
-  cssEase: "ease-in-out",
-  pauseOnHover: false,
-  pauseOnFocus: true
-};
-
 const Home = () => {
   // AOS
   React.useEffect(() => {
@@ -64,7 +50,7 @@ const Home = () => {
   return (
     <div>
         <Navbar />
-        <Hero ImageList={ImageList} settings={settings} />
+        <Hero ImageList={ImageList} />
         <Courses />
         <TopCourses />
         <Banner />
