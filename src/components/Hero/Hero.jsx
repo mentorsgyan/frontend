@@ -1,33 +1,17 @@
 import React from "react";
-import Image1 from "../../assets/hero/Hero.png";
-import Image2 from "../../assets/hero/Hero2.png";
-import Image3 from "../../assets/hero/Hero3.png";
 import Slider from "react-slick";
-import {useNavigate, useLoaderData } from "react-router-dom"; 
+import {useNavigate } from "react-router-dom"; 
+import { SLIDER_SETTINGS } from "../../utility/Constants";
 
 const Hero = ({ImageList}) => {
     const navigate = useNavigate();
-    const settings = {
-        dots: false,
-        arrows: false,
-        infinite: true,
-        speed: 800,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 4000,
-        cssEase: "ease-in-out",
-        pauseOnHover: false,
-        pauseOnFocus: true
-    };
     return (
         <div className = "relative overflow-hidden min-h-[550px] sm:min-h-[650px] bg-gray-100 flex justify-center items-center dark:bg-gray-950 dark:text-white duration-200">
             {/* background pattern */}
-            <div className = "h-[800px] w-[1200px] bg-primary/40 absolute -top-1/2 right-0 rounded-3xl rotate-45 -z-9" >
-
-            </div>
+            <div className = "h-[800px] w-[1200px] bg-primary/40 absolute -top-1/2 right-0 rounded-3xl rotate-45 -z-9" />
             {/* Hero section */}
             <div className="container pb-8 sm:pb-0">
-                <Slider {...settings}>
+                <Slider {...SLIDER_SETTINGS}>
                     {ImageList.map(data => (
                         <div key={data.id}>
                             <div className = "grid grid-cols-1 sm:grid-cols-2">

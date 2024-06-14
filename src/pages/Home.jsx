@@ -10,6 +10,7 @@ import Hero from "../components/Hero/Hero";
 import Image1 from "../assets/hero/Hero.png";
 import Image2 from "../assets/hero/Hero2.png";
 import Image3 from "../assets/hero/Hero3.png";
+import OfferedServices from "../components/OfferedServices/OfferedServices"
 
 const ImageList = [
   {
@@ -35,8 +36,22 @@ const ImageList = [
   }
 ]
 
+// Slider settings
+const settings = {
+  dots: false,
+  arrows: false,
+  infinite: true,
+  speed: 800,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 4000,
+  cssEase: "ease-in-out",
+  pauseOnHover: false,
+  pauseOnFocus: true
+};
+
 const Home = () => {
-  // const data = useLoaderData();
+  // AOS
   React.useEffect(() => {
     Aos.init({
       offset: 100,
@@ -49,10 +64,11 @@ const Home = () => {
   return (
     <div>
         <Navbar />
-        <Hero ImageList={ImageList}/>
+        <Hero ImageList={ImageList} settings={settings} />
         <Courses />
         <TopCourses />
         <Banner />
+        <OfferedServices />
         <Footer />
     </div>
   )
