@@ -4,7 +4,7 @@ import { GrSecure } from "react-icons/gr";
 
 const Banner = () => {
     return (
-        <div className="min-h-[550px] bg-primary/70 flex justify-center items-center mt-12 sm:py-0">
+        <div className="min-h-[550px] bg-primary/70 flex justify-center items-center mt-12 pb-5 sm:py-2">
             <div className="container">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
                     {/* image section */}
@@ -16,7 +16,7 @@ const Banner = () => {
                     {/* text section */}
                     <div className="flex flex-col justify-center gap-6 sm:pt-0">
                         <h1 data-aos="fade-up" className="text-3xl sm:text-4xl font-bold"
-                        >About MG</h1>
+                        >About Us</h1>
                         <p data-aos="fade-up" className="text-sm text-gray-500 tracking-wide leading-5">
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint quod quo amet! Omnis alias maxime nulla, ipsa quos, tempore recusandae aliquid maiores cum delectus voluptatibus beatae, nobis eius assumenda pariatur.
                         </p>

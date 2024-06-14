@@ -10,6 +10,7 @@ import Hero from "../components/Hero/Hero";
 import Image1 from "../assets/hero/Hero.png";
 import Image2 from "../assets/hero/Hero2.png";
 import Image3 from "../assets/hero/Hero3.png";
+import OfferedServices from "../components/OfferedServices/OfferedServices"
 
 const ImageList = [
   {
@@ -36,7 +37,7 @@ const ImageList = [
 ]
 
 const Home = () => {
-  // const data = useLoaderData();
+  // AOS
   React.useEffect(() => {
     Aos.init({
       offset: 100,
@@ -49,10 +50,11 @@ const Home = () => {
   return (
     <div>
         <Navbar />
-        <Hero ImageList={ImageList}/>
+        <Hero ImageList={ImageList} />
         <Courses />
         <TopCourses />
         <Banner />
+        <OfferedServices />
         <Footer />
     </div>
   )

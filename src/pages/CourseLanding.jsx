@@ -6,33 +6,7 @@ import Navbar from "../components/Navbar/Navbar";
 import { LuLanguages } from "react-icons/lu";
 import { FaStar } from "react-icons/fa6";
 import Footer from "../components/Footer/Footer"
-import { FaCaretDown, FaPlay, FaPlayCircle } from 'react-icons/fa';
-import { FaCirclePlay } from 'react-icons/fa6';
 import ModulesDropDown from "../components/ModulesDropDown/ModulesDropDown"
-
-const CourseStructure = [
-    {
-        lectureNumber: 1,
-        title: "Do Epic Shit",
-        description: "This is about letting yourself do whatever you want to.",
-        thumbnail: Thumbnail1,
-        link: "http://yt.com"
-    },
-    {
-        lectureNumber: 2,
-        title: "Science of mind management",
-        description: "This is about Managing your mind",
-        thumbnail: Thumbnail1,
-        link: "http://yt.com"
-    },
-    {
-        lectureNumber: 3,
-        title: "Ikigai",
-        description: "This is about I don't know.",
-        thumbnail: Thumbnail1,
-        link: "http://yt.com"
-    }
-]
 
 const Modules2 = [
     {
@@ -129,7 +103,7 @@ const CourseLanding = () => {
     const navigate = useNavigate();
     const { courseId } = useParams();
     const [Modules, setModules] = useState(Modules2);
-
+    const [userPresent, setUser] = useState(true);
     console.log("Course ID, ", courseId);
     return (
         <div>
@@ -183,9 +157,10 @@ const CourseLanding = () => {
                             {/* Buy now */}
                             <button className = "bg-gradient-to-r my-3 w-1/3 from-primary to-secondary hover:scale-105 duration-200 text-white py-3 px-4 rounded-full" onClick={
                                 () => {
-                                    navigate("/checkout/")
+                                    setUser(!userPresent)
+                                    // navigate("/checkout/")
                                 }
-                            }>Buy now</button>
+                            }>{userPresent ? "Play" : "Buy Now"}</button>
                         </div>
                        
                     </div>

@@ -1,6 +1,5 @@
 ## Website Structure
 ```
-
      / (root)
     |
     |________ /course/{courseID} (Course landing page)
@@ -10,7 +9,6 @@
     |
     |
     |________ /video/{video} (Video player page)
-
 ```
 
 ## 1. Functionality
