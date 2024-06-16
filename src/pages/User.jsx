@@ -1,26 +1,10 @@
 import { Progress } from "@material-tailwind/react";
-import React from "react";
 import Navbar from "../components/Navbar/Navbar";
 import TopCourses from "../components/TopCourses/TopCourses";
 import Image from "../assets/hero/Hero.png"
 import Footer from "../components/Footer/Footer";
+import { useEffect, useState } from "react";
 
-const courseAccess = [
-    {
-        courseId: 1234,
-        courseName: "Web Development",
-        description: "One liner description of course 1.",
-        courseCompletion: 65,
-        courseThumbnail: "img"
-    },
-    {
-        courseId: 4567,
-        courseName: "AI/ML",
-        description: "two liner description of course 2.",
-        courseCompletion: 32,
-        courseThumbnail: "img"
-    }
-];
 
 /**
  * This page will show:
@@ -28,6 +12,15 @@ const courseAccess = [
  * @author Mayank Shukla
  */
 const User = () => {
+
+    const [courseAccess, setUserData] = useState(null)
+    useEffect(() => {
+        fetch("http://localhost:5000/api")
+        .then(response => response.json())
+        .then(data => setUserData(data))
+        .catch(error => console.log("Error occured in fetching data: ", error))
+    }, [])
+
     return (
         <div>
             <Navbar bottom = {false} />
@@ -35,9 +28,10 @@ const User = () => {
                 <h1 className="tracking-wider mt-10  font-bold text-center text-3xl uppercase">Enrolled Courses</h1>
                 {/* Course cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-                    {
+
+                    {courseAccess &&
                         courseAccess.map(course => (
-                            <CourseCard key={course.id} course={course} />  
+                            <CourseCard key={course.courseId} course={course} />  
                         ))
                     }
                 </div>

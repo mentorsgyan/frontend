@@ -1,6 +1,6 @@
 export const SLIDER_SETTINGS = {
     dots: false,
-    arrows: true,
+    arrows: false,
     infinite: true,
     speed: 800,
     slidesToScroll: 1,
