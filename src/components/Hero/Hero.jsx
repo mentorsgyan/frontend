@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import {useNavigate } from "react-router-dom"; 
 import { SLIDER_SETTINGS } from "../../utility/Constants";
 
-const Hero = ({ImageList}) => {
+const Hero = () => {
+    const [ImageList, setImageList] = useState(null);
+    useEffect(() => {
+        fetch("http://localhost:5000/heroData")
+        .then(response => response.json())
+        .then(data => setImageList(data))
+    })
     const navigate = useNavigate();
     return (
         <div className = "relative overflow-hidden min-h-[550px] sm:min-h-[650px] bg-gray-100 flex justify-center items-center dark:bg-gray-950 dark:text-white duration-200">
@@ -12,7 +18,7 @@ const Hero = ({ImageList}) => {
             {/* Hero section */}
             <div className="container pb-8 sm:pb-0">
                 <Slider {...SLIDER_SETTINGS}>
-                    {ImageList.map(data => (
+                    {ImageList && ImageList.map(data => (
                         <div key={data.id}>
                             <div className = "grid grid-cols-1 sm:grid-cols-2">
                                 {/* Text content section */}

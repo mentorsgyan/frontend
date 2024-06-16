@@ -1,7 +1,5 @@
 import React from "react";  
 import Image1 from "../../assets/hero/Hero.png";
-import Image2 from "../../assets/hero/Hero2.png";
-import Image3 from "../../assets/hero/Hero3.png";
 import { FaStar } from "react-icons/fa6";
 
 const CourseData = [
@@ -39,13 +37,13 @@ const TopCourses = () => {
                 </div>
                 {/* Body section */}
                 <div
-                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-20 md:gap-5 place-items-center"
+                className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-20 md:gap-5 place-items-center"
                 >
                     {
                         CourseData.map(course => (
                             <div key={course.id}
                             data-aos="zoom-in"
-                            className="rounded-2xl bg-white dark:bg-gray-800 hover:bg-black/80 dark:hover:bg-primary hover:text-white relative shadow-xl duration-300 group max-w-[300px]"
+                            className="my-5 rounded-2xl bg-white dark:bg-gray-800 hover:bg-black/80 dark:hover:bg-primary hover:text-white relative shadow-xl duration-300 group max-w-[300px]"
                             >
                                 {/* image section */}
                                 <div

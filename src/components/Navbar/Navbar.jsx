@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../../assets/2.png";
 import { IoMdSearch } from "react-icons/io";
 import { FaCaretDown, FaCartShopping } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa";
+import {useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { IoExitOutline } from "react-icons/io5";
 const Menu = [
     {
         id: 1,
@@ -66,7 +68,7 @@ const Navbar = ({bottom = true}) => {
                     <FaCartShopping className="text-xl text-white drop-shadow-sm cursor-pointer"/>
                  </button>
                     <div className="">
-                        {isAuthenticated ? <div className="flex gap-4"><LogoutButton /> <Profile /></div> : <LoginSignUp />}
+                        {isAuthenticated ? <Profile /> : <LoginSignUp />}
                     </div>
                  </div>
             </div>
@@ -127,30 +129,29 @@ const LoginSignUp = () => {
     </div>
 }
 
-const LogoutButton = () => {
-    const { logout } = useAuth0();
-  
-    return (
-      <button className="bg-gradient-to-r from-primary to-secondary
-      transiotion-all duration-200 text-white py-1 px-4 rounded-full flex items-center
-      gap-3" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
-        Log Out
-      </button>
-    );
-};
-
 const Profile = () => {
-    const { user, isAuthenticated, isLoading } = useAuth0();
-  
+    const { user, isAuthenticated, isLoading , logout} = useAuth0();
+    const navigate = useNavigate();
+    const {clickedProfile, setClickedProfile} = useState(true);
+
     if (isLoading) {
       return <div>Loading ...</div>;
     }
   
     return (
       isAuthenticated && (
-        <div className="flex gap-2 items-center">
-          <img className="w-1/6 rounded-full" src={user.picture} alt={user.name} />
-          <h2>{user.name}</h2>
+        <div className="flex items-center gap-2">
+            <div className="flex gap-2 items-center cursor-pointer bg-primary text-gray-100 p-2 rounded-md font-bold hover:scale-105 duration-200"
+            onClick={() => {
+                navigate("/user")
+                setClickedProfile(!clickedProfile)
+            }}>
+            
+            <h2>Welcome, {user.name}</h2>
+            </div>
+            <IoExitOutline className="text-xl cursor-pointer" onClick={
+                () => logout({ logoutParams: { returnTo: window.location.origin } })
+            }/>
         </div>
       )
     );
