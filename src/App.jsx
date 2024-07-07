@@ -9,6 +9,9 @@ import { heroDataLoader } from "./pages/Home";
 import VideoPlayer from "./components/VideoPlayer/VideoPlayer";
 import User from "./pages/User";
 import Testing from "./pages/Testing"
+import BlogPage from "./pages/BlogPage";
+import MCQTest, { QuestionPaper } from "./pages/MCQTest";
+import SampleTests from "./pages/MCQTest";
 
 const App = () => {
   React.useEffect(() => {
@@ -38,7 +41,9 @@ const App = () => {
         <Route path = "/checkout" element = {<PaymentPage />}></Route>
         <Route path = "/video" element={<VideoPlayer />}/>
         <Route path = "/user" element = {<User />} />
-        <Route path = "/ms" element = {<Testing />} />
+        <Route path = "/current-affairs" element = {<BlogPage />} />
+        <Route path = "/mock-test" element = {<SampleTests />} />
+        <Route path = "/mock-test/:testDate" element = {<QuestionPaper />}/>
       </Routes>
       </BrowserRouter>
     </div>

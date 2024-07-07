@@ -10,3 +10,5 @@ export const SLIDER_SETTINGS = {
     pauseOnHover: true,
     pauseOnFocus: true
 };
+
+export const BACKEND_API = "http://localhost:5000";

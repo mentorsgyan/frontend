@@ -1,6 +1,5 @@
 import { Progress } from "@material-tailwind/react";
 import Navbar from "../components/Navbar/Navbar";
-import TopCourses from "../components/TopCourses/TopCourses";
 import Image from "../assets/hero/Hero.png"
 import Footer from "../components/Footer/Footer";
 import { useEffect, useState } from "react";
@@ -13,7 +12,7 @@ import { useEffect, useState } from "react";
  */
 const User = () => {
 
-    const [courseAccess, setUserData] = useState(null)
+    const [courseAccess, setCourseAccess] = useState(null)
     useEffect(() => {
         fetch("http://localhost:5000/api")
         .then(response => response.json())
@@ -29,8 +28,7 @@ const User = () => {
                 {/* Course cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
 
-                    {courseAccess &&
-                        courseAccess.map(course => (
+                    {courseAccess?.map(course => (
                             <CourseCard key={course.courseId} course={course} />  
                         ))
                     }

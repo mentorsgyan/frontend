@@ -4,7 +4,7 @@ import { GrSecure } from "react-icons/gr";
 
 const Banner = () => {
     return (
-        <div className="min-h-[550px] bg-primary/70 flex justify-center items-center mt-12 pb-5 sm:py-2">
+        <div className="min-h-[550px] bg-primary/70 flex justify-center items-center pt-16 sm:mt-0 pb-5 d">
             <div className="container">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
                     {/* image section */}

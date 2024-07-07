@@ -8,97 +8,6 @@ import { FaStar } from "react-icons/fa6";
 import Footer from "../components/Footer/Footer"
 import ModulesDropDown from "../components/ModulesDropDown/ModulesDropDown"
 
-const Modules2 = [
-    {
-        moduleNumber: "1",
-        title: "Module Title",
-        expanded: true,
-        lectures: [
-            {
-                lectureNumber: "1",
-                title: "Time",
-                link: "link"
-            },
-            {
-                lectureNumber: "2",
-                title: "Money",
-                link: "link"
-            },
-            {
-                lectureNumber: "3",
-                title: "Labor",
-                link: "link"
-            },
-        ]
-    },
-    {
-        moduleNumber: "2",
-        title: "Module Title",
-        expanded: false,
-        lectures: [
-            {
-                lectureNumber: "1",
-                title: "Time",
-                link: "link"
-            },
-            {
-                lectureNumber: "2",
-                title: "Money",
-                link: "link"
-            },
-            {
-                lectureNumber: "3",
-                title: "Labor",
-                link: "link"
-            },
-        ]
-    },
-    {
-        moduleNumber: "3",
-        title: "Module Title",
-        expanded: false,
-        lectures: [
-            {
-                lectureNumber: "1",
-                title: "Time",
-                link: "link"
-            },
-            {
-                lectureNumber: "2",
-                title: "Money",
-                link: "link"
-            },
-            {
-                lectureNumber: "3",
-                title: "Labor",
-                link: "link"
-            },
-        ]
-    },
-    {
-        moduleNumber: "4",
-        title: "Module Title",
-        expanded: false,
-        lectures: [
-            {
-                lectureNumber: "1",
-                title: "Time",
-                link: "link"
-            },
-            {
-                lectureNumber: "2",
-                title: "Money",
-                link: "link"
-            },
-            {
-                lectureNumber: "3",
-                title: "Labor",
-                link: "link"
-            },
-        ]
-    }
-]
-
 const CourseLanding = () => {
     const [courseData, setCourseData] = useState(null)
     
@@ -109,9 +18,7 @@ const CourseLanding = () => {
         .catch(error => console.log("Error occured in fetching data: ", error))
     }, [])
     const navigate = useNavigate();
-    const { courseId } = useParams();
-    const [Modules, setModules] = useState(Modules2);
-    const [userPresent, setUser] = useState(true);
+    const [courseAccess, setCourseAccess] = useState(true);
     if (courseData == null) {
         return (
             <div>
@@ -175,12 +82,9 @@ const CourseLanding = () => {
                                         }
                                     </ul>
                                     {/* Buy now */}
-                                    <button className = "bg-gradient-to-r my-3 w-1/3 from-primary to-secondary hover:scale-105 duration-200 text-white py-3 px-4 rounded-full" onClick={
-                                        () => {
-                                            setUser(!userPresent)
-                                            // navigate("/checkout/")
-                                        }
-                                    }>{userPresent ? "Play" : "Buy Now"}</button>
+                                    <button className = "bg-gradient-to-r my-3 w-1/3 from-primary to-secondary hover:scale-105 duration-200 text-white py-3 px-4 rounded-full" 
+                                    onClick={() => navigate(courseAccess ? "/video?courseName:" + courseData.title + "&courseId:" + courseData.id : "/checkout")}>
+                                        {courseAccess ? "Play" : "Buy Now"}</button>
                                 </div>
                             
                             </div>
@@ -227,7 +131,7 @@ const CourseLanding = () => {
                 <hr></hr>
             </div>
             <div className = "">
-                <ModulesDropDown />
+                <ModulesDropDown Modules={courseData.courseModuleDescription}/>
                 
             </div>
             
