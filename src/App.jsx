@@ -7,7 +7,7 @@ import PaymentPage from "./pages/PaymentPage";
 import { heroDataLoader } from "./pages/Home";
 import User from "./pages/User";
 import BlogPage from "./pages/BlogPage";
-// import SampleTests, { QuestionPaper } from "./pages/MCQTest";
+import SampleTests, { QuestionPaper } from "./pages/MCQTest";
 
 const App = () => {
   React.useEffect(() => {
@@ -33,8 +33,8 @@ const App = () => {
         <Route path = "/checkout" element = {<PaymentPage />}></Route>
         <Route path = "/user" element = {<User />} />
         <Route path = "/current-affairs" element = {<BlogPage />} />
-        {/* <Route path = "/mock-test" element = {<SampleTests />} />
-        <Route path = "/mock-test/:testDate" element = {<QuestionPaper />}/> */}
+        <Route path = "/mock-test" element = {<SampleTests />} />
+        <Route path = "/mock-test/:testDate" element = {<QuestionPaper />}/>
       </Routes>
       </BrowserRouter>
     </div>
