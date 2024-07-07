@@ -22,4 +22,4 @@ export const ImageList = [
         description: "3333This is the new course description",
         courseName: "Making websites"
     }
-  ]
+]

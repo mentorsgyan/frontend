@@ -35,21 +35,21 @@ const PaymentPage = ({price=999}) => {
     return (
         <div>
             <Navbar bottom = {false}/>
-            <div className="min-h-[550px] flex justify-center items-center py-12 sm:py-0">
+            <div className="min-h-[550px] py-12 sm:py-0">
                 <div className="container">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-center items-center">
                         {/* image section */}
                         <div data-aos="zoom-in">
                             <img src={BannerImg} alt="" 
                             className="max-w-[400px] h-[350px] w-full mx-auto drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)] object-cover"
                             />
                         </div>
-                        <div className="flex flex-col justify-center gap-6 sm:pt-0">
+                        <div className="flex flex-col gap-6 sm:pt-0">
                             <h1 data-aos="fade-up" className="text-3xl sm:text-4xl font-bold">Course Title</h1>
-                            <p data-aos="fade-up" className="text-sm text-gray-500 tracking-wide leading-5">
+                            <p data-aos="fade-up" className="text-sm text-gray-500 tracking-wide leading-5 text-justify">
                                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint quod quo amet! Omnis alias maxime nulla, ipsa quos, tempore recusandae aliquid maiores cum delectus voluptatibus beatae, nobis eius assumenda pariatur.
                             </p>
-                            <div className="px-10 flex flex-col gap-4">
+                            <div className="flex flex-col gap-4 md:w-1/2">
                                 {/* Total section */}
                                 <div className=" flex flex-col gap-2">
                                     <h1 className="text-3xl font-bold py-2 text-secondary">Summary</h1>
@@ -75,8 +75,8 @@ const PaymentPage = ({price=999}) => {
                                     </div>
                                 </div>
                                 {/* Coupon section */}
-                                <div>
-                                    <input type="text" placeholder="Got any Coupons?" className="border p-3" onChange={handleCouponChange}/>
+                                <div className="flex w-full">
+                                    <input type="text" placeholder="Got any Coupons?" className="border p-3 md:w-2/3" onChange={handleCouponChange}/>
                                     <button onClick={verifyCoupon} className="bg-primary hover:scale-105 duration-300 text-white py-3 px-4 mx-3 group-hover:bg-white group-hover:text-primary" >
                                             Verify
                                     </button>
@@ -84,7 +84,7 @@ const PaymentPage = ({price=999}) => {
                                 </div>
                                 {/* Razorpay direction button */}
                                 <div>
-                                    <button onClick={verifyCoupon} className="bg-secondary font-bold hover:scale-105 duration-300 text-white w-1/2 p-2 group-hover:bg-white group-hover:text-primary" >
+                                    <button onClick={verifyCoupon} className="bg-secondary font-bold hover:scale-105 duration-300 text-white w-full p-2 group-hover:bg-white group-hover:text-primary" >
                                             Pay
                                     </button>
                                 </div>

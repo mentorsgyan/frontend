@@ -1,6 +1,6 @@
 export const SLIDER_SETTINGS = {
     dots: false,
-    arrows: true,
+    arrows: false,
     infinite: true,
     speed: 800,
     slidesToScroll: 1,
@@ -10,3 +10,5 @@ export const SLIDER_SETTINGS = {
     pauseOnHover: true,
     pauseOnFocus: true
 };
+
+export const BACKEND_API = "http://localhost:5000";
