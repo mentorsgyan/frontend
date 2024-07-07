@@ -1,3 +1,9 @@
+# TODO
+### 1. Add newsletter for contact us section [Newsletter](https://tailwindui.com/components/marketing/sections/newsletter-sections).
+### 2. Add pricing section for mentorship programs [Pricing](https://tailwindui.com/components/marketing/sections/pricing)
+### 3. 
+
+
 ## Website Structure
 ```
      / (root)

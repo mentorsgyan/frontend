@@ -119,7 +119,7 @@ const Footer = () => {
                 <div className="flex items-center gap-3 mt-6">
                   {
                       SocialMedia.map(data => (
-                          <a href={data.link}>
+                          <a href={data.link} key={data.name}>
                               {data.icon}
                           </a>
                       ))

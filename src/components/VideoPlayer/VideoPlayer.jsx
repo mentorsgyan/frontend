@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from "../Footer/Footer"
-import { FaCaretDown, FaPlay, FaPlayCircle } from 'react-icons/fa';
-import { FaCirclePlay } from 'react-icons/fa6';
+import ModulesDropDown from '../ModulesDropDown/ModulesDropDown';
+import { useLocation } from 'react-router-dom';
+import { BACKEND_API } from '../../utility/Constants';
 
 const Modules2 = [
     {
@@ -95,77 +96,60 @@ const Modules2 = [
     }
 ]
 
+/**
+ * This component is the video player
+ * where a module scroller besides the video player
+ * @author Mayank Shukla
+ * @returns
+ */
 const VideoPlayer = () => {
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+
+    useEffect(async () =>  {
+        try {
+            const response = await fetch(BACKEND_API + "/courseById", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({courseId: queryParams.get('courseId')})
+            });
+    
+            if (response.ok) {
+    
+            } else {
+                console.log()
+            }
+        } catch (error) {
+            console.error("Error occured in fetching course data");
+        }
+        
+    }, [])
 
     const [Modules, setModules] = useState(Modules2);
     
     return (
         <div>
             <Navbar bottom={false}/>
-            <div className="pb-10 pt-2 flex justify-center gap-2">
+            <div className="pt-2 shadow-md grid grid-cols-1 md:grid-cols-3">
                 {/* Video player */}
-                <div className=" bg-white shadow-lg h-screen rounded-lg w-full">
+                <div className=" bg-white  rounded-lg col-span-2">
                     <video controls className="w-full">
                     <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                     </video>
-                    <h4 className='text-3xl font-bold p-5'>About the lecture</h4>
-                    <p className='text-2xl text-justify p-5'>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus eligendi ipsa amet deserunt sapiente consequatur nam error, atque consequuntur, ad ratione repudiandae reiciendis illum. Officiis ullam ratione commodi dolorum hic?
-                    </p>
                 </div>
                 {/* Scrollable course content */}
-                <div className="h-screen mb-10 border-4 w-2/5 bg-secondary/5 border-primary/20 flex justify-center">
-                    <div className="w-full overflow-y-scroll bg-white p-4 shadow-lg">
-                        <h1 className='text-2xl font-extrabold text-center border p-2 border-secondary bg-primary text-gray-50'>Course Content</h1>
-                        <div className="z-[9999]  group-hover:block rounded-md bg-white p-2 text-black shadow-md">
-                            <ul>
-                                {
-                                    Modules.map(currentModule => (
-                                        <li className="my-2 group cursor-pointer" id={currentModule.moduleNumber}>
-                                            <div
-                                            className="bg-primary/30 px-10 text-2xl shadow-lg flex justify-between items-center gap-[2px] py-4">
-                                                <h2>{currentModule.moduleNumber}. {currentModule.title}</h2>
-                                                <span>
-                                                    <FaCaretDown 
-                                                    className={`transition-all text-primary duration-200 ${currentModule.expanded ? "rotate-180" : "rotate-0"}`} onClick={() => {
-                                                        setModules(Modules.map(actualModule => {
-                                                            if (actualModule.moduleNumber === currentModule.moduleNumber) {
-                                                                actualModule.expanded = !actualModule.expanded
-                                                            }
-                                                            return actualModule
-                                                        }));
-                                                    }}/>
-                                                </span>
-                                            </div>
-                                            <div className={`flex-col ${currentModule.expanded ? " block" : "hidden"} `}>
-                                                <ul className="flex-col">
-                                                    {
-                                                        currentModule.lectures.map(lecture => (
-                                                            <li className=' bg-white p-2 text-black shadow-md' key = {lecture.lectureNumber}>
-                                                                <div className='flex '>
-                                                                    <p className='w-full'>{lecture.lectureNumber}. {lecture.title}</p>
-                                                                    <a href={lecture.link}
-                                                                    className="rounded-md"
-                                                                    ><FaCirclePlay className='transition duration-200 hover:scale-125'/></a>
-                                                                    </div>
-                                                            </li>
-                                                        ))
-                                                    }
-                                                    
-                                                
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    ))
-                                }
-                                
-                            </ul>
-                        </div>
-                        
-                        
-                    </div>
+                <div>
+                    <ModulesDropDown Modules={Modules} videoPlayer={true}/>
                 </div>
+            </div>
+            <div>
+                <h4 className='text-3xl font-bold '>About the lecture</h4>
+                <p className='text-2xl text-justify'>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus eligendi ipsa amet deserunt sapiente consequatur nam error, atque consequuntur, ad ratione repudiandae reiciendis illum. Officiis ullam ratione commodi dolorum hic?
+                </p>
             </div>
             <Footer />
         </div>
