@@ -44,8 +44,8 @@ export default function () {
             {/* Mentorship pricing cards */}
             <div className="grid md:grid-cols-3 grid-cols-1 gap-16">
                 {
-                    MentorshipPrograms.map(program => (
-                        <MentorshipCard program={program} key={program.renewalDuration}/>
+                    MentorshipPrograms.map((program, idx) => (
+                        <MentorshipCard program={program} key={idx}/>
                     ))
                 }
             </div>

@@ -38,8 +38,8 @@ const CurrentAffairsSection = () => {
                 {/* Body section */}
                 <div className="mx-2 grid grid-cols-1 md:grid-cols-3 place-items-center justify-evenly">
                     {
-                        BlogsData.map(blogData => (
-                            <CurrentAffairTile blogData = {blogData}/>
+                        BlogsData.map((blogData, idx) => (
+                            <CurrentAffairTile key={idx} blogData = {blogData}/>
                         ))
                     }
                 </div>
@@ -63,7 +63,7 @@ const CurrentAffairTile = ({blogData}) => {
                 <div className="text-center">
                     <h1 className="text-xl font-bold text-white">{blogData.title}</h1>
                     <p className="text-gray-200 group-hover:text-white duration-300 text--sm line-clamp-2">{blogData.description}</p>
-                    <button className="border border-secondary hover:bg-secondary hover:text-gray-300 hover:scale-105 duration-300 text-secondary py-1 px-4 rounded-md mt-4 group-hover:bg-white group-hover:text-primary" onClick={console.log("Hello")}>
+                    <button className="border border-secondary hover:bg-secondary hover:text-gray-300 hover:scale-105 duration-300 text-secondary py-1 px-4 rounded-md mt-4 group-hover:bg-white group-hover:text-primary" onClick={() => {}} >
                         Read Now
                     </button>
                 </div>

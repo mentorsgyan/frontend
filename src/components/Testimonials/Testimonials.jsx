@@ -56,7 +56,7 @@ const Testimonials = () => {
                 {/* Person cards */}
                 {
                     PersonData.map((person, idx) => (
-                        <PersonReview review={person}/>
+                        <PersonReview key={idx} review={person}/>
                     ))
                 }
             </Slider>

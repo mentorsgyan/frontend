@@ -51,7 +51,7 @@ const Offerings = () => {
                 {/* Services Cards */}
                 {
                     ServiceOffered.map((service, idx) => (
-                        <ServiceCards Data={service}/>
+                        <ServiceCards key={idx} Data={service}/>
                     ))
                 }
             </div>
@@ -62,7 +62,7 @@ const Offerings = () => {
 const ServiceCards = ({Data}) => {
     const [detailsVisibility, setDetailsVisibility] = useState(false);
     return (
-        <div key={Data.title} className="flex items-center flex-col md:w-[230px] hover:-translate-y-20 transition-transform duration-300 p-4"
+        <div className="flex items-center flex-col md:w-[230px] hover:-translate-y-20 transition-transform duration-300 p-4"
             onMouseEnter={() => setDetailsVisibility(true)}
             onMouseLeave={() => setDetailsVisibility(false)}
         >
@@ -86,7 +86,7 @@ const ServiceCards = ({Data}) => {
                     Learn more
                 </a>
             </div>
-            <a href={Data.redirection} 
+            <a href={Data.redirection}
             className={`p-4 text-secondary underline font-bold md:hidden`}>
                 Learn more
             </a>           
