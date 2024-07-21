@@ -1,8 +1,8 @@
 import React from "react";
-import Person1 from "../../assets/testimonial1.png"
-import Person2 from "../../assets/testimonial2.png"
-import Person3 from "../../assets/testimonial3.png"
-import Person4 from "../../assets/testimonial4.png"
+import Person1 from "../../assets/testimonial/tripty.png"
+import Person2 from "../../assets/testimonial/titiksha.png"
+import Person3 from "../../assets/testimonial/diksha.png"
+import Person4 from "../../assets/testimonial/sanjay.png"
 import { LuQuote } from "react-icons/lu";
 import Slider from "react-slick";
 import { SLIDER_SETTINGS } from "../../utility/Constants";
@@ -17,76 +17,103 @@ const PersonData = [
     {
         id: 1,
         title: "Humbled and Grateful.",
-        reviewerName: "Mayank Shukla",
+        reviewerName: "Tripty Singh",
         reviewerPosition: "Aspirant",
         image: Person1,
-        quotes: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat natus optio, laboriosam aliquid, amet facere distinctio corporis repudiandae, officia exercitationem veniam voluptatem? Accusantium id dolorem in? Magni aspernatur consequuntur sapiente."
+        quotes: "मेरा अनुभव Mentor Gyan के साथ बहुत अच्छा रहा। विशेषकर मिहिर सर के निर्देशन में मुझे सही मार्गदर्शन, योग्यता और समय के अनुसार उपयुक्त टाइम टेबल मिला, जिससे मैं अपने लक्ष्य के करीब पहुंची। मिहिर सर की सलाह पढ़ाई और कार्य क्षेत्र दोनों में उपयोगी रही। आशा है, सही मार्गदर्शन से मैं अपने लक्ष्य तक अवश्य पहुंचूंगी।"
     },
     {
         id: 2,
         title: "11Humbled and Grateful.",
-        reviewerName: "Mayank Shukla",
+        reviewerName: "Titiksha Shukla",
         reviewerPosition: "Aspirant",
         image: Person2,
-        quotes: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat natus optio, laboriosam aliquid, amet facere distinctio corporis repudiandae, officia exercitationem veniam voluptatem? Accusantium id dolorem in? Magni aspernatur consequuntur sapiente."
-    },
-    {
-        id: 3,
-        title: "22Humbled and Grateful.",
-        reviewerName: "Mayank Shukla",
-        reviewerPosition: "Aspirant",
-        image: Person3,
-        quotes: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat natus optio, laboriosam aliquid, amet facere distinctio corporis repudiandae, officia exercitationem veniam voluptatem? Accusantium id dolorem in? Magni aspernatur consequuntur sapiente."
+        quotes: "Dear Mentor Gyan Team, thank you for your invaluable guidance during my civil service preparation. Your clarity, strategic advice, encouragement, and resources have been instrumental in my progress. Your patience and support have significantly boosted my confidence."
     },
     {
         id: 4,
         title: "22Humbled and Grateful.",
-        reviewerName: "Mayank Shukla",
+        reviewerName: "Sanjay Choudhary",
         reviewerPosition: "Aspirant",
         image: Person4,
-        quotes: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat natus optio, laboriosam aliquid, amet facere distinctio corporis repudiandae, officia exercitationem veniam voluptatem? Accusantium id dolorem in? Magni aspernatur consequuntur sapiente."
+        quotes: "After getting a job through campus placement, I contacted Ashish Futan sir for CGPSC preparation advice. He guided me on study materials, important topics, and the best coaching test series. This mentorship program is excellent, and I highly recommend it to all aspirants. Thank you, Mentor Gyan and Ashish sir."
+    },
+    {
+        id: 3,
+        title: "22Humbled and Grateful.",
+        reviewerName: "Diksha Upadhyay",
+        reviewerPosition: "Aspirant",
+        image: Person3,
+        quotes: "When I joined Mentor Gyan, I was lost in my preparation. Mihir sir guided me from the start, improving my thought process and teaching essential answer writing techniques. He emphasized the importance of early mains exam preparation, helping me understand and improve my approach."
     }
 ]
 
+/**
+ * This Section will return the testimonials
+ * of the mentees and officials.
+ * @author Mayank Shukla
+ */
 const Testimonials = () => {
+    const sliderSettings = {...SLIDER_SETTINGS};
+    sliderSettings.pauseOnHover = false;
+    sliderSettings.dots = true;
+    sliderSettings.autoplay = false;
     return (
-        <div className="my-8 shadow-lg container rounded-3xl bg-gradient-to-t from-secondary/10 to-secondary/25">
-            <h1 className="text-4xl font-bold tracking-tight text-center pt-10">Here it from our Mentees</h1>
-            <Slider {...SLIDER_SETTINGS}>
-                {/* Person cards */}
+        <div className="relative mt-1 mb-5 container rounded-3xl shadow-2xl overflow-hidden">
+            <div
+                className="absolute inset-x-0 -top-30 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-48"
+                aria-hidden="true"
+                >
+                    <div
+                        className="relative left-[calc(50%-11rem)] aspect-[900/678] w-[26.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-secondary to-primary opacity-10 sm:left-[calc(50%-20rem)] sm:w-[52.1875rem]"
+                        style={{
+                        clipPath:
+                            'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+                        }}
+                    />
+                </div>
+            <h1 className="text-3xl font-bold tracking-tight text-center py-5">जानिये हमारे विद्यार्थीयो की राय</h1>
+            <Slider {...sliderSettings}>
                 {
                     PersonData.map((person, idx) => (
                         <PersonReview key={idx} review={person}/>
                     ))
                 }
             </Slider>
+            <div
+                className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+                aria-hidden="true"
+                >
+                    <div
+                        className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-primary to-secondary opacity-10 sm:left-[calc(50%+20rem)] sm:w-[52.1875rem]"
+                        style={{
+                        clipPath:
+                            'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+                        }}
+                    />
+                </div>
         </div>
     )
 }
 
-const PersonReview = ({review}) => {
+export const PersonReview = ({review}) => {
     return (
-        <div>
-            {/* Background */}
-            <div className="absolute w-full">
-                <LuQuote className="text-8xl text-primary opacity-60 w-full rotate-180 translate-y-10 -z-10 -translate-x-40"/>
-                {/* < CirclesBG />  */}
-            </div>
-                
-            <div className="flex justify-center items-center">
+        <div>                
+            <div className="flex justify-center items-center py-5">
+                {/* <LuQuote className="absolute text-8xl text-primary opacity-60 w-full rotate-180 -translate-y-20 -z-10 -translate-x-48"/> */}
                 {/* Image */}
-                <div className="w-full flex justify-center ">
+                <div className="flex justify-center overflow-hidden -z-50">
                     <img src={review.image}
-                        className="w-[320px]  p-10"
+                        className="w-1/2 rounded-full shadow-xl"
                     alt="" />
-                   
                 </div>
                 {/* text */}
-                <div className=" text-left">
+                <div className=" text-left w-full">
                     
                     {/* One liner */}
-                    <h2 className="text-3xl font-bold tracking-wide">{review.title}</h2>
+                    {/* <h2 className="text-3xl font-bold tracking-wide">{review.title}</h2> */}
                     {/* Quotations */}
+                    
                     <blockquote className="w-4/5 text-center mt-5 leading-8 text-gray-900 sm:text-2xl sm:leading-9">
                         <p className="text-justify text-lg">
                         “{review.quotes}”
@@ -97,6 +124,7 @@ const PersonReview = ({review}) => {
                         <p className="font-bold"> {review.reviewerPosition}</p>
                     </div>
                 </div>
+                <LuQuote className="absolute text-8xl text-primary opacity-60 w-full translate-x-96 -z-10"/>
             </div>
         </div>
     )

@@ -1,69 +1,14 @@
 import React, { useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
-import { FaArrowRight } from "react-icons/fa6";
 import {useNavigate } from "react-router-dom"; 
-
-
-const items = [
-    { id: 1, title: 'Back End Developer', department: 'Engineering', type: 'Full-time', location: 'Remote' },
-    { id: 2, title: 'Front End Developer', department: 'Engineering', type: 'Full-time', location: 'Remote' },
-    { id: 3, title: 'User Interface Designer', department: 'Design', type: 'Full-time', location: 'Remote' },
-]
-
-const paginatedData = {
-    componentHeading: "Daily mock tests by MentorsGyan",
-    mainData: [
-        {
-            primaryInfo: 'July 07, 2024',
-            secondaryInfo: 'Sample Test 1',
-            imageUrl:
-                'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
-        },
-        {
-            primaryInfo: 'July 06, 2024',
-            secondaryInfo: 'Sample Test 2',
-            imageUrl:
-                'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
-        },
-        {
-            primaryInfo: 'July 05, 2024',
-            secondaryInfo: 'Sample Test 3',
-            imageUrl:
-                'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
-        },
-        {
-            primaryInfo: 'July 04, 2024',
-            secondaryInfo: 'Sample Test 4',
-            imageUrl:
-                'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
-        },
-        {
-            primaryInfo: 'July 03, 2024',
-            secondaryInfo: 'Sample Test 5',
-            imageUrl:
-                'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
-        },
-        {
-            primaryInfo: 'July 02, 2024',
-            secondaryInfo: 'Sample Test 6',
-            imageUrl:
-                'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
-        },
-        {
-            primaryInfo: 'July 01, 2024',
-            secondaryInfo: 'Sample Test 7',
-            imageUrl:
-                'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
-        },
-    ]
-}
+import { BsArrowRight } from "react-icons/bs";
 
 /**
  * This component will render paginated data
  * @returns 
  * @author Mayank Shukla
  */
-const PaginatedComponent = () => {
+const PaginatedComponent = ({paginatedData}) => {
 
     // React router
     const navigate = useNavigate();
@@ -78,31 +23,46 @@ const PaginatedComponent = () => {
     const itemsPerPage = Math.min(Math.floor(paginatedData.mainData.length / 2) , 10);
     const totalPages = Math.ceil(paginatedData.mainData.length / itemsPerPage);   
 
+    const buttonTitle = paginatedData.buttonTitle;
+    console.log("Button Title: ", buttonTitle)
+
     return (
         <div className="container">
             <h1 className="text-2xl font-bold tracking-tight py-5">{paginatedData.componentHeading}</h1>
             {/* Rendering data begins */}
-            <div>
+            <div className="mx-10">
                 <ul role="list" className="divide-y divide-gray-100">
                     {
                         Array.from({length: itemsPerPage}, (_, index) => {
                             try {
                                 const data = paginatedData.mainData[index +  itemsPerPage * (currentPage - 1)];
+                                console.log("IMG: ", data.imageUrl)
                                 return (<div key={data.secondaryInfo}>
                                     <li className="flex justify-between gap-x-6 py-5">
                                         <div className="flex min-w-0 gap-x-4">
-                                            <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={data.imageUrl} alt="" />
-                                            <div className="min-w-0 flex-auto">
+                                            {data.imageUrl !== undefined && <img className="h-12 w-12 flex-none rounded-full" src={data.imageUrl} alt="" />}
+                                            <div className="min-w-0 flex flex-col justify-center items-center">
                                                 <p className="text-sm font-semibold leading-6 text-gray-900">{data.primaryInfo}</p>
-                                                <p className="mt-1 truncate text-xs leading-5 text-gray-500">{data.secondaryInfo}</p>
+                                                {data.secondaryInfo && <p className="mt-1 truncate text-xs leading-5 text-gray-500">{data.secondaryInfo}</p>}
                                             </div>
                                         </div>
-                                        <div className="flex items-center gap-4">
-                                            <p className="hidden sm:text-center sm:block">Launch Test</p>
+                                        
+                                        <a className="flex items-center gap-2 text-secondary cursor-pointer text-xl hover:underline hover:underline-offset-2" href={data.url}>
+                                            <div className="hidden shrink-0 sm:flex sm:items-end  font-bold ">
+                                            {buttonTitle}
+                                            </div>
+                                            <div className="">
+                                                <BsArrowRight />
+                                            </div>
+                                            <span></span>
+                                        </a>
+                                        {/* <div className="flex items-center gap-4">
+                                            <p className="hidden sm:text-center sm:block">{buttonTitle}</p>
                                             <FaArrowRight className="text-secondary text-2xl cursor-pointer hover:scale-110 duration-200" onClick={() => {
                                                 navigate(data.primaryInfo)
                                             }}/>
-                                        </div>
+                                        </div> */}
+
                                     </li>
                                 </div>)
                             } catch (error) {
@@ -115,7 +75,7 @@ const PaginatedComponent = () => {
             </div>
             {/* Rendering data begins */}
             {/* Page change area begins */}
-            <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+            <div className="relative flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
                 
                 {/* Previous/Next button in case of small widht device */}
                 <div className="flex flex-1 justify-between sm:hidden">
@@ -129,7 +89,7 @@ const PaginatedComponent = () => {
                 <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
                     <div>
                         <p className="text-sm text-gray-700">
-                            Showing <span className="font-medium">{(currentPage - 1) * itemsPerPage + 1}</span> to <span className="font-medium">{Math.min(currentPage * itemsPerPage, paginatedData.mainData.length)}</span> of{' '}
+                            Showing <span className="font-medium">{paginatedData.mainData.length === 0 ? 0 : (currentPage - 1) * itemsPerPage + 1}</span> to <span className="font-medium">{Math.min(currentPage * itemsPerPage, paginatedData.mainData.length)}</span> of{' '}
                             <span className="font-medium">{paginatedData.mainData.length}</span> results
                         </p>
                     </div>

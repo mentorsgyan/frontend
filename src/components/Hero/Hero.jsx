@@ -4,20 +4,27 @@ import {useNavigate } from "react-router-dom";
 import { SLIDER_SETTINGS } from "../../utility/Constants";
 
 const Hero = () => {
+    
     const [ImageList, setImageList] = useState(null);
     useEffect(() => {
         fetch("http://localhost:5000/heroData")
         .then(response => response.json())
         .then(data => setImageList(data))
-    })
+    }, [])
+
     const navigate = useNavigate();
+
+    // TODO: Remove this slider
+    const sliderSettings = {...SLIDER_SETTINGS}
+    sliderSettings.autoplay = false;
+
     return (
         <div className = "relative overflow-hidden min-h-[550px] sm:min-h-[650px] bg-gray-100 flex justify-center items-center dark:bg-gray-950 dark:text-white duration-200">
             {/* background pattern */}
             <div className = "h-[800px] w-[1200px] bg-primary/40 absolute -top-1/2 right-0 rounded-3xl rotate-45 -z-9" />
             {/* Hero section */}
             <div className="container pb-8 sm:pb-0">
-                <Slider {...SLIDER_SETTINGS}>
+                <Slider {...sliderSettings}>
                     {ImageList?.map(data => (
                         <div key={data.id}>
                             <div className = "grid grid-cols-1 sm:grid-cols-2">

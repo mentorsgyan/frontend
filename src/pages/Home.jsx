@@ -2,13 +2,16 @@ import React from "react";
 import Navbar from "../components/Navbar/Navbar"
 import Aos from "aos";
 import "aos/dist/aos.css"
-import Banner from "../components/Banner/Banner";
 import Footer from "../components/Footer/Footer";
 import Hero from "../components/Hero/Hero";
 import Mentorship from "../components/Mentorship/Mentorship";
-import StudyMaterials from "../components/StudyMaterials/StudyMaterials";
 import Offerings from "../components/Offerings/Offerings";
 import Testimonials from "../components/Testimonials/Testimonials";
+import AboutUs from "../components/AboutUs/AboutUs";
+import ELibrary from "../components/ELibrary/ELibrary";
+import MockTest from "../components/MockTest/MockTest";
+import Officers from "../components/Officers/Officers";
+import Mentorship2 from "../components/Mentorship/Mentorship2";
 
 const Home = () => {
   // AOS
@@ -25,11 +28,14 @@ const Home = () => {
     <div>
         <Navbar />
         <Hero />
+        <Officers />
         <Offerings />
         <Mentorship />
-        <StudyMaterials />
-        <Banner />
+        {/* <Mentorship2 /> */}
+        <ELibrary />
+        <MockTest />
         <Testimonials />
+        <AboutUs />
         <Footer />
     </div>
   )

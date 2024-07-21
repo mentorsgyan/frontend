@@ -57,7 +57,7 @@ export const QuestionPaper = () => {
   
     return (
       <div className="container mx-auto p-4">
-        <h1 className='text-2xl font-bold tracking-tight p-10 '>Sample test on: {testDate}</h1>
+        <h1 className='text-2xl font-bold tracking-tight p-10 '>सैंपल पेपर on: {testDate}</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {questions.map((q, index) => {
               const correct = userAnswers[index] === q.answer
@@ -110,9 +110,65 @@ export const QuestionPaper = () => {
 };
 
 const SampleTests = () => {
+  const data = {
+    mainData: [
+      {
+          primaryInfo: 'July 07, 2024',
+          secondaryInfo: 'सैंपल पेपर 1',
+          url: "/mock-test/July 07, 2024",
+          imageUrl:
+              'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
+      },
+      {
+          primaryInfo: 'July 06, 2024',
+          secondaryInfo: 'सैंपल पेपर 2',
+          url: "/mock-test/July 06, 2024",
+          imageUrl:
+              'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
+      },
+      {
+          primaryInfo: 'July 05, 2024',
+          secondaryInfo: 'सैंपल पेपर 3',
+          url: "/mock-test/July 05, 2024",
+          imageUrl:
+              'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
+      },
+      {
+          primaryInfo: 'July 04, 2024',
+          secondaryInfo: 'सैंपल पेपर 4',
+          url: "/mock-test/July 04, 2024",
+          imageUrl:
+              'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
+      },
+      {
+          primaryInfo: 'July 03, 2024',
+          secondaryInfo: 'सैंपल पेपर 5',
+          url: "/mock-test/July 03, 2024",
+          imageUrl:
+              'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
+      },
+      {
+          primaryInfo: 'July 02, 2024',
+          secondaryInfo: 'सैंपल पेपर 6',
+          url: "/mock-test/July 02, 2024",
+          imageUrl:
+              'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
+      },
+      {
+          primaryInfo: 'July 01, 2024',
+          secondaryInfo: 'सैंपल पेपर 7',
+          url: "/mock-test/July 01, 2024",
+          imageUrl:
+              'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
+      },
+  ],
+    componentHeading: "Mock Tests By MentorsGyan",
+    buttonTitle: "टेस्ट प्रारंभ करें",
+    test: 1
+  }
     return (
         <div>
-            <PaginatedComponent />
+            <PaginatedComponent paginatedData={data}/>
         </div>
     )
 }

@@ -1,14 +1,13 @@
 import React from "react";
-import footerLogo from "../../assets/hero/Hero.png";
+import footerLogo from "../../assets/logo/footer_logo.png"
 import Banner from "../../assets/hero/Hero.png";
 
 import {
-  FaFacebook,
   FaInstagram,
-  FaLinkedin,
   FaLocationArrow,
   FaYoutube,
   FaMobileAlt,
+  FaTelegramPlane,
 } from "react-icons/fa";
 
 const BannerImg = {
@@ -22,44 +21,44 @@ const BannerImg = {
 
 const FooterLinks = [
   {
-    title: "Home",
-    link: "/#",
+    title: "सेवाएं",
+    link: "/#services",
   },
   {
-    title: "About",
-    link: "/#about",
+    title: "मार्गदर्शन",
+    link: "/#mentorship",
   },
   {
-    title: "Contact",
-    link: "/#contact",
+    title: "ई-लाइब्रेरी",
+    link: "/#e-library",
   },
   {
-    title: "Blog",
-    link: "/#blog",
+    title: "टेस्ट सीरीज़",
+    link: "/#test-series",
   },
 ];
 
 const SocialMedia = [
     {
         name: "Instagram",
-        icon: <FaInstagram className="text-3xl"/>,
-        link: "www.google.com"
+        icon: <FaInstagram className="text-4xl"/>,
+        link: "https://www.instagram.com/mentors_gyan/"
     },
     {
         name: "Youtube",
-        icon: <FaYoutube className="text-3xl text-red-500"/>,
-        link: "www.google.com"
+        icon: <FaYoutube className="text-4xl text-red-500"/>,
+        link: "https://www.youtube.com/@mentorsgyan"
     },
     {
-        name: "LinkedIn",
-        icon: <FaLinkedin className="text-3xl text-blue-500"/>,
-        link: "www.google.com"
+        name: "Telegram",
+        icon: <FaTelegramPlane className="text-4xl text-blue-300"/>,
+        link: "https://t.me/mentorsgyan"
     },
 ]
 
 const Footer = () => {
   return (
-    <div style={BannerImg} className="text-white">
+    <div style={BannerImg} className="text-white ">
         {/* For adding black film */}
       <div className="bg-black opacity-70 inset-0 backdrop-blur-sm">
         <div className="container ">
@@ -67,12 +66,11 @@ const Footer = () => {
             {/* company details */}
             <div className="py-8 px-4">
               <h1 className="sm:text-3xl text-xl font-bold sm:text-left text-justify mb-3 flex items-center gap-3">
-                <img src={footerLogo} alt="" className="max-w-[50px]" />
+                <img src={footerLogo} alt="" className="max-w-[70px] opacity-100" />
                 MentorsGyan
               </h1>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum in
-                beatae ea recusandae blanditiis veritatis.
+                
               </p>
             </div>
 
@@ -96,21 +94,6 @@ const Footer = () => {
                 </div>
               </div>
               <div>
-                <div className="py-8 px-4">
-                  <h1 className="sm:text-xl text-xl font-bold sm:text-left text-justify mb-3">
-                    Links
-                  </h1>
-                  <ul className="flex flex-col gap-3">
-                    {FooterLinks.map((link) => (
-                      <li
-                        className="cursor-pointer hover:text-primary hover:translate-x-1 duration-300 text-gray-200"
-                        key={link.title}
-                      >
-                        <span>{link.title}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               </div>
 
               {/* social links */}
@@ -132,7 +115,7 @@ const Footer = () => {
                   </div>
                   <div className="flex items-center gap-3 mt-3">
                     <FaMobileAlt />
-                    <p>+91 123456789</p>
+                    <p>+91 9039130180</p>
                   </div>
                 </div>
               </div>
