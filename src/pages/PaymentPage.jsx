@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar/Navbar";
 import axios from 'axios';
 import {useLocation} from "react-router-dom"; 
 import { useAuth } from "../AuthContext";
+import { BACKEND_API } from "../utility/Constants";
 
 /**
  * This page is responsible for the entire payment checkout
@@ -35,7 +36,7 @@ const PaymentPage = () => {
 
     useEffect(() => {
         console.log("Name: " + name)
-        fetch("http://localhost:5000/getCoupons")
+        fetch(BACKEND_API + "/getCoupons")
         .then(response => response.json())
         .then(data => setActiveCoupons(data))
     }, [])
@@ -66,7 +67,7 @@ const PaymentPage = () => {
             const data = {
                 amount: total
             }
-            const orderResponse = await axios.post('http://localhost:5000/createOrder', data);
+            const orderResponse = await axios.post(BACKEND_API + '/createOrder', data);
             console.log("Order Resp: ", orderResponse)
             const { amount, id: order_id, currency } = orderResponse.data;
 
@@ -85,7 +86,7 @@ const PaymentPage = () => {
                         razorpaySignature: response.razorpay_signature,
                         name: name
                     };
-                    const result = await axios.post('http://localhost:5000/paymentSuccess/' + response.razorpay_payment_id, data);
+                    const result = await axios.post(BACKEND_API + '/paymentSuccess/' + response.razorpay_payment_id, data);
                     if (result.status === 200) {
                         setPaymentDone(true)
                     }

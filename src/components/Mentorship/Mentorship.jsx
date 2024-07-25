@@ -5,26 +5,26 @@ const MentorshipPrograms = [
     {
         id: 1123,
         mostPopular: false,
-        renewalDuration: "Half-Yearly",
+        renewalDuration: "अर्धवार्षिक",
         programDescription: "अल्ट्रा",
         price: 5999,
-        features: [1, "Daily", 1, 1, 1, "Daily"]
+        features: [1, 1, 1, 1,"दैनिक", "दैनिक"]
     },
     {
         id: 1234,
         mostPopular: true,
-        renewalDuration: "Half-Yearly",
+        renewalDuration: "अर्धवार्षिक",
         programDescription: "प्लस",
         price: 3999,
-        features: [1, "weekly", 1, 1, 1, "in 7 days"]
+        features: [1, 1, 1, 1, "साप्ताहिक", "सप्ताह में एक बार"]
     },
     {
         id: 1344,
         mostPopular: false,
-        renewalDuration: "One-time",
+        renewalDuration: "एक बार",
         programDescription: "सार",
         price: 99,
-        features: [1, "one-time", 'X', 1, 1, "one-time"]
+        features: [1, 'X', 1, 1, "एक बार", "एक बार"]
     }
 ]
 

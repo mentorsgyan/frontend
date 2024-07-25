@@ -8,6 +8,8 @@ import { heroDataLoader } from "./pages/Home";
 import BlogPage from "./pages/BlogPage";
 import SampleTests, { QuestionPaper } from "./pages/MCQTest";
 import UserProfile from "./pages/User/UserProfile";
+import Admin from "./pages/Admin/Admin";
+import PolicyPage from "./pages/PolicyPage";
 
 const App = () => {
   React.useEffect(() => {
@@ -35,6 +37,8 @@ const App = () => {
         <Route path = "/e-library" element = {<BlogPage />} />
         <Route path = "/mock-test" element = {<SampleTests />} />
         <Route path = "/mock-test/:testDate" element = {<QuestionPaper />}/>
+        <Route path="/admin" element = {<Admin />} />
+        <Route path="/policy" element = {<PolicyPage />} />
       </Routes>
       </BrowserRouter>
     </div>

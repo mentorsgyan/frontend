@@ -1,32 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaCheck } from 'react-icons/fa6';
 import PaginatedComponent from '../components/PaginatedComponent/PaginatedComponent';
 import { useParams } from 'react-router-dom';
-
-const questions = [
-  {
-    question: "What is the capital of France?",
-    options: ["Berlin", "Madrid", "Paris", "Rome"],
-    answer: "Paris",
-  },
-  {
-    question: "What is 2 + 2?",
-    options: ["3", "4", "5", "6"],
-    answer: "4",
-  },
-  {
-    question: "Which planet is known as the Red Planet?",
-    options: ["Earth", "Mars", "Jupiter", "Saturn"],
-    answer: "Mars",
-  },
-  {
-    question: "Who wrote 'Hamlet'?",
-    options: ["Charles Dickens", "Jane Austen", "William Shakespeare", "Mark Twain"],
-    answer: "William Shakespeare",
-  }
-];
-
-
+import { BACKEND_API } from "../utility/Constants"
 
 /**
  * This componet will render the question paper
@@ -36,31 +12,60 @@ const questions = [
 export const QuestionPaper = () => {
 
     // Data id
-    const { testDate } = useParams();
+    const { testTitle } = useParams();
 
-    const [userAnswers, setUserAnswers] = useState(Array(questions.length).fill(null));
+    const [userChoiceForRadio, setUserChoiceForRadio] = useState([]);
+    const [userAnswers, setUserAnswers] = useState([]);
     const [result, setResult] = useState(null);
     const [submitted, setSubmitted] = useState(false);
+
+    const [fetchedQuestions, setFetchedQuestions] = useState([]);
   
-    const handleOptionChange = (questionIndex, option) => {
-      const newAnswers = [...userAnswers];
+    const handleOptionChange = (questionIndex, idx, option) => {
+      const newAnswers = [...userChoiceForRadio];
+      const newOptions = [...userAnswers];
+      newOptions[questionIndex] = (idx + 1).toString();
       newAnswers[questionIndex] = option;
-      setUserAnswers(newAnswers);
+      setUserAnswers(newOptions);
+      setUserChoiceForRadio(newAnswers);
     };
   
     const handleSubmit = () => {
       let score = 0;
-      userAnswers.forEach((answer, index) => score += answer === questions[index].answer);
-      setResult(`You scored ${score} out of ${questions.length}`);
+      userAnswers.forEach((answer, index) => {
+        score += (answer?.localeCompare(fetchedQuestions[index].correctOption) === 0 ? 1 : 0)
+      });
+      setResult(`You scored ${score} out of ${fetchedQuestions.length}`);
       setSubmitted(true);
     };
-  
+
+    async function fetchQuestions() {
+      fetch(BACKEND_API + "/getQuestionPaper/About India")
+      .then((response) => {
+        if (response.status !== 200) {
+          alert("Cannot get the questions. Please try again later.");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setFetchedQuestions(data.mcqQuestions)
+        setUserChoiceForRadio(Array(fetchedQuestions.length).fill(null));
+      })
+      .catch((error) => {
+        console.log("Error Occurred: ", error);
+      });
+    }
+
+    useEffect(() => {
+      setSubmitted(false);
+      fetchQuestions();
+    }, []);
     return (
       <div className="container mx-auto p-4">
-        <h1 className='text-2xl font-bold tracking-tight p-10 '>सैंपल पेपर on: {testDate}</h1>
+        <h1 className='text-2xl font-bold tracking-tight p-10 '>सैंपल पेपर on: {testTitle}</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {questions.map((q, index) => {
-              const correct = userAnswers[index] === q.answer
+          {fetchedQuestions.map((q, index) => {
+              const correct = userChoiceForRadio[index] === q.options[q.correctOption - '1'];
               const color = correct ? 'bg-green-200/50' : 'bg-red-200/50';
               const mark = correct ? <FaCheck /> : '';
               const highlightClass = submitted ? color : '';
@@ -77,12 +82,12 @@ export const QuestionPaper = () => {
                         className="form-radio "
                         value={option}
                         disabled={submitted}
-                        checked={userAnswers[index] === option}
-                        onChange={() => handleOptionChange(index, option)}
+                        checked={userChoiceForRadio[index] === option}
+                        onChange={() => handleOptionChange(index, idx, option)}
                       />
                       <span className="ml-2 gap-2 flex items-center">
                           <p>{option} </p>
-                          <p>{submitted && option === q.answer ? <FaCheck /> : ''}</p>
+                          { submitted && <p>{option === q.options[q.correctOption - '1'] ? <FaCheck /> : 'X'}</p>}
                       </span>
                     </label>
                   </li>
@@ -110,65 +115,50 @@ export const QuestionPaper = () => {
 };
 
 const SampleTests = () => {
-  const data = {
-    mainData: [
-      {
-          primaryInfo: 'July 07, 2024',
-          secondaryInfo: 'सैंपल पेपर 1',
-          url: "/mock-test/July 07, 2024",
-          imageUrl:
-              'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
-      },
-      {
-          primaryInfo: 'July 06, 2024',
-          secondaryInfo: 'सैंपल पेपर 2',
-          url: "/mock-test/July 06, 2024",
-          imageUrl:
-              'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
-      },
-      {
-          primaryInfo: 'July 05, 2024',
-          secondaryInfo: 'सैंपल पेपर 3',
-          url: "/mock-test/July 05, 2024",
-          imageUrl:
-              'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
-      },
-      {
-          primaryInfo: 'July 04, 2024',
-          secondaryInfo: 'सैंपल पेपर 4',
-          url: "/mock-test/July 04, 2024",
-          imageUrl:
-              'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
-      },
-      {
-          primaryInfo: 'July 03, 2024',
-          secondaryInfo: 'सैंपल पेपर 5',
-          url: "/mock-test/July 03, 2024",
-          imageUrl:
-              'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
-      },
-      {
-          primaryInfo: 'July 02, 2024',
-          secondaryInfo: 'सैंपल पेपर 6',
-          url: "/mock-test/July 02, 2024",
-          imageUrl:
-              'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
-      },
-      {
-          primaryInfo: 'July 01, 2024',
-          secondaryInfo: 'सैंपल पेपर 7',
-          url: "/mock-test/July 01, 2024",
-          imageUrl:
-              'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
-      },
-  ],
+  const [questionData, setQuestionData] = useState({
+    mainData: [],
     componentHeading: "Mock Tests By MentorsGyan",
     buttonTitle: "टेस्ट प्रारंभ करें",
     test: 1
-  }
+  })
+    
+    const [questionPaperLists, setQuestionPaperList] = useState();
+    async function fetchQuestionPaperLists() {
+      fetch(BACKEND_API + "/questionPaperLists")
+      .then((response) => {
+        if(response.status !== 200) {
+          alert("Questions cannot be fetched now. Please try again later");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        let testList = [];
+        data?.map(test => {
+          let url = "mock-test/" + test.testName;
+          let testData = {
+            primaryInfo: test.testName,
+            secondaryInfo: test.testDescription,
+            url: url,
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
+          }
+          testList.push(testData);
+        })
+        // questionData.mainData = testList;
+        setQuestionData({
+          ...questionData,
+          mainData: testList
+        })
+        setQuestionPaperList(data);
+        console.log("Questions: ", data);
+      })
+    }
+
+    useEffect(() => {
+      fetchQuestionPaperLists();
+    }, [])
     return (
         <div>
-            <PaginatedComponent paginatedData={data}/>
+            <PaginatedComponent paginatedData={questionData}/>
         </div>
     )
 }

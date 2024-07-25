@@ -57,7 +57,6 @@ const Testimonials = () => {
     const sliderSettings = {...SLIDER_SETTINGS};
     sliderSettings.pauseOnHover = false;
     sliderSettings.dots = true;
-    sliderSettings.autoplay = false;
     return (
         <div className="relative mt-1 mb-5 container rounded-3xl shadow-2xl overflow-hidden">
             <div
@@ -99,7 +98,7 @@ const Testimonials = () => {
 export const PersonReview = ({review}) => {
     return (
         <div>                
-            <div className="flex justify-center items-center py-5">
+            <div className="flex md-900:flex-row flex-col justify-center items-center py-5">
                 {/* <LuQuote className="absolute text-8xl text-primary opacity-60 w-full rotate-180 -translate-y-20 -z-10 -translate-x-48"/> */}
                 {/* Image */}
                 <div className="flex justify-center overflow-hidden -z-50">
@@ -108,7 +107,7 @@ export const PersonReview = ({review}) => {
                     alt="" />
                 </div>
                 {/* text */}
-                <div className=" text-left w-full">
+                <div className="text-center md-900:text-left w-full">
                     
                     {/* One liner */}
                     {/* <h2 className="text-3xl font-bold tracking-wide">{review.title}</h2> */}
@@ -124,7 +123,7 @@ export const PersonReview = ({review}) => {
                         <p className="font-bold"> {review.reviewerPosition}</p>
                     </div>
                 </div>
-                <LuQuote className="absolute text-8xl text-primary opacity-60 w-full translate-x-96 -z-10"/>
+                <LuQuote className="absolute text-8xl text-primary opacity-60 w-full translate-x-64 md-900:translate-x-96 -z-10"/>
             </div>
         </div>
     )

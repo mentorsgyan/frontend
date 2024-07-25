@@ -52,7 +52,7 @@ export const userInfoFields = [
         subfields: [{
             name: "DOB",
             type: "date",
-            id: 'age'
+            id: 'dob'
         }, {
             name: "Gender",
             type: "dropdown",
@@ -80,4 +80,5 @@ export const userInfoFields = [
     }
 ]
 
-export const BACKEND_API = "http://localhost:5000";
+// export const BACKEND_API = "http://localhost:5000";
+export const BACKEND_API = "https://mentorsgyan-backend-a58bdc6d7b98.herokuapp.com";

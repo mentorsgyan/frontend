@@ -1,6 +1,4 @@
 import { Progress } from "@material-tailwind/react";
-import Image from "../../assets/hero/Hero.png"
-import { useEffect, useState } from "react";
 
 /**
  * This page will show:
@@ -11,7 +9,7 @@ const UserPurchases = ({services}) => {
     console.log("User: ", services)
     const mentorships = [];
     const courses = [];
-    services.map(service => { 
+    services?.map(service => { 
         if (service.includes("MENTORSHIP")) {
             mentorships.push(service.split('-')[1]);
         } else {
@@ -82,7 +80,6 @@ const CourseCard = ({course}) => {
             <div >
                 {/* Image */}
                 {/* TODO: change image here */}
-                <img src={Image} alt="" />
                 {/* Text */}
                 <div className="flex flex-col gap-2">
                     <h1 className="text-2xl font-bold mt-2 text-center">{course} </h1>

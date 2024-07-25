@@ -1,23 +1,7 @@
 import React from "react";
-import footerLogo from "../../assets/logo/footer_logo.png"
-import Banner from "../../assets/hero/Hero.png";
+import footerLogo from "../../assets/logo/footer_logo.png";
 
-import {
-  FaInstagram,
-  FaLocationArrow,
-  FaYoutube,
-  FaMobileAlt,
-  FaTelegramPlane,
-} from "react-icons/fa";
-
-const BannerImg = {
-  backgroundImage: `url(${Banner})`,
-  backgroundPosition: "bottom",
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
-  height: "100%",
-  width: "100%",
-};
+import {FaInstagram,  FaLocationArrow,  FaYoutube,  FaMobileAlt,  FaTelegramPlane} from "react-icons/fa";
 
 const FooterLinks = [
   {
@@ -36,6 +20,10 @@ const FooterLinks = [
     title: "टेस्ट सीरीज़",
     link: "/#test-series",
   },
+  {
+    title: "गोपनीयता पालिसी",
+    link: "/policy"
+  }
 ];
 
 const SocialMedia = [
@@ -58,15 +46,18 @@ const SocialMedia = [
 
 const Footer = () => {
   return (
-    <div style={BannerImg} className="text-white ">
+    <div className="text-white">
         {/* For adding black film */}
-      <div className="bg-black opacity-70 inset-0 backdrop-blur-sm">
+      <div className="bg-black opacity-70 backdrop-blur-sm relative">
+        <div className="flex items-baseline">
+          <img src={footerLogo} alt="" className="absolute h-[300px] -z-50 blur" />
+        </div>
         <div className="container ">
-          <div data-aos="zoom-in" className="grid md:grid-cols-3 pb-44 pt-5">
+          <div className="grid md:grid-cols-3 pt-5">
             {/* company details */}
             <div className="py-8 px-4">
               <h1 className="sm:text-3xl text-xl font-bold sm:text-left text-justify mb-3 flex items-center gap-3">
-                <img src={footerLogo} alt="" className="max-w-[70px] opacity-100" />
+                <img src={footerLogo} alt="" className="max-w-[70px] opacity-100 " />
                 MentorsGyan
               </h1>
               <p>
@@ -79,7 +70,7 @@ const Footer = () => {
               <div>
                 <div className="py-8 px-4">
                   <h1 className="sm:text-xl text-xl font-bold sm:text-left text-justify mb-3">
-                    Important Links
+                  महत्वपूर्ण लिंक
                   </h1>
                   <ul className="flex flex-col gap-3">
                     {FooterLinks.map((link) => (
@@ -87,7 +78,7 @@ const Footer = () => {
                         className="cursor-pointer hover:text-primary hover:translate-x-1 duration-300 text-gray-200"
                         key={link.title}
                       >
-                        <span>{link.title}</span>
+                        <a href={link.link}><span>{link.title}</span></a>
                       </li>
                     ))}
                   </ul>
@@ -111,7 +102,7 @@ const Footer = () => {
                 <div className="mt-6">
                   <div className="flex items-center gap-3">
                     <FaLocationArrow />
-                    <p>Bilaspur, Chhattisgarh</p>
+                    <p>बिलासपुर, छत्तीसगढ़</p>
                   </div>
                   <div className="flex items-center gap-3 mt-3">
                     <FaMobileAlt />

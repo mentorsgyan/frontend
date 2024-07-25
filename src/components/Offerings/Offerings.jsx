@@ -11,25 +11,25 @@ const ServiceOffered = [
         icon: <MdGroups className="text-5xl"/>
     },
     {
-        title: "Daily Test Series",
+        title: "मॉक टेस्ट",
         description: "हमारी CGPSC मॉक टेस्ट सीरीज प्रतिदिन 5 वर्णनात्मक प्रश्न और 20 वस्तुनिष्ठ प्रश्न प्रदान करती है, जिससे आपकी तैयारी को सशक्त बनाया जा सके और सफलता की संभावनाएं बढ़ सकें।",
         redirection: "#test-series",
         icon: <BsListCheck className="text-5xl" />
     },
     {
-        title: "CGPSC Classes",
+        title: "ऑनलाइन क्लास",
         description: "CGPSC की ऑनलाइन कक्षाएं \"Mentors Gyan\" द्वारा पेश की जाती हैं, जो व्यक्तिगत मार्गदर्शन और विशेषज्ञ सलाह के साथ तैयारी को संपूर्ण बनाती हैं।",
         redirection: "#mentorship",
         icon: <MdSchool className="text-5xl"/>
     },
     {
-        title: "Discussions",
+        title: "वेबिनार्स",
         description: "CGPSC टॉपर्स के साथ वेबिनार्स में चर्चा से मार्गदर्शन प्राप्त होता है, जो तैयारी को बेहतर बनाने और सफलता हासिल करने के लिए महत्वपूर्ण सुझाव और रणनीतियाँ प्रदान करती है।",
         redirection: "#mentorship",
         icon: <MdGroups className="text-5xl"/>
     },
     {
-        title: "E-Library",
+        title: "ई-लाइब्रेरी",
         description: "हमारी CGPSC अभ्यर्थियों के लिए ई-लाइब्रेरी में पिछले वर्षों के प्रश्नपत्र, टॉपर्स की मुख्य परीक्षा की कॉपियां, आर्थिक सर्वेक्षण, सरकारी पत्रिकाएं, प्रशासनिक प्रतिवेदन, सामयिकी, और समाचार पत्र की कतरनें शामिल हैं।",
         redirection: "#e-library",
         icon: <ImBooks className="text-5xl"/>

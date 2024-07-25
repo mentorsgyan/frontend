@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import {useNavigate } from "react-router-dom"; 
 import { BsArrowRight } from "react-icons/bs";
@@ -20,11 +20,10 @@ const PaginatedComponent = ({paginatedData}) => {
     
     // Pagination properties
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = Math.min(Math.floor(paginatedData.mainData.length / 2) , 10);
-    const totalPages = Math.ceil(paginatedData.mainData.length / itemsPerPage);   
+    const itemsPerPage = Math.max(Math.floor(paginatedData.mainData.length / 2) , Math.min(paginatedData.mainData.length, 10));
+    const totalPages = Math.ceil(paginatedData.mainData.length / itemsPerPage);
 
     const buttonTitle = paginatedData.buttonTitle;
-    console.log("Button Title: ", buttonTitle)
 
     return (
         <div className="container">
@@ -36,12 +35,11 @@ const PaginatedComponent = ({paginatedData}) => {
                         Array.from({length: itemsPerPage}, (_, index) => {
                             try {
                                 const data = paginatedData.mainData[index +  itemsPerPage * (currentPage - 1)];
-                                console.log("IMG: ", data.imageUrl)
                                 return (<div key={data.secondaryInfo}>
                                     <li className="flex justify-between gap-x-6 py-5">
                                         <div className="flex min-w-0 gap-x-4">
                                             {data.imageUrl !== undefined && <img className="h-12 w-12 flex-none rounded-full" src={data.imageUrl} alt="" />}
-                                            <div className="min-w-0 flex flex-col justify-center items-center">
+                                            <div className="min-w-0 flex flex-col justify-center items-start">
                                                 <p className="text-sm font-semibold leading-6 text-gray-900">{data.primaryInfo}</p>
                                                 {data.secondaryInfo && <p className="mt-1 truncate text-xs leading-5 text-gray-500">{data.secondaryInfo}</p>}
                                             </div>
@@ -66,7 +64,7 @@ const PaginatedComponent = ({paginatedData}) => {
                                     </li>
                                 </div>)
                             } catch (error) {
-                                console.log("Index: ", index +  itemsPerPage * (currentPage - 1));
+
                             }
                             
                         })

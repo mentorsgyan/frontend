@@ -8,9 +8,9 @@ import LogoImg from "../../assets/logo/white_bg.jpg"
 const AboutUs = () => {
     return (
         <div id="about-us" className="section container relative min-h-[550px] rounded-3xl shadow-xl mt-1 mb-5 flex justify-center items-center pt-8 sm:mt-0 d">
-            <img src={LogoImg} alt="" className="absolute -z-10 blur-3xl" />
+            
             <div className="">
-                <div className="grid grid-cols-1 gap-12">
+                <div className="grid grid-cols-2 gap-12">
                     {/* image section */}
                     {/* <div data-aos="zoom-in">
                         <img src={BannerImg} alt="" 
@@ -18,8 +18,11 @@ const AboutUs = () => {
                         />
                     </div> */}
                     {/* text section */}
-                    <h1 className="text-3xl text-gray-700 p-2 text-center sm:text-4xl font-bold"
-                        >MentorsGyan के साथ जुड़ें और अपनी CGPSC <br></br>सफलता की ओर पहला कदम बढ़ाएँ!</h1>
+                    <div className="relative flex flex-col shadow-lg rounded-3xl p-2 shadow-secondary">
+                        <h1 className="text-3xl text-secondary p-2 text-center sm:text-4xl font-bold"
+                        >मेंटर्सज्ञान के साथ जुड़ें और अपनी CGPSC <br></br>सफलता की ओर पहला कदम बढ़ाएँ!</h1>
+                        <img src={LogoImg} alt="" className="hidden md-900:block -z-10 rounded-full" />
+                        </div>
                     <div className="flex flex-col justify-center gap-6 sm:pt-0">
                         
                         <div className="flex flex-col gap-4 text-xl tracking-wide text-justify">

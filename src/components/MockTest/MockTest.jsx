@@ -1,5 +1,4 @@
 import React from "react";
-import Ronaldo from "../../assets/ronaldo.png"
 import { FaCheck } from 'react-icons/fa6';
 import { useNavigate } from "react-router-dom";
 
@@ -12,7 +11,6 @@ const MockTest = () => {
 
     // Data
     const MockTestData = {
-        mainImage: Ronaldo,
         tileImage: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg',
         backgroundImage: 'https://cache.careers360.mobi/media/article_images/2022/3/25/How-to-attempt-your-exams-well.webp',
         highlights: [
@@ -30,7 +28,7 @@ const MockTest = () => {
             </div> */}
              {/* Text/Card section */} 
             <div className="container rounded-3xl shadow-2xl ">
-                <h1 className="text-3xl font-bold tracking-tight text-secondary pt-5 pb-10 ">Daily MCQ mock test by MentorsGyan</h1>
+                <h1 className="text-3xl font-bold tracking-tight text-secondary pt-5 pb-10 ">मेंटर्सज्ञान पर रोजाना एमसीक्यू मॉक टेस्ट!</h1>
                 {/* Sample paper card */}
                 <div className="pb-5">
                     <MockTestCard MockTestData={MockTestData}/>
@@ -44,7 +42,7 @@ const MockTest = () => {
 const MockTestCard = ({MockTestData}) => {
     const navigate = useNavigate();
     return (
-        <div className="flex md:flex-row flex-col items-center justify-center gap-4">
+        <div className="flex md-900:flex-row flex-col items-center justify-center gap-4">
             {/* Image */}
             <div className="w-full flex justify-center">
                 <img src={MockTestData.tileImage} alt="" className="w-1/2 rounded-full shadow-2xl"/>

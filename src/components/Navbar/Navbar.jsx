@@ -1,6 +1,5 @@
-'use client'
 import React, { useState, useRef, useEffect } from "react";
-import Logo from "../../assets/logo.png";
+import Logo from "../../assets/logo/logo.png";
 import {useNavigate } from "react-router-dom"; 
 import {Dialog,DialogPanel,Disclosure,DisclosureButton,DisclosurePanel,Popover,PopoverButton,PopoverGroup,PopoverPanel} from '@headlessui/react'
 import {Bars3Icon,XMarkIcon,UserIcon,BriefcaseIcon,ArrowRightStartOnRectangleIcon} from '@heroicons/react/24/outline'
