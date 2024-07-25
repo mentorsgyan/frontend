@@ -71,6 +71,9 @@ const PolicyPage = () => {
                         <strong>Limitation of Liability:</strong> Our company will not be liable for any damages arising from the use of our services. This includes direct, indirect, incidental, or consequential damages.
                     </p>
                 </section>
+                <div>
+                    Please click <a href='https://merchant.razorpay.com/policy/Oc0kJrUHGcEzUc/shipping' className='hover:underline text-secondary'>here</a> to see our shipping and delivery policy.
+                </div>
             </div>
         </div>
     );

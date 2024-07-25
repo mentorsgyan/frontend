@@ -1,11 +1,12 @@
+'use client'
 import React, { useState, useRef, useEffect } from "react";
 import Logo from "../../assets/logo/logo.png";
 import {useNavigate } from "react-router-dom"; 
 import {Dialog,DialogPanel,Disclosure,DisclosureButton,DisclosurePanel,Popover,PopoverButton,PopoverGroup,PopoverPanel} from '@headlessui/react'
-import {Bars3Icon,XMarkIcon,UserIcon,BriefcaseIcon,ArrowRightStartOnRectangleIcon} from '@heroicons/react/24/outline'
+import {Bars3Icon,XMarkIcon,BriefcaseIcon,ArrowRightStartOnRectangleIcon} from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import { auth , provider} from "../../firebase.config";
-import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
+import { onAuthStateChanged, signInWithPopup } from "firebase/auth";
 import { useAuth } from "../../AuthContext";
 
 const fields = [
@@ -91,7 +92,7 @@ export default function Navbar({sticky = true}) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     
     return (
-        <header className={`${sticky ? 'fixed': ''} inset-x-0 top-0 z-50  bg-white/90 shadow-lg`}>
+        <header className={`${sticky && !mobileMenuOpen ? 'fixed': ''} inset-x-0 top-0 z-50  bg-white/90 shadow-lg`}>
             <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
             {/* Logo Section */}
                 <div className="flex lg:flex-1">
@@ -171,24 +172,28 @@ export default function Navbar({sticky = true}) {
                                 <a
                                     href="/#services"
                                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                    onClick={() => setMobileMenuOpen(false)}
                                     >
                                     सेवाएं
                                 </a>
                                 <a
                                     href="/#mentorship"
                                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                    onClick={() => setMobileMenuOpen(false)}
                                     >
                                     मार्गदर्शन
                                 </a>
                                 <a
                                     href="/#e-library"
                                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                    onClick={() => setMobileMenuOpen(false)}
                                     >
                                     ई-लाइब्रेरी
                                 </a>
                                 <a
                                     href="/#test-series"
                                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                    onClick={() => setMobileMenuOpen(false)}
                                     >
                                     टेस्ट सीरीज़
                                 </a>
