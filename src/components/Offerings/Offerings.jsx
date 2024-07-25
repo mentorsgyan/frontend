@@ -62,7 +62,7 @@ const Offerings = () => {
 const ServiceCards = ({Data}) => {
     const [detailsVisibility, setDetailsVisibility] = useState(false);
     return (
-        <div className="flex items-center flex-col md:w-[230px] hover:-translate-y-20 transition-transform duration-700 p-4"
+        <div className="flex items-center flex-col md:w-[230px] md:hover:-translate-y-20 transition-transform duration-700 p-4"
             onMouseEnter={() => setDetailsVisibility(true)}
             onMouseLeave={() => setDetailsVisibility(false)}
             role = "button"
@@ -70,14 +70,14 @@ const ServiceCards = ({Data}) => {
             <img 
                 src="https://www-media.discoveryeducation.com/wp-content/uploads/2024/03/de-science-hp-blob.svg" 
                 alt="" 
-                className={`text-center absolute -z-10 ${detailsVisibility ? 'w-[200px] translate-y-16' : 'w-[75px]'} transition-transform duration-300`}
+                className={`text-center absolute -z-10 md:${detailsVisibility ? 'w-[200px] md:translate-y-16' : 'w-[75px]'} transition-transform duration-300`}
                 />
             <div className="relative flex flex-col gap-4 items-center justify-center">
                 {Data.icon}
                 {/* title */}
                 <h2 className="text-2xl font-bold">{Data.title}</h2>
             </div>
-            <div className={`absolute ${detailsVisibility ? "translate-y-24 block pt-4" : "hidden"}`}>
+            <div className={`absolute ${detailsVisibility ? "translate-y-24 hidden md:block pt-4" : "hidden"}`}>
                 <p className={`transition-opacity duration-500`}>
                     {detailsVisibility && Data.description}
                 </p>
