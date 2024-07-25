@@ -10,7 +10,7 @@ const AboutUs = () => {
         <div id="about-us" className="section container relative min-h-[550px] rounded-3xl shadow-xl mt-1 mb-5 flex justify-center items-center pt-8 sm:mt-0 d">
             
             <div className="">
-                <div className="grid grid-cols-2 gap-12">
+                <div className="grid grid-cols-1 md-900:grid-cols-2 gap-12">
                     {/* image section */}
                     {/* <div data-aos="zoom-in">
                         <img src={BannerImg} alt="" 

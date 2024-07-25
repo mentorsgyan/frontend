@@ -84,12 +84,12 @@ const ServiceCards = ({Data}) => {
                 {/* Read more */}
                 <a href={Data.redirection} 
                 className={`p-4 text-secondary underline font-bold `}>
-                    Learn more
+                    अधिक जानें
                 </a>
             </div>
             <a href={Data.redirection}
             className={`p-4 text-secondary underline font-bold md:hidden`}>
-                Learn more
+                अधिक जानें
             </a>           
         </div>
     )

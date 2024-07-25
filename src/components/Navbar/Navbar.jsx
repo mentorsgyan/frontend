@@ -228,7 +228,7 @@ const LargeMediaPopover = ({userName, loggedIn}) => {
     return (
         <Popover className="relative">
             <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-                {loggedIn && (<div>नमस्ते {userName} !</div>)}
+                {loggedIn && (<div className="flex gap-2"> <p className="text-lg">नमस्ते</p> {userName} !</div>)}
                 <ChevronDownIcon aria-hidden="true" className="h-5 w-5 flex-none text-gray-400" />
             </PopoverButton>
         

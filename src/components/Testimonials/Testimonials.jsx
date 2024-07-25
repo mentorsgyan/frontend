@@ -107,7 +107,7 @@ export const PersonReview = ({review}) => {
                     alt="" />
                 </div>
                 {/* text */}
-                <div className="text-center md-900:text-left w-full">
+                <div className="text-center flex flex-col items-center md-900:text-left w-full">
                     
                     {/* One liner */}
                     {/* <h2 className="text-3xl font-bold tracking-wide">{review.title}</h2> */}
@@ -123,7 +123,7 @@ export const PersonReview = ({review}) => {
                         <p className="font-bold"> {review.reviewerPosition}</p>
                     </div>
                 </div>
-                <LuQuote className="absolute text-8xl text-primary opacity-60 w-full translate-x-64 md-900:translate-x-96 -z-10"/>
+                {/* <LuQuote className="absolute text-8xl text-primary opacity-60 w-full -translate-x-64 sm:translate-x-64 md-900:translate-x-96 -z-10"/> */}
             </div>
         </div>
     )
