@@ -35,7 +35,7 @@ const ELibrary = () => {
                                 <hr />
                                 {
                                     sectionDetails.features.map((feature, idx) => (
-                                        <div className="flex gap-3 items-center">
+                                        <div key={idx} className="flex gap-3 items-center">
                                             <FaCheck className="text-xl text-secondary"/>
                                             <p className="text-xl">{feature}</p>
                                         </div>

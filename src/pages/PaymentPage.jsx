@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import BannerImg from "../assets/hero/Hero.png"
+import BannerImg from "../assets/payment.png"
 import LogoImg from "../assets/logo/white_bg.jpg"
 import Navbar from "../components/Navbar/Navbar";
 import axios from 'axios';
@@ -42,18 +42,17 @@ const PaymentPage = () => {
     }, [])
 
     const verifyCoupon = () => {
-        console.log("Coupons ", activeCoupons)
         for (const element of activeCoupons) {
             if (coupon.toUpperCase() === element.name.toUpperCase()) {
                 const couponDiscount = element.discount;
-                setMessage(`You got ${couponDiscount}% Off!`);
+                setMessage(`आपको ${couponDiscount}% की छूट मिली!`);
                 setCss("text-green-600 ")
                 setDiscount((couponDiscount / 100) * price)
                 setTotal((1 - couponDiscount/100) * price)
                 console.log(`Discount: ${couponDiscount} & Total: ${total}`)
                 return;
             } else {
-                setMessage('Invalid coupon code.');
+                setMessage('अमान्य कूपन कोड');
                 setCss("text-red-400")
                 setDiscount(0)
                 setTotal(price)
@@ -95,7 +94,7 @@ const PaymentPage = () => {
                 prefill: {
                     name: 'MentorsGyan',
                     email: 'mentorsgyan@gmail.com',
-                    contact: '9999999999',
+                    contact: '9039130180',
                 },
                 notes: {
                     address: 'Bilaspur, Chhattisgarh',
@@ -132,17 +131,17 @@ const PaymentPage = () => {
     }
     
     return (
-        <div>
+        <div className="">
             <Navbar sticky={false} />
-            <div className="flex h-screen items-center justify-center mt-10 md:mt-0">
+            <div className="flex h-full items-center justify-center my-10 md:mt-0">
                 {
                     user ? (
-                        <div className="container">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-center items-center">
+                        <div className="container rounded-3xl shadow-2xl p-5 mt-10">
+                            <div className="pt-10 grid grid-cols-1 md:grid-cols-2 gap-6 justify-center items-center">
                                 {/* image section */}
                                 <div data-aos="zoom-in">
                                     <img src={BannerImg} alt=""
-                                        className=" md:max-w-[400px] md:h-[400px] mx-auto drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)] object-cover"
+                                        className="rounded-full md:max-w-[400px] md:h-[400px] mx-auto shadow-2xl object-cover"
                                     />
                                 </div>
                                 <div className="flex flex-col gap-6 sm:pt-0">
@@ -179,7 +178,7 @@ const PaymentPage = () => {
                                         {/* Coupon section */}
                                         <div className="flex flex-col items-end gap-2">
                                             <div className="flex w-full">
-                                                <input type="text" placeholder="Got any Coupons?" className="border p-3 md:w-2/3" onChange={handleCouponChange} />
+                                                <input type="text" placeholder="क्या आपके पास कोई कूपन है?" className="border p-3 md:w-2/3" onChange={handleCouponChange} />
                                                 <button onClick={verifyCoupon} className="bg-primary hover:scale-105 duration-300 text-white py-3 px-4 mx-3 group-hover:bg-white group-hover:text-primary" >
                                                     Verify
                                                 </button>
