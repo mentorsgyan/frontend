@@ -9,8 +9,8 @@ import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 import { useAuth } from "../../AuthContext";
 
 const fields = [
-    { name: 'Profile', href: '/user-profile', icon: BriefcaseIcon },
-    { name: 'Log out', href: '/', icon: ArrowRightStartOnRectangleIcon},
+    { name: 'प्रोफ़ाइल', href: '/user-profile', icon: BriefcaseIcon },
+    { name: 'लॉग आउट', href: '/', icon: ArrowRightStartOnRectangleIcon},
 ]
 const callsToAction = [
     { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
@@ -137,7 +137,7 @@ export default function Navbar({sticky = true}) {
                         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                         <button href="/#" className="text-sm font-semibold leading-6 text-gray-900"
                         onClick={handleLogin}>
-                        Log in <span aria-hidden="true">&rarr;</span></button>
+                        लॉग इन करें <span aria-hidden="true">&rarr;</span></button>
                         </div>
                     )
                 }
@@ -197,11 +197,11 @@ export default function Navbar({sticky = true}) {
                             {/* <SmallMediaPopover /> */}
                                 {
                                     // console.log();
-                                    loggedIn ? <SmallMediaPopover /> : (
+                                    loggedIn ? <SmallMediaPopover  loggedIn={loggedIn} userName={userName}  /> : (
                                         <div className=" lg:flex lg:flex-1 lg:justify-end">
                                         <button className="text-sm font-semibold leading-6 text-gray-900"
                                         onClick={handleLogin}>
-                                        Log in <span aria-hidden="true">&rarr;</span></button>
+                                        लॉग इन करें <span aria-hidden="true">&rarr;</span></button>
                                         </div>
                                     )
                                 }
@@ -228,7 +228,7 @@ const LargeMediaPopover = ({userName, loggedIn}) => {
     return (
         <Popover className="relative">
             <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-                {loggedIn && (<div>Hi {userName} !</div>)}
+                {loggedIn && (<div>नमस्ते {userName} !</div>)}
                 <ChevronDownIcon aria-hidden="true" className="h-5 w-5 flex-none text-gray-400" />
             </PopoverButton>
         
@@ -279,7 +279,7 @@ const LargeMediaPopover = ({userName, loggedIn}) => {
 )
 }
 
-const SmallMediaPopover = () => {
+const SmallMediaPopover = ({userName, loggedIn}) => {
     const {signOut} = useAuth();
     function handleLogOut() {
         signOut().then(() => {
@@ -292,7 +292,7 @@ const SmallMediaPopover = () => {
     return (
         <Disclosure as="div" className="-mx-3">
                 <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                    User
+                {loggedIn && (<div>नमस्ते {userName} !</div>)}
                 <ChevronDownIcon aria-hidden="true" className="h-5 w-5 flex-none group-data-[open]:rotate-180" />
             </DisclosureButton>
             <DisclosurePanel className="mt-2 space-y-2">
