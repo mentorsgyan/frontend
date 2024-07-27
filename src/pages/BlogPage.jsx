@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BACKEND_API } from "../utility/Constants";
 import PaginatedComponent from "../components/PaginatedComponent/PaginatedComponent";
-import { FaSpinner, FaTruckLoading } from "react-icons/fa";
+import { FaSpinner } from "react-icons/fa";
 import Navbar from "../components/Navbar/Navbar"
 
 
@@ -11,7 +11,12 @@ const BlogPage = () => {
             <Navbar sticky={false}/>
             <div className="flex flex-col items-center justify-center gap-10">
                 <ELibraryHelper buttonLabel={"अभी पढ़ें"} title = {"मेंटर्सज्ञान द्वारा दैनिक करेंट अफेयर्स"} resource = {"current-affairs"}/>
-                <ELibraryHelper buttonLabel={"अभी पढ़ें"} title = {"मेंटर्सज्ञान द्वारा दैनिक करेंट अफेयर्स"} resource = {"pyq"} />
+                <ELibraryHelper buttonLabel={"अभी पढ़ें"} title = {"मेंटर्सज्ञान द्वारा पिछले वर्षों के प्रश्न"} resource = {"pyq"} />
+                <ELibraryHelper buttonLabel={"अभी पढ़ें"} title = {"मेंटर्सज्ञान द्वारा प्रशासनिक रिपोर्ट"} resource = {"prativedan"} />
+                <ELibraryHelper buttonLabel={"अभी पढ़ें"} title = {"मेंटर्सज्ञान द्वारा आर्थिक सर्वेक्षण"} resource = {"economic-survey"} />
+                <ELibraryHelper buttonLabel={"अभी पढ़ें"} title = {"मेंटर्सज्ञान द्वारा सरकारी पत्रिकाएँ"} resource = {"govt-mags"} />
+                <ELibraryHelper buttonLabel={"अभी पढ़ें"} title = {"मेंटर्सज्ञान द्वारा समाचार पत्र की कतरनें"} resource = {"paper-cuts"} />
+                <div className="py-10"></div>
             </div>
         </div>
     )

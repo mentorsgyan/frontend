@@ -23,10 +23,8 @@ const UserForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            console.log("Data Collected: ", formData);
             const userDataResponse = await axios.post(BACKEND_API + "/saveUserData", formData);
             if (userDataResponse.status === 201) {
-                console.log("User Data saved");
                 alert("Your data is saved");
             } else {
                 alert("Cannot save your data. Please try again later.")

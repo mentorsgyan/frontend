@@ -39,7 +39,7 @@ export default function () {
             {/* Section heading area */}
             <h2 /* data-aos="fade-up" data-aos-duration="6000"*/ className="text-secondary font-bold tracking-wide text-xl">Pricing</h2>
             <h1 /* data-aos="fade-up" data-aos-duration="6000"*/ className="text-4xl tracking-tight font-bold text-center">विभिन्न मेंटरशिप कार्यक्रमों के मूल्य</h1>
-            <p /* data-aos="fade-up" data-aos-duration="6000"*/ className="font-light uppercase tracking-wide text-center">Mentorship brings you tailored mentorship plans</p>
+            <p /* data-aos="fade-up" data-aos-duration="6000"*/ className="font-light uppercase tracking-wide text-center">MentorsGyan brings you tailored mentorship plans</p>
 
             {/* Mentorship pricing cards */}
             <MentorshipSM MentorshipPrograms={MentorshipPrograms}/>

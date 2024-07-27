@@ -37,7 +37,7 @@ const App = () => {
         <Route path = "/user-profile" element = {<UserProfile />} />
         <Route path = "/e-library" element = {<BlogPage />} />
         <Route path = "/mock-test" element = {<SampleTests />} />
-        <Route path = "/mock-test/:testDate" element = {<QuestionPaper />}/>
+        <Route path = "/mock-test/:testTitle" element = {<QuestionPaper />}/>
         <Route path="/admin" element = {<Admin />} />
         <Route path="/policy" element = {<PolicyPage />} />
         <Route path = "*" element = {<NotFound />} />

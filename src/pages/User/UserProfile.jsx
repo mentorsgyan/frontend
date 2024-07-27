@@ -39,13 +39,11 @@ const UserProfile = () => {
                     return null;
                 })
                 .then((data) => {
-                    console.log("Then => ", data);
                     setUserPersonalData(data);
                 })
                 .catch((error) => {
                     console.error("Some error occurred: ", error);
                 })
-                console.log(userPersonalData);
             } else {
                 setLoggedIn(false);
             }
@@ -149,21 +147,7 @@ const DropDown = ({subField, handleChange}) => {
   )
 }
 
-/*
-
-firstname: "",
-        lastname: "",
-        email: "",
-        gender: "Male",
-        city: "Bilaspur",
-        state: "Chhattisgarh",
-        phoneNo: "",
-        dob: 1
-    })
-*/ 
-
 const DataExistingTiles = ({data}) => {
-    console.log("Data: ", data);
     return (
         <div className="flex w-full  md:h-screen bg-opacity-70  shadow-2xl bg-white justify-center">
             {/* User Personal Info */}

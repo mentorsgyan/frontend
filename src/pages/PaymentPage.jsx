@@ -43,7 +43,6 @@ const PaymentPage = () => {
             return response.json()
         })
         .then(data => {
-            console.log("Data: ", data);
             setActiveCoupons(data);
         })
     }, [])
@@ -74,7 +73,6 @@ const PaymentPage = () => {
                 setCss("text-green-600 ")
                 setDiscount((couponDiscount / 100) * price)
                 setTotal((1 - couponDiscount/100) * price)
-                console.log(`Discount: ${couponDiscount} & Total: ${total}`)
                 return;
             } else {
                 setMessage('अमान्य कूपन कोड');
@@ -92,7 +90,6 @@ const PaymentPage = () => {
                 amount: total
             }
             const orderResponse = await axios.post(BACKEND_API + '/createOrder', data);
-            console.log("Order Resp: ", orderResponse)
             const { amount, id: order_id, currency } = orderResponse.data;
             const options = {
                 key: 'rzp_test_cNVx7b4WHxLii3',
@@ -133,7 +130,7 @@ const PaymentPage = () => {
             const paymentObject = new window.Razorpay(options);
             paymentObject.open();
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     };
  

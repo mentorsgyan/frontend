@@ -194,7 +194,6 @@ export default function Navbar({sticky = true}) {
                             <div className="py-6">
                             {/* <SmallMediaPopover /> */}
                                 {
-                                    // console.log();
                                     loggedIn ? <SmallMediaPopover  loggedIn={loggedIn} userName={userName}  /> : (
                                         <div className=" lg:flex lg:flex-1 lg:justify-end">
                                         <button className="font-semibold leading-6 text-gray-900 text-lg"

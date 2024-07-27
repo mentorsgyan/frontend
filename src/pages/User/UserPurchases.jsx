@@ -6,7 +6,6 @@ import { Progress } from "@material-tailwind/react";
  * @author Mayank Shukla
  */
 const UserPurchases = ({services}) => {
-    console.log("User: ", services)
     const mentorships = [];
     const courses = [];
     services?.map(service => { 
