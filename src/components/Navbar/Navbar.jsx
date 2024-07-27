@@ -40,6 +40,8 @@ export default function Navbar({sticky = true}) {
                 setUser(user);
             } else {
                 setLoggedIn(false);
+                setUserName('')
+                setUser(null);
             }
         })
         return () => subscription();
@@ -78,15 +80,6 @@ export default function Navbar({sticky = true}) {
             setUser(data.user.displayName);
             setLoggedIn(true);
         })
-    }
-    
-    const handleLogOut = () => {
-        auth.signOut(auth).then(() => {
-            console.log("Successfully SIgned out!");
-        }).catch((error) => {
-            console.log("Error: ", error);
-        });
-        setLoggedIn(false);
     }
     
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -136,7 +129,7 @@ export default function Navbar({sticky = true}) {
                 {
                     loggedIn ? <LargeMediaPopover loggedIn={loggedIn} userName={userName} /> : (
                         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                        <button href="/#" className="text-sm font-semibold leading-6 text-gray-900"
+                        <button href="/#" className="font-semibold leading-6 text-gray-900 text-lg"
                         onClick={handleLogin}>
                         लॉग इन करें <span aria-hidden="true">&rarr;</span></button>
                         </div>
@@ -204,7 +197,7 @@ export default function Navbar({sticky = true}) {
                                     // console.log();
                                     loggedIn ? <SmallMediaPopover  loggedIn={loggedIn} userName={userName}  /> : (
                                         <div className=" lg:flex lg:flex-1 lg:justify-end">
-                                        <button className="text-sm font-semibold leading-6 text-gray-900"
+                                        <button className="font-semibold leading-6 text-gray-900 text-lg"
                                         onClick={handleLogin}>
                                         लॉग इन करें <span aria-hidden="true">&rarr;</span></button>
                                         </div>
@@ -223,13 +216,11 @@ const LargeMediaPopover = ({userName, loggedIn}) => {
     const {signOut} = useAuth();
     function handleLogOut() {
         signOut().then(() => {
-            console.debug("Successfully SIgned out!");
             window.location.reload();
         }).catch((error) => {
             console.debug("Error: ", error);
         });
     }
-    const navigate = useNavigate();
     return (
         <Popover className="relative">
             <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
@@ -253,11 +244,8 @@ const LargeMediaPopover = ({userName, loggedIn}) => {
                 <div className="flex-auto">
                 <a href={item.href} className="block font-semibold text-gray-900"
                 onClick={() => {
-                    if (item.name === 'Log out')
-                        handleLogOut()
-                    else if (item.name === 'Profile') {
-                        navigate('/user')
-                    }
+                    if (item.name === 'लॉग आउट')
+                        handleLogOut();
                 }}
                 >
                 {item.name}
@@ -288,7 +276,6 @@ const SmallMediaPopover = ({userName, loggedIn}) => {
     const {signOut} = useAuth();
     function handleLogOut() {
         signOut().then(() => {
-            console.debug("Successfully SIgned out!");
             window.location.reload();
         }).catch((error) => {
             console.debug("Error: ", error);
@@ -304,9 +291,8 @@ const SmallMediaPopover = ({userName, loggedIn}) => {
             {fields.map((item) => (
                 <DisclosureButton
                 onClick={() => {
-                    if (item.name === 'Log out') {
-                        handleLogout();
-                    }
+                    if (item.name === 'लॉग आउट')
+                        handleLogOut();
                 }}
                 key={item.name}
                 as="a"

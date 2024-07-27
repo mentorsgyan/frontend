@@ -6,7 +6,7 @@ import { BsListCheck } from "react-icons/bs";
 const ServiceOffered = [
     {
         title: "मेंटरशिप",
-        description: "हमारा CGPSC मार्गदर्शन कार्यक्रम विशेषज्ञ परामर्श, चुने हुए अध्ययन सामग्री, व्यक्तिगत समय सारिणी, प्रभावी तैयारी रणनीतियाँ, नियमित मूल्यांकन और निरंतर समर्थन प्रदान करता है ताकि उम्मीदवार अपनी परीक्षा में उत्कृष्टता प्राप्त कर सकें।",
+        description: "हमारा CGPSC मार्गदर्शन कार्यक्रम विशेषज्ञ परामर्श, चयनित अध्ययन सामग्री, समय सारिणी, प्रभावी रणनीतियाँ, मूल्यांकन और समर्थन प्रदान करता है ताकि उम्मीदवार उत्कृष्टता प्राप्त कर सकें।",
         redirection: "#mentorship",
         icon: <MdGroups className="text-5xl"/>
     },
@@ -30,7 +30,7 @@ const ServiceOffered = [
     },
     {
         title: "ई-लाइब्रेरी",
-        description: "हमारी CGPSC अभ्यर्थियों के लिए ई-लाइब्रेरी में पिछले वर्षों के प्रश्नपत्र, टॉपर्स की मुख्य परीक्षा की कॉपियां, आर्थिक सर्वेक्षण, सरकारी पत्रिकाएं, प्रशासनिक प्रतिवेदन, सामयिकी, और समाचार पत्र की कतरनें शामिल हैं।",
+        description: "हमारी CGPSC अभ्यर्थियों की ई-लाइब्रेरी में प्रश्नपत्र, टॉपर्स की कॉपियां, आर्थिक सर्वेक्षण, सरकारी पत्रिकाएं, प्रशासनिक प्रतिवेदन, सामयिकी, और समाचार पत्र की कतरनें शामिल हैं।",
         redirection: "#e-library",
         icon: <ImBooks className="text-5xl"/>
     }
@@ -44,10 +44,10 @@ const ServiceOffered = [
 const Offerings = () => {
     
     return (
-        <div id="services" className="flex flex-col justify-center items-center md:mb-20  section">
+        <div id="services" className="flex flex-col justify-center items-center md-900:mb-20  section">
             <h1 className="text-3xl font-bold tracking-tight text-center pt-10" >MentorsGyan के साथ अपना भविष्य सवारें!</h1>
-            <p className="my-10 md:text-center md:mx-40 px-5 text-justify leading-10 text-xl tracking-wider">हमारा मुख्य मूल्य है CGPSC परीक्षा की अनूठी चुनौतियों के लिए सटीक और प्रभावी मार्गदर्शन प्रदान करना। हमें विश्वास है कि सही दिशा में चलकर हर Aspirant अपनी क्षमता को पहचान सकता है।</p>
-            <div className="px-20 pt-20 pb-5 md:flex w-screen justify-center">                
+            <p className="my-10 md-900:text-center md-900:mx-40 px-5 text-justify leading-10 text-xl tracking-wider">हमारा मुख्य मूल्य है CGPSC परीक्षा की अनूठी चुनौतियों के लिए सटीक और प्रभावी मार्गदर्शन प्रदान करना। हमें विश्वास है कि सही दिशा में चलकर हर Aspirant अपनी क्षमता को पहचान सकता है।</p>
+            <div className="px-5 pt-20 pb-10 md-900:flex w-screen justify-center">                
                 {/* Services Cards */}
                 {
                     ServiceOffered.map((service, idx) => (
@@ -62,7 +62,7 @@ const Offerings = () => {
 const ServiceCards = ({Data}) => {
     const [detailsVisibility, setDetailsVisibility] = useState(false);
     return (
-        <div className="flex items-center flex-col md:w-[230px] md:hover:-translate-y-20 transition-transform duration-700 p-4"
+        <div className="flex items-center flex-col w-full md-900:hover:-translate-y-20 transition-transform duration-700"
             onMouseEnter={() => setDetailsVisibility(true)}
             onMouseLeave={() => setDetailsVisibility(false)}
             role = "button"
@@ -70,15 +70,15 @@ const ServiceCards = ({Data}) => {
             <img 
                 src="https://www-media.discoveryeducation.com/wp-content/uploads/2024/03/de-science-hp-blob.svg" 
                 alt="" 
-                className={`text-center absolute -z-10 md:${detailsVisibility ? 'w-[200px] md:translate-y-16' : 'w-[75px]'} transition-transform duration-300`}
+                className={`text-center absolute -z-10 ${detailsVisibility ? 'md-900:w-[200px] md-900:translate-y-16' : ''} w-[75px] transition-transform duration-300`}
                 />
             <div className="relative flex flex-col gap-4 items-center justify-center">
                 {Data.icon}
                 {/* title */}
-                <h2 className="text-2xl font-bold">{Data.title}</h2>
+                <h2 className="text-2xl font-bold text-center">{Data.title}</h2>
             </div>
-            <div className={`absolute ${detailsVisibility ? "translate-y-24 hidden md:block pt-4" : "hidden"}`}>
-                <p className={`transition-opacity duration-500`}>
+            <div className={`absolute ${detailsVisibility ? "translate-y-24 hidden md-900:block pt-4" : "hidden"}`}>
+                <p className={`transition-opacity duration-500 text-center`}>
                     {detailsVisibility && Data.description}
                 </p>
                 {/* Read more */}
@@ -88,7 +88,7 @@ const ServiceCards = ({Data}) => {
                 </a>
             </div>
             <a href={Data.redirection}
-            className={`p-4 text-secondary underline font-bold md:hidden`}>
+            className={`p-4 text-secondary underline font-bold md-900:hidden`}>
                 अधिक जानें
             </a>           
         </div>

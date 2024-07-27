@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
-import axios from "axios";
-import { BACKEND_API, userInfoFields } from "../../utility/Constants";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../firebase.config";
+import { BACKEND_API } from "../../utility/Constants";
+import { onAuthStateChanged, signInWithPopup } from "firebase/auth";
+import { auth, provider } from "../../firebase.config";
 import UserPurchases from "./UserPurchases";
 import UserForm from "./UserForm";
 
@@ -25,10 +24,12 @@ const UserProfile = () => {
     // Variables end
 
     const [dataExists, setDataExists] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(false);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             if (user) {
+                setLoggedIn(true);
                 fetch(BACKEND_API + "/fetchUsers/" + auth.currentUser.email)
                 .then((response) => {
                     if (response.status === 200) {
@@ -45,6 +46,8 @@ const UserProfile = () => {
                     console.error("Some error occurred: ", error);
                 })
                 console.log(userPersonalData);
+            } else {
+                setLoggedIn(false);
             }
         });
       
@@ -52,6 +55,27 @@ const UserProfile = () => {
     }, []);
 
     // Functions begin
+
+    const handleLogin = async () => {
+        signInWithPopup(auth, provider)
+        .then((data) => {
+            setUser(data.user.displayName);
+            setLoggedIn(true);
+        })
+    }
+
+    if (!loggedIn) {
+        return (
+            <div>
+                <Navbar />
+                <div className="h-screen flex items-center justify-center">
+                    <div className="bg-white shadow-2xl p-5 rounded-3xl">
+                        <button className="text-2xl" onClick={handleLogin}>लॉग इन करने के लिए <p className="text-secondary hover:underline">यहां</p> क्लिक करें।</button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 
     return (
         <div className="relative">
@@ -67,17 +91,6 @@ const UserProfile = () => {
         </div>
     )
 }
-
-/*
-{
-            name: "Name",
-            regex: "alphabetess",
-            subfields: ["Firstname", "Lastname"],
-            type: "text",
-            editable: true
-        },
-*/
-
 
 const EntryField = ({subField, userPersonalData, handleChange}) => {
     if (subField.type === 'dropdown') {

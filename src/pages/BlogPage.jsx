@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BACKEND_API } from "../utility/Constants";
 import PaginatedComponent from "../components/PaginatedComponent/PaginatedComponent";
-import { FaTruckLoading } from "react-icons/fa";
+import { FaSpinner, FaTruckLoading } from "react-icons/fa";
 import Navbar from "../components/Navbar/Navbar"
 
 
@@ -9,7 +9,10 @@ const BlogPage = () => {
     return (
         <div>
             <Navbar sticky={false}/>
-            <ELibraryHelper buttonLabel={"अभी पढ़ें"} title = {"मेंटर्सज्ञान द्वारा दैनिक करेंट अफेयर्स"} resource = {"current-affairs"}/>
+            <div className="flex flex-col items-center justify-center gap-10">
+                <ELibraryHelper buttonLabel={"अभी पढ़ें"} title = {"मेंटर्सज्ञान द्वारा दैनिक करेंट अफेयर्स"} resource = {"current-affairs"}/>
+                <ELibraryHelper buttonLabel={"अभी पढ़ें"} title = {"मेंटर्सज्ञान द्वारा दैनिक करेंट अफेयर्स"} resource = {"pyq"} />
+            </div>
         </div>
     )
 }
@@ -25,12 +28,21 @@ const ELibraryHelper = ({resource, title, buttonLabel}) => {
 
 
     async function fetchResourcesFromFirebase() {
+        let notFound = false;
         fetch(BACKEND_API + "/getAllData/" + resource)
-        .then(response => response.json())
+        .then(response => {
+            if (response.status === 200)
+                return response.json();
+            notFound = true;
+        })
         .then(data => {
+            if (notFound) {
+                setDataLoaded(true);
+                return;
+            }
             if (Object.keys(data).length === 0) {
                 console.error('Received empty data object');
-                alert("Cannot display current affairs right now. Please try again later");
+                alert(`Cannot display ${resource} right now. Please try again later`);
                 return;
             }
             setPaginatedCurrentAffairs({
@@ -51,7 +63,7 @@ const ELibraryHelper = ({resource, title, buttonLabel}) => {
     return (
         <div className="container">
             {
-                !dataLoaded ? <FaTruckLoading/> : (
+                !dataLoaded ? (<FaSpinner className="animate-spin w-full"/>) : (
                     <div className="mt-5 rounded-3xl shadow-2xl">
                         <PaginatedComponent paginatedData={paginatedCurrentAffairs}/> 
                     </div>

@@ -6,6 +6,8 @@ import axios from 'axios';
 import {useLocation} from "react-router-dom"; 
 import { useAuth } from "../AuthContext";
 import { BACKEND_API } from "../utility/Constants";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase.config";
 
 /**
  * This page is responsible for the entire payment checkout
@@ -15,7 +17,8 @@ import { BACKEND_API } from "../utility/Constants";
 const PaymentPage = () => {
 
     // User Data
-    const { user } = useAuth();
+    const [user, setUser] = useState(null);
+    const [userExists, setUserExists] = useState();
 
     // State data reading
     const location = useLocation();
@@ -35,16 +38,38 @@ const PaymentPage = () => {
     };
 
     useEffect(() => {
-        console.log("Name: " + name)
         fetch(BACKEND_API + "/getCoupons")
-        .then(response => response.json())
-        .then(data => setActiveCoupons(data))
+        .then(response => {
+            return response.json()
+        })
+        .then(data => {
+            console.log("Data: ", data);
+            setActiveCoupons(data);
+        })
+    }, [])
+
+    async function handleUserExists() {
+        fetch(BACKEND_API + "/fetchUsers/" + auth.currentUser.email)
+        .then((response) => {setUserExists(response.status === 200)})
+        .catch((error) => {
+            console.error("Some error occurred: ", error);
+        })
+    }
+
+    useEffect(() => {
+        const subscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                handleUserExists();
+                setUser(user);
+            }
+        });
+        return () => subscribe();
     }, [])
 
     const verifyCoupon = () => {
         for (const element of activeCoupons) {
-            if (coupon.toUpperCase() === element.name.toUpperCase()) {
-                const couponDiscount = element.discount;
+            if (coupon.toUpperCase() === element.couponName.toUpperCase()) {
+                const couponDiscount = element.value;
                 setMessage(`आपको ${couponDiscount}% की छूट मिली!`);
                 setCss("text-green-600 ")
                 setDiscount((couponDiscount / 100) * price)
@@ -69,21 +94,22 @@ const PaymentPage = () => {
             const orderResponse = await axios.post(BACKEND_API + '/createOrder', data);
             console.log("Order Resp: ", orderResponse)
             const { amount, id: order_id, currency } = orderResponse.data;
-
             const options = {
-                key: 'rzp_test_cmG33Jntv9ZrCE',
+                key: 'rzp_test_cNVx7b4WHxLii3',
                 amount: amount.toString(),
+                order_id: order_id,
                 currency: currency,
                 name: 'MentorsGyan',
                 description: 'Mentorship plans के लिए भुगतान अनुरोध',
-                order_id: order_id,
                 handler: async function (response) {
                     const data = {
                         orderCreationId: order_id,
                         razorpayPaymentId: response.razorpay_payment_id,
                         razorpayOrderId: response.razorpay_order_id,
                         razorpaySignature: response.razorpay_signature,
-                        name: name
+                        program: name,
+                        userEmail: user.email,
+                        coupon: coupon
                     };
                     const result = await axios.post(BACKEND_API + '/paymentSuccess/' + response.razorpay_payment_id, data);
                     if (result.status === 200) {
@@ -135,7 +161,7 @@ const PaymentPage = () => {
             <Navbar sticky={false} />
             <div className="flex h-full items-center justify-center my-10 md:mt-0">
                 {
-                    user ? (
+                    user && userExists ? (
                         <div className="container rounded-3xl shadow-2xl p-5 mt-10">
                             <div className="pt-10 grid grid-cols-1 md:grid-cols-2 gap-6 justify-center items-center">
                                 {/* image section */}
@@ -207,10 +233,11 @@ const PaymentPage = () => {
 
 const LoginCard = () => {
     return (
-        <div className="flex items-center justify-center">
+        <div className="flex mt-36 items-center justify-center">
             <img src={LogoImg} alt="" className="absolute -z-10 blur-xl" />
-            <div className="flex bg-white p-4 opacity-70 rounded-3xl shadow-2xl">
-                <p className="text-2xl font-bold">कृपया भुगतान करने के लिए लॉग इन करें।</p>
+            <div className=" flex flex-col items-center gap-5 bg-white p-4 opacity-70 rounded-3xl shadow-2xl">
+                <p className="text-2xl font-bold">कृपया लॉगिन करें और भुगतान करने के लिए अपनी प्रोफ़ाइल पूरी करें।</p>
+                <p className="text-2xl font-bold"><a className="text-secondary hover:underline" href="/user-profile">कृपया यहां क्लिक करें।</a></p>
             </div>
         </div>
     )

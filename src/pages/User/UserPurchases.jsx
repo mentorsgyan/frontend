@@ -32,7 +32,7 @@ const ServiceLists = ({title, data}) => {
                 {
                     data.map((plan) => (
                         <div>
-                            <li>{plan}</li>
+                            <li className="text-xl">{plan}</li>
                         </div>
                     ))
                 }

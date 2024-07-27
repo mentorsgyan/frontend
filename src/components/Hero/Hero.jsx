@@ -20,7 +20,7 @@ const Hero = () => {
                         <div key={data.id}>
                             <div className = "grid grid-cols-1 sm:grid-cols-2">
                                 {/* Text content section */}
-                                <div className="flex flex-col items-center justify-center bg-white bg-opacity-50 rounded-3xl shadow-2xl gap-4 pt-12 sm:pt-0 text-center sm:text-left order-2 sm:order-1 relative z-10">
+                                <div className="flex flex-col items-center justify-center bg-white bg-opacity-50 rounded-3xl shadow-2xl gap-4 pt-12 pb-5 sm:pt-0 text-center sm:text-left order-2 sm:order-1 relative z-10">
                                     <div>
                                         {
 

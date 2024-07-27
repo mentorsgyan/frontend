@@ -35,6 +35,7 @@ const UserForm = () => {
             alert("Some error occurred");
             console.error("Error Occured: ", error);
         }
+        history.back();
     }
     
     return (

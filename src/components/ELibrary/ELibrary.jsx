@@ -61,7 +61,7 @@ const ELibrary = () => {
 
 const Grid = () => {
     return (
-        <div className="relative border-l-2 shadow-2xl border-secondary/50 p-5 m-2 rounded-2xl">
+        <div className="relative border-l-2 shadow-2xl border-secondary/50 p-5 m-2 rounded-2xl scale-75 md-900:scale-90">
             <img src={Logo} alt="" className="blur-lg absolute -z-20" />
             <div className="grid grid-flow-col grid-rows-2 grid-cols-3 gap-8 -z-10 w-full">
                 <div className="w-1/3 scale-110">
