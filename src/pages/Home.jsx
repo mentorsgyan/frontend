@@ -12,6 +12,7 @@ import ELibrary from "../components/ELibrary/ELibrary";
 import MockTest from "../components/MockTest/MockTest";
 import Officers from "../components/Officers/Officers";
 import Mentorship2 from "../components/Mentorship/Mentorship2";
+import Ashish from "../components/AboutUs/Ashish";
 
 const Home = () => {
   // AOS
@@ -36,6 +37,7 @@ const Home = () => {
         <MockTest />
         <Testimonials />
         <AboutUs />
+        <Ashish />
         <Footer />
     </div>
   )

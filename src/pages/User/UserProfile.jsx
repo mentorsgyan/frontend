@@ -84,7 +84,7 @@ const UserProfile = () => {
                         <DataExistingTiles data={userPersonalData}/>
                         <UserPurchases services={userPersonalData.services}/>
                     </div>   
-                ) : (<UserForm />)
+                ) : (<UserForm email={auth.currentUser.email}/>)
             }
         </div>
     )
@@ -168,8 +168,8 @@ const DataExistingTiles = ({data}) => {
                     <p>{data.phoneNumber}</p>
                 </li>
                 <li className="flex justify-between gap-4">
-                    <p className="font-bold">Pin Code :</p>
-                    <p>{data.pincode}</p>
+                    <p className="font-bold">Address :</p>
+                    <p>{data.city}, {data.state}</p>
                 </li>
                 <li className="flex justify-between gap-4">
                     <p className="font-bold">Gender :</p>

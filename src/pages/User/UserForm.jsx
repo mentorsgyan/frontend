@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { BACKEND_API } from '../../utility/Constants';
 
-const UserForm = () => {
+const UserForm = ({email}) => {
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
-        email: '',
+        email: email,
         phoneNumber: '',
         dateOfBirth: new Date(),
         gender: '',
-        pincode: ''
+        state: '',
+        city: ''
     });
     
     const handleChange = (e) => {
@@ -141,20 +142,31 @@ const UserForm = () => {
                         </div>
                     </div>
                 </div>
-                <div className="mb-4">
-                    <label htmlFor="pincode" className="block text-gray-700 text-xl">पिन कोड:</label>
-                    <input
-                    type="text"
-                    id="pincode"
-                    name="pincode"
-                    value={formData.pincode}
-                    onChange={handleChange}
-                    required
-                    maxLength="6"
-                    pattern="\d{6}"
-                    title="कृपया एक वैध 6-अंकीय पिन कोड दर्ज करें"
-                    className="mt-1 block w-1/2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
-                    />
+                <div className='flex gap-4'>
+                    <div className="mb-4">
+                        <label htmlFor="city" className="block text-gray-700 text-xl">शहर:</label>
+                        <input
+                        type="text"
+                        id="city"
+                        name="city"
+                        value={formData.city}
+                        onChange={handleChange}
+                        required
+                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label htmlFor="state" className="block text-gray-700 text-xl"> राज्य:</label>
+                        <input
+                        type="text"
+                        id="state"
+                        name="state"
+                        value={formData.state}
+                        onChange={handleChange}
+                        required
+                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
+                        />
+                    </div>
                 </div>
         <button
         type="submit"

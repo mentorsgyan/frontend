@@ -37,7 +37,7 @@ const OfficerInfos = [
     },
     {
         reviewerName: "Garima Tiwari",
-        reviewerPosition: "Naib Tehsildar",
+        reviewerPosition: "SASO",
         quotes: "एक सलाहकार आवश्यक मार्गदर्शन और स्पष्टता प्रदान करता है, जिससे सूचित निर्णय लेने में सहायता मिलती है। सफल व्यक्तियों का अवलोकन करना और उनकी रणनीतियों को अपनी शैली के साथ जोड़ना चुनौतियों से प्रभावी ढंग से निपटने की आपकी क्षमता को बढ़ाता है।",
         image: Garima
     }
