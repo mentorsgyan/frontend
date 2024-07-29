@@ -2,7 +2,7 @@ import React from "react";
 
 const Ashish = () => {
     return (
-        <div className="container relative rounded-3xl shadow-xl mt-1 mb-5 flex justify-center items-center pt-8 sm:mt-0 d">
+        <div className="container relative rounded-3xl shadow-xl mt-1 mb-5 flex justify-center items-center pt-8 sm:mt-0  overflow-hidden">
             <div className="flex items-center justify-center py-4">
                 <div className="w-full text-xl flex flex-col gap-5 tracking-wide text-justify p-4">
                     <h1 className="text-3xl text-secondary font-bold tracking-tight">मेरा नाम आशीष फूटान है,</h1>
@@ -14,7 +14,7 @@ const Ashish = () => {
                     </p>
                 </div>
                 {/* Image Section */}
-                <div className="w-full items-center flex justify-center">
+                <div className="w-full items-center hidden md-900:flex justify-center">
 
                     <img 
                     src="https://www-media.discoveryeducation.com/wp-content/uploads/2024/03/de-science-hp-blob.svg" 
