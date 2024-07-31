@@ -92,7 +92,7 @@ const PaymentPage = () => {
             const orderResponse = await axios.post(BACKEND_API + '/createOrder', data);
             const { amount, id: order_id, currency } = orderResponse.data;
             const options = {
-                key: 'rzp_test_cNVx7b4WHxLii3',
+                key: 'rzp_live_Xv2gJDseLminWd',
                 amount: amount.toString(),
                 order_id: order_id,
                 currency: currency,
