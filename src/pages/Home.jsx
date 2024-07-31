@@ -1,18 +1,18 @@
 import React from "react";
 import Navbar from "../components/Navbar/Navbar"
-import Courses from "../components/Courses/Courses";
 import Aos from "aos";
 import "aos/dist/aos.css"
-import Banner from "../components/Banner/Banner";
 import Footer from "../components/Footer/Footer";
 import Hero from "../components/Hero/Hero";
-import OfferedServices from "../components/OfferedServices/OfferedServices"
 import Mentorship from "../components/Mentorship/Mentorship";
-import CurrentAffairsSection from "../components/StudyMaterials/CurrentAffairsSection";
-import MockTest from "../components/StudyMaterials/MockTest";
-import StudyMaterials from "../components/StudyMaterials/StudyMaterials";
 import Offerings from "../components/Offerings/Offerings";
 import Testimonials from "../components/Testimonials/Testimonials";
+import AboutUs from "../components/AboutUs/AboutUs";
+import ELibrary from "../components/ELibrary/ELibrary";
+import MockTest from "../components/MockTest/MockTest";
+import Officers from "../components/Officers/Officers";
+import Mentorship2 from "../components/Mentorship/Mentorship2";
+import Ashish from "../components/AboutUs/Ashish";
 
 const Home = () => {
   // AOS
@@ -29,16 +29,15 @@ const Home = () => {
     <div>
         <Navbar />
         <Hero />
-        
+        <Officers />
         <Offerings />
         <Mentorship />
-        {/* <Courses /> */}
-        {/* <MockTest /> */}
-        <StudyMaterials />
-        {/* <CurrentAffairsSection /> */}
-        <Banner />
+        {/* <Mentorship2 /> */}
+        <ELibrary />
+        <MockTest />
         <Testimonials />
-        {/* <OfferedServices /> */}
+        <AboutUs />
+        <Ashish />
         <Footer />
     </div>
   )
