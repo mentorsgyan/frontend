@@ -4,7 +4,6 @@ import LogoImg from "../assets/logo/white_bg.jpg"
 import Navbar from "../components/Navbar/Navbar";
 import axios from 'axios';
 import {useLocation} from "react-router-dom"; 
-import { useAuth } from "../AuthContext";
 import { BACKEND_API } from "../utility/Constants";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase.config";
@@ -19,6 +18,8 @@ const PaymentPage = () => {
     // User Data
     const [user, setUser] = useState(null);
     const [userExists, setUserExists] = useState();
+    const [userAddress, setUserAddress] = useState('');
+    const [userContact, setUserContact] = useState('')
 
     // State data reading
     const location = useLocation();
@@ -49,7 +50,14 @@ const PaymentPage = () => {
 
     async function handleUserExists() {
         fetch(BACKEND_API + "/fetchUsers/" + auth.currentUser.email)
-        .then((response) => {setUserExists(response.status === 200)})
+        .then((response) => {
+            setUserExists(response.status === 200);
+            return response.json();
+        })
+        .then((data) => {
+            setUserContact(data.phoneNumber);
+            setUserAddress(data.city + ', ' + data.state);
+        })
         .catch((error) => {
             console.error("Some error occurred: ", error);
         })
@@ -97,7 +105,7 @@ const PaymentPage = () => {
                 order_id: order_id,
                 currency: currency,
                 name: 'MentorsGyan',
-                description: 'Mentorship plans के लिए भुगतान अनुरोध',
+                description: `${name} के लिए भुगतान अनुरोध`,
                 handler: async function (response) {
                     const data = {
                         orderCreationId: order_id,
@@ -115,15 +123,15 @@ const PaymentPage = () => {
                     alert(result.data.msg);
                 },
                 prefill: {
-                    name: 'MentorsGyan',
-                    email: 'mentorsgyan@gmail.com',
-                    contact: '9039130180',
+                    name: user.displayName,
+                    email: user.email,
+                    contact: userContact,
                 },
                 notes: {
-                    address: 'Bilaspur, Chhattisgarh',
+                    address: userAddress,
                 },
                 theme: {
-                    color: '#61dafb',
+                    color: '#ed8900',
                 },
             };
 
@@ -164,7 +172,7 @@ const PaymentPage = () => {
                                 {/* image section */}
                                 <div data-aos="zoom-in">
                                     <img src={BannerImg} alt=""
-                                        className="rounded-full md:max-w-[400px] md:h-[400px] mx-auto shadow-2xl object-cover"
+                                        className="rounded-full h-[290px] md-900:max-[400px] md-900:h-[400px] mx-auto shadow-2xl object-cover"
                                     />
                                 </div>
                                 <div className="flex flex-col gap-6 sm:pt-0">
@@ -173,11 +181,11 @@ const PaymentPage = () => {
                                     Mentors Gyan के साथ जुड़ें और अपनी CGPSC सफलता की ओर पहला कदम बढ़ाएँ!<br/>
                                     हम आशा करते हैं कि आप <b className="text-xl">{name.split('-')[1]} </b> योजना का पूरा लाभ उठा सकें।
                                     </p>
-                                    <div className="flex flex-col gap-4 md:w-1/2">
+                                    <div className="flex flex-col gap-4 md:w-1/2 ">
                                         {/* Total section */}
                                         <div className=" flex flex-col gap-2">
                                             <h1 className="text-3xl font-bold py-2 text-secondary">भुगतान सारांश</h1>
-                                            <div className="flex flex-col gap-2 mr-auto">
+                                            <div className="flex flex-col gap-2 mr-auto  justify-center">
                                                 <div
                                                     className="flex text-xl gap-10"
                                                 >
