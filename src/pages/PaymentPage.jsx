@@ -79,8 +79,8 @@ const PaymentPage = () => {
                 const couponDiscount = element.value;
                 setMessage(`आपको ${couponDiscount}% की छूट मिली!`);
                 setCss("text-green-600 ")
-                setDiscount((couponDiscount / 100) * price)
-                setTotal((1 - couponDiscount/100) * price)
+                setDiscount(Math.floor((couponDiscount / 100) * price))
+                setTotal(price - Math.floor((couponDiscount / 100) * price))
                 return;
             } else {
                 setMessage('अमान्य कूपन कोड');
