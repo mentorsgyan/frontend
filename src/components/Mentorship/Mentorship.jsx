@@ -7,7 +7,8 @@ const MentorshipPrograms = [
         mostPopular: false,
         renewalDuration: "अर्धवार्षिक",
         programDescription: "अल्ट्रा",
-        price: 5999,
+        price: 15999,
+        offerPrice: 5999,
         features: [1, 1, 1, 1,"दैनिक", "दैनिक"]
     },
     {
@@ -15,7 +16,8 @@ const MentorshipPrograms = [
         mostPopular: true,
         renewalDuration: "अर्धवार्षिक",
         programDescription: "प्लस",
-        price: 3999,
+        price: 13999,
+        offerPrice: 3999,
         features: [1, 1, 1, 1, "साप्ताहिक", "सप्ताह में एक बार"]
     },
     {
@@ -23,7 +25,7 @@ const MentorshipPrograms = [
         mostPopular: false,
         renewalDuration: "एक बार",
         programDescription: "सार",
-        price: 99,
+        offerPrice: 99,
         features: [1, 'X', 1, 1, "एक बार", "एक बार"]
     }
 ]
