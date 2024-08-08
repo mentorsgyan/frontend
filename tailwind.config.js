@@ -11,9 +11,6 @@ export default {
         'md-900': '900px',
         'md-1024': '1024px'
       },
-      fontSize: {
-        '7.5xl': '5.5rem'
-      },
       colors: {
         primary: "#fea928",
         secondary: "#ed8900"

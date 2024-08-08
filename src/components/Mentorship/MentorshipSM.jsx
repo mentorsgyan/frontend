@@ -1,6 +1,6 @@
 import React from "react";
-import { CheckIcon, XMarkIcon , SignalSlashIcon} from '@heroicons/react/20/solid';
-import { useNavigate } from "react-router-dom"; 
+import {CheckIcon} from '@heroicons/react/20/solid';
+import {useNavigate } from "react-router-dom"; 
 
 const MentorshipSM = ({MentorshipPrograms}) => {
     return (
@@ -15,6 +15,7 @@ const MentorshipSM = ({MentorshipPrograms}) => {
 }
 
 const MentorshipCard = ({program}) => {
+    // const history = useHistory();
     const mentorshipFeatures = ["संपूर्ण रणनीति", "तैयारी का आंकलन", "मास्टर प्लान", "किताबों की जानकारी", "प्रेरणा", "कॉल पर मेंटर से बात"];
     const navigate = useNavigate();
     const data = {
@@ -37,14 +38,9 @@ const MentorshipCard = ({program}) => {
                 <p className="text-gray-700 text-2xl">{program.programDescription}</p>
                 {/* Course price */}
                 <div className="flex items-baseline gap-1">
-                    <p className="text-3xl font-bold text-secondary text-right">₹{program.offerPrice}/-</p>
-                    {program.price &&
-                        <p className="text-xl text-black font-bold z-10 line-through">{program.price}</p>
-                    }
+                    <p className="text-3xl font-bold">₹{program.price}</p>
+                    <p className="font-light lowercase">/ {program.renewalDuration}</p>
                 </div>
-                {
-                    program.price &&  <p className="text-red-500 text-3xl font-extrabold animate-bounce">{Math.round(program.offerPrice/program.price * 100)}% छूट !</p>
-                }
                 {/* Buy plan button */}
                 <div>
                     <button className=
