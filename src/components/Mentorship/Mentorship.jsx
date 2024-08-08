@@ -25,7 +25,7 @@ const MentorshipPrograms = [
         mostPopular: false,
         renewalDuration: "एक बार",
         programDescription: "सार",
-        price: 99,
+        offerPrice: 99,
         features: [1, 'X', 1, 1, "एक बार", "एक बार"]
     }
 ]

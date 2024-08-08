@@ -43,7 +43,7 @@ const MentorshipCard = ({program}) => {
                     }
                 </div>
                 {
-                    program.price &&  <p className="text-red-500 text-3xl font-extrabold animate-bounce">{Math.round(program.offerPrice/program.price * 100)}% छूट !</p>
+                    program.price &&  <p className="text-red-500 text-3xl font-extrabold animate-bounce">{100-Math.round(program.offerPrice/program.price * 100)}% छूट !</p>
                 }
                 {/* Buy plan button */}
                 <div>
