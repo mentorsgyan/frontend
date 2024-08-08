@@ -19,7 +19,7 @@ const MentorshipCard = ({program}) => {
     const mentorshipFeatures = ["संपूर्ण रणनीति", "तैयारी का आंकलन", "मास्टर प्लान", "किताबों की जानकारी", "प्रेरणा", "कॉल पर मेंटर से बात"];
     const navigate = useNavigate();
     const data = {
-        price: program.price,
+        price: program.offerPrice,
         id: program.id,
         name: 'MENTORSHIP-' + program.programDescription
     }
@@ -41,6 +41,9 @@ const MentorshipCard = ({program}) => {
                     <p className="text-3xl font-bold">₹{program.price}</p>
                     <p className="font-light lowercase">/ {program.renewalDuration}</p>
                 </div>
+                {
+                    program.price &&  <p className="text-red-500 text-3xl font-extrabold animate-bounce">{100-Math.round(program.offerPrice/program.price * 100)}% छूट !</p>
+                }
                 {/* Buy plan button */}
                 <div>
                     <button className=
