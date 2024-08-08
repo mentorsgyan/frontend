@@ -31,6 +31,9 @@
     "react-slick": "^0.30.2",
     "slick-carousel": "^1.8.1"
   },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.6.1"
+  },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",
     "@types/react": "^18.2.66",
