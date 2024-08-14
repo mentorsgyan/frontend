@@ -11,7 +11,7 @@ const Hero = () => {
     }, [])
 
     return (
-        <div className = "relative overflow-hidden min-h-[550px] sm:min-h-[650px]  flex justify-center items-center dark:bg-gray-950 dark:text-white duration-200">
+        <div className = "mt-20 relative overflow-hidden min-h-[550px] sm:min-h-[650px]  flex justify-center items-center dark:bg-gray-950 dark:text-white duration-200">
             {/* background pattern */}
             <div className = "h-[800px] w-[1200px] bg-primary/40 absolute -top-1/2 right-0 rounded-3xl rotate-45 -z-9" />
             {/* Hero section */}
