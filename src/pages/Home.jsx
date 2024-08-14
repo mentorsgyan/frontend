@@ -11,7 +11,6 @@ import AboutUs from "../components/AboutUs/AboutUs";
 import ELibrary from "../components/ELibrary/ELibrary";
 import MockTest from "../components/MockTest/MockTest";
 import Officers from "../components/Officers/Officers";
-import Mentorship2 from "../components/Mentorship/Mentorship2";
 import Ashish from "../components/AboutUs/Ashish";
 
 const Home = () => {
@@ -32,7 +31,6 @@ const Home = () => {
         <Officers />
         <Offerings />
         <Mentorship />
-        {/* <Mentorship2 /> */}
         <ELibrary />
         <MockTest />
         <Testimonials />

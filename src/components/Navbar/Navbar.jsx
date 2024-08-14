@@ -8,6 +8,7 @@ import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/
 import { auth , provider} from "../../firebase.config";
 import { onAuthStateChanged, signInWithPopup } from "firebase/auth";
 import { useAuth } from "../../AuthContext";
+import Banner from "../Banner/Banner";
 
 const fields = [
     { name: 'प्रोफ़ाइल', href: '/user-profile', icon: BriefcaseIcon },
@@ -85,7 +86,8 @@ export default function Navbar({sticky = true}) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     
     return (
-        <header className={`${sticky && !mobileMenuOpen ? 'fixed': ''} inset-x-0 top-0 z-50  bg-white/90 shadow-lg`}>
+        <header className={`${sticky && !mobileMenuOpen ? 'fixed': ''} inset-x-0 top-0 z-30  bg-white/90 shadow-lg`}>
+            <Banner />
             <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
             {/* Logo Section */}
                 <div className="flex lg:flex-1">
