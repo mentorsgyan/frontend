@@ -87,7 +87,7 @@ export default function Navbar({sticky = true}) {
     
     return (
         <header className={`${sticky && !mobileMenuOpen ? 'fixed': ''} inset-x-0 top-0 z-30  bg-white/90 shadow-lg`}>
-            <Banner />
+            {/* <Banner /> */}
             <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
             {/* Logo Section */}
                 <div className="flex lg:flex-1">
