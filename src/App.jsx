@@ -11,6 +11,7 @@ import UserProfile from "./pages/User/UserProfile";
 import Admin from "./pages/Admin/Admin";
 import PolicyPage from "./pages/PolicyPage";
 import NotFound from "./pages/NotFound";
+import PremiumELibraryPage from "./pages/PremiumELibraryPage";
 
 const App = () => {
   React.useEffect(() => {
@@ -40,6 +41,7 @@ const App = () => {
         <Route path = "/mock-test/:testTitle" element = {<QuestionPaper />}/>
         <Route path="/admin" element = {<Admin />} />
         <Route path="/policy" element = {<PolicyPage />} />
+        <Route path="/special-12" element = {<PremiumELibraryPage/>} />
         <Route path = "*" element = {<NotFound />} />
       </Routes>
       </BrowserRouter>
