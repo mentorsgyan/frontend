@@ -7,6 +7,7 @@ import {useLocation} from "react-router-dom";
 import { BACKEND_API } from "../utility/Constants";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase.config";
+import { FaSpinner } from "react-icons/fa";
 
 /**
  * This page is responsible for the entire payment checkout
@@ -32,6 +33,7 @@ const PaymentPage = () => {
     const [discount, setDiscount] = useState(0);
     const [total, setTotal] = useState(price);
     const [paymentDone, setPaymentDone] = useState(false);
+    const [paymentStatus, setPaymentStatus] = useState('NOT_STARTED');  // NOT_STARTED, STARTED, SUCCESSFUL, FAILED, WAITING
     const [activeCoupons, setActiveCoupons] = useState([])
 
     const handleCouponChange = (e) => {
@@ -97,6 +99,7 @@ const PaymentPage = () => {
             const data = {
                 amount: total
             }
+	    setPaymentStatus('STARTED');
             const orderResponse = await axios.post(BACKEND_API + '/createOrder', data);
             const { amount, id: order_id, currency } = orderResponse.data;
             const options = {
@@ -116,10 +119,14 @@ const PaymentPage = () => {
                         userEmail: user.email,
                         coupon: coupon
                     };
+		    setPaymentStatus("WAITING")
                     const result = await axios.post(BACKEND_API + '/paymentSuccess/' + response.razorpay_payment_id, data);
                     if (result.status === 200) {
                         setPaymentDone(true)
-                    }
+			setPaymentStatus('SUCCESSFUL');
+                    } else {
+			setPaymentStatus('FAILED');
+		    }
                     alert(result.data.msg);
                 },
                 prefill: {
@@ -142,7 +149,7 @@ const PaymentPage = () => {
         }
     };
  
-    if (paymentDone) {
+    if (paymentStatus === 'SUCCESSFUL') {
         return (
             <div>
                 <Navbar sticky={false} />
@@ -152,13 +159,22 @@ const PaymentPage = () => {
                     <img src={LogoImg} alt="" className="absolute -z-10 blur-xl -translate-y-20"/>
                     <p className="text-3xl tracking-wide text-white underline underline-offset-4 font-bold">भुगतान सफल हो गया है।</p>
                     <p className="text-center text-2xl text-gray-100 ">हमने मेंटर्स ज्ञान के लिए आपके भुगतान का सत्यापन कर लिया है।</p>
-                    <p className="text-center text-2xl text-gray-100">हम आपकी कॉल शेड्यूल कर रहे हैं और आपको इस संबंध में एक पुष्टिकरण प्राप्त होगा।</p>
+                    {name !== 'EBOOKS-Special 12' && <p className="text-center text-2xl text-gray-100">हम आपकी कॉल शेड्यूल कर रहे हैं और आपको इस संबंध में एक पुष्टिकरण प्राप्त होगा।</p>}
                     <p className="text-center text-2xl text-gray-100">कृपया इसे अपनी प्रोफ़ाइल पर प्रदर्शित करने के लिए कुछ समय तक प्रतीक्षा करें।</p>
                     <hr />
                     <p className="font-bold text-xl text-white bg-secondary rounded-xl p-2">अपनी यात्रा के लिए हमें चुनने के लिए धन्यवाद ।</p>
                 </div>
             </div>
         )
+    }
+
+    if (paymentStatus === 'WAITING') {
+	return (
+		<div className="flex h-screen items-center justify-center gap-5 text-3xl bg-white w-full">
+			<p>Waiting...</p>
+			<FaSpinner className="animate-spin"/>
+		</div>
+	)
     }
     
     return (
@@ -178,7 +194,7 @@ const PaymentPage = () => {
                                 <div className="flex flex-col gap-6 sm:pt-0">
                                     <h1 className="text-3xl sm:text-4xl font-bold">पेमेंट करे</h1>
                                     <p className=" text-gray-500 tracking-wide leading-8 text-xl text-justify">
-                                    Mentors Gyan के साथ जुड़ें और अपनी CGPSC सफलता की ओर पहला कदम बढ़ाएँ!<br/>
+                                    Mentors Gyan के साथ जुड़ें और अपनी सफलता की ओर पहला कदम बढ़ाएँ!<br/>
                                     हम आशा करते हैं कि आप <b className="text-xl">{name.split('-')[1]} </b> योजना का पूरा लाभ उठा सकें।
                                     </p>
                                     <div className="flex flex-col gap-4 md:w-1/2 ">

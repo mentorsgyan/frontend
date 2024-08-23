@@ -41,7 +41,7 @@ const App = () => {
         <Route path = "/mock-test/:testTitle" element = {<QuestionPaper />}/>
         <Route path="/admin" element = {<Admin />} />
         <Route path="/policy" element = {<PolicyPage />} />
-        <Route path="/premium-elibrary" element = {<PremiumELibraryPage/>} />
+        <Route path="/special-12" element = {<PremiumELibraryPage/>} />
         <Route path = "*" element = {<NotFound />} />
       </Routes>
       </BrowserRouter>
