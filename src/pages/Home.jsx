@@ -12,6 +12,7 @@ import ELibrary from "../components/ELibrary/ELibrary";
 import MockTest from "../components/MockTest/MockTest";
 import Officers from "../components/Officers/Officers";
 import Ashish from "../components/AboutUs/Ashish";
+import PremiumELibrary from "../components/ELibrary/PremiumELibrary";
 
 const Home = () => {
   // AOS
@@ -28,6 +29,7 @@ const Home = () => {
     <div>
         <Navbar />
         <Hero />
+	<PremiumELibrary />
         <Officers />
         <Offerings />
         <Mentorship />
