@@ -39,7 +39,7 @@ const PremiumELibraryPage = () => {
 	const data = {
 		price: 500,
 		id: 'Special-12',
-		name: 'EBOOKS-Special 12'
+		name: 'EBOOKS-Special 12',
 	}
 
 	const handleChange = (event) => {

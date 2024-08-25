@@ -20,7 +20,8 @@ const MentorshipCard = ({program}) => {
     const data = {
         price: program.offerPrice,
         id: program.id,
-        name: 'MENTORSHIP-' + program.programDescription
+        name: 'MENTORSHIP-' + program.programDescription,
+	validity: program.renewalInNumber
     }
     return (
         <div /*data-aos = "flip-down" data-aos-easing="ease-out-cubic" data-aos-duration="8000" */ className="hover:scale-105 duration-200">

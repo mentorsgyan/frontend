@@ -4,7 +4,7 @@ import LogoImg from "../assets/logo/white_bg.jpg"
 import Navbar from "../components/Navbar/Navbar";
 import axios from 'axios';
 import {useLocation} from "react-router-dom"; 
-import { BACKEND_API } from "../utility/Constants";
+import { BACKEND_API, RAZORPAY_KEY } from "../utility/Constants";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase.config";
 import { FaSpinner } from "react-icons/fa";
@@ -26,13 +26,13 @@ const PaymentPage = () => {
     const location = useLocation();
     const name = location.state ? location.state.data.name : '';
     const price = location.state ? location.state.data.price : '';
+    const validity = location.state ? location.state.data.validity : -1;
 
     const [coupon, setCoupon] = useState('');
     const [message, setMessage] = useState('');
     const [css, setCss] = useState('');
     const [discount, setDiscount] = useState(0);
     const [total, setTotal] = useState(price);
-    const [paymentDone, setPaymentDone] = useState(false);
     const [paymentStatus, setPaymentStatus] = useState('NOT_STARTED');  // NOT_STARTED, STARTED, SUCCESSFUL, FAILED, WAITING
     const [activeCoupons, setActiveCoupons] = useState([])
 
@@ -103,7 +103,7 @@ const PaymentPage = () => {
             const orderResponse = await axios.post(BACKEND_API + '/createOrder', data);
             const { amount, id: order_id, currency } = orderResponse.data;
             const options = {
-                key: 'rzp_live_Xv2gJDseLminWd',
+                key: RAZORPAY_KEY,
                 amount: amount.toString(),
                 order_id: order_id,
                 currency: currency,
@@ -117,12 +117,12 @@ const PaymentPage = () => {
                         razorpaySignature: response.razorpay_signature,
                         program: name,
                         userEmail: user.email,
-                        coupon: coupon
+                        coupon: coupon,
+			validity: validity
                     };
 		    setPaymentStatus("WAITING")
                     const result = await axios.post(BACKEND_API + '/paymentSuccess/' + response.razorpay_payment_id, data);
                     if (result.status === 200) {
-                        setPaymentDone(true)
 			setPaymentStatus('SUCCESSFUL');
                     } else {
 			setPaymentStatus('FAILED');
