@@ -80,5 +80,15 @@ export const userInfoFields = [
     }
 ]
 
-// export const BACKEND_API = "http://localhost:5000";
-export const BACKEND_API = "https://mentorsgyan-backend-a58bdc6d7b98.herokuapp.com";
+const TestingMode = Object.freeze({
+	LOCAL_BACKEND: 'LOCAL_BACKEND',
+	HEROKU_BACKEND: "HEROKU_BACKEND",
+	PRODUCTION: "PRODUCTION"
+});
+
+// const mode = TestingMode.LOCAL_BACKEND;
+const mode = TestingMode.PRODUCTION;
+// const mode = TestingMode.HEROKU_BACKEND;
+
+export const BACKEND_API = mode === TestingMode.LOCAL_BACKEND ? "http://localhost:5000" : "https://mentorsgyan-backend-a58bdc6d7b98.herokuapp.com";
+export const RAZORPAY_KEY = mode === TestingMode.PRODUCTION ? 'rzp_live_Xv2gJDseLminWd' : 'rzp_test_YxRzwHzrJ4PIkW';

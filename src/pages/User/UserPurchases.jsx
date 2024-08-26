@@ -1,101 +1,103 @@
 import { Progress } from "@material-tailwind/react";
+import { MdGroups , MdSchool} from "react-icons/md";
+import { ImBooks } from "react-icons/im";
+
 
 /**
- * This page will show:
- * 1. Courses the user has access to
- * @author Mayank Shukla
- */
-const UserPurchases = ({services}) => {
-    const mentorships = [];
-    const courses = [];
-    services?.map(service => { 
-        if (service.includes("MENTORSHIP")) {
-            mentorships.push(service.split('-')[1]);
-        } else {
-            courses.push(service.split('-')[1]);
-        }
-    })
-    return (
-        <div className="flex flex-col gap-10 divide-y-2 mt-10 items-center w-full">
-            <ServiceLists title={"Mentorship"} data={mentorships}/>
-            <ServiceLists title={"Courses"} data={courses}/>
-        </div>
-    )
+* This page will show:
+* 1. Courses the user has access to
+* @author Mayank Shukla
+*/
+const UserPurchases = ({mentorship, courses, ebook}) => {
+	console.log("Mentorship Data", mentorship);
+	return (
+		<div className="row-start-2 col-span-2 grid grid-cols-1 md-900:grid-cols-2 gap-10 my-10 items-start mx-10">
+			{/* <ServiceLists title={"Mentorship"} data={mentorships}/> */}
+			<UserMentorshipTile mentorships={mentorship}/>
+			<UserEBooksTile ebook={ebook}/>
+			{/* <ServiceLists title={"Courses"} data={courseList}/> */}
+		</div>
+	)
 }
 
-const ServiceLists = ({title, data}) => {
-    return (
-        <div className="flex items-center gap-4">
-            <h1 className="text-2xl font-bold">{title}»</h1>
-            {data.length !== 0 ?<ul>
-                {
-                    data.map((plan) => (
-                        <div>
-                            <li className="text-xl">{plan}</li>
-                        </div>
-                    ))
-                }
-            </ul> : <p>N/A</p>}
-        </div>
-    )
+const UserMentorshipTile = ({mentorships}) => {
+	console.log("Mentorships: ", mentorships)
+	return (
+		<>
+			{/* common image */}
+			
+			{/* Text section */}
+			{
+				mentorships?.map((mentorship, idx) => {
+					var purchaseDate = new Date(mentorship.purchaseDate._seconds * 1000);
+					var endDate = new Date();
+					endDate.setMonth(purchaseDate.getMonth() + mentorship.programExpiry/30);
+					return (
+					<div key={idx} className="flex gap-10 rounded-3xl shadow-lg shadow-gray-500 p-6 ">
+						<div>
+							<MdGroups className="absolute text-5xl z-10 text-secondary"/>
+							<img src="https://www-media.discoveryeducation.com/wp-content/uploads/2024/03/de-science-hp-blob.svg" alt="" className="scale-125"/>
+							<p className="z-20 text-xl mt-4 font-bold text-secondary">मेंटरशिप</p>
+						</div>
+						<div key={idx}>
+							<div className="flex gap-4">
+								<p className="md-900:text-xl font-bold">तैयारी:</p>
+								<p className="md-900:text-xl">{mentorship.name}</p>
+							</div>
+							<div className="flex gap-4">
+								<p className="md-900:text-xl font-bold">वैधता:</p>
+								<p className="md-900:text-xl">{mentorship.programExpiry === 1 ? `वन टाइम` : `${mentorship.programExpiry/30} महीने`}</p>
+							</div>
+							<div className="flex gap-4">
+								<p className="md-900:text-xl font-bold">प्रारंभ:</p>
+								<p className="md-900:text-xl">{purchaseDate.toLocaleDateString()}</p>
+							</div>
+							<div className="flex gap-4">
+								<p className="md-900:text-xl font-bold">अंत:</p>
+								<p className="md-900:text-xl">{endDate.toLocaleDateString()}</p>
+							</div>
+						</div>
+					</div>
+				)})
+			}
+				
+			
+		</>
+	)
 }
 
-const ServiceEnrollmentCard = ({service}) => {
-    return (
-        <div className="mt-10 py-5 container shadow-2xl rounded-3xl flex flex-col justify-between">
-            <div>
-                <h1 className="tracking-tight py-5 font-bold text-center text-4xl text-secondary">{service.title}</h1>
-                <hr />
-            </div>
-            {/* Course cards */}
-            {
-                service.details.length == 0 && <div className="text-center font-semibold text-xl tracking-wide">
-                    You are not in any {service.title}.
-                </div>
-            }
-            <div className="overflow-x-scroll">
-                <div className="flex w-fit gap-6">
-                    {service.details?.map((course, idx) => (
-                            <CourseCard key={idx} course={course} />  
-                        ))
-                    }
-                </div>
-            </div>
-            
-        </div>
-    )
-}
-
-/**
- * This will return a course card which will have 
- * a thumbnail, title, headline and launch course button.
- * @param {*} param0 
- * @returns 
- */
-const CourseCard = ({course}) => {
-    return (
-        <div className="shadow-lg mt-4 rounded-3xl container p-4 border w-[300px]">
-            <ProgressDefault/>
-            <div >
-                {/* Image */}
-                {/* TODO: change image here */}
-                {/* Text */}
-                <div className="flex flex-col gap-2">
-                    <h1 className="text-2xl font-bold mt-2 text-center">{course} </h1>
-                    <h2 className="text-xl text-center">{course} Desc</h2>
-                    <h3 className="text-center text-sm">30% Completed</h3>
-                    <button className="text-xl bg-secondary p-2 rounded-md text-white hover:scale-105 transition duration-200">
-                        Launch Course
-                    </button>
-                    
-                </div>
-            </div>
-        </div>
-    )
-}
- 
-const ProgressDefault = () => {
-  return <Progress value={50} />;
+const UserEBooksTile = ({ebook}) => {
+	// console.log("Eboojks: ", ebook[0]);
+	return (
+		<div className="flex gap-10 rounded-3xl shadow-lg shadow-gray-500 p-6 items-center">
+			{/* common image */}
+			{
+				ebook?.map((book, idx) => {
+					const purchaseDate = new Date(book.purchaseDate._seconds * 1000);
+					console.log(purchaseDate);
+					return (
+						<>
+							<div>
+								<ImBooks className="absolute text-5xl z-10 text-secondary"/>
+								<img src="https://www-media.discoveryeducation.com/wp-content/uploads/2024/03/de-science-hp-blob.svg" alt="" className="scale-125"/>
+								<p className="z-20 text-xl mt-4 font-bold text-secondary">ई-बुक्स</p>
+							</div>
+							<div key={idx}>
+								<div className="flex gap-4">
+									<p className="md-900:text-xl font-bold">तैयारी:</p>
+									<p className="md-900:text-xl">{book.name}</p>
+								</div>
+								<div className="flex gap-4">
+									<p className="md-900:text-xl font-bold">प्रारंभ:</p>
+									<p className="md-900:text-xl">{purchaseDate.toLocaleDateString()}</p>
+								</div>
+								<a className="md-900:text-xl underline hover:text-primary" href="https://drive.google.com/drive/folders/1vfaE4NiAenis9PgR9UI0Ktn6AVzU7Dlb?usp=sharing">अभी पढ़ें</a>
+							</div>
+						</>
+					)})
+			}
+		</div>
+	)
 }
 
 export default UserPurchases;

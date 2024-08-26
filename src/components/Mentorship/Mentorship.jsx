@@ -6,6 +6,7 @@ const MentorshipPrograms = [
         id: 1123,
         mostPopular: false,
         renewalDuration: "अर्धवार्षिक",
+	renewalInNumber: 180,
         programDescription: "अल्ट्रा",
         price: 44999,
         offerPrice: 9999,
@@ -15,6 +16,7 @@ const MentorshipPrograms = [
         id: 1234,
         mostPopular: true,
         renewalDuration: "अर्धवार्षिक",
+	renewalInNumber: 180,
         programDescription: "प्लस",
         price: 39999,
         offerPrice: 4999,
@@ -24,6 +26,7 @@ const MentorshipPrograms = [
         id: 1344,
         mostPopular: false,
         renewalDuration: "एक बार",
+	renewalInNumber: 1,
         programDescription: "सार",
         offerPrice: 99,
         features: [1, 'X', 1, 1, "एक बार", "एक बार"]

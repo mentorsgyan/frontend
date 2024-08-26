@@ -1,65 +1,64 @@
 import React, { useEffect, useState } from "react";
-import { BACKEND_API } from "../../utility/Constants";
+import Logo from "../../assets/logo/logo.png";
 
-const Hero = () => {
-    
-    const [ImageList, setImageList] = useState(null);
-    useEffect(() => {
-        fetch(BACKEND_API + "/heroData")
-        .then(response => response.json())
-        .then(data => setImageList(data))
-    }, [])
-
+const Hero = () => {   
     return (
-        <div className = "mt-20 relative overflow-hidden min-h-[550px] sm:min-h-[650px]  flex justify-center items-center dark:bg-gray-950 dark:text-white duration-200">
-            {/* background pattern */}
-            <div className = "h-[800px] w-[1200px] bg-primary/40 absolute -top-1/2 right-0 rounded-3xl rotate-45 -z-9" />
-            {/* Hero section */}
-            <div className="container pb-8 sm:pb-0">
-                    {ImageList?.map(data => (
-                        <div key={data.id}>
-                            <div className = "grid grid-cols-1 sm:grid-cols-2">
-                                {/* Text content section */}
-                                <div className="flex flex-col items-center justify-center bg-white bg-opacity-50 rounded-3xl shadow-2xl gap-4 pt-12 pb-5 sm:pt-0 text-center sm:text-left order-2 sm:order-1 relative z-10">
-                                    <div>
-                                        {
+        <div className="bg-white overflow-hidden font-mukta">
 
-                                            data.titles.map((title, idx) => (
-                                                <div key={idx} className="flex flex-col">
-                                                    <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold">{title}</h1>
-                                                    {
-                                                        <ul>
-                                                            {
-                                                                data.titleFeatures[idx].map((feature, idx) => (
-                                                                    <li key={idx} className="mx-2 text-lg">{feature}</li>
-                                                                ))
-                                                            }
-                                                        </ul>
-                                                    }
-                                                </div>
-                                            ))
-                                        }
-                                    </div>
-                                    <div
-                                    >
-                                        <a className = "bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200 text-white py-2 px-4 rounded-full" href={data.ref}>और अधिक जानें</a>
-                                    </div>
-                                </div>
-                                {/* Image section */}
-                                <div className="order-1 sm:order-1">
-                                    <div 
-                                    data-aos="zoom-in"
-                                    data-aos-once="true"
-                                    className="relative z-10">
-                                        <img src={data.img} alt=""
-                                        className = "w-[300px] h-[300px] mt-20 sm:h-[400px] sm:w-[400px] sm:scale-125 lg:scale-120 object-contain mx-auto" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+        <div className="relative isolate px-6 pt-14 lg:px-8 flex flex-col md-900:flex-row items-center">
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+          >
+            <div
+              style={{
+                clipPath:
+                  'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+              }}
+              className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-primary to-secondary opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+            />
+          </div>
+          <div className="w-full flex justify-center md-900:mt-0 mt-32">
+            <img src={Logo} alt="" className="w-1/2" />
+          </div>
+          <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+            <div className="hidden sm:mb-8 sm:flex sm:justify-center">
+              {/* <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+                Announcing our next round of funding.{' '}
+                <a href="#" className="font-semibold text-primary">
+                  <span aria-hidden="true" className="absolute inset-0" />
+                  Read more <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div> */}
             </div>
+            <div className="text-center">
+              <h1 className="text-4xl font-semibold text-gray-900 sm:text-6xl">
+                <strong className="text-secondary">आपकी</strong> तैयारी, <strong className="text-secondary">हमारी</strong> ज़िम्मेदारी
+              </h1>
+              <p className="mt-6 text-lg leading-8 text-gray-600">
+                MentorsGyan में हमारा मिशन है विशेषज्ञ मेंटॉरशिप के माध्यम से, हम CGPSC परीक्षार्थियों को सही मार्गदर्शन प्रदान करने के लिए समर्पित हैं ताकि वे अपने लक्ष्यों को हासिल कर सकें।
+              </p>
+              <div className="mt-10 flex items-center justify-center gap-x-6">
+                <a href="#services" className="text-md font-semibold leading-6 text-gray-900">
+                और अधिक जानें <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+          >
+            <div
+              style={{
+                clipPath:
+                  'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+              }}
+              className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-primary to-secondary opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+            />
+          </div>
         </div>
+      </div>
     );
 };
 

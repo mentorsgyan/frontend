@@ -76,14 +76,15 @@ const UserProfile = () => {
     }
 
     return (
-        <div className="relative">
-            <Navbar sticky = {false} />
+        <div className="text-white bg-gray-800">
+            <Navbar sticky = {false}/>
             {
-                dataExists ? (
-                    <div className="flex md:flex-row flex-col divide-x-8">
-                        <DataExistingTiles data={userPersonalData}/>
-                        <UserPurchases services={userPersonalData.services}/>
-                    </div>   
+		    dataExists ? (
+			<div className="grid md-900:grid-cols-3 ">
+				<DataExistingTiles data={userPersonalData}/>
+                <UserPurchases mentorship={userPersonalData.mentorship} courses={userPersonalData.courses} ebook={userPersonalData.ebook}/>
+				<div className="col-start-3 row-span-7 bg-amber-700 hidden md-900:block" />
+            </div>   
                 ) : (<UserForm email={auth.currentUser.email}/>)
             }
         </div>
@@ -148,38 +149,48 @@ const DropDown = ({subField, handleChange}) => {
 }
 
 const DataExistingTiles = ({data}) => {
+	const [userImage, setUserImage] = useState();
+	useEffect(() => {
+		onAuthStateChanged(auth, (user) => {
+			if (user) {
+				setUserImage(user.photoURL);
+			}
+		})
+	}, [])
     return (
-        <div className="flex w-full  md:h-screen bg-opacity-70  shadow-2xl bg-white justify-center">
+        <div className="col-span-2 flex rounded-3xl shadow-lg shadow-gray-500 justify-evenly items-start md-900:mx-10 mx-2 mt-10">
             {/* User Personal Info */}
-            <ul className="flex flex-col gap-5 text-lg p-10">
+            <ul className="flex flex-col gap-5 md-900:text-lg p-10 text-sm">
                 <li>
                     <h1 className="font-bold text-2xl text-secondary">Personal Information</h1>
                 </li>
-                <li className="flex justify-between gap-4">
-                    <p className="font-bold">Name :</p>
+                <li className="flex md-900:flex-row md-900:gap-5 flex-col justify-between">
+                    <p className="font-bold">Name</p>
                     <p>{data.firstName + ' ' + data.lastName}</p>
                 </li>
-                <li className="flex justify-between gap-4">
-                    <p className="font-bold">Email :</p>
+                <li className="flex md-900:flex-row md-900:gap-5 flex-col justify-between">
+                    <p className="font-bold">Email</p>
                     <p>{data.email}</p>
                 </li>
-                <li className="flex justify-between gap-4">
-                    <p className="font-bold">Mobile :</p>
+                <li className="flex md-900:flex-row md-900:gap-5 flex-col justify-between">
+                    <p className="font-bold">Mobile</p>
                     <p>{data.phoneNumber}</p>
                 </li>
-                <li className="flex justify-between gap-4">
-                    <p className="font-bold">Address :</p>
+                <li className="flex md-900:flex-row md-900:gap-5 flex-col justify-between">
+                    <p className="font-bold">Address</p>
                     <p>{data.city}, {data.state}</p>
                 </li>
-                <li className="flex justify-between gap-4">
-                    <p className="font-bold">Gender :</p>
+                <li className="flex md-900:flex-row md-900:gap-5 flex-col justify-between">
+                    <p className="font-bold">Gender</p>
                     <p>{data.gender.toUpperCase()}</p>
                 </li>
-                <li className="flex justify-between gap-4">
-                    <p className="font-bold">D.O.B :</p>
+                <li className="flex md-900:flex-row md-900:gap-5 flex-col justify-between">
+                    <p className="font-bold">D.O.B</p>
                     <p>{data.dateOfBirth ? data.dateOfBirth : "N/A"}</p>
                 </li>
             </ul>
+
+	    {userImage && <img src={userImage} href = {data.firstName + ' ' + data.lastName} className="rounded-full mt-20"/>}
         </div>
     )
 }
