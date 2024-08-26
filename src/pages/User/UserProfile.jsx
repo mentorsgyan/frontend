@@ -76,7 +76,7 @@ const UserProfile = () => {
     }
 
     return (
-        <div className="text-white bg-gray-800 ">
+        <div className="text-white bg-gray-800">
             <Navbar sticky = {false}/>
             {
 		    dataExists ? (
