@@ -69,14 +69,14 @@ const UserMentorshipTile = ({mentorships}) => {
 const UserEBooksTile = ({ebook}) => {
 	// console.log("Eboojks: ", ebook[0]);
 	return (
-		<div className="flex gap-10 rounded-3xl shadow-lg shadow-gray-500 p-6 items-center">
+		<>
 			{/* common image */}
 			{
 				ebook?.map((book, idx) => {
 					const purchaseDate = new Date(book.purchaseDate._seconds * 1000);
 					console.log(purchaseDate);
 					return (
-						<>
+						<div className="flex gap-10 items-center rounded-3xl shadow-lg shadow-gray-500 p-6 ">
 							<div>
 								<ImBooks className="absolute text-5xl z-10 text-secondary"/>
 								<img src="https://www-media.discoveryeducation.com/wp-content/uploads/2024/03/de-science-hp-blob.svg" alt="" className="scale-125"/>
@@ -93,10 +93,10 @@ const UserEBooksTile = ({ebook}) => {
 								</div>
 								<a className="md-900:text-xl underline hover:text-primary" href="https://drive.google.com/drive/folders/1vfaE4NiAenis9PgR9UI0Ktn6AVzU7Dlb?usp=sharing">अभी पढ़ें</a>
 							</div>
-						</>
+						</div>
 					)})
 			}
-		</div>
+		</>
 	)
 }
 

@@ -26,7 +26,7 @@ const PaginatedComponent = ({paginatedData}) => {
     const buttonTitle = paginatedData.buttonTitle;
 
     return (
-        <div className="container">
+        <div className="container dark:bg-gray-800 dark:text-white">
             <h1 className="text-2xl font-bold tracking-tight py-5">{paginatedData.componentHeading}</h1>
             {/* Rendering data begins */}
             <div className="mx-10">

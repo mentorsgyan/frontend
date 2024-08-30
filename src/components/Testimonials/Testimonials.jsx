@@ -58,39 +58,41 @@ const Testimonials = () => {
     sliderSettings.pauseOnHover = false;
     sliderSettings.dots = true;
     return (
-        <div className="relative mt-1 mb-5 container rounded-3xl shadow-2xl overflow-hidden">
-            <div
-                className="absolute inset-x-0 -top-30 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-48"
-                aria-hidden="true"
-                >
-                    <div
-                        className="relative left-[calc(50%-11rem)] aspect-[900/678] w-[26.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-secondary to-primary opacity-10 sm:left-[calc(50%-20rem)] sm:w-[52.1875rem]"
-                        style={{
-                        clipPath:
-                            'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-                        }}
-                    />
-                </div>
-            <h1 className="text-3xl font-bold tracking-tight text-center py-5">जानिये हमारे विद्यार्थीयो की राय</h1>
-            <Slider {...sliderSettings}>
-                {
-                    PersonData.map((person, idx) => (
-                        <PersonReview key={idx} review={person}/>
-                    ))
-                }
-            </Slider>
-            <div
-                className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-                aria-hidden="true"
-                >
-                    <div
-                        className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-primary to-secondary opacity-10 sm:left-[calc(50%+20rem)] sm:w-[52.1875rem]"
-                        style={{
-                        clipPath:
-                            'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-                        }}
-                    />
-                </div>
+        <div className="dark:bg-gray-800 dark:text-white">
+            <div className="relative pt-1 pb-5 container rounded-3xl shadow-2xl overflow-hidden font-mukta">
+                <div
+                    className="absolute inset-x-0 -top-30 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-48"
+                    aria-hidden="true"
+                    >
+                        <div
+                            className="relative left-[calc(50%-11rem)] aspect-[900/678] w-[26.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-secondary to-primary opacity-10 sm:left-[calc(50%-20rem)] sm:w-[52.1875rem]"
+                            style={{
+                            clipPath:
+                                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+                            }}
+                        />
+                    </div>
+                <h1 className="text-3xl font-bold tracking-tight text-center py-5">जानिये हमारे विद्यार्थीयो की राय</h1>
+                <Slider {...sliderSettings}>
+                    {
+                        PersonData.map((person, idx) => (
+                            <PersonReview key={idx} review={person}/>
+                        ))
+                    }
+                </Slider>
+                <div
+                    className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+                    aria-hidden="true"
+                    >
+                        <div
+                            className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-primary to-secondary opacity-10 sm:left-[calc(50%+20rem)] sm:w-[52.1875rem]"
+                            style={{
+                            clipPath:
+                                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+                            }}
+                        />
+                    </div>
+            </div>
         </div>
     )
 }
@@ -98,7 +100,7 @@ const Testimonials = () => {
 export const PersonReview = ({review}) => {
     return (
         <div>                
-            <div className="flex md-900:flex-row flex-col justify-center items-center py-5">
+            <div className="flex md-900:flex-row flex-col justify-center items-center py-5 font-kalam">
                 {/* <LuQuote className="absolute text-8xl text-primary opacity-60 w-full rotate-180 -translate-y-20 -z-10 -translate-x-48"/> */}
                 {/* Image */}
                 <div className="flex justify-center overflow-hidden -z-50">
@@ -113,7 +115,7 @@ export const PersonReview = ({review}) => {
                     {/* <h2 className="text-3xl font-bold tracking-wide">{review.title}</h2> */}
                     {/* Quotations */}
                     
-                    <blockquote className="w-4/5 text-center mt-5 leading-8 text-gray-900 sm:text-2xl sm:leading-9">
+                    <blockquote className="w-4/5 text-center mt-5 leading-8 text-gray-900 dark:text-gray-300 sm:text-2xl sm:leading-9">
                         <p className="text-justify text-lg">
                         “{review.quotes}”
                         </p>

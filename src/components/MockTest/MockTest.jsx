@@ -21,7 +21,7 @@ const MockTest = () => {
     }
 
     return (
-        <div id="test-series" className="section sm:flex items-center p-10">
+        <div id="test-series" className="section sm:flex items-center p-10 dark:bg-gray-800 dark:text-white">
             {/* BG section */}
             {/* <div className="absolute -z-10 blur">
                 <img className="w-screen" src={MockTestData.backgroundImage} alt="" />
@@ -42,7 +42,7 @@ const MockTest = () => {
 const MockTestCard = ({MockTestData}) => {
     const navigate = useNavigate();
     return (
-        <div className="flex md-900:flex-row flex-col items-center justify-center gap-4">
+        <div className="flex md-900:flex-row flex-col items-center justify-center gap-4 font-mukta">
             {/* Image */}
             <div className="w-full flex justify-center">
                 <img src={MockTestData.tileImage} alt="" className="w-1/2 rounded-full shadow-2xl"/>
@@ -50,8 +50,8 @@ const MockTestCard = ({MockTestData}) => {
             {/* Text Section */}
             <div className="text-justify flex flex-col gap-4">
                 <h2 className="text-2xl font-bold tracking-wider text-secondary ">अपनी परीक्षाओं के लिए अभी से तैयार हो जाइए!</h2>
-                <p className="font-semibold text-gray-700">हमारी CGPSC मॉक टेस्ट सीरीज प्रतिदिन 5 वर्णनात्मक प्रश्न और 20 वस्तुनिष्ठ प्रश्न प्रदान करती है, जिससे आपकी तैयारी को सशक्त बनाया जा सके और सफलता की संभावनाएं बढ़ सकें।</p>
-                <ul className="divide-y-2 divide-gray-50">
+                <p className="font-semibold text-gray-700 dark:text-gray-300">हमारी CGPSC मॉक टेस्ट सीरीज प्रतिदिन 5 वर्णनात्मक प्रश्न और 20 वस्तुनिष्ठ प्रश्न प्रदान करती है, जिससे आपकी तैयारी को सशक्त बनाया जा सके और सफलता की संभावनाएं बढ़ सकें।</p>
+                <ul className="divide-y-2 divide-gray-50 dark:divide-gray-700">
                     {
                         MockTestData.highlights.map((highlight, index) => (
                             <li key={index} className="flex items-center gap-3 py-1">
@@ -62,7 +62,7 @@ const MockTestCard = ({MockTestData}) => {
                     }
                     
                 </ul>
-                <button className="my-2 rounded-lg bg-secondary text-2xl text-white font-semibold tracking-wider p-2 hover:bg-primary/50  duration-200 hover:scale-110" onClick={() => {
+                <button className="my-2 rounded-lg bg-secondary text-2xl text-white font-semibold tracking-wider p-2 hover:bg-primary/50 dark:hover:bg-primary  duration-200 hover:scale-110" onClick={() => {
                     navigate("/mock-test")
                 }}>टेस्ट शुरू करें</button>
             </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import LogoImg from "../../assets/logo/white_bg.jpg"
+import DarkLogo from "../../assets/logo/footer_logo.png"
 /**
  * This component will render the about us section of the website.
  * @returns
@@ -7,9 +8,9 @@ import LogoImg from "../../assets/logo/white_bg.jpg"
  */
 const AboutUs = () => {
     return (
-        <div id="about-us" className="section container relative min-h-[550px] rounded-3xl shadow-xl mt-1 mb-5 flex justify-center items-center pt-8 sm:mt-0 d">
+        <div id="about-us" className="section dark:bg-gray-800 dark:text-gray-300">
             
-            <div className="">
+            <div className="container relative min-h-[550px] rounded-3xl shadow-xl pb-5 flex justify-center items-center pt-8 font-mukta">
                 <div className="grid grid-cols-1 md-900:grid-cols-2 gap-12">
                     {/* image section */}
                     {/* <div data-aos="zoom-in">
@@ -18,10 +19,11 @@ const AboutUs = () => {
                         />
                     </div> */}
                     {/* text section */}
-                    <div className="relative flex flex-col shadow-lg rounded-3xl p-2 shadow-secondary">
+                    <div className="relative flex flex-col shadow-lg rounded-3xl p-2 shadow-secondary dark:shadow-gray-500">
                         <h1 className="text-3xl text-secondary p-2 text-center sm:text-4xl font-bold"
                         >मेंटर्सज्ञान के साथ जुड़ें और अपनी CGPSC <br></br>सफलता की ओर पहला कदम बढ़ाएँ!</h1>
-                        <img src={LogoImg} alt="" className="hidden md-900:block -z-10 rounded-full" />
+                        <img src={LogoImg} alt="" className="dark:hidden md-900:block -z-10 dark:z-10 rounded-full" />
+                        <img src={DarkLogo} alt="" className="dark:md-900:block hidden -z-10 dark:z-10 rounded-full" />
                         </div>
                     <div className="flex flex-col justify-center gap-6 sm:pt-0">
                         

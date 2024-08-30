@@ -21,17 +21,17 @@ const MentorshipCard = ({program}) => {
         price: program.offerPrice,
         id: program.id,
         name: 'MENTORSHIP-' + program.programDescription,
-	validity: program.renewalInNumber
+	    validity: program.renewalInNumber
     }
     return (
         <div /*data-aos = "flip-down" data-aos-easing="ease-out-cubic" data-aos-duration="8000" */ className="hover:scale-105 duration-200">
             {/* New arrival banner */}
             {/* <NewArrivalBanner /> */}
 
-            <div className={`flex flex-col gap-6 border bg-white p-2 ${!program.mostPopular ? "border-gray-300" : "border-primary shadow-2xl shadow-secondary/50"} pb-8 px-4 rounded-3xl md-1024:w-[300px] `}>
+            <div className={`flex flex-col gap-6 border bg-white dark:bg-gray-900 p-2 ${!program.mostPopular ? "border-gray-300" : "border-primary shadow-2xl shadow-secondary/50"} pb-8 px-4 rounded-3xl md-1024:w-[300px] `}>
                 {/* Heading */}
                 <div className="flex justify-between">
-                    <h3 className={`text-2xl font-semibold ${program.mostPopular ? "text-secondary" : "text-black"}`}>{program.renewalDuration}</h3>
+                    <h3 className={`text-2xl font-semibold ${program.mostPopular ? "text-secondary" : "text-black dark:text-gray-200"}`}>{program.renewalDuration}</h3>
                     {program.mostPopular && <h3 className="text-secondary bg-primary/50 rounded-full px-2 py-1 text-lg">लोकप्रिय</h3>}
                 </div>
                 {/* Plan description */}
@@ -40,7 +40,7 @@ const MentorshipCard = ({program}) => {
                 <div className="flex items-baseline gap-1">
                     <p className="text-3xl font-bold text-secondary text-right">₹{program.offerPrice}/-</p>
                     {program.price &&
-                        <p className="text-xl text-black font-bold z-10 line-through">{program.price}</p>
+                        <p className="text-xl text-black dark:text-gray-300 font-bold z-10 line-through">{program.price}</p>
                     }
                 </div>
                 {
@@ -49,7 +49,7 @@ const MentorshipCard = ({program}) => {
                 {/* Buy plan button */}
                 <div>
                     <button className=
-                    {`p-2 ${!program.mostPopular ? "text-secondary bg-white border border-secondary hover:text-white" : "text-white bg-secondary"} w-full rounded-md hover:bg-secondary/75  duration-150`}
+                    {`p-2 ${!program.mostPopular ? "text-secondary bg-white dark:bg-gray-900 border border-secondary hover:text-white" : "text-white bg-secondary"} w-full rounded-md hover:bg-secondary/75  duration-150`}
                     onClick={() => {
                         navigate("/checkout", {state: {data: data}});
                     }}

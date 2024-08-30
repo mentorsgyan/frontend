@@ -46,9 +46,9 @@ const OfficerInfos = [
 
 const Officers = () => {
     return (
-        <div className="container">
+        <div className="dark:bg-gray-800 font-mukta dark:text-white pt-5">
             {/* <OfficersCard info={OfficerInfos[0]}/> */}
-            <div className="grid grid-cols-1 md-1024:grid-cols-2 gap-4 mt-4">
+            <div className="container grid grid-cols-1 md-1024:grid-cols-2 gap-4 py-4">
                 {
                     OfficerInfos.map((info, idx) => (
                         <OfficersCard key={idx}  review={info} />

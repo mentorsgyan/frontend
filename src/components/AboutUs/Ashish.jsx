@@ -2,8 +2,8 @@ import React from "react";
 
 const Ashish = () => {
     return (
-        <div className="container relative rounded-3xl shadow-xl mt-1 mb-5 flex justify-center items-center pt-8 sm:mt-0  overflow-hidden">
-            <div className="flex items-center justify-center py-4">
+        <div className="dark:bg-gray-800 dark:text-gray-300 py-4">
+            <div className="py-4 container relative rounded-3xl shadow-xl flex justify-center items-center pt-8 font-mukta overflow-hidden">
                 <div className="w-full text-xl flex flex-col gap-5 tracking-wide text-justify p-4">
                     <h1 className="text-3xl text-secondary font-bold tracking-tight">मेरा नाम आशीष फूटान है,</h1>
                     <p>
@@ -19,7 +19,7 @@ const Ashish = () => {
                     <img 
                     src="https://www-media.discoveryeducation.com/wp-content/uploads/2024/03/de-science-hp-blob.svg" 
                     alt="" 
-                    className="text-center absolute -z-10 w-[350px] translate-x-32 translate-y-7"
+                    className="dark:hidden text-center absolute -z-10 w-[350px] translate-x-32 translate-y-7"
                     />
                     
                     <img 

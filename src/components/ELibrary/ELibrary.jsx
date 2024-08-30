@@ -1,6 +1,7 @@
 import React from "react";
 import Pyq from "../../assets/elibrary/pyq.png";
-import Logo from "../../assets/logo/white_bg.jpg"
+import Logo from "../../assets/logo/white_bg.jpg";
+import DarkLogo from "../../assets/logo/footer_logo.png";
 import Paper from "../../assets/elibrary/paper.png";
 import Govt from "../../assets/elibrary/govtmags.png";
 import EconomcSurvey from "../../assets/elibrary/economicsurvey.png";
@@ -20,7 +21,7 @@ const sectionDetails = {
 const ELibrary = () => {
     const navigate = useNavigate();
     return (
-        <div id="e-library" className="section">
+        <div id="e-library" className="section font-mukta dark:bg-gray-800 dark:text-white">
             
             <div className="container  isolate  border rounded-3xl shadow-2xl py-4">
                 {/* Section description */}
@@ -61,8 +62,9 @@ const ELibrary = () => {
 
 const Grid = () => {
     return (
-        <div className="relative border-l-2 shadow-2xl border-secondary/50 p-5 m-2 rounded-2xl scale-75 md-900:scale-90">
-            <img src={Logo} alt="" className="blur-lg absolute -z-20" />
+        <div className="relative border-l-2 shadow-2xl dark:border-gray-500 border-secondary/50 p-5 m-2 rounded-2xl scale-75 md-900:scale-90">
+            <img src={Logo} alt="" className="blur-lg absolute -z-20 dark:hidden block" />
+            <img src={DarkLogo} alt="" className="blur-lg absolute -z-20 dark:block hidden scale-125" />
             <div className="grid grid-flow-col grid-rows-2 grid-cols-3 gap-8 -z-10 w-full">
                 <div className="w-1/3 scale-110">
                     <img src={Pyq} alt="" loading="lazy" />

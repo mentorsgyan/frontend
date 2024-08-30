@@ -44,8 +44,8 @@ const ServiceOffered = [
 const Offerings = () => {
     
     return (
-        <div id="services" className="flex flex-col justify-center items-center md-900:mb-20  section">
-            <h1 className="text-3xl font-bold tracking-tight text-center pt-10" >MentorsGyan के साथ अपना भविष्य सवारें!</h1>
+        <div id="services" className="flex flex-col justify-center items-center md-900:pb-20  section font-mukta dark:bg-gray-800 dark:text-gray-200">
+            <h1 className="text-3xl font-bold tracking-tight text-center pt-10 dark:text-secondary" >MentorsGyan के साथ अपना भविष्य सवारें!</h1>
             <p className="my-10 md-900:text-center md-900:mx-40 px-5 text-justify leading-10 text-xl tracking-wider">हमारा मुख्य मूल्य है CGPSC परीक्षा की अनूठी चुनौतियों के लिए सटीक और प्रभावी मार्गदर्शन प्रदान करना। हमें विश्वास है कि सही दिशा में चलकर हर Aspirant अपनी क्षमता को पहचान सकता है।</p>
             <div className="px-5 pt-20 pb-10 md-900:flex w-screen justify-center">                
                 {/* Services Cards */}
@@ -70,7 +70,7 @@ const ServiceCards = ({Data}) => {
             <img 
                 src="https://www-media.discoveryeducation.com/wp-content/uploads/2024/03/de-science-hp-blob.svg" 
                 alt="" 
-                className={`text-center absolute -z-10 ${detailsVisibility ? 'md-900:w-[200px] md-900:translate-y-16' : ''} w-[75px] transition-transform duration-300`}
+                className={`text-center absolute  ${detailsVisibility ? 'md-900:w-[200px] md-900:translate-y-16' : ''} w-[75px] transition-transform duration-300 dark:invert dark:saturate-50`}
                 />
             <div className="relative flex flex-col gap-4 items-center justify-center">
                 {Data.icon}
