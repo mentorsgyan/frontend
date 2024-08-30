@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 const sectionDetails = {
     title: "स्पेशल 12",
-    description: "MentorsGyan आपके लिए पेश करता है स्पेशल 12 ई-बुक्स सीरीज",
-    features: ["CGPSC", "CG Vyapam", "ADEO", "होस्टल वार्डन", "और CG SI जैसे विभिन्न परीक्षाओं"]
+    description: "MentorsGyan आपके लिए पेश करता है स्पेशल 12 सीरीज",
+    features: ["CGPSC", "CG Vyapam", "ADEO", "होस्टल वार्डन", "और CG SI जैसे विभिन्न परीक्षाओं", "हिन्दी + English"]
 }
 
 /**
@@ -35,7 +35,7 @@ const PremiumELibrary = () => {
 							))
 						}
 						<button className="bg-secondary p-2 hover:bg-secondary/70 font-semibold text-white rounded-md w-fit flex items-center gap-4"
-							onClick={() => navigate("/special-12")}
+							onClick={() => navigate("/premium-ebooks")}
 							>
 							<p className="text-xl">और अधिक जानें</p>
 							<FaArrowRight/>

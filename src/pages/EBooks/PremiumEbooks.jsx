@@ -27,7 +27,7 @@ const PremiumEbooks = () => {
     return (
         <div className="bg-white dark:bg-gray-800 text-black dark:text-white font-mukta h-screen">
             <Navbar sticky={false}/>
-            <div className="container grid grid-cols-1 md-900:grid-cols-2 gap-5 rounded-3xl shadow-2xl dark:shadow-white mt-10 p-5">
+            <div className="container grid grid-cols-1 md-900:grid-cols-2 gap-5 rounded-3xl shadow-2xl mt-10 p-5">
                 {
                     bookList.map((book, idx) => {
                         const data = {
@@ -38,13 +38,13 @@ const PremiumEbooks = () => {
                             name: 'EBOOKS-' + book.seriesTitle
                         }
                         return (
-                        <div key={idx} className="flex gap-10 p-4 border items-center justify-evenly">
+                        <div key={idx} className="flex gap-10 p-4 rounded-3xl shadow-2xl shadow-gray-600 items-center justify-evenly">
                             <img src={book.imageUrl} alt="" className="w-[230px]" />
                             <div className="flex flex-col justify-center gap-5">
                                 <h1 className="text-2xl font-bold">{book.seriesTitle}</h1>
                                 {/* Description */}
                                 <div className="flex items-center border p-2 justify-evenly rounded-3xl hover:cursor-pointer" onClick={() => handleDescriptionToggle(idx, true)}>
-                                    <p className="">Know more</p>
+                                    <p className="">और अधिक जानें</p>
                                     <ChevronDownIcon className="h-6"/>
                                 </div>
 
