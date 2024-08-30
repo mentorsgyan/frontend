@@ -16,7 +16,6 @@ const MentorshipPrograms = [
         id: 1234,
         mostPopular: true,
         renewalDuration: "अर्धवार्षिक",
-	renewalInNumber: 180,
         programDescription: "प्लस",
         price: 39999,
         offerPrice: 4999,
