@@ -62,7 +62,7 @@ export const QuestionPaper = () => {
       fetchQuestions();
     }, []);
     return (
-      <div>
+      <div className='dark:bg-gray-800'>
         <Navbar sticky={false} />
         <div className="container mx-auto p-4">
           <h1 className='text-3xl text-secondary font-bold tracking-tight p-10 '>सैंपल पेपर: {testTitle}</h1>
@@ -160,7 +160,7 @@ const SampleTests = () => {
       fetchQuestionPaperLists();
     }, [])
     return (
-        <div>
+        <div className='dark:bg-gray-800'>
             <PaginatedComponent paginatedData={questionData}/>
         </div>
     )

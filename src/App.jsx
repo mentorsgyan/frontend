@@ -12,6 +12,7 @@ import Admin from "./pages/Admin/Admin";
 import PolicyPage from "./pages/PolicyPage";
 import NotFound from "./pages/NotFound";
 import PremiumELibraryPage from "./pages/PremiumELibraryPage";
+import PremiumEbooks from "./pages/EBooks/PremiumEbooks";
 
 const App = () => {
   React.useEffect(() => {
@@ -42,6 +43,7 @@ const App = () => {
         <Route path="/admin" element = {<Admin />} />
         <Route path="/policy" element = {<PolicyPage />} />
         <Route path="/special-12" element = {<PremiumELibraryPage/>} />
+        <Route path="/premium-ebooks" element = {<PremiumEbooks />} />
         <Route path = "*" element = {<NotFound />} />
       </Routes>
       </BrowserRouter>

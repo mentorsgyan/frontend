@@ -48,7 +48,7 @@ const Footer = () => {
   return (
     <div className="text-white">
         {/* For adding black film */}
-      <div className="bg-black opacity-70 backdrop-blur-sm relative">
+      <div className="bg-black dark:bg-gray-900 backdrop-blur-sm relative">
         <div className="flex items-baseline">
           <img src={footerLogo} alt="" className="absolute h-[300px] -z-50 blur" />
         </div>

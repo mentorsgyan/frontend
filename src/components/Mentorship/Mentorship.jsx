@@ -26,7 +26,7 @@ const MentorshipPrograms = [
         id: 1344,
         mostPopular: false,
         renewalDuration: "एक बार",
-	renewalInNumber: 1,
+	    renewalInNumber: 1,
         programDescription: "सार",
         offerPrice: 99,
         features: [1, 'X', 1, 1, "एक बार", "एक बार"]
@@ -40,7 +40,7 @@ const MentorshipPrograms = [
  */
 export default function () {
     return (
-        <div id="mentorship" className="section py-5 mx-5 flex flex-col items-center gap-6">
+        <div id="mentorship" className="section py-5 px-5 flex flex-col items-center gap-6 font-mukta dark:bg-gray-800 dark:text-gray-200">
             {/* Section heading area */}
             <h2 /* data-aos="fade-up" data-aos-duration="6000"*/ className="text-secondary font-bold tracking-wide text-xl">Pricing</h2>
             <h1 /* data-aos="fade-up" data-aos-duration="6000"*/ className="text-4xl tracking-tight font-bold text-center">विभिन्न मेंटरशिप कार्यक्रमों के मूल्य</h1>

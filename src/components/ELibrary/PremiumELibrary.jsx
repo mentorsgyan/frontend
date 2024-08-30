@@ -14,10 +14,10 @@ const sectionDetails = {
 const PremiumELibrary = () => {
     const navigate = useNavigate();
     return (
-        <div id="e-library" className="section container isolate border rounded-3xl shadow-2xl py-4">
+        <div id="special-e-library" className="section isolate font-mukta dark:bg-gray-800 dark:text-white pt-5">
             
 		{/* Section description */}
-		<div className="flex sm:flex-row flex-col items-center justify-center">
+		<div className="flex sm:flex-row flex-col items-center justify-center container isolate border rounded-3xl shadow-2xl py-4 ">
 			{/* text section */}
 			<div className="flex flex-col gap-4 items-center">
 			{/* Section heading */}
@@ -49,6 +49,14 @@ const PremiumELibrary = () => {
 		</div>
         </div>
     )
+}
+
+const EBookTiles = () => {
+	return (
+		<div>
+			
+		</div>
+	)
 }
 
 export default PremiumELibrary;

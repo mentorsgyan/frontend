@@ -27,6 +27,8 @@ const PaymentPage = () => {
     const name = location.state ? location.state.data.name : '';
     const price = location.state ? location.state.data.price : '';
     const validity = location.state ? location.state.data.validity : -1;
+    const driveSharingLink = location.state ? location.state.data.driveSharingLink : -1;
+    const folderId = location.state ? location.state.data.folderId : -1
 
     const [coupon, setCoupon] = useState('');
     const [message, setMessage] = useState('');
@@ -118,7 +120,9 @@ const PaymentPage = () => {
                         program: name,
                         userEmail: user.email,
                         coupon: coupon,
-			validity: validity
+			            validity: validity,
+                        driveSharingLink: driveSharingLink,
+                        folderId: folderId
                     };
 		    setPaymentStatus("WAITING")
                     const result = await axios.post(BACKEND_API + '/paymentSuccess/' + response.razorpay_payment_id, data);
@@ -151,16 +155,15 @@ const PaymentPage = () => {
  
     if (paymentStatus === 'SUCCESSFUL') {
         return (
-            <div>
+            <div className="dark:bg-gray-800 dark:h-screen">
                 <Navbar sticky={false} />
                 {/* Background Image */}
 
                 <div className="relative overflow-hidden mt-10 py-10 bg-black bg-opacity-20 shadow-2xl rounded-3xl  container flex items-center  flex-col gap-10 ">
-                    <img src={LogoImg} alt="" className="absolute -z-10 blur-xl -translate-y-20"/>
-                    <p className="text-3xl tracking-wide text-white underline underline-offset-4 font-bold">भुगतान सफल हो गया है।</p>
-                    <p className="text-center text-2xl text-gray-100 ">हमने मेंटर्स ज्ञान के लिए आपके भुगतान का सत्यापन कर लिया है।</p>
-                    {name !== 'EBOOKS-Special 12' && <p className="text-center text-2xl text-gray-100">हम आपकी कॉल शेड्यूल कर रहे हैं और आपको इस संबंध में एक पुष्टिकरण प्राप्त होगा।</p>}
-                    <p className="text-center text-2xl text-gray-100">कृपया इसे अपनी प्रोफ़ाइल पर प्रदर्शित करने के लिए कुछ समय तक प्रतीक्षा करें।</p>
+                    <p className="text-3xl tracking-wide dark:text-white  underline underline-offset-4 font-bold">भुगतान सफल हो गया है।</p>
+                    <p className="text-center text-2xl dark:text-gray-100 ">हमने मेंटर्स ज्ञान के लिए आपके भुगतान का सत्यापन कर लिया है।</p>
+                    {name !== 'EBOOKS-Special 12' && <p className="text-center text-2xl dark:text-gray-100">हम आपकी कॉल शेड्यूल कर रहे हैं और आपको इस संबंध में एक पुष्टिकरण प्राप्त होगा।</p>}
+                    <p className="text-center text-2xl dark:text-gray-100">कृपया इसे अपनी प्रोफ़ाइल पर प्रदर्शित करने के लिए कुछ समय तक प्रतीक्षा करें।</p>
                     <hr />
                     <p className="font-bold text-xl text-white bg-secondary rounded-xl p-2">अपनी यात्रा के लिए हमें चुनने के लिए धन्यवाद ।</p>
                 </div>
@@ -178,12 +181,12 @@ const PaymentPage = () => {
     }
     
     return (
-        <div className="">
+        <div className="dark:bg-gray-800 dark:md-900:h-screen dark:text-white">
             <Navbar sticky={false} />
-            <div className="flex h-full items-center justify-center my-10 md:mt-0">
+            <div className="flex h-full items-center justify-center">
                 {
                     user && userExists ? (
-                        <div className="container rounded-3xl shadow-2xl p-5 mt-10">
+                        <div className="container rounded-3xl shadow-2xl p-5">
                             <div className="pt-10 grid grid-cols-1 md:grid-cols-2 gap-6 justify-center items-center">
                                 {/* image section */}
                                 <div data-aos="zoom-in">
@@ -193,7 +196,7 @@ const PaymentPage = () => {
                                 </div>
                                 <div className="flex flex-col gap-6 sm:pt-0">
                                     <h1 className="text-3xl sm:text-4xl font-bold">पेमेंट करे</h1>
-                                    <p className=" text-gray-500 tracking-wide leading-8 text-xl text-justify">
+                                    <p className=" text-gray-500 dark:text-gray-200 tracking-wide leading-8 text-xl text-justify">
                                     Mentors Gyan के साथ जुड़ें और अपनी सफलता की ओर पहला कदम बढ़ाएँ!<br/>
                                     हम आशा करते हैं कि आप <b className="text-xl">{name.split('-')[1]} </b> योजना का पूरा लाभ उठा सकें।
                                     </p>
