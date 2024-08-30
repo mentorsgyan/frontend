@@ -173,16 +173,19 @@ const PaymentPage = () => {
 
     if (paymentStatus === 'WAITING') {
 	return (
-		<div className="flex h-screen items-center justify-center gap-5 text-3xl bg-white w-full">
+		<div className="flex flex-col h-screen container items-center justify-center gap-5 text-3xl bg-white w-full">
 			<p>Waiting...</p>
 			<FaSpinner className="animate-spin"/>
+            <p className="text-lg">यदि पेज बहुत लंबे समय तक WAITING स्थिति में फंसा हुआ है। कृपया हमें mentorsgyan@gmail.com पर मेल करें या आप हमसे +91 9039130180 पर जुड़ सकते हैं।</p>
+            <p className="text-lg">निश्चिंत रहें, आपका पैसा सुरक्षित हाथों में है।</p>
+            <p className="text-xl font-bold">आपकी सेवाएँ आपकी खरीदारी के 24 घंटों के भीतर शुरू कर दी जाएंगी।</p>
 		</div>
 	)
     }
     
     return (
-        <div className="dark:bg-gray-800 dark:md-900:h-screen dark:text-white">
-            <Navbar sticky={false} />
+        <div className="dark:bg-gray-800 dark:md-900:h-screen flex items-center justify-center dark:text-white">
+            <Navbar sticky={true} />
             <div className="flex h-full items-center justify-center">
                 {
                     user && userExists ? (
@@ -257,9 +260,9 @@ const PaymentPage = () => {
 
 const LoginCard = () => {
     return (
-        <div className="flex mt-36 items-center justify-center">
+        <div className="flex items-center justify-center">
             <img src={LogoImg} alt="" className="absolute -z-10 blur-xl" />
-            <div className=" flex flex-col items-center gap-5 bg-white p-4 opacity-70 rounded-3xl shadow-2xl">
+            <div className=" flex flex-col items-center gap-5 bg-white dark:bg-gray-800 p-4 opacity-70 rounded-3xl shadow-2xl">
                 <p className="text-2xl font-bold">कृपया लॉगिन करें और भुगतान करने के लिए अपनी प्रोफ़ाइल पूरी करें।</p>
                 <p className="text-2xl font-bold"><a className="text-secondary hover:underline" href="/user-profile">कृपया यहां क्लिक करें।</a></p>
             </div>
