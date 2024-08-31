@@ -3,8 +3,8 @@ import { FaArrowRight, FaCheck } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
 const sectionDetails = {
-    title: "स्पेशल 12",
-    description: "MentorsGyan आपके लिए पेश करता है स्पेशल 12 सीरीज",
+    title: "ब्रह्मास्त्र ई-लाइब्रेरी",
+    description: "MentorsGyan आपके लिए पेश करता है प्रीमियम ई-बुक्स सीरीज",
     features: ["CGPSC", "CG Vyapam", "ADEO", "होस्टल वार्डन", "और CG SI जैसे विभिन्न परीक्षाओं", "हिन्दी + English"]
 }
 
@@ -25,6 +25,7 @@ const PremiumELibrary = () => {
 				<div className="flex md-900:flex-row flex-col items-center justify-center gap-4">
 					<div className="flex md-900:order-1 order-2 flex-col p-3 gap-3 w-full">
 						<p className="text-2xl tracking-wide text-secondary font-bold">{sectionDetails.description}</p>
+						<p className="font-semibold tracking-wide text-xl">आ गया है आपका साथी ब्रह्मास्त्र ई-लाइब्रेरी आपकी सफलता की यात्रा को तेज़ी से आगे बढ़ाने।</p>
 						<hr />
 						{
 							sectionDetails.features.map((feature, idx) => (
@@ -41,8 +42,8 @@ const PremiumELibrary = () => {
 							<FaArrowRight/>
 						</button>
 					</div>
-					<div className="md-900:order-2 order-1">
-						<img src="https://firebasestorage.googleapis.com/v0/b/mentorsgyan-51f21.appspot.com/o/resources%2Febooks2.jpg?alt=media&token=5a94b2dc-e162-46ae-ae19-ff90d9b3ab21" alt="ebooks collage" className="w-2/3" />
+					<div className="md-900:order-2 order-1 w-2/3">
+						<img src="https://firebasestorage.googleapis.com/v0/b/mentorsgyan-51f21.appspot.com/o/resources%2Febooks2.jpg?alt=media&token=5a94b2dc-e162-46ae-ae19-ff90d9b3ab21" alt="ebooks collage" className="rounded-3xl" />
 					</div>
 				</div>
 			</div>
