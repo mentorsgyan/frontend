@@ -38,7 +38,7 @@ const PremiumEbooks = () => {
                             name: 'EBOOKS-' + book.seriesTitle
                         }
                         return (
-                        <div key={idx} className="flex gap-10 p-4 rounded-3xl shadow-2xl shadow-gray-600 items-center justify-evenly">
+                        <div key={idx} className="flex md-900:flex-row flex-col gap-10 p-4 rounded-3xl shadow-2xl shadow-gray-600 items-center justify-evenly">
                             <img src={book.imageUrl} alt="" className="w-[230px]" />
                             <div className="flex flex-col justify-center gap-5">
                                 <h1 className="text-2xl font-bold">{book.seriesTitle}</h1>
