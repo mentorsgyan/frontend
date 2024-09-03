@@ -15,10 +15,11 @@ const MentorshipSM = ({MentorshipPrograms}) => {
 }
 
 const MentorshipCard = ({program}) => {
-    const mentorshipFeatures = ["संपूर्ण रणनीति", "तैयारी का आंकलन", "मास्टर प्लान", "किताबों की जानकारी", "प्रेरणा", "कॉल पर मेंटर से बात"];
+    const mentorshipFeatures = ["संपूर्ण रणनीति", "मास्टर प्लान", "तैयारी का आंकलन", "रिकॉर्डेड वीडियो लेक्चर", "व्यक्तित्व विकास मास्टर क्लास", "एक्सक्लूसिव कॅरेंट अफेयर्स", "मास्टरमाइंडस मीट-अप", " व्यक्तिगत टेस्ट विश्लेषण", "किताबों की जानकारी", "प्रेरणा", "कॉल पर मेंटर से बात"];
     const navigate = useNavigate();
     const data = {
-        price: program.offerPrice,
+        offerPrice: program.offerPrice,
+        originalPrice: program.price,
         id: program.id,
         name: 'MENTORSHIP-' + program.programDescription
     }
@@ -43,7 +44,10 @@ const MentorshipCard = ({program}) => {
                     }
                 </div>
                 {
-                    program.price &&  <p className="text-red-500 text-3xl font-extrabold animate-bounce">{100-Math.round(program.offerPrice/program.price * 100)}% छूट !</p>
+                    program.price ? (<p className="text-red-500 text-3xl font-extrabold animate-bounce">
+                            {100-Math.round(program.offerPrice/program.price * 100)}% छूट !
+                        </p>
+                    ) : (<div className="pb-10"/>)
                 }
                 {/* Buy plan button */}
                 <div>

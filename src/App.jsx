@@ -11,6 +11,9 @@ import UserProfile from "./pages/User/UserProfile";
 import Admin from "./pages/Admin/Admin";
 import PolicyPage from "./pages/PolicyPage";
 import NotFound from "./pages/NotFound";
+import CourseLanding from "./pages/Courses/CourseLanding";
+import MentorshipSqueeze from "./pages/Squeeze/MentorshipSqueeze";
+import UserDataPage from "./pages/Admin/UsersDataPage";
 
 const App = () => {
   React.useEffect(() => {
@@ -39,6 +42,10 @@ const App = () => {
         <Route path = "/mock-test" element = {<SampleTests />} />
         <Route path = "/mock-test/:testTitle" element = {<QuestionPaper />}/>
         <Route path="/admin" element = {<Admin />} />
+        <Route path = "/admin/user" element = { <UserDataPage />} />
+        <Route path = "/course-landing" element = { <CourseLanding /> } />
+        <Route path = "/course-landing/:courseId" element = { <CourseLanding /> } />
+        <Route path = "/dream-job" element = { <MentorshipSqueeze />} />
         <Route path="/policy" element = {<PolicyPage />} />
         <Route path = "*" element = {<NotFound />} />
       </Routes>

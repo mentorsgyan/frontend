@@ -33,8 +33,8 @@ const Admin = () => {
     }, [])
 
     return (
-        <div>
-            <Navbar sticky={!isAdmin}/>
+        <div className="">
+            {!isAdmin && <Navbar sticky={!isAdmin}/>}
             {
                 isAdmin ? (<AdminControls />) : (<NotFound />)
             }       

@@ -7,6 +7,9 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      fontSize: {
+        '7.5xl': '5rem'
+      },
       screens: {
         'md-900': '900px',
         'md-1024': '1024px'

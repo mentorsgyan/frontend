@@ -24,7 +24,8 @@ const PaymentPage = () => {
     // State data reading
     const location = useLocation();
     const name = location.state ? location.state.data.name : '';
-    const price = location.state ? location.state.data.price : '';
+    const price = location.state ? location.state.data.offerPrice : '';
+    const originalPrice = location.state ? location.state.data.originalPrice : '';
 
     const [coupon, setCoupon] = useState('');
     const [message, setMessage] = useState('');
@@ -33,6 +34,7 @@ const PaymentPage = () => {
     const [total, setTotal] = useState(price);
     const [paymentDone, setPaymentDone] = useState(false);
     const [activeCoupons, setActiveCoupons] = useState([])
+    const [saving, setSaving] = useState(originalPrice - price);
 
     const handleCouponChange = (e) => {
         setCoupon(e.target.value);
@@ -81,12 +83,14 @@ const PaymentPage = () => {
                 setCss("text-green-600 ")
                 setDiscount(Math.floor((couponDiscount / 100) * price))
                 setTotal(price - Math.floor((couponDiscount / 100) * price))
+                setSaving(saving + Math.floor((couponDiscount / 100) * price));
                 return;
             } else {
                 setMessage('अमान्य कूपन कोड');
                 setCss("text-red-400")
                 setDiscount(0)
                 setTotal(price)
+                setSaving(originalPrice - price);
             }
         }
     };
@@ -187,22 +191,37 @@ const PaymentPage = () => {
                                             <h1 className="text-3xl font-bold py-2 text-secondary">भुगतान सारांश</h1>
                                             <div className="flex flex-col gap-2 mr-auto  justify-center">
                                                 <div
-                                                    className="flex text-xl gap-10"
+                                                    className="flex text-xl gap-10 justify-between"
                                                 >
-                                                    <h3 className="font-semibold">Price: </h3>
-                                                    <p>₹{price}</p>
+                                                    <h3 className="font-semibold">Original Price: </h3>
+                                                    <p>₹{originalPrice}</p>
+                                                </div>
+                                                <div className="p-2 border-2 border-secondary rounded-lg shadow-xl mb-2">
+                                                    <div
+                                                        className="flex text-xl gap-10 justify-between"
+                                                    >
+                                                        <h3 className="font-semibold">Offer Price: </h3>
+                                                        <p>₹{price}</p>
+                                                    </div>
+                                                    <div
+                                                        className="flex text-xl gap-4 justify-between"
+                                                    >
+                                                        <h3 className="font-semibold">Discount: </h3>
+                                                        <p>₹{discount}</p>
+                                                    </div>
+                                                
+                                                    <div
+                                                        className="flex gap-4 text-xl justify-between"
+                                                    >
+                                                        <h3 className="font-extrabold text-secondary">Total: </h3>
+                                                        <p className="font-bold text-primary">₹{total}</p>
+                                                    </div>
                                                 </div>
                                                 <div
-                                                    className="flex text-xl gap-4 justify-between"
+                                                    className="flex gap-4 text-xl justify-between bg-secondary/75 p-2 rounded-lg animate-bounce"
                                                 >
-                                                    <h3 className="font-semibold">Discount: </h3>
-                                                    <p>₹{discount}</p>
-                                                </div>
-                                                <div
-                                                    className="flex gap-4 text-xl justify-between"
-                                                >
-                                                    <h3 className="font-extrabold text-secondary">Total: </h3>
-                                                    <p className="font-bold text-primary">₹{total}</p>
+                                                    <h3 className="font-extrabold text-white">You save: </h3>
+                                                    <p className="font-bold text-white">₹{saving}</p>
                                                 </div>
                                             </div>
                                         </div>
