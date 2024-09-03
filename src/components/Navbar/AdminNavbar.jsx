@@ -25,7 +25,7 @@ const callsToAction = [
 * @author Mayank Shukla
 * @returns 
 */
-export default function Navbar({sticky = true}) {
+export default function AdminNavbar({sticky = true}) {
 
     const [activeSection, setActiveSection] = useState('');
     const sectionRefs = useRef([]);
@@ -113,18 +113,17 @@ export default function Navbar({sticky = true}) {
             
             {/* Center Nav contents */}
                 <PopoverGroup className="hidden lg:flex lg:gap-x-12 text-xl tracking-wider">
-                    <a href="/#services" className={`leading-6 text-gray-900 dark:text-gray-200 ${activeSection === 'services' ? 'border-b-4 border-secondary ': ''}`}
-                    >
-                    सेवाएं
+					<a href="#mentorship-update" className={`leading-6 text-gray-900 dark:text-gray-200 ${activeSection === 'mentorship-update' ? 'border-b-4 border-secondary ': ''}`}>
+                    Mentorship
                     </a>
-                    <a href="/#mentorship" className={`leading-6 text-gray-900 dark:text-gray-200 ${activeSection === 'mentorship' ? 'border-b-4 border-secondary ': ''}`}>
-                    मार्गदर्शन
+                    <a href="#ebook" className={`leading-6 text-gray-900 dark:text-gray-200 ${activeSection === 'ebook' ? 'border-b-4 border-secondary ': ''}`}>
+                    EBook
                     </a>
-                    <a href="/#e-library" className={`leading-6 text-gray-900 dark:text-gray-200 ${activeSection === 'e-library' ? 'border-b-4 border-secondary ': ''}`}>
-                    ई-लाइब्रेरी
+                    <a href="#pdfUploader" className={`leading-6 text-gray-900 dark:text-gray-200 ${activeSection === 'pdfUploader' ? 'border-b-4 border-secondary ': ''}`}>
+                    PDF Uploader
                     </a>
-                    <a href="/#test-series" className={`leading-6 text-gray-900 dark:text-gray-200 ${activeSection === 'test-series' ? 'border-b-4 border-secondary ': ''}`}>
-                    टेस्ट सीरीज़
+                    <a href="#question-paper" className={`leading-6 text-gray-900 dark:text-gray-200 ${activeSection === 'question-paper' ? 'border-b-4 border-secondary ': ''}`}>
+                    Question Paper
                     </a>
                 </PopoverGroup>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">

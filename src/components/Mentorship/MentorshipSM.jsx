@@ -19,9 +19,9 @@ const MentorshipCard = ({program}) => {
     const navigate = useNavigate();
     const data = {
         price: program.offerPrice,
-        id: program.id,
+        id: program.name,
         name: 'MENTORSHIP-' + program.programDescription,
-	    validity: program.renewalInNumber
+	    validity: program.renewal
     }
     return (
         <div /*data-aos = "flip-down" data-aos-easing="ease-out-cubic" data-aos-duration="8000" */ className="hover:scale-105 duration-200">
@@ -31,20 +31,20 @@ const MentorshipCard = ({program}) => {
             <div className={`flex flex-col gap-6 border bg-white dark:bg-gray-900 p-2 ${!program.mostPopular ? "border-gray-300" : "border-primary shadow-2xl shadow-secondary/50"} pb-8 px-4 rounded-3xl md-1024:w-[300px] `}>
                 {/* Heading */}
                 <div className="flex justify-between">
-                    <h3 className={`text-2xl font-semibold ${program.mostPopular ? "text-secondary" : "text-black dark:text-gray-200"}`}>{program.renewalDuration}</h3>
-                    {program.mostPopular && <h3 className="text-secondary bg-primary/50 rounded-full px-2 py-1 text-lg">लोकप्रिय</h3>}
+                    <h3 className={`text-2xl font-semibold ${program.mostPopular ? "text-secondary" : "text-black dark:text-gray-200"}`}>{program.renewalInWords}</h3>
+                    {program.recommended && <h3 className="text-secondary bg-primary/50 rounded-full px-2 py-1 text-lg">लोकप्रिय</h3>}
                 </div>
                 {/* Plan description */}
-                <p className="text-gray-700 text-2xl">{program.programDescription}</p>
+                <p className="text-gray-700 dark:text-gray-200 text-2xl">{program.name}</p>
                 {/* Course price */}
                 <div className="flex items-baseline gap-1">
                     <p className="text-3xl font-bold text-secondary text-right">₹{program.offerPrice}/-</p>
-                    {program.price &&
+                    {program.offerPrice !== program.price &&
                         <p className="text-xl text-black dark:text-gray-300 font-bold z-10 line-through">{program.price}</p>
                     }
                 </div>
                 {
-                    program.price &&  <p className="text-red-500 text-3xl font-extrabold animate-bounce">{100-Math.round(program.offerPrice/program.price * 100)}% छूट !</p>
+                    program.offerPrice !== program.price &&  <p className="text-red-500 text-3xl font-extrabold animate-bounce">{100-Math.round(program.offerPrice/program.price * 100)}% छूट !</p>
                 }
                 {/* Buy plan button */}
                 <div>

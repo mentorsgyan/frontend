@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MentorshipSM from "./MentorshipSM";
+import { BACKEND_API } from "../../utility/Constants";
 
 const MentorshipPrograms = [
     {
@@ -38,6 +39,21 @@ const MentorshipPrograms = [
  * @returns 
  */
 export default function () {
+
+	const [mentorshipData, setMentorshipData] = useState([]);
+
+	async function fetchMentorshipPrograms () {
+		fetch(BACKEND_API + "/mentorship/fetch")
+		.then((response) => response.json())
+		.then((data) => {
+			data.sort((a, b) => Number.parseInt(a.offerPrice) > Number.parseInt(b.offerPrice))
+			setMentorshipData(data)
+		});
+	}
+
+	useEffect(() => {
+		fetchMentorshipPrograms();
+	}, [])
     return (
         <div id="mentorship" className="section py-5 px-5 flex flex-col items-center gap-6 font-mukta dark:bg-gray-800 dark:text-gray-200">
             {/* Section heading area */}
@@ -46,7 +62,7 @@ export default function () {
             <p /* data-aos="fade-up" data-aos-duration="6000"*/ className="font-light uppercase tracking-wide text-center">MentorsGyan brings you tailored mentorship plans</p>
 
             {/* Mentorship pricing cards */}
-            <MentorshipSM MentorshipPrograms={MentorshipPrograms}/>
+            {mentorshipData.length !== 0 && <MentorshipSM MentorshipPrograms={mentorshipData}/>}
         </div>
     )
 }

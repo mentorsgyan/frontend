@@ -29,7 +29,7 @@ const Home = () => {
     <div>
         <Navbar />
         <Hero />
-	      <PremiumELibrary />
+	    <PremiumELibrary />
         <Officers />
         <Offerings />
         <Mentorship />
