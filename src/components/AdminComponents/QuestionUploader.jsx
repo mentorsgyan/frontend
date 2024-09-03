@@ -35,7 +35,7 @@ const QuestionUploader = () => {
     }
 
     return (
-        <div className="my-7 py-5 gap-10 rounded-3xl shadow-2xl container flex flex-col items-center">
+        <div className="my-7 py-5 gap-10 rounded-3xl shadow-2xl container flex flex-col items-center selection dark:text-white" id="question-paper">
             <h1 className="text-2xl font-bold text-secondary">Add MCQ Questions</h1>
             <div className="flex gap-2 flex-col">
                 <input type="text" placeholder="Enter test title" onChange={(e) => {setTestName(e.target.value)}}/>

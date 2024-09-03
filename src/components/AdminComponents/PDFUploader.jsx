@@ -49,11 +49,11 @@ const PDFUploader = () => {
     }
 
     return (
-        <div className="flex justify-center">
-            <div className="my-10 flex flex-col gap-5 items-center mx-10 shadow-2xl rounded-3xl p-4 w-full">
+        <div className="flex justify-center section dark:text-white" id="pdfUploader">
+            <div className="my-10 flex flex-col gap-5 items-center mx-10 shadow-2xl rounded-3xl p-4 w-full s">
                 <h1 className="text-3xl font-bold text-secondary">Upload E-Library Files</h1>
-                <div className="flex gap-5 w-full max-w-xs mx-auto">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="category">
+                <div className="flex gap-5 w-full max-w-xs mx-auto items-center">
+                <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="category">
                     Category
                 </label>
                 <div className="relative">
@@ -62,7 +62,7 @@ const PDFUploader = () => {
                     onChange={handleCategoryChange}
                     name="category"
                     defaultValue={"current-affairs"}
-                    className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                    className="block appearance-none w-full bg-white dark:bg-gray-700 border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                     > 
                         {
                             categories.map((category, idx) => <option key={idx} value={category.value}>{category.name}</option>)
@@ -80,15 +80,15 @@ const PDFUploader = () => {
                 </div>
                 <div className="flex gap-5">
                     <p className="font-bold">Enter display name*: </p>
-                    <input required type="text" onChange={(e) => {setDisplayName(e.target.value)}} className=""/>
+                    <input required type="text" className="dark:bg-gray-700" onChange={(e) => {setDisplayName(e.target.value)}}/>
                 </div>
                 <div className="flex gap-5">
                     <p className="font-bold">Enter Description: </p>
-                    <textarea onChange={(e) => {setFileDescription(e.target.value)}} className=""/>
+                    <textarea onChange={(e) => {setFileDescription(e.target.value)}} className="dark:bg-gray-700"/>
                 </div>
                 <div className="flex gap-5">
                     <p className="font-bold">Enter Image URL: </p>
-                    <textarea onChange={(e) => {setImageUrl(e.target.value)}} className=""/>
+                    <textarea onChange={(e) => {setImageUrl(e.target.value)}} className="dark:bg-gray-700"/>
                 </div>
                 <button className="bg-secondary p-2 rounded-lg text-white font-bold" onClick={handlePdfFileUpload}>Upload Data</button>
                 <p className="text-red-400 font-bold text-lg">* Todays date will be assigned automatically</p>

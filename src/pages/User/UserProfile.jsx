@@ -5,6 +5,7 @@ import { onAuthStateChanged, signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../../firebase.config";
 import UserPurchases from "./UserPurchases";
 import UserForm from "./UserForm";
+import { FaSpinner } from "react-icons/fa6";
 
 /**
 * User form page to collect the users basic data
@@ -21,15 +22,21 @@ const UserProfile = () => {
         phoneNo: "",
         dob: ""
     })
-    // Variables end
 
+    const FetchStatus = Object.freeze({
+        WAITING: "WAITING",
+        DATA_FOUND: "DATA_FOUND",
+        DATA_NOT_FOUND: "DATA_NOT_FOUND",
+    })
+
+    const [dataFetchStatus, setDataFetchStatus] = useState(FetchStatus.WAITING);
     const [dataExists, setDataExists] = useState(false);
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [loggedIn, setLoggedIn] = useState("UNKNOWN"); // UNKNOWN | LOGGED_IN | NOT_LOGGED_IN
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             if (user) {
-                setLoggedIn(true);
+                setLoggedIn("LOGGED_IN");
                 fetch(BACKEND_API + "/fetchUsers/" + auth.currentUser.email)
                 .then((response) => {
                     if (response.status === 200) {
@@ -39,13 +46,15 @@ const UserProfile = () => {
                     return null;
                 })
                 .then((data) => {
+                    setDataFetchStatus(FetchStatus.DATA_FOUND);
                     setUserPersonalData(data);
                 })
                 .catch((error) => {
+                    setDataFetchStatus(FetchStatus.DATA_NOT_FOUND);
                     console.error("Some error occurred: ", error);
                 })
             } else {
-                setLoggedIn(false);
+                setLoggedIn("NOT_LOGGED_IN");
             }
         });
       
@@ -58,11 +67,11 @@ const UserProfile = () => {
         signInWithPopup(auth, provider)
         .then((data) => {
             setUser(data.user.displayName);
-            setLoggedIn(true);
+            setLoggedIn("LOGGED_IN");
         })
     }
 
-    if (!loggedIn) {
+    if (loggedIn === 'NOT_LOGGED_IN') {
         return (
             <div>
                 <Navbar />
@@ -75,15 +84,24 @@ const UserProfile = () => {
         )
     }
 
+    if (FetchStatus.WAITING === dataFetchStatus || loggedIn === "WAITING") {
+        return (
+            <div className="flex h-screen items-center justify-center gap-5 dark:bg-gray-800 dark:text-white text-5xl">
+                <p className="animate-pulse">कृपया प्रतीक्षा करें</p>
+                <FaSpinner className="animate-spin text-secondary" />
+            </div>
+        )
+    } 
+
     return (
-        <div className="text-white bg-gray-800">
+        <div className="dark:text-white dark:bg-gray-800">
             <Navbar sticky = {false}/>
             {
-		    dataExists ? (
+		    dataFetchStatus === FetchStatus.DATA_FOUND ? (
 			<div className="grid md-900:grid-cols-3 ">
 				<DataExistingTiles data={userPersonalData}/>
                 <UserPurchases mentorship={userPersonalData.mentorship} courses={userPersonalData.courses} ebook={userPersonalData.ebook}/>
-				<div className="col-start-3 row-span-7 bg-amber-700 hidden md-900:block" />
+				<div className="col-start-3 row-span-7 bg-primary dark:bg-amber-700  h-screen hidden md-900:block" />
             </div>   
                 ) : (<UserForm email={auth.currentUser.email}/>)
             }

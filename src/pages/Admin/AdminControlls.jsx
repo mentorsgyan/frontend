@@ -2,11 +2,16 @@ import React from "react";
 import PDFUploader from "../../components/AdminComponents/PDFUploader";
 import QuestionUploader from "../../components/AdminComponents/QuestionUploader";
 import EBooks from "../../components/AdminComponents/EBooks";
+import AdminNavbar from "../../components/Navbar/AdminNavbar";
+import AdminMentorship from "../../components/Mentorship/AdminMentorship";
 
 const AdminControls = () => {
 
     return (
-        <div>
+        <div className="font-mukta">
+			<AdminNavbar />
+			{/* Mentorship updating section */}
+			<AdminMentorship />
             {/* Special Ebooks sections */}
             <EBooks />
             {/* PDF Upload Section*/}

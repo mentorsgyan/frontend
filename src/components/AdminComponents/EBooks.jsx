@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import { BACKEND_API } from "../../utility/Constants";
-import { XMarkIcon } from "@heroicons/react/24/outline";
 
 const EBooks = () => {
 
@@ -68,7 +67,7 @@ const EBooks = () => {
     }
 
     return (
-        <div className="container rounded-3xl bg-gray-800 shadow-2xl text-white py-2 my-2 font-mukta">
+        <div className="container rounded-3xl bg-gray-800 shadow-2xl text-white py-2 mt-10 my-2 font-mukta section" id="ebook">
             {/* {
                 showPreview && 
                 <div className="absolute bg-white text-black w-[500px]">
