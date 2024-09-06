@@ -51,7 +51,6 @@ const UserProfile = () => {
                     setUserPersonalData(data);
                 })
                 .catch((error) => {
-                    
                     console.error("Some error occurred: ", error);
                 })
             } else {
