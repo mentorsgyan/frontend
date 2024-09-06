@@ -46,7 +46,7 @@ const EBooks = () => {
         }
         try {
             // const response = await axios.post(BACKEND_API + 'saveEbooks', {seriesName :seriesName, price: price, driveSharingLink: driveSharingLink, folderId: folderId});
-            const response = await axios.post(BACKEND_API + '/saveEbooks', data);
+            const response = await axios.post(BACKEND_API + '/specialEbooks/saveEbooks', data);
             if (response.status === 200) {
                 alert("E-Book created successfully");
                 // setSeriesName('')

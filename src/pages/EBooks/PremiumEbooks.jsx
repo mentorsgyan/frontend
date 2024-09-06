@@ -10,7 +10,7 @@ const PremiumEbooks = () => {
     const navigate = useNavigate();
 
     async function loadBooks() {
-        fetch(BACKEND_API + '/getPremiumEbooks')
+        fetch(BACKEND_API + '/specialEbooks/getPremiumEbooks')
         .then((response) => response.json())
         .then((data) => setBookList(data));
     }

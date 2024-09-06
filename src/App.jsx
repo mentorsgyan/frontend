@@ -13,6 +13,9 @@ import PolicyPage from "./pages/PolicyPage";
 import NotFound from "./pages/NotFound";
 import PremiumELibraryPage from "./pages/PremiumELibraryPage";
 import PremiumEbooks from "./pages/EBooks/PremiumEbooks";
+import VideoPlayer from "./pages/Trial";
+import CourseLanding from "./pages/Course/CourseLanding";
+import CourseUtil from "./pages/Admin/CourseUtil";
 
 const App = () => {
   React.useEffect(() => {
@@ -41,9 +44,12 @@ const App = () => {
         <Route path = "/mock-test" element = {<SampleTests />} />
         <Route path = "/mock-test/:testTitle" element = {<QuestionPaper />}/>
         <Route path="/admin" element = {<Admin />} />
+		<Route path="/admin/course" element = { < CourseUtil /> }/>
         <Route path="/policy" element = {<PolicyPage />} />
         <Route path="/special-12" element = {<PremiumELibraryPage/>} />
         <Route path="/premium-ebooks" element = {<PremiumEbooks />} />
+		<Route path="/course/:courseName" element = { <CourseLanding />} />
+		<Route path = "/video" element = {<VideoPlayer />} />
         <Route path = "*" element = {<NotFound />} />
       </Routes>
       </BrowserRouter>

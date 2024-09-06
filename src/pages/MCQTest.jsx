@@ -41,7 +41,7 @@ export const QuestionPaper = () => {
     };
 
     async function fetchQuestions() {
-      fetch(BACKEND_API + "/getQuestionPaper/" + testTitle)
+      fetch(BACKEND_API + "/mcq/getQuestionPaper/" + testTitle)
       .then((response) => {
         if (response.status !== 200) {
           alert("Cannot get the questions. Please try again later.");
@@ -128,7 +128,7 @@ const SampleTests = () => {
     
     const [questionPaperLists, setQuestionPaperList] = useState();
     async function fetchQuestionPaperLists() {
-      fetch(BACKEND_API + "/questionPaperLists")
+      fetch(BACKEND_API + "/mcq/questionPaperLists")
       .then((response) => {
         if(response.status !== 200) {
           alert("Questions cannot be fetched now. Please try again later");

@@ -36,7 +36,8 @@ const PaymentPage = () => {
     const [discount, setDiscount] = useState(0);
     const [total, setTotal] = useState(price);
     const [paymentStatus, setPaymentStatus] = useState('NOT_STARTED');  // NOT_STARTED, STARTED, SUCCESSFUL, FAILED, WAITING
-    const [activeCoupons, setActiveCoupons] = useState([])
+    const [activeCoupons, setActiveCoupons] = useState([]);
+	const [userDataFetchStatus, setUserDataFetchStatus] = useState('WAITING'); // WAITING, FOUND, NOT_FOUND
 
     const handleCouponChange = (e) => {
         setCoupon(e.target.value);
@@ -53,9 +54,10 @@ const PaymentPage = () => {
     }, [])
 
     async function handleUserExists() {
-        fetch(BACKEND_API + "/fetchUsers/" + auth.currentUser.email)
+        fetch(BACKEND_API + "/user/fetchUserData/" + auth.currentUser.email)
         .then((response) => {
             setUserExists(response.status === 200);
+			setUserDataFetchStatus((response.status === 200 ? 'FOUND' : 'NOT_FOUND'));
             return response.json();
         })
         .then((data) => {
@@ -101,7 +103,7 @@ const PaymentPage = () => {
             const data = {
                 amount: total
             }
-	    setPaymentStatus('STARTED');
+	    	setPaymentStatus('STARTED');
             const orderResponse = await axios.post(BACKEND_API + '/createOrder', data);
             const { amount, id: order_id, currency } = orderResponse.data;
             const options = {
@@ -124,13 +126,13 @@ const PaymentPage = () => {
                         driveSharingLink: driveSharingLink,
                         folderId: folderId
                     };
-		    setPaymentStatus("WAITING")
+		    		setPaymentStatus("WAITING")
                     const result = await axios.post(BACKEND_API + '/paymentSuccess/' + response.razorpay_payment_id, data);
                     if (result.status === 200) {
-			setPaymentStatus('SUCCESSFUL');
+						setPaymentStatus('SUCCESSFUL');
                     } else {
-			setPaymentStatus('FAILED');
-		    }
+						setPaymentStatus('FAILED');
+		    		}
                     alert(result.data.msg);
                 },
                 prefill: {
@@ -182,13 +184,22 @@ const PaymentPage = () => {
 		</div>
 	)
     }
+
+	if (userDataFetchStatus === 'WAITING') {
+		return (
+            <div className="flex h-screen items-center justify-center gap-5 dark:bg-gray-800 dark:text-white text-5xl">
+                <p className="animate-pulse">कृपया प्रतीक्षा करें</p>
+                <FaSpinner className="animate-spin text-secondary" />
+            </div>
+        )
+	}
     
     return (
         <div className="dark:bg-gray-800 dark:md-900:h-screen flex items-center justify-center dark:text-white">
             <Navbar sticky={true} />
             <div className="flex h-full items-center justify-center">
                 {
-                    user && userExists ? (
+                    user && userDataFetchStatus === 'FOUND' ? (
                         <div className="container rounded-3xl shadow-2xl p-5">
                             <div className="pt-10 grid grid-cols-1 md:grid-cols-2 gap-6 justify-center items-center">
                                 {/* image section */}
