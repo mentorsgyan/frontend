@@ -37,20 +37,20 @@ const UserProfile = () => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             if (user) {
                 setLoggedIn("LOGGED_IN");
-                fetch(BACKEND_API + "/fetchUsers/" + auth.currentUser.email)
+                fetch(BACKEND_API + "/user/fetchUserData/" + auth.currentUser.email)
                 .then((response) => {
                     if (response.status === 200) {
                         setDataExists(true);
+						setDataFetchStatus(FetchStatus.DATA_FOUND);
                         return response.json();
                     }
+					setDataFetchStatus(FetchStatus.DATA_NOT_FOUND);
                     return null;
                 })
                 .then((data) => {
-                    setDataFetchStatus(FetchStatus.DATA_FOUND);
                     setUserPersonalData(data);
                 })
                 .catch((error) => {
-                    setDataFetchStatus(FetchStatus.DATA_NOT_FOUND);
                     console.error("Some error occurred: ", error);
                 })
             } else {

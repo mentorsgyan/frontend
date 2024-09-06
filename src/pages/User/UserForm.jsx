@@ -24,7 +24,7 @@ const UserForm = ({email}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const userDataResponse = await axios.post(BACKEND_API + "/saveUserData", formData);
+            const userDataResponse = await axios.post(BACKEND_API + "/user/saveUserData", formData);
             if (userDataResponse.status === 201) {
                 alert("Your data is saved");
             } else {
@@ -38,11 +38,11 @@ const UserForm = ({email}) => {
     }
     
     return (
-        <form onSubmit={handleSubmit} className="mt-10 max-w-lg mx-auto p-4 bg-white shadow-md rounded-md">
+        <form onSubmit={handleSubmit} className="mt-10 max-w-lg mx-auto p-4 bg-white dark:bg-gray-700  shadow-md rounded-md">
             {/* Personal Info */}
             <div className=' flex flex-col sm:flex-row gap-4'>
                 <div className="mb-4">
-                    <label htmlFor="firstName" className="block text-gray-700  text-xl">पहला नाम :</label>
+                    <label htmlFor="firstName" className="block text-gray-700 dark:text-white text-xl">पहला नाम :</label>
                     <input
                     type="text"
                     id="firstName"
@@ -50,12 +50,12 @@ const UserForm = ({email}) => {
                     value={formData.firstName}
                     onChange={handleChange}
                     required
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
+                    className="mt-1 block w-full px-3 py-2 border dark:bg-gray-600 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
                     />
                 </div>
                 
                 <div className="mb-4">
-                    <label htmlFor="lastName" className="block text-gray-700 text-xl">उपनाम:</label>
+                    <label htmlFor="lastName" className="block text-gray-700 dark:text-white text-xl">उपनाम:</label>
                     <input
                     type="text"
                     id="lastName"
@@ -63,14 +63,14 @@ const UserForm = ({email}) => {
                     value={formData.lastName}
                     onChange={handleChange}
                     required
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
+                    className="mt-1 block w-full px-3 py-2 border dark:bg-gray-600 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
                     />
                 </div>
             </div>
             {/* Contact Info */}
             <div className='flex flex-col sm:flex-row gap-4'>
                 <div className="mb-4">
-                    <label htmlFor="email" className="block text-gray-700 text-xl">ईमेल:</label>
+                    <label htmlFor="email" className="block text-gray-700 dark:text-white text-xl">ईमेल:</label>
                     <input
                     type="email"
                     id="email"
@@ -78,12 +78,12 @@ const UserForm = ({email}) => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
+                    className="mt-1 block w-full px-3 py-2 border dark:bg-gray-600 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
                     />
                 </div>
                 
                 <div className="mb-4">
-                    <label htmlFor="phoneNumber" className="block text-gray-700 text-xl">फ़ोन नंबर:</label>
+                    <label htmlFor="phoneNumber" className="block text-gray-700 dark:text-white text-xl">फ़ोन नंबर:</label>
                     <input
                     type="text"
                     id="phoneNumber"
@@ -94,7 +94,7 @@ const UserForm = ({email}) => {
                     maxLength="10"
                     pattern="\d{10}"
                     title="कृपया एक वैध 10-अंकीय फ़ोन नंबर दर्ज करें"
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
+                    className="mt-1 block w-full px-3 py-2 border dark:bg-gray-600 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
                     />
                 </div>
             </div>
@@ -102,7 +102,7 @@ const UserForm = ({email}) => {
         {/* Biological Info */}
             <div className='grid sm:grid-cols-2 grid-cols-1 gap-4 justify-evenly'>
                 <div className="mb-4">
-                    <label htmlFor="dateOfBirth" className="block text-gray-700 text-xl">जन्म तिथि:</label>
+                    <label htmlFor="dateOfBirth" className="block text-gray-700 dark:text-white text-xl">जन्म तिथि:</label>
                     <input
                     selected={formData.dateOfBirth}
                     id="dateOfBirth"
@@ -110,12 +110,12 @@ const UserForm = ({email}) => {
                     value={formData.dateOfBirth}
                     onChange={handleChange}
                     type='date'
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
+                    className="mt-1 block w-full px-3 py-2 border dark:bg-gray-600 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
                     required
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-xl">लिंग:</label>
+                    <label className="block text-gray-700 dark:text-white text-xl">लिंग:</label>
                         <div className="mt-1">
                             <label className="inline-flex items-center">
                                 <input
@@ -144,7 +144,7 @@ const UserForm = ({email}) => {
                 </div>
                 <div className='flex gap-4'>
                     <div className="mb-4">
-                        <label htmlFor="city" className="block text-gray-700 text-xl">शहर:</label>
+                        <label htmlFor="city" className="block text-gray-700 dark:text-white text-xl">शहर:</label>
                         <input
                         type="text"
                         id="city"
@@ -152,11 +152,11 @@ const UserForm = ({email}) => {
                         value={formData.city}
                         onChange={handleChange}
                         required
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
+                        className="mt-1 block w-full px-3 py-2 border dark:bg-gray-600 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="state" className="block text-gray-700 text-xl"> राज्य:</label>
+                        <label htmlFor="state" className="block text-gray-700 dark:text-white text-xl"> राज्य:</label>
                         <input
                         type="text"
                         id="state"
@@ -164,7 +164,7 @@ const UserForm = ({email}) => {
                         value={formData.state}
                         onChange={handleChange}
                         required
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
+                        className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:bg-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
                         />
                     </div>
                 </div>

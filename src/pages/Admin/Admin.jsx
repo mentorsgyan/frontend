@@ -10,7 +10,7 @@ const Admin = () => {
 
     const [isAdmin, setAdmin] = useState(false);
     async function checkUserRights (currUser) {
-        fetch(BACKEND_API + "/checkRights/" + currUser?.email)
+        fetch(BACKEND_API + "/user/checkRights/" + currUser?.email)
         .then((response) => {
             if (response.status === 200) {
                 setAdmin(true);

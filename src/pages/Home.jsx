@@ -44,7 +44,6 @@ const Home = () => {
 }
 
 export const heroDataLoader = async () => {
-  const res = await fetch('')
   // if (res.status =)
   const res2 = ImageList
   return res2

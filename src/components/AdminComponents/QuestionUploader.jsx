@@ -26,7 +26,7 @@ const QuestionUploader = () => {
             testDescription: testDescription,
             mcqQuestions: questions
         }
-        const response = await axios.post(BACKEND_API + "/addQuestions", data);
+        const response = await axios.post(BACKEND_API + "/mcq/addQuestions", data);
         if (response.status === 201) {
             alert("Successfully created new test");
         } else {
