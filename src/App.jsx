@@ -15,6 +15,9 @@ import PremiumELibraryPage from "./pages/PremiumELibraryPage";
 import PremiumEbooks from "./pages/EBooks/PremiumEbooks";
 import CourseLanding from "./pages/Course/CourseLanding";
 import CourseUtil from "./pages/Admin/CourseUtil";
+import CourseVideoPlayer from "./pages/Course/CoursePlayer";
+import Test from "./pages/Test/Test";
+import TestSqueeze from "./pages/Squeeze/TestSqueeze";
 
 const App = () => {
   React.useEffect(() => {
@@ -48,6 +51,9 @@ const App = () => {
         <Route path="/special-12" element = {<PremiumELibraryPage/>} />
         <Route path="/premium-ebooks" element = {<PremiumEbooks />} />
 		<Route path="/course/:courseName" element = { <CourseLanding />} />
+		{/* <Route path = "/video" element = { <CourseVideoPlayer /> } /> */}
+		{/* <Route path="/test" element = { <Test /> }/> */}
+		<Route path="registration/test" element = { <TestSqueeze /> }/>
         <Route path = "*" element = {<NotFound />} />
       </Routes>
       </BrowserRouter>

@@ -20,7 +20,7 @@ const MentorshipCard = ({program}) => {
     const data = {
         price: program.offerPrice,
         id: program.name,
-        name: 'MENTORSHIP-' + program.programDescription,
+        name: 'MENTORSHIP-' + program.name,
 	    validity: program.renewal
     }
     return (

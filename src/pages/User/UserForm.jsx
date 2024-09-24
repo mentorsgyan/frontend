@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { BACKEND_API } from '../../utility/Constants';
+import { BACKEND_API, hindiCities } from '../../utility/Constants';
+import { useNavigate } from 'react-router-dom';
 
-const UserForm = ({email}) => {
+const UserForm = ({ email , squeeze = false }) => {
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -10,8 +11,9 @@ const UserForm = ({email}) => {
         phoneNumber: '',
         dateOfBirth: new Date(),
         gender: '',
-        state: '',
-        city: ''
+		education_level: '12th',
+        employment_status: 'कार्यरत',
+        city: hindiCities[0]
     });
     
     const handleChange = (e) => {
@@ -21,26 +23,39 @@ const UserForm = ({email}) => {
             [name]: value,
         });
     };
+
+	const navigate = useNavigate();
+
+	const handleSqueezeSubmit = async (e) => {
+		e.preventDefault();
+		await axios.post(BACKEND_API + `/user/saveUserData?testSeries=${squeeze}`, formData);
+		const data = {
+			price: 999,
+			name: 'TEST-PRELIMS-1',
+			phoneNumber: formData.phoneNumber
+		}
+		navigate("/checkout", {state: {data: data}});
+	}
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const userDataResponse = await axios.post(BACKEND_API + "/user/saveUserData", formData);
+			const userDataResponse = await axios.post(BACKEND_API + `/user/saveUserData?testSeries=${squeeze}`, formData);
             if (userDataResponse.status === 201) {
-                alert("Your data is saved");
-            } else {
-                alert("Cannot save your data. Please try again later.")
-            }
-        } catch (error) {
-            alert("Some error occurred");
-            console.error("Error Occured: ", error);
-        }
-        history.back();
+				alert("Your data is saved");
+			} else {
+				alert("Cannot save your data. Please follow the onscreen instructions.");
+			}
+		} catch (error) {
+			alert("Some error occurred. Please follow the onscreen instructions.");
+		}
+		history.back();
     }
     
     return (
-        <form onSubmit={handleSubmit} className="mt-10 max-w-lg mx-auto p-4 bg-white dark:bg-gray-700  shadow-md rounded-md">
+        <form onSubmit={squeeze ? handleSqueezeSubmit : handleSubmit} className="mt-10 max-w-lg mx-auto p-4 bg-white dark:bg-gray-700  shadow-md rounded-md">
             {/* Personal Info */}
-            <div className=' flex flex-col sm:flex-row gap-4'>
+            <div className=' flex flex-col sm:flex-row gap-4 dark:text-white'>
                 <div className="mb-4">
                     <label htmlFor="firstName" className="block text-gray-700 dark:text-white text-xl">पहला नाम :</label>
                     <input
@@ -78,7 +93,7 @@ const UserForm = ({email}) => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="mt-1 block w-full px-3 py-2 border dark:bg-gray-600 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
+                    className="mt-1 block w-full px-3 py-2 border dark:bg-gray-600 border-gray-300 rounded-md shadow-sm dark:text-white focus:outline-none focus:ring-secondary focus:border-secondary"
                     />
                 </div>
                 
@@ -94,7 +109,7 @@ const UserForm = ({email}) => {
                     maxLength="10"
                     pattern="\d{10}"
                     title="कृपया एक वैध 10-अंकीय फ़ोन नंबर दर्ज करें"
-                    className="mt-1 block w-full px-3 py-2 border dark:bg-gray-600 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
+                    className="mt-1 block w-full px-3 py-2 border dark:bg-gray-600 border-gray-300 dark:text-white rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
                     />
                 </div>
             </div>
@@ -110,70 +125,89 @@ const UserForm = ({email}) => {
                     value={formData.dateOfBirth}
                     onChange={handleChange}
                     type='date'
-                    className="mt-1 block w-full px-3 py-2 border dark:bg-gray-600 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
+					max={"2006-01-01"}
+                    className="mt-1 block w-full px-3 py-2 border dark:bg-gray-600 dark:text-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
                     required
                     />
                 </div>
-                <div className="mb-4">
-                    <label className="block text-gray-700 dark:text-white text-xl">लिंग:</label>
-                        <div className="mt-1">
-                            <label className="inline-flex items-center">
-                                <input
-                                type="radio"
-                                name="gender"
-                                value="male"
-                                onChange={handleChange}
-                                required
-                                className="form-radio"
-                                />
-                                <span className="ml-2">Male</span>
-                            </label>
-                            <label className="inline-flex items-center ml-6">
-                                <input
-                                type="radio"
-                                name="gender"
-                                value="female"
-                                onChange={handleChange}
-                                required
-                                className="form-radio"
-                                />
-                                <span className="ml-2">Female</span>
-                            </label>
-                        </div>
-                    </div>
+					<div className="mb-4">
+						<label className="block text-gray-700 dark:text-white text-xl">लिंग:</label>
+							<div className="mt-1">
+								<label className="inline-flex items-center">
+									<input
+									type="radio"
+									name="gender"
+									value="male"
+									onChange={handleChange}
+									required
+									className="form-radio"
+									/>
+									<span className="ml-2 dark:text-white">Male</span>
+								</label>
+								<label className="inline-flex items-center ml-6">
+									<input
+									type="radio"
+									name="gender"
+									value="female"
+									onChange={handleChange}
+									required
+									className="form-radio"
+									/>
+									<span className="ml-2 dark:text-white">Female</span>
+								</label>
+							</div>
+					</div>
                 </div>
+				<div className='grid sm:grid-cols-2 grid-cols-1 gap-4'>
+					<div className="mb-4">
+						<label htmlFor="state" className="block text-gray-700 dark:text-white text-xl"> शिक्षा का स्तर:</label>
+						<select name="education_level" className='rounded-md dark:bg-gray-600 dark:text-white'>
+							<option value="12th">12th</option>
+							<option value="स्नातक">स्नातक</option>
+							<option value="स्नातकोत्तर">स्नातकोत्तर</option>
+							<option value="अन्य">अन्य</option>
+						</select>
+					</div>
+					<div className="mb-4 col-start-2">
+						<label htmlFor="state" className="block text-gray-700 dark:text-white text-xl"> रोज़गार की स्थिति:</label>
+						<select name="employment_status" className='rounded-md dark:bg-gray-600 dark:text-white'>
+							<option value="कार्यरत">कार्यरत</option>
+							<option value="विद्यार्थी">विद्यार्थी</option>
+							<option value="अन्य">अन्य</option>
+						</select>
+					</div>
+				</div>
+					
                 <div className='flex gap-4'>
                     <div className="mb-4">
-                        <label htmlFor="city" className="block text-gray-700 dark:text-white text-xl">शहर:</label>
-                        <input
-                        type="text"
-                        id="city"
-                        name="city"
-                        value={formData.city}
-                        onChange={handleChange}
-                        required
-                        className="mt-1 block w-full px-3 py-2 border dark:bg-gray-600 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="state" className="block text-gray-700 dark:text-white text-xl"> राज्य:</label>
-                        <input
-                        type="text"
-                        id="state"
-                        name="state"
-                        value={formData.state}
-                        onChange={handleChange}
-                        required
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:bg-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
-                        />
+                        <label htmlFor="city" className="block text-gray-700 dark:text-white text-xl ">शहर:</label>
+						<select name="city" onChange={e => handleChange(e)} className='rounded-md dark:bg-gray-600 dark:text-white'>
+							{
+								hindiCities.map((city, id) => (
+									<option value={city}>{city}</option>
+								))
+							}
+						</select>
                     </div>
                 </div>
-        <button
-        type="submit"
-        className="w-full text-xl font-bold bg-secondary text-white py-2 px-4 rounded-md shadow-sm hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary"
-        >
-        जमा करें
-        </button>
+				{
+					squeeze ? (
+						<button
+						type="submit"
+						className="w-full text-xl font-bold bg-secondary text-white py-2 px-4 rounded-md shadow-sm hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary"
+						>
+						Pay Now
+						</button>
+					) : (
+						<button
+						type="submit"
+						className="w-full text-xl font-bold bg-secondary text-white py-2 px-4 rounded-md shadow-sm hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary"
+						>
+						जमा करें
+						</button>
+					)
+				}
+        
         </form>
     );
 };

@@ -2,37 +2,6 @@ import React, { useEffect, useState } from "react";
 import MentorshipSM from "./MentorshipSM";
 import { BACKEND_API } from "../../utility/Constants";
 
-const MentorshipPrograms = [
-    {
-        id: 1123,
-        mostPopular: false,
-        renewalDuration: "अर्धवार्षिक",
-	renewalInNumber: 180,
-        programDescription: "अल्ट्रा",
-        price: 44999,
-        offerPrice: 9999,
-        features: [1, 1, 1, 1,"दैनिक", "दैनिक"]
-    },
-    {
-        id: 1234,
-        mostPopular: true,
-        renewalDuration: "अर्धवार्षिक",
-        programDescription: "प्लस",
-        price: 39999,
-        offerPrice: 4999,
-        features: [1, 1, 1, 1, "साप्ताहिक", "सप्ताह में एक बार"]
-    },
-    {
-        id: 1344,
-        mostPopular: false,
-        renewalDuration: "एक बार",
-	    renewalInNumber: 1,
-        programDescription: "सार",
-        offerPrice: 99,
-        features: [1, 'X', 1, 1, "एक बार", "एक बार"]
-    }
-]
-
 /**
  * This page renders the mentorship pricing component
  * It will render cards.
