@@ -11,74 +11,18 @@ export const SLIDER_SETTINGS = {
     pauseOnFocus: true
 };
 
-export const userInfoFields = [
-    {
-        name: "Name",
-        regex: "alphabetess",
-        subfields: [
-            {
-                name: "First name",
-                type: "text",
-                id: "firstname"
-            },
-            {
-                name: "Last name",
-                type: "text",
-                id: "lastname"
-            }
-        ],
-        editable: true
-    },
-    {
-        name: "Contact Info",
-        regex: "alphabetess",
-        subfields: [
-            {
-                name: "Email Address",
-                type: "email",
-                id: "email"
-            },
-            {
-                name: "Mob. No.",
-                type: "text",
-                id: "phoneNo"
-            }
-        ],
-        editable: true
-    },
-    {
-        name: "Biological",
-        regex: "numeric age regex",
-        subfields: [{
-            name: "DOB",
-            type: "date",
-            id: 'dob'
-        }, {
-            name: "Gender",
-            type: "dropdown",
-            value: ["Male", "Female", "Prefer not to say"],
-            id: 'gender'
-        }],
-        editable: true,
-    },
-    {
-        name: "Place",
-        regex: "Alphabetic",
-        subfields: [{
-            name: "City",
-            type: "dropdown",
-            value: ["Bilaspur", "Raipur", "Durg"],
-            id: 'city'
-        }, {
-            name: "State",
-            type: "dropdown",
-            value: ["Chhattisgarh", "Female", "Prefer not to say"],
-            id: 'state'
-        }
-    ],
-        editable: true,
-    }
-]
+export const hindiCities = ["रायपुर","दुर्ग","बिलासपुर","कोरबा","राजनांदगांव","जगदलपुर","अम्बिकापुर","रायगढ़","जशपुर","कोरिया","सुरजपुर","बलरामपुर","सुकमा","कोंडागांव","बीजापुर","नारायणपुर","दंतेवाड़ा","बस्तर","महासमुंद","गरियाबंद","बालोद","बेमेतरा","मोहला मानपुर अंबागढ़ चौकी","खैरागढ़","राजनांदगांव","धमतरी","कांकेर","मुँगेली","गौरेला पेंड्रा मरवाही","कबीर धाम","सक्ति","सारंगढ़ बिलईगढ़","मनेंद्रगढ़ चिरमिरी भरतपुर", "अन्य"].sort((a, b) => a > b);
+
+export const englishCities = ["Raipur","Durg","Bilaspur","Korba","Rajnandgaon","Jagdalpur","Ambikapur","Raigarh","Jashpur","Koriya","Surajpur","Balrampur","Sukma","Kondagaon","Bijapur","Narayanpur","Dantewada","Bastar","Mahasamund","Gariaband","Balod","Bemetara","Mohla Manpur Ambagarh Chouki","Khairagarh","Rajnandgaon","Dhamtari","Kanker","Mungeli","Gaurela Pendra Marwahi","Kabirdham","Sakti","Sarangarh Bilaigarh","Manendragarh Chirmiri Bharatpur"].sort((a, b) => a > b);
+
+export const QuestionStatus = Object.freeze({
+	UNVISITED: 'UNVISITED',
+	VISITED: 'VISITED',
+	MARKED_FOR_REVIEW: 'MARKED_FOR_REVIEW',
+	SUBMITTED: 'SUBMITTED'
+})
+
+
 
 const TestingMode = Object.freeze({
 	LOCAL_BACKEND: 'LOCAL_BACKEND',
