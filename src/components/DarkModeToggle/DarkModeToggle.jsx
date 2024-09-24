@@ -19,7 +19,6 @@ const DarkModeToggle = () => {
 
     const toggleDarkMode = (state) => {
         localStorage.setItem('darkMode', state);
-        console.log(localStorage.getItem('darkMode'));
         setDarkMode(state);
     }
 
