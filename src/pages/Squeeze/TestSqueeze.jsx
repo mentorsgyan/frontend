@@ -12,11 +12,11 @@ const TestSqueeze = () => {
 
 	return (
 		<div className="container font-mukta">
-			<h1 className="text-7xl font-bold dark:text-gray-200 py-10 leading-snug text-center">आ चुकी है <strong className="text-secondary">MentorsGyan</strong> की अपनी <h2 className="text-secondary font-bold"> टेस्ट सीरीज</h2></h1>
+			<h1 className="md:text-7xl text-4xl font-bold dark:text-gray-200 py-10 leading-snug text-center">आ चुकी है <strong className="text-secondary">MentorsGyan</strong> की अपनी <h2 className="text-secondary font-bold"> टेस्ट सीरीज</h2></h1>
 
 			<div className="flex md:flex-row flex-col items-center justify-center">
 				{/* text section */}
-				<div className="w-1/2">
+				<div className="md:w-1/2">
 					<h1 className="tracking-wide font-bold text-5xl dark:text-gray-200 leading-snug">आपकी तैयारी हो जाएगी अब और भी जोरदार</h1>
 					<div className="fixed right-0 top-10 animate-bounce">
 						<div className="relative flex items-center justify-center">
@@ -36,7 +36,7 @@ const TestSqueeze = () => {
 					</div>
 				</div>
 				{/* Image section */}
-				<div className="w-1/2 ml-10 rounded-3xl shadow-2xl p-5 dark:shadow-gray-400">
+				<div className="md:w-1/2 md:ml-10 rounded-3xl shadow-2xl p-5 md:mt-0 mt-10 dark:shadow-gray-400">
 					<h1 className="text-3xl font-bold text-secondary animate-bounce">स्पेशल ऑफर</h1>
 					<div>
 						<h1 className="dark:text-white text-2xl mt-10">12 प्रैक्टिस ई-बुक्स (₹1200 मूल्य की) बिल्कुल मुफ्त</h1>
