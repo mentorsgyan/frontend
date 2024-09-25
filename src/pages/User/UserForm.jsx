@@ -13,7 +13,8 @@ const UserForm = ({ email , squeeze = false }) => {
         gender: '',
 		education_level: '12th',
         employment_status: 'कार्यरत',
-        city: hindiCities[0]
+        city: hindiCities[0],
+		medium: "हिन्दी"
     });
     
     const handleChange = (e) => {
@@ -158,7 +159,7 @@ const UserForm = ({ email , squeeze = false }) => {
 							</div>
 					</div>
                 </div>
-				<div className='grid sm:grid-cols-2 grid-cols-1 gap-4'>
+				<div className='flex md:flex-row flex-col gap-4'>
 					<div className="mb-4">
 						<label htmlFor="state" className="block text-gray-700 dark:text-white text-xl"> शिक्षा का स्तर:</label>
 						<select name="education_level" className='rounded-md dark:bg-gray-600 dark:text-white'>
@@ -178,7 +179,7 @@ const UserForm = ({ email , squeeze = false }) => {
 					</div>
 				</div>
 					
-                <div className='flex gap-4'>
+                <div className='flex gap-4 md:flex-row flex-col'>
                     <div className="mb-4">
                         <label htmlFor="city" className="block text-gray-700 dark:text-white text-xl ">शहर:</label>
 						<select name="city" onChange={e => handleChange(e)} className='rounded-md dark:bg-gray-600 dark:text-white'>
@@ -187,6 +188,13 @@ const UserForm = ({ email , squeeze = false }) => {
 									<option value={city}>{city}</option>
 								))
 							}
+						</select>
+                    </div>
+					<div className="mb-4 md-900:ml-7">
+                        <label htmlFor="medium" className="block text-gray-700 dark:text-white text-xl ">भाषा:</label>
+						<select name="medium" onChange={e => handleChange(e)} className='rounded-md dark:bg-gray-600 dark:text-white'>
+							<option value="हिन्दी">हिन्दी</option>
+							<option value="English">English</option>
 						</select>
                     </div>
                 </div>

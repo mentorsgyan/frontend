@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BannerImg from "../assets/payment.png"
 import LogoImg from "../assets/logo/white_bg.jpg"
+import DarkLogoImg from "../assets/logo/footer_logo.png"
 import Navbar from "../components/Navbar/Navbar";
 import axios from 'axios';
 import {useLocation , useNavigate } from "react-router-dom"; 
@@ -28,7 +29,7 @@ const PaymentPage = () => {
 	const price = location.state ? location.state.data.price : '';
 	
 	// For test series data saving.
-	const phoneNumber = location.state ? location.state.data.phoneNumber : '';
+	const phoneNumber = location.state ? location.state.data.phoneNumber : undefined;
 	
 	const validity = location.state ? location.state.data.validity : -1;
 	
@@ -43,7 +44,7 @@ const PaymentPage = () => {
 	const [total, setTotal] = useState(price);
 	const [paymentStatus, setPaymentStatus] = useState('NOT_STARTED');  // NOT_STARTED, STARTED, SUCCESSFUL, FAILED, WAITING
 	const [activeCoupons, setActiveCoupons] = useState([]);
-	const [userDataFetchStatus, setUserDataFetchStatus] = useState('WAITING'); // WAITING, FOUND, NOT_FOUND
+	const [userDataFetchStatus, setUserDataFetchStatus] = useState('FOUND'); // WAITING, FOUND, NOT_FOUND
 	
 	const handleCouponChange = (e) => {
 		setCoupon(e.target.value);
@@ -117,6 +118,8 @@ const PaymentPage = () => {
 			if (user) {
 				handleUserExists();
 				setUser(user);
+			} else {
+				setUserDataFetchStatus("NOT_FOUND");
 			}
 		});
 		return () => subscribe();
@@ -163,7 +166,7 @@ const PaymentPage = () => {
 						razorpayOrderId: response.razorpay_order_id,
 						razorpaySignature: response.razorpay_signature,
 						program: name,
-						userEmail: user.email,
+						userEmail: user ? user.email : '',
 						phoneNumber: phoneNumber,
 						coupon: coupon,
 						validity: validity,
@@ -180,8 +183,8 @@ const PaymentPage = () => {
 					alert(result.data.msg);
 				},				
 				prefill: {
-					name: user.displayName,
-					email: user.email,
+					name: user ? user.displayName : '',
+					email: user ? user.email : '',
 					contact: userContact,
 				},
 				notes: {
@@ -198,6 +201,10 @@ const PaymentPage = () => {
 			console.error(error);
 		}
 	};
+
+	if (userDataFetchStatus === "NOT_FOUND" && phoneNumber === undefined) {
+		return <LoginCard />
+	}
 	
 	if (paymentStatus === 'SUCCESSFUL') {
 		return (
@@ -211,19 +218,20 @@ const PaymentPage = () => {
 				{name !== 'EBOOKS-Special 12' && <p className="text-center text-2xl dark:text-gray-100">हम आपकी कॉल शेड्यूल कर रहे हैं और आपको इस संबंध में एक पुष्टिकरण प्राप्त होगा।</p>}
 				<p className="text-center text-2xl dark:text-gray-100">कृपया इसे अपनी प्रोफ़ाइल पर प्रदर्शित करने के लिए कुछ समय तक प्रतीक्षा करें।</p>
 				<hr />
-				<p className="font-bold text-xl text-white bg-secondary rounded-xl p-2">अपनी यात्रा के लिए हमें चुनने के लिए धन्यवाद ।</p>
+				<p className="font-bold text-xl text-white bg-secondary rounded-xl p-2">अपनी यात्रा में हमें चुनने के लिए धन्यवाद ।</p>
 				</div>
 				{
 					(phoneNumber !== undefined) && (
 						<div className="flex items-center justify-center mt-10">
-							<div className="w-fit p-2 rounded-3xl shadow-2xl">
+							<div className="w-fit p-2 rounded-3xl shadow-2xl dark:shadow-gray-600">
 								<p className="text-3xl text-red-500">नोट:</p>
-								<div className="p-0.5 bg-gray-400 dark:bg-gray-600 mb-36"/>
+								<div className="p-0.5 bg-gray-400 dark:bg-gray-600 mb-10"/>
 								<p className="dark:text-white text-lg">टेस्ट के लिए <strong>User ID</strong> <strong>आपका मोबाइल नंबर</strong> है और <strong>पासवर्ड</strong> ddmmyyyy प्रारूप में <strong>आपकी जन्मतिथि है ।</strong></p>
 							</div>
 						</div>
 					)
 				}
+				<div className="flex items-center justify-center mt-10 dark:text-white text-3xl rounded-3xl shadow-2xl dark:shadow-gray-600 p-4 container mb-10">नियमित अपडेट के लिए हमारे व्हाट्सएप चैनल से जुड़ें। &nbsp; <a className="text-secondary">यहाँ क्लिक करें</a></div>
 			</div>
 			)
 		}
@@ -254,7 +262,7 @@ const PaymentPage = () => {
 					<Navbar sticky={true} />
 					<div className="flex h-full items-center justify-center">
 					{
-						user && userDataFetchStatus === 'FOUND' ? (
+						(phoneNumber !== undefined) || (user && userDataFetchStatus === 'FOUND') ? (
 							<div className="container rounded-3xl shadow-2xl p-5">
 							<div className="pt-10 grid grid-cols-1 md:grid-cols-2 gap-6 justify-center items-center">
 							{/* image section */}
@@ -326,8 +334,9 @@ const PaymentPage = () => {
 							
 							const LoginCard = () => {
 								return (
-									<div className="flex items-center justify-center">
-									<img src={LogoImg} alt="" className="absolute -z-10 blur-xl" />
+									<div className="flex dark:text-white items-center justify-center h-screen">
+									<img src={LogoImg} alt="" className="dark:hidden block absolute -z-10 blur-xl" />
+									<img src={DarkLogoImg} alt="" className="dark:block hidden absolute -z-10 blur-xl" />
 									<div className=" flex flex-col items-center gap-5 bg-white dark:bg-gray-800 p-4 opacity-70 rounded-3xl shadow-2xl">
 									<p className="text-2xl font-bold">कृपया लॉगिन करें और भुगतान करने के लिए अपनी प्रोफ़ाइल पूरी करें।</p>
 									<p className="text-2xl font-bold"><a className="text-secondary hover:underline" href="/user-profile">कृपया यहां क्लिक करें।</a></p>

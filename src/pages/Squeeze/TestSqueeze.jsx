@@ -18,26 +18,31 @@ const TestSqueeze = () => {
 				{/* text section */}
 				<div className="md:w-1/2">
 					<h1 className="tracking-wide font-bold text-5xl dark:text-gray-200 leading-snug">आपकी तैयारी हो जाएगी अब और भी जोरदार</h1>
-					<div className="fixed right-0 top-10 animate-bounce">
+					<div className="fixed right-0 top-32 md-900:top-10">
 						<div className="relative flex items-center justify-center">
-							<StarIcon className="text-secondary h-32" />
-							<p className="absolute text-2xl font-bold text-white">₹999/-</p>
+							<StarIcon className="text-secondary h-36" />
+							<div className="absolute">
+								<p className="text-2xl font-bold translate-y-3 text-white animate-pulse">₹999/-</p>
+								<p className="text-2xl line-through text-red-500">₹999/-</p>
+							</div>
 						</div>
 
 					</div>
 					<div className="flex flex-col dark:text-gray-300 text-lg text-justify">
-						<p>39 Full Length Tests CGPSC प्रारंभिक परीक्षा के लिए - सभी महत्वपूर्ण विषयों को कवर करते हुए।</p>
+						<p className="text-xl font-bold">39 Full Length Tests CGPSC प्रारंभिक परीक्षा के लिए - सभी महत्वपूर्ण विषयों को कवर करते हुए।</p>
+						<p className="text-xl font-bold">&rarr; हिन्दी + English</p>
 						<p>&rarr; टेस्ट कही से भी, किसी भी समय और बार बार दे सकते हैं।</p>
 						<p>&rarr; टेस्ट के द्वारा अपनी तैयारी का उत्कृष्ट आंकलन करें।</p>
 						<p>&rarr; विषय विशेषज्ञो द्वारा तैयार प्रश्न पर आधारित टेस्ट </p>
 						<p>&rarr; इंटरएक्टिव MCQ प्रश्न</p>
 						<p>&rarr; समग्र रैंकिंग</p>
-						<p className="text-white text-xl mt-10">परीक्षा की मांग के अनुसार नए डिजाइन किए गए प्रश्ना सीजीपी एससी 2024 की सटीक तैयारी हेतु अभी राजिस्ट्रेशन करे</p>
+						<p className="dark:text-white text-xl mt-10">परीक्षा की मांग के अनुसार नए डिजाइन किए गए प्रश्ना सीजीपी एससी 2024 की सटीक तैयारी हेतु अभी राजिस्ट्रेशन करे</p>
+						<a href="https://drive.google.com/drive/folders/1xV3PSqrzQq4N3GjOVOtoYTsikhZ49W1B?usp=sharing" target="_blank" className="text-center text-secondary text-2xl mt-10 hover:scale-125 transition-transform duration-200">सिलेबस/Syllabus के लिए क्लिक करें।</a>
 					</div>
 				</div>
 				{/* Image section */}
 				<div className="md:w-1/2 md:ml-10 rounded-3xl shadow-2xl p-5 md:mt-0 mt-10 dark:shadow-gray-400">
-					<h1 className="text-3xl font-bold text-secondary animate-bounce">स्पेशल ऑफर</h1>
+					<h1 className="text-3xl font-bold text-secondary animate-bounce">स्पेशल ऑफर <br/>केवल प्रथम <strong>200</strong> विद्यार्थियों के लिए</h1>
 					<div>
 						<h1 className="dark:text-white text-2xl mt-10">12 प्रैक्टिस ई-बुक्स (₹1200 मूल्य की) बिल्कुल मुफ्त</h1>
 						<h1 className="dark:text-white text-2xl mt-10">दैनिक, साप्ताहिक और मासिक करंट अफेयर्स PDF 1 वर्ष के लिए (₹2000 मूल्य की) मुफ्त</h1>
