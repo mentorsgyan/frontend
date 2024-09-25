@@ -1,6 +1,7 @@
 import React from "react";
 import { CheckIcon, XMarkIcon , SignalSlashIcon} from '@heroicons/react/20/solid';
 import { useNavigate } from "react-router-dom"; 
+import { CheckBadgeIcon } from "@heroicons/react/24/solid";
 
 const MentorshipSM = ({MentorshipPrograms}) => {
     return (
@@ -60,10 +61,10 @@ const MentorshipCard = ({program}) => {
                     {
                         program.features.map((value, idx) => (
                             <li key={idx} className="py-4 flex gap-2 text-lg">
+								<p>{program.feature_availability[idx] === 1 ? '✔' : program.feature_availability[idx] === 'X' ? '✘' : program.feature_availability[idx]} </p>
                                 {
                                     value === 1 ? (<CheckIcon className="w-5 text-secondary"/>) : (<p className="text-secondary">{value}</p>)
                                 }
-                                <p>{mentorshipFeatures[idx]}</p>
                             </li>
                         ))
                         

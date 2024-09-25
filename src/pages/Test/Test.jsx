@@ -131,9 +131,12 @@ const Test = () => {
 							<button className="bg-gray-600 p-3 font-bold rounded-md w-fit text-white" onClick={() => handleArrowKey(-1)}>&larr;</button>
 							<button className="bg-gray-600 p-3 font-bold rounded-md w-fit text-white" onClick={() => handleArrowKey(1)}>&rarr;</button>
 						</div>
-						<div className="flex gap-5 justify-between items-center mt-5 container">
-							<button className="bg-yellow-500 p-2 font-bold rounded-md w-[160px]" onClick={handleQuestionMFR}>Marked for review</button>
-							<button className="bg-red-500 p-2 font-bold rounded-md w-[160px]" onClick={handleOptionClear}>Clear</button>
+						<div className="flex md-900:flex-row flex-col gap-5 justify-between items-center mt-5 container">
+							<div className="flex gap-3">
+								<button className="bg-yellow-500 p-2 font-bold rounded-md w-[160px]" onClick={handleQuestionMFR}>Marked for review</button>
+								<button className="bg-red-500 p-2 font-bold rounded-md w-[160px]" onClick={handleOptionClear}>Clear</button>
+							</div>
+							<button className="bg-green-500 p-2 font-bold rounded-md w-[160px]" onClick={handleOptionClear}>Save and Next</button>
 						</div>
 					</div>
 					</div>
