@@ -201,18 +201,29 @@ const PaymentPage = () => {
 	
 	if (paymentStatus === 'SUCCESSFUL') {
 		return (
-			<div className="dark:bg-gray-800 dark:h-screen">
+			<div className="dark:bg-gray-800 h-screen">
 			<Navbar sticky={false} />
 			{/* Background Image */}
 			
-			<div className="relative overflow-hidden mt-10 py-10 bg-black bg-opacity-20 shadow-2xl rounded-3xl  container flex items-center  flex-col gap-10 ">
-			<p className="text-3xl tracking-wide dark:text-white  underline underline-offset-4 font-bold">भुगतान सफल हो गया है।</p>
-			<p className="text-center text-2xl dark:text-gray-100 ">हमने मेंटर्स ज्ञान के लिए आपके भुगतान का सत्यापन कर लिया है।</p>
-			{name !== 'EBOOKS-Special 12' && <p className="text-center text-2xl dark:text-gray-100">हम आपकी कॉल शेड्यूल कर रहे हैं और आपको इस संबंध में एक पुष्टिकरण प्राप्त होगा।</p>}
-			<p className="text-center text-2xl dark:text-gray-100">कृपया इसे अपनी प्रोफ़ाइल पर प्रदर्शित करने के लिए कुछ समय तक प्रतीक्षा करें।</p>
-			<hr />
-			<p className="font-bold text-xl text-white bg-secondary rounded-xl p-2">अपनी यात्रा के लिए हमें चुनने के लिए धन्यवाद ।</p>
-			</div>
+				<div className="relative overflow-hidden mt-10 py-10 bg-black bg-opacity-20 shadow-2xl rounded-3xl  container flex items-center  flex-col gap-10 ">
+				<p className="text-3xl tracking-wide dark:text-white  underline underline-offset-4 font-bold">भुगतान सफल हो गया है।</p>
+				<p className="text-center text-2xl dark:text-gray-100 ">हमने मेंटर्स ज्ञान के लिए आपके भुगतान का सत्यापन कर लिया है।</p>
+				{name !== 'EBOOKS-Special 12' && <p className="text-center text-2xl dark:text-gray-100">हम आपकी कॉल शेड्यूल कर रहे हैं और आपको इस संबंध में एक पुष्टिकरण प्राप्त होगा।</p>}
+				<p className="text-center text-2xl dark:text-gray-100">कृपया इसे अपनी प्रोफ़ाइल पर प्रदर्शित करने के लिए कुछ समय तक प्रतीक्षा करें।</p>
+				<hr />
+				<p className="font-bold text-xl text-white bg-secondary rounded-xl p-2">अपनी यात्रा के लिए हमें चुनने के लिए धन्यवाद ।</p>
+				</div>
+				{
+					(phoneNumber !== '' || phoneNumber !== undefined) && (
+						<div className="flex items-center justify-center mt-10">
+							<div className="w-fit p-2 rounded-3xl shadow-2xl">
+								<p className="text-3xl text-red-500">नोट:</p>
+								<div className="p-0.5 bg-gray-400 dark:bg-gray-600 mb-36"/>
+								<p className="dark:text-white text-lg">टेस्ट के लिए <strong>User ID</strong> <strong>आपका मोबाइल नंबर</strong> है और <strong>पासवर्ड</strong> ddmmyyyy प्रारूप में <strong>आपकी जन्मतिथि है ।</strong></p>
+							</div>
+						</div>
+					)
+				}
 			</div>
 			)
 		}
