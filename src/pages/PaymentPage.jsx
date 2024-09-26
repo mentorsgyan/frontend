@@ -52,7 +52,8 @@ const PaymentPage = () => {
 	
 	const handlePageUnloading = async (event) => {
 		event.preventDefault();
-		console.log("Event triggered");
+		if (paymentStatus === "SUCCESSFUL")
+			return;
 		let query = phoneNumber;
 		if (phoneNumber === undefined) {
 			query = user.email;
