@@ -7,11 +7,22 @@ const TestSqueeze = () => {
 
 	const [target, setTarget] = useState(125);
 	const [countDisplay, setCountDisplay] = useState(0);
-	
+
+    useEffect(() => {
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    }, []);
+
 	useEffect(() => {
 		fetch(BACKEND_API + "/user/countAll")
 		.then((response) => response.json())
-		.then((data) => setTarget((prev) => prev + data));
+		.then((data) => {
+			setTarget((prev) => prev + data);
+			console.log(data);
+		});
 	}, []);
 
 	// useEffect(() => {
@@ -73,8 +84,8 @@ const TestSqueeze = () => {
 			<div className="mt-10 flex flex-col items-center justify-center">
 				<a href="https://drive.google.com/drive/folders/1xV3PSqrzQq4N3GjOVOtoYTsikhZ49W1B?usp=sharing" target="_blank" className="text-center text-secondary text-2xl mt-10 hover:scale-125 transition-transform duration-200">सिलेबस/Syllabus के लिए क्लिक करें।</a>
 				<div className="mt-10 text-center p-5 shadow-2xl rounded-3xl dark:shadow-gray-700">
-					<p className="text-5xl font-bold">{target}+</p>
-					<p className="text-3xl font-light ">कुल पंजीकरण</p>
+					<p className="text-5xl font-bold dark:text-gray-200">{target}+</p>
+					<p className="text-3xl font-light dark:text-gray-50">कुल पंजीकरण</p>
 				</div>
 			</div>
 			{/* registration area */}
