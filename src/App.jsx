@@ -15,9 +15,11 @@ import PremiumELibraryPage from "./pages/PremiumELibraryPage";
 import PremiumEbooks from "./pages/EBooks/PremiumEbooks";
 import CourseLanding from "./pages/Course/CourseLanding";
 import CourseUtil from "./pages/Admin/CourseUtil";
-import CourseVideoPlayer from "./pages/Course/CoursePlayer";
 import Test from "./pages/Test/Test";
 import TestSqueeze from "./pages/Squeeze/TestSqueeze";
+import TestLogin from "./pages/Test/TestLogin";
+import TestCompletion from "./pages/Test/TestCompletion";
+import UserListing from "./pages/Admin/UserListing";
 
 const App = () => {
   React.useEffect(() => {
@@ -45,15 +47,26 @@ const App = () => {
         <Route path = "/e-library" element = {<BlogPage />} />
         <Route path = "/mock-test" element = {<SampleTests />} />
         <Route path = "/mock-test/:testTitle" element = {<QuestionPaper />}/>
+		{/* Admin routes */}
         <Route path="/admin" element = {<Admin />} />
 		<Route path="/admin/course" element = { < CourseUtil /> }/>
+		<Route path="/admin/students" element = { <UserListing /> }/>
+
         <Route path="/policy" element = {<PolicyPage />} />
+
+		{/* Ebook routes */}
         <Route path="/special-12" element = {<PremiumELibraryPage/>} />
         <Route path="/premium-ebooks" element = {<PremiumEbooks />} />
+
 		<Route path="/course/:courseName" element = { <CourseLanding />} />
 		{/* <Route path = "/video" element = { <CourseVideoPlayer /> } /> */}
-		{/* <Route path="/test" element = { <Test /> }/> */}
+
+		{/* Test Routes */}
+		{/* <Route path="/test/onboarding" element = { <Test /> }/>
+		<Route path = "/test/login" element = {<TestLogin />} /> */}
 		<Route path="registration/test" element = { <TestSqueeze /> }/>
+		{/* <Route path = "test/completed" element = { <TestCompletion/> } /> */}
+
         <Route path = "*" element = {<NotFound />} />
       </Routes>
       </BrowserRouter>
