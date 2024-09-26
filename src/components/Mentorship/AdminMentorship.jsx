@@ -168,7 +168,7 @@ const AdminMentorship = () => {
 							key={index}
 							value={feature} 
 							onChange={(e) => handleFeatureEdit(e.target.value, index)}
-							className="bg-gray-700 px-3 py-2 border rounded-md" />
+							className="dark:bg-gray-700 px-3 py-2 border rounded-md" />
 
 							{
 								mentorshipData.map((mentorshipPlan, planIdx) => (
@@ -176,7 +176,7 @@ const AdminMentorship = () => {
 									type="text"
 									value={mentorshipPlan.feature_availability[index]}
 									onChange={(e) => handlePlanFeatureEdit(e.target.value, planIdx, index)}
-									className="bg-gray-700 px-3 py-2 border rounded-md"/>
+									className="dark:bg-gray-700 px-3 py-2 border rounded-md"/>
 								))
 							}
 						<button
@@ -196,7 +196,7 @@ const AdminMentorship = () => {
 						<input
 						value={feature} 
 						onChange={(e) => handleFeatureEdit(e.target.value, index)}
-						className="bg-gray-700" />
+						className="dark:bg-gray-700" />
 						<button
 							type="button"
 							onClick={() => removeFeature(index)}

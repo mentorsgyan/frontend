@@ -22,6 +22,18 @@ export const QuestionStatus = Object.freeze({
 	SUBMITTED: 'SUBMITTED'
 })
 
+export const UploadDirectory = Object.freeze({
+	USER_DATA: 'user-data',
+	TEST_SERIES_QP: 'test-series-test',
+	TEST_SERIES_LIST: 'test-series-list',
+	COUPONS: 'coupons',
+	PAID_EBOOKS: 'paid-ebooks',
+	MENTORSHIP: 'mentorship',
+	COURSE: 'course',
+	TEST_SERIES_ENROLLMENT: 'test-series-enrollment',
+	LEADS_DATA: 'lead-user-data'
+});
+
 
 
 const TestingMode = Object.freeze({
@@ -30,8 +42,8 @@ const TestingMode = Object.freeze({
 	PRODUCTION: "PRODUCTION"
 });
 
-// const mode = TestingMode.LOCAL_BACKEND;
-const mode = TestingMode.PRODUCTION;
+const mode = TestingMode.LOCAL_BACKEND;
+// const mode = TestingMode.PRODUCTION;
 // const mode = TestingMode.HEROKU_BACKEND;
 
 export const BACKEND_API = mode === TestingMode.LOCAL_BACKEND ? "http://localhost:5000" : "https://mentorsgyan-backend-a58bdc6d7b98.herokuapp.com";
