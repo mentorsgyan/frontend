@@ -4,6 +4,7 @@ import axios from "axios";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import {Dialog,DialogPanel} from '@headlessui/react'
 import { LanguageIcon } from "@heroicons/react/24/solid";
+import { useNavigate } from "react-router-dom";
 
 const borderMap = new Map([
 	['UNVISITED', 'rounded-t-md bg-gray-300'],
@@ -19,6 +20,13 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 	const visited = 100 - underReview - submitted - unvisited;
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
+	const [currLanguage, setCurrLanguage] = useState("हिन्दी");
+
+	const updateLanguage = (e) => {
+		setLanguage(e.target.value === "English");
+		setCurrLanguage(e.target.value);
+	}
+
 	const openModal = () => {
 		setIsOpen(true);
 	};
@@ -59,7 +67,7 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 
 	return (
 		<>
-			<button className="fixed -right-3 top-1/2 rounded-full bg-gray-200 text-gray-600" 
+			<button className="fixed -right-3 px-2 py-4 top-1/2 rounded-full bg-gray-200 text-gray-600" 
 			onClick={() => {
 				setMobileMenuOpen(true);
 				setNavigatorOpen(true);
@@ -73,15 +81,15 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 					setIsOpen(false);
 				}}>
 				<div className="fixed z-10 inset-0 pointer-events-none" />
-				<DialogPanel className="fixed inset-y-0 right-0 w-fit overflow-y-auto bg-blue-100 dark:bg-gray-700 px-2  sm:max-w-sm">
+				<DialogPanel className="fixed inset-y-0 right-0 w-fit overflow-y-auto bg-blue-100 dark:bg-gray-900 px-2  sm:max-w-sm">
 					
-					<div className="bg-blue-50 z-10 flex flex-col justify-between h-full py-4">
+					<div className="bg-blue-50 dark:bg-gray-800 z-10 flex flex-col justify-between h-full py-4">
 						{/* Heading */}
 						<div className="flex items-center justify-between mx-4">
 						
 							<div className="flex gap-2 items-center md-900:mt-0 mt-10">
 								<LanguageIcon className="dark:text-white h-6"/>
-								<select defaultValue={"हिन्दी"} onChange={(e) => setLanguage(e.target.value === "English")} className="text-sm">
+								<select defaultValue={"हिन्दी"} onChange={(e) => updateLanguage(e)} className="text-sm">
 									<option value="हिन्दी">हिन्दी</option>
 									<option value="English">English</option>
 								</select>
@@ -134,13 +142,25 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 					</div>
 					
 				</DialogPanel>
-				{isOpen && <SubmitPopover submitted={submitted} visited={visited} unvisited={unvisited} underReview={underReview} closeModal={closeModal}/>}
+				{isOpen && <SubmitPopover submitted={submitted} visited={visited} unvisited={unvisited} underReview={underReview} closeModal={closeModal} language={currLanguage}/>}
 			</Dialog>
 		</>
 	)
 }
 
-const SubmitPopover = ({submitted, unvisited, underReview, visited, closeModal}) => {
+const SubmitPopover = ({submitted, unvisited, underReview, visited, closeModal, language}) => {
+	const navigate = useNavigate();
+	async function submitTest() {
+		console.log("Submit test clicked");
+		const dataToSend = {
+			submitted: submitted,
+			unvisited: unvisited, 
+			underReview: underReview, 
+			visited: visited,
+			language: language
+		}
+		navigate("/test/completed", {state: dataToSend});
+	}
 	  return (
 			<div className="fixed inset-0 flex items-center justify-center z-50">
 			  {/* Backdrop */}
@@ -152,30 +172,8 @@ const SubmitPopover = ({submitted, unvisited, underReview, visited, closeModal})
 			  {/* Modal content */}
 			  <div className="relative bg-white p-6 rounded-lg shadow-lg z-10 w-fit">
 				<h2 className="text-xl font-semibold mb-4">Test Summary</h2>
-				<div className="md-900:grid grid-cols-5 text-center my-4 hidden">
-					<h1 className="bg-blue-100 p-2 font-semibold">Total Questions</h1>
-					<h1 className="bg-blue-100 p-2 font-semibold">Visited</h1>
-					<h1 className="bg-blue-100 p-2 font-semibold">Submitted</h1>
-					<h1 className="bg-blue-100 p-2 font-semibold">Marked for Review</h1>
-					<h1 className="bg-blue-100 p-2 font-semibold">Unvisited</h1>
-					<p className="py-2 border">100</p>
-					<p className="py-2 border">{visited}</p>
-					<p className="py-2 border">{submitted}</p>
-					<p className="py-2 border">{underReview}</p>
-					<p className="py-2 border">{unvisited}</p>
-				</div>
-				<div className="grid grid-cols-2 text-center my-4 md-900:hidden">
-					<h1 className="bg-blue-100 p-2 font-semibold col-span-2">Total Questions</h1>
-					<p className="py-2 border col-span-2">100</p>
-					<h1 className="bg-blue-100 p-2 font-semibold">Visited</h1>
-					<h1 className="bg-blue-100 p-2 font-semibold">Submitted</h1>
-					<p className="py-2 border">{visited}</p>
-					<p className="py-2 border">{submitted}</p>
-					<h1 className="bg-blue-100 p-2 font-semibold">Marked for Review</h1>
-					<h1 className="bg-blue-100 p-2 font-semibold">Unvisited</h1>
-					<p className="py-2 border">{underReview}</p>
-					<p className="py-2 border">{unvisited}</p>
-				</div>
+				
+				<Report submitted={submitted} unvisited={unvisited} underReview={underReview} visited={visited}/>
 				<div className="flex justify-between">
 					<button 
 					onClick={closeModal} 
@@ -184,7 +182,7 @@ const SubmitPopover = ({submitted, unvisited, underReview, visited, closeModal})
 					Continue
 					</button>
 					<button 
-					onClick={closeModal} 
+					onClick={submitTest} 
 					className="px-4 py-2 bg-red-500 text-white rounded"
 					>
 					End Test
@@ -193,6 +191,37 @@ const SubmitPopover = ({submitted, unvisited, underReview, visited, closeModal})
 			  </div>
 			</div>
 	  );
+}
+
+export const Report = ({submitted, unvisited, underReview, visited}) => {
+	return (
+		<>
+			<div className="md-900:grid grid-cols-5 text-center my-4 hidden bg-white">
+				<h1 className="bg-blue-100 p-2 font-semibold">Total Questions</h1>
+				<h1 className="bg-blue-100 p-2 font-semibold">Visited</h1>
+				<h1 className="bg-blue-100 p-2 font-semibold">Submitted</h1>
+				<h1 className="bg-blue-100 p-2 font-semibold">Marked for Review</h1>
+				<h1 className="bg-blue-100 p-2 font-semibold">Unvisited</h1>
+				<p className="py-2 border">100</p>
+				<p className="py-2 border">{visited}</p>
+				<p className="py-2 border">{submitted}</p>
+				<p className="py-2 border">{underReview}</p>
+				<p className="py-2 border">{unvisited}</p>
+			</div>
+			<div className="grid grid-cols-2 text-center my-4 md-900:hidden bg-white">
+				<h1 className="bg-blue-100 p-2 font-semibold col-span-2">Total Questions</h1>
+				<p className="py-2 border col-span-2">100</p>
+				<h1 className="bg-blue-100 p-2 font-semibold">Visited</h1>
+				<h1 className="bg-blue-100 p-2 font-semibold">Submitted</h1>
+				<p className="py-2 border">{visited}</p>
+				<p className="py-2 border">{submitted}</p>
+				<h1 className="bg-blue-100 p-2 font-semibold">Marked for Review</h1>
+				<h1 className="bg-blue-100 p-2 font-semibold">Unvisited</h1>
+				<p className="py-2 border">{underReview}</p>
+				<p className="py-2 border">{unvisited}</p>
+			</div>
+		</>
+	)
 }
 
 const Markers = ({ number , status , label=false , selected = false}) => {

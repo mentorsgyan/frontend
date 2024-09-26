@@ -160,7 +160,7 @@ const UserForm = ({ email , squeeze = false }) => {
 					</div>
                 </div>
 				<div className='flex md:flex-row flex-col gap-4'>
-					<div className="mb-4">
+					<div className="mb-4 w-full">
 						<label htmlFor="state" className="block text-gray-700 dark:text-white text-xl"> शिक्षा का स्तर:</label>
 						<select name="education_level" className='rounded-md dark:bg-gray-600 dark:text-white'>
 							<option value="12th">12th</option>
@@ -169,7 +169,7 @@ const UserForm = ({ email , squeeze = false }) => {
 							<option value="अन्य">अन्य</option>
 						</select>
 					</div>
-					<div className="mb-4 col-start-2">
+					<div className="mb-4 w-full">
 						<label htmlFor="state" className="block text-gray-700 dark:text-white text-xl"> रोज़गार की स्थिति:</label>
 						<select name="employment_status" className='rounded-md dark:bg-gray-600 dark:text-white'>
 							<option value="कार्यरत">कार्यरत</option>
@@ -191,7 +191,7 @@ const UserForm = ({ email , squeeze = false }) => {
 						</select>
                     </div>
 					<div className="mb-4 md-900:ml-7">
-                        <label htmlFor="medium" className="block text-gray-700 dark:text-white text-xl ">भाषा:</label>
+                        <label htmlFor="medium" className="block text-gray-700 dark:text-white text-xl ">मीडियम:</label>
 						<select name="medium" onChange={e => handleChange(e)} className='rounded-md dark:bg-gray-600 dark:text-white'>
 							<option value="हिन्दी">हिन्दी</option>
 							<option value="English">English</option>
