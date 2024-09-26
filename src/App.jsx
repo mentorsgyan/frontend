@@ -15,10 +15,7 @@ import PremiumELibraryPage from "./pages/PremiumELibraryPage";
 import PremiumEbooks from "./pages/EBooks/PremiumEbooks";
 import CourseLanding from "./pages/Course/CourseLanding";
 import CourseUtil from "./pages/Admin/CourseUtil";
-import Test from "./pages/Test/Test";
 import TestSqueeze from "./pages/Squeeze/TestSqueeze";
-import TestLogin from "./pages/Test/TestLogin";
-import TestCompletion from "./pages/Test/TestCompletion";
 import UserListing from "./pages/Admin/UserListing";
 
 const App = () => {
