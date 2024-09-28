@@ -124,7 +124,7 @@ export default function Navbar({sticky = true, showBanner = true}) {
                     <a href="/#e-library" className={`leading-6 text-gray-900 dark:text-gray-200 ${activeSection === 'e-library' ? 'border-b-4 border-secondary ': ''}`}>
                     ई-लाइब्रेरी
                     </a>
-                    <a href="/#test-series" className={`leading-6 text-gray-900 dark:text-gray-200 ${activeSection === 'test-series' ? 'border-b-4 border-secondary ': ''}`}>
+                    <a href="/test/login" className={`leading-6 text-gray-900 dark:text-gray-200 ${activeSection === 'test-series' ? 'border-b-4 border-secondary ': ''}`}>
                     टेस्ट सीरीज़
                     </a>
                 </PopoverGroup>
@@ -194,7 +194,7 @@ export default function Navbar({sticky = true, showBanner = true}) {
                                     ई-लाइब्रेरी
                                 </a>
                                 <a
-                                    href="/#test-series"
+                                    href="/test/login"
                                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 dark:text-gray-200"
                                     onClick={() => setMobileMenuOpen(false)}
                                     >
