@@ -148,7 +148,7 @@ const TestInstructions = ({setInstruction, setAgreedToInstructions, agreedTo, se
 	}
 	return (
 		<div>
-			<div className="dark:bg-gray-800 mx-10 mt-10 dark:text-gray-300 md-900:h-[600px] h-[700px] overflow-y-scroll">
+			<div className="dark:bg-gray-800 mx-10 mt-10 dark:text-gray-300 md-900:h-[500px] h-[600px] overflow-y-scroll">
 				<h1 className="text-3xl text-center font-bold mb-5">{instruction}</h1>
 				<div className="dark:bg-gray-400 bg-gray-700 p-0.5 mb-10"/>
 				{

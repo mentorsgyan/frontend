@@ -67,18 +67,20 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 
 	return (
 		<>
-			<button className="fixed -right-3 px-2 py-4 top-1/2 rounded-full bg-gray-200 text-gray-600" 
+			<button className="fixed -right-3 px-4 py-4 top-1/2 rounded-full bg-gray-200 text-gray-600" 
 			onClick={() => {
 				setMobileMenuOpen(true);
 				setNavigatorOpen(true);
 				setIsOpen(false);
 			}}>&larr;</button>
-			<Dialog static={isMdOrGreater} open={mobileMenuOpen} 
+			{/* isMdOrGreater || (!isMdOrGreater && mobileMenuOpen) */}
+			<Dialog static={isMdOrGreater || (!isMdOrGreater && isOpen)} open={mobileMenuOpen} 
 			onClose={() => {
+				// if ()
 					setMobileMenuOpen(false);
 					if (!isMdOrGreater)
 						setNavigatorOpen(false);
-					setIsOpen(false);
+					// setIsOpen(false);
 				}}>
 				<div className="fixed z-10 inset-0 pointer-events-none" />
 				<DialogPanel className="fixed inset-y-0 right-0 w-fit overflow-y-auto bg-blue-100 dark:bg-gray-900 px-2  sm:max-w-sm">
@@ -151,7 +153,6 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 const SubmitPopover = ({submitted, unvisited, underReview, visited, closeModal, language, timerStatus}) => {
 	const navigate = useNavigate();
 	async function submitTest() {
-		console.log("Submit test clicked");
 		const dataToSend = {
 			submitted: submitted,
 			unvisited: unvisited, 
@@ -185,7 +186,7 @@ const SubmitPopover = ({submitted, unvisited, underReview, visited, closeModal, 
 						</button>
 					}
 					<button 
-					onClick={submitTest} 
+					onClick={submitTest}
 					className="px-4 py-2 bg-red-500 text-white rounded"
 					>
 					End Test

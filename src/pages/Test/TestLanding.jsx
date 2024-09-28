@@ -7,7 +7,7 @@ const TestLanding = () => {
 			data: {
 				mainData: [
 				],
-				componentHeading: "वर्तमान परीक्षण",
+				componentHeading: "वर्तमान परीक्षा",
 				buttonTitle: "प्रारंभ करें"
 			}
 	};
@@ -15,7 +15,7 @@ const TestLanding = () => {
 	const past = {
 		mainData: [
 		],
-		componentHeading: "विगत परीक्षण",
+		componentHeading: "विगत परीक्षा",
 		buttonTitle: "प्रारंभ करें"
 	}
 
@@ -34,7 +34,7 @@ const TestLanding = () => {
 				imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
 			}
 		],
-		componentHeading: "आगामी परीक्षण",
+		componentHeading: "आगामी परीक्षा",
 		buttonTitle: "प्रारंभ करें"
 	}
 
