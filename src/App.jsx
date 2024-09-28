@@ -16,7 +16,11 @@ import PremiumEbooks from "./pages/EBooks/PremiumEbooks";
 import CourseLanding from "./pages/Course/CourseLanding";
 import CourseUtil from "./pages/Admin/CourseUtil";
 import TestSqueeze from "./pages/Squeeze/TestSqueeze";
+import Test from "./pages/Test/Test";
+import TestLogin from "./pages/Test/TestLogin";
+import TestCompletion from "./pages/Test/TestCompletion";
 import UserListing from "./pages/Admin/UserListing";
+import TestLanding from "./pages/Test/TestLanding";
 
 const App = () => {
   React.useEffect(() => {
@@ -59,10 +63,11 @@ const App = () => {
 		{/* <Route path = "/video" element = { <CourseVideoPlayer /> } /> */}
 
 		{/* Test Routes */}
-		{/* <Route path="/test/onboarding" element = { <Test /> }/>
-		<Route path = "/test/login" element = {<TestLogin />} /> */}
+		<Route path="/test/onboarding" element = { <Test /> }/>
+		<Route path = "/test/login" element = {<TestLogin />} />
 		<Route path="registration/test" element = { <TestSqueeze /> }/>
-		{/* <Route path = "test/completed" element = { <TestCompletion/> } /> */}
+		<Route path = "test/completed" element = { <TestCompletion/> } />
+		<Route path = "test/home" element = { <TestLanding />} />
 
         <Route path = "*" element = {<NotFound />} />
       </Routes>
