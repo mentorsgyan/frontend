@@ -13,14 +13,14 @@ const borderMap = new Map([
 	['MARKED_FOR_REVIEW', 'rounded-lg bg-yellow-400'],
 ])
 
-const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, setQuestionStatus, currentQuestion, setInstructions, setLanguage, setNavigatorOpen, timerStatus}) => {
+const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, setQuestionStatus, currentQuestion, setInstructions, setLanguage, setNavigatorOpen, timerStatus, language}) => {
 	const underReview = questionStatus.filter((status) => status === QuestionStatus.MARKED_FOR_REVIEW).length;
 	const submitted = questionStatus.filter((status) => status === QuestionStatus.SUBMITTED).length;
 	const unvisited = questionStatus.filter((status) => status === QuestionStatus.UNVISITED).length;
 	const visited = 100 - underReview - submitted - unvisited;
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
-	const [currLanguage, setCurrLanguage] = useState("हिन्दी");
+	const [currLanguage, setCurrLanguage] = useState(language);
 
 	const updateLanguage = (e) => {
 		setLanguage(e.target.value === "English");
@@ -91,7 +91,7 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 						
 							<div className="flex gap-2 items-center md-900:mt-0 mt-10">
 								<LanguageIcon className="dark:text-white h-6"/>
-								<select defaultValue={"हिन्दी"} onChange={(e) => updateLanguage(e)} className="text-sm">
+								<select value={language} onChange={(e) => updateLanguage(e)} className="text-sm">
 									<option value="हिन्दी">हिन्दी</option>
 									<option value="English">English</option>
 								</select>
