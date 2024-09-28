@@ -14,8 +14,7 @@ const Test = () => {
 	const question = questionList[currentQuestionIndex % questionList.length];
 	const [instructionOpen, setInstructionOpen] = useState(false);
 	const [userResponse, setUserResponse] = useState(userAnswers.get(`test-${currentQuestionIndex + 1}`));
-	const initiaTime = 305;
-	const [remainingTime, setRemainingTime] = useState(initiaTime);
+	const [remainingTime, setRemainingTime] = useState(7200);
 	const [isMdOrGreater, setIsMdOrGreater] = useState(false);
 	const [timerStatus, setTimerStatus] = useState("RUNNING"); // LAST_FIVE , RUNNING , EXPIRED
 	const [agreedToInstructions, setAgreedToInstructions] = useState(false);
@@ -102,7 +101,7 @@ const Test = () => {
 		return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
 	}
 
-	useEffect(() => {setRemainingTime(initiaTime)}, [agreedToInstructions]);
+	useEffect(() => {setRemainingTime(7200)}, [agreedToInstructions]);
 
 	useEffect(() => {
 		if (remainingTime <= 0) {
