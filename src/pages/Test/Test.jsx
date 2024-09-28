@@ -196,6 +196,7 @@ const Test = () => {
 			timerStatus={timerStatus}
 			setLanguage={setLanguage}
 			setNavigatorOpen={setNavigatorOpen}
+			language={english ? "English" : "हिन्दी"}
 			/>
 			{/* Small media question floater */}
 			

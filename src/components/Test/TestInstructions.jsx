@@ -1,9 +1,9 @@
 import { LanguageIcon } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 
-const TestInstructions = ({setInstruction, setAgreedToInstructions, agreedTo, setLanguage}) => {
+const TestInstructions = ({setInstruction, setAgreedToInstructions, agreedTo, setLanguage, language}) => {
 	const [isChecked, setIsChecked] = useState(false);
-	const [currLanguage, setCurrLanguage] = useState("हिन्दी");
+	const [currLanguage, setCurrLanguage] = useState(language);
 	const english = currLanguage === "English";
 	const instruction = english ? "INSTRUCTIONS" : "निर्देश";
 
@@ -198,7 +198,7 @@ const TestInstructions = ({setInstruction, setAgreedToInstructions, agreedTo, se
 						}
 						<div className="flex flex-col justify-center w-1/3">
 							<div className="flex gap-2 items-center md-900:mt-0 mt-10">
-								<select defaultValue={"हिन्दी"} value={currLanguage} onChange={(e) => updateLanguage(e)} className="text-sm">
+								<select value={currLanguage} onChange={(e) => updateLanguage(e)} className="text-sm">
 									<option value="हिन्दी">हिन्दी</option>
 									<option value="English">English</option>
 								</select>
