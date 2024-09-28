@@ -182,7 +182,7 @@ const TestInstructions = ({setInstruction, setAgreedToInstructions, agreedTo, se
 					<div className="flex flex-row justify-evenly w-full">
 						{
 							!agreedTo &&
-							<div className="flex flex-col w-2/5">
+							<div className="flex flex-col w-2/5 justify-center">
 								<label className="text-red-500 flex items-center">
 									<input
 										type="checkbox"
@@ -190,20 +190,20 @@ const TestInstructions = ({setInstruction, setAgreedToInstructions, agreedTo, se
 										onChange={handleCheckboxChange}
 										className="mr-2"
 									/>
-									<p className="font-bold">{english ? "Declaration" : "घोषणा"}</p>
+									<p className="font-bold">{english ? "Declaration" : "घोषणा"}*</p>
 								</label>
 								
 								<p className="text-sm text-justify">{english ? "I have read all the instructions carefully and have understood them. I agree not to cheat or use unfair means in this examination. I understand that using unfair means of any sort will lead to my immediate disqualification" : "मैंने सभी निर्देशों को ध्यानपूर्वक पढ़ा और समझ लिया है। मैं यह वचन देता हूँ कि परीक्षा में नकल या अनुचित साधनों का उपयोग नहीं करूँगा।"}</p>
 							</div>
 						}
-						<div className="flex flex-col w-1/3">
+						<div className="flex flex-col justify-center w-1/3">
 							<div className="flex gap-2 items-center md-900:mt-0 mt-10">
-								<p className="text-sm font-bold">{english ? "Default Language" : "डिफ़ॉल्ट भाषा चुनें"}*</p>
 								<select defaultValue={"हिन्दी"} value={currLanguage} onChange={(e) => updateLanguage(e)} className="text-sm">
 									<option value="हिन्दी">हिन्दी</option>
 									<option value="English">English</option>
 								</select>
 							</div>
+							<p className="text-sm font-semibold text-red-500">{english ? "Default Language" : "डिफ़ॉल्ट भाषा चुनें"}*</p>
 							<p className="text-sm">
 								{
 									english ? "Please note all questions will appear in your default language. This language can be changed for a particular question later on" : "कृपया ध्यान दें कि सभी प्रश्न आपकी डिफ़ॉल्ट भाषा में दिखाई देंगे। इस भाषा को आप किसी विशेष प्रश्न के लिए बाद में बदल सकते हैं।"
