@@ -136,14 +136,14 @@ const Test = () => {
 			{/* Questions */}
 			<div className={`dark:text-white ${isMdOrGreater ? 'col-span-3' : 'col-span-4'} flex flex-col justify-between`}>
 				<div >
-					<div className="flex justify-between shadow-gray-500 p-4 shadow-md rounded-3xl mt-3 mx-3 bg-gray-100">
+					<div className="flex justify-between shadow-gray-500 p-4 shadow-md rounded-3xl mt-3 mx-3 bg-gray-100 dark:text-black">
 						<h1 className="font-bold text-2xl tracking-wide text-center">CGPSC PRELIMS TEST</h1>
 						<div className={`${timerStatus === "RUNNING" ? 'bg-blue-100' : 'bg-red-200'} flex gap-2 items-center  px-2 py-1 rounded-3xl`}>
 							<ClockIcon className="h-8"/>
 							<p>{formatTime(remainingTime)} </p>
 						</div>
 					</div>
-					<div className={`md-900:mx-10 mt-10 overflow-y-scroll text-justify px-10 md-900:h-[500px] h-[700px] pb-4`}>
+					<div className={`md-900:mx-10 mt-10 overflow-y-scroll text-justify px-10 md-900:h-[500px] h-[600px] pb-4`}>
 						<h2 className="text-lg font-bold mb-3">{english ? "Question No. " : "प्रश्न क्रमांक "} {currentQuestionIndex + 1}</h2>
 						{
 							question.quetionDescription.split('\n').map((line, idx) => (
