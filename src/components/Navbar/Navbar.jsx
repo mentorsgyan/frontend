@@ -26,7 +26,7 @@ const callsToAction = [
 * @author Mayank Shukla
 * @returns 
 */
-export default function Navbar({sticky = true}) {
+export default function Navbar({sticky = true, showBanner = true}) {
 
     const [activeSection, setActiveSection] = useState('');
     const sectionRefs = useRef([]);
@@ -88,7 +88,7 @@ export default function Navbar({sticky = true}) {
     
     return (
         <header className={`${sticky && !mobileMenuOpen ? 'fixed': ''} inset-x-0 top-0 z-30 dark:bg-gray-900/90 dark:text-gray-200 bg-white/90 shadow-lg`}>
-            <Banner />
+            { showBanner && <Banner /> }
             <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
             {/* Logo Section */}
                 <div className="flex lg:flex-1">
@@ -124,7 +124,7 @@ export default function Navbar({sticky = true}) {
                     <a href="/#e-library" className={`leading-6 text-gray-900 dark:text-gray-200 ${activeSection === 'e-library' ? 'border-b-4 border-secondary ': ''}`}>
                     ई-लाइब्रेरी
                     </a>
-                    <a href="/#test-series" className={`leading-6 text-gray-900 dark:text-gray-200 ${activeSection === 'test-series' ? 'border-b-4 border-secondary ': ''}`}>
+                    <a href="/test/login" className={`leading-6 text-gray-900 dark:text-gray-200 ${activeSection === 'test-series' ? 'border-b-4 border-secondary ': ''}`}>
                     टेस्ट सीरीज़
                     </a>
                 </PopoverGroup>
@@ -194,7 +194,7 @@ export default function Navbar({sticky = true}) {
                                     ई-लाइब्रेरी
                                 </a>
                                 <a
-                                    href="/#test-series"
+                                    href="/test/login"
                                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 dark:text-gray-200"
                                     onClick={() => setMobileMenuOpen(false)}
                                     >

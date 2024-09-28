@@ -13,7 +13,7 @@ const borderMap = new Map([
 	['MARKED_FOR_REVIEW', 'rounded-lg bg-yellow-400'],
 ])
 
-const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, setQuestionStatus, currentQuestion, setInstructions, setLanguage, setNavigatorOpen}) => {
+const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, setQuestionStatus, currentQuestion, setInstructions, setLanguage, setNavigatorOpen, timerStatus}) => {
 	const underReview = questionStatus.filter((status) => status === QuestionStatus.MARKED_FOR_REVIEW).length;
 	const submitted = questionStatus.filter((status) => status === QuestionStatus.SUBMITTED).length;
 	const unvisited = questionStatus.filter((status) => status === QuestionStatus.UNVISITED).length;
@@ -118,7 +118,7 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 								<Markers number={underReview} status={QuestionStatus.MARKED_FOR_REVIEW} label={true}/>
 							</div>
 							{/* Question navigator */}
-							<div className="overflow-y-scroll grid grid-cols-3 md-900:grid-cols-4 items-center justify-center h-[300px] gap-2 border m-2 p-2">
+							<div className="overflow-y-scroll grid grid-cols-3 md-900:grid-cols-4 items-start h-[300px] gap-2 border m-2 p-2">
 								{
 									questionStatus.map((status, idx) => (
 										<button  key={idx} onClick={() => {
@@ -142,13 +142,13 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 					</div>
 					
 				</DialogPanel>
-				{isOpen && <SubmitPopover submitted={submitted} visited={visited} unvisited={unvisited} underReview={underReview} closeModal={closeModal} language={currLanguage}/>}
+				{(isOpen || timerStatus === "EXPIRED") && <SubmitPopover submitted={submitted} visited={visited} unvisited={unvisited} underReview={underReview} closeModal={closeModal} language={currLanguage} timerStatus={timerStatus}/>}
 			</Dialog>
 		</>
 	)
 }
 
-const SubmitPopover = ({submitted, unvisited, underReview, visited, closeModal, language}) => {
+const SubmitPopover = ({submitted, unvisited, underReview, visited, closeModal, language, timerStatus}) => {
 	const navigate = useNavigate();
 	async function submitTest() {
 		console.log("Submit test clicked");
@@ -174,13 +174,16 @@ const SubmitPopover = ({submitted, unvisited, underReview, visited, closeModal, 
 				<h2 className="text-xl font-semibold mb-4">Test Summary</h2>
 				
 				<Report submitted={submitted} unvisited={unvisited} underReview={underReview} visited={visited}/>
-				<div className="flex justify-between">
-					<button 
-					onClick={closeModal} 
-					className="px-4 py-2 bg-green-500 text-white rounded"
-					>
-					Continue
-					</button>
+				<div className={`flex ${timerStatus !== "EXPIRED" ? 'justify-between' : 'justify-end'}`}>
+					{
+						timerStatus !== "EXPIRED" &&
+						<button 
+						onClick={closeModal} 
+						className="px-4 py-2 bg-green-500 text-white rounded"
+						>
+						Continue Test
+						</button>
+					}
 					<button 
 					onClick={submitTest} 
 					className="px-4 py-2 bg-red-500 text-white rounded"

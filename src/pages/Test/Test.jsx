@@ -4,47 +4,20 @@ import { BACKEND_API, QuestionStatus } from "../../utility/Constants";
 import TestInstructions from "../../components/Test/TestInstructions";
 import axios from "axios";
 import { ClockIcon } from "@heroicons/react/24/outline";
-const questions = [
-	{
-		questionId: "test-1",
-		quetionDescription: "this a very fantastic question, which is going to help a lot of students \nin getting ready for their exams Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!",
-		questionNumber: 10,
-		options: ["Bombay", "Delhi", "Gurugram", "Indore"]
-	},
-	{
-		questionId: "test-2",
-		quetionDescription: "this a very fantastic question, which is going to help a lot of students \nin getting ready for their exams",
-		questionNumber: 10,
-		options: ["Calcutta", "Hyd", "Blr", "NYC"]
-	}
-];
-
-const questionsHi = [
-	{
-		questionId: "test-1",
-		quetionDescription: "this sdafsadfsadf very fantastic question, which is going to help a lot of students \nin getting ready for their exams Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur magnam consequuntur, repellat beatae sunt fugiat odit ducimus neque temporibus maxime nisi ipsum facere culpa, vel corrupti laboriosam. Sint, esse quis!",
-		questionNumber: 10,
-		options: ["Bombay", "Delfsdfdshi", "Gurugram", "Indore"]
-	},
-	{
-		questionId: "test-2",
-		quetionDescription: "fs fsaf very safsafsadfsf question, which is going to help a lot of students \nin getting ready for their exams",
-		questionNumber: 10,
-		options: ["Calcutsdfdsfta", "fdfHyd", "Blr", "NYC"]
-	}
-];
+import { questionsEnglish, questionsHindi } from "../../utility/defaultTest";
 
 const Test = () => {
 	const [userAnswers, setUserAnswers] = useState(new Map());
 	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 	const [english, setLanguage] = useState(false);
-	const questionList = english ? questions : questionsHi;
-	const question = questionList[currentQuestionIndex % 2];
-	const [instructionOpen, setInstructionOpen] = useReducer((state) => !state, false);
+	const questionList = english ? questionsEnglish : questionsHindi;
+	const question = questionList[currentQuestionIndex % questionList.length];
+	const [instructionOpen, setInstructionOpen] = useState(false);
 	const [userResponse, setUserResponse] = useState(userAnswers.get(`test-${currentQuestionIndex + 1}`));
 	const [remainingTime, setRemainingTime] = useState(7200);
 	const [isMdOrGreater, setIsMdOrGreater] = useState(false);
-	const questionHeight = `h-[${window.innerHeight * 3 / 5}px]`;
+	const [timerStatus, setTimerStatus] = useState("RUNNING"); // LAST_FIVE , RUNNING , EXPIRED
+	const [agreedToInstructions, setAgreedToInstructions] = useState(false);
 	
 	const [questionStatus, setQuestionStatus] = useState(() => {
 		const initialStatus = Array(100).fill(QuestionStatus.UNVISITED);
@@ -55,7 +28,6 @@ const Test = () => {
 	// Function to check the window size and update the state
 	const checkWindowSize = () => {
 	  // Assuming 'md' breakpoint is 768px (you can adjust it based on your Tailwind config)
-	  console.log(questionHeight);
 		setIsMdOrGreater(window.innerWidth >= 1280);
 	};
   
@@ -102,8 +74,6 @@ const Test = () => {
 
 	function handleOptionClear () {
 		setUserResponse(null);
-		console.log(currentQuestionIndex);
-		console.log("Status:", questionStatus[currentQuestionIndex]);
 		if (questionStatus[currentQuestionIndex] === QuestionStatus.MARKED_FOR_REVIEW || questionStatus[currentQuestionIndex] === QuestionStatus.SUBMITTED) {
 			let copyStatus = questionStatus;
 			copyStatus[currentQuestionIndex] = QuestionStatus.VISITED;
@@ -131,10 +101,18 @@ const Test = () => {
 		return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
 	}
 
+	useEffect(() => {setRemainingTime(7200)}, [agreedToInstructions]);
+
 	useEffect(() => {
-		if (remainingTime <= 0)
+		if (remainingTime <= 0) {
+			setTimerStatus("EXPIRED");
 			return;
-		let interval = setInterval(() => {setRemainingTime((prev) => prev - 1)}, 1000);
+		}
+		let interval = setInterval(() => {
+			setRemainingTime((prev) => prev - 1);
+			if (remainingTime <= 300)
+				setTimerStatus("LAST_FIVE");
+		}, 1000);
 		return () => clearInterval(interval);
 	}, [remainingTime]);
 
@@ -149,8 +127,8 @@ const Test = () => {
 		return () => clearInterval(intervalId);
 	}, []);
 
-	if (instructionOpen) {
-		return (<TestInstructions setInstruction={setInstructionOpen}/>);
+	if (instructionOpen || !agreedToInstructions) {
+		return (<TestInstructions setInstruction={setInstructionOpen} setAgreedToInstructions = {setAgreedToInstructions} agreedTo={agreedToInstructions} setLanguage={setLanguage}/>);
 	}
 
 	return (
@@ -160,13 +138,13 @@ const Test = () => {
 				<div >
 					<div className="flex justify-between shadow-gray-500 p-4 shadow-md rounded-3xl mt-3 mx-3 bg-gray-100">
 						<h1 className="font-bold text-2xl tracking-wide text-center">CGPSC PRELIMS TEST</h1>
-						<div className="flex gap-2 items-center bg-blue-100 px-2 py-1 rounded-3xl">
+						<div className={`${timerStatus === "RUNNING" ? 'bg-blue-100' : 'bg-red-200'} flex gap-2 items-center  px-2 py-1 rounded-3xl`}>
 							<ClockIcon className="h-8"/>
 							<p>{formatTime(remainingTime)} </p>
 						</div>
 					</div>
 					<div className={`md-900:mx-10 mt-10 overflow-y-scroll text-justify px-10 md-900:h-[500px] h-[700px] pb-4`}>
-						<h2 className="text-lg font-bold mb-3">Question. No. {currentQuestionIndex + 1}</h2>
+						<h2 className="text-lg font-bold mb-3">{english ? "Question No. " : "प्रश्न क्रमांक "} {currentQuestionIndex + 1}</h2>
 						{
 							question.quetionDescription.split('\n').map((line, idx) => (
 								<p key={idx} className={`dark:text-gray-200 text-gray-800 `}>
@@ -183,6 +161,7 @@ const Test = () => {
 											name={`question-${idx}`}
 											className="form-radio text-secondary"
 											value={option}
+											disabled={timerStatus === "EXPIRED"}
 											checked={
 												(questionStatus[currentQuestionIndex] === QuestionStatus.SUBMITTED || questionStatus[currentQuestionIndex] === QuestionStatus.MARKED_FOR_REVIEW) ? userAnswers.get(`test-${currentQuestionIndex + 1}`) === option : userResponse === option
 											}
@@ -214,6 +193,7 @@ const Test = () => {
 				</div>
 			{/* Question panel */}
 			<TestNavigator userAnswers={userAnswers} setCurrentQuestionNumber={setCurrentQuestionIndex} questionStatus={questionStatus} setQuestionStatus={setQuestionStatus} currentQuestion={currentQuestionIndex} setInstructions={setInstructionOpen}
+			timerStatus={timerStatus}
 			setLanguage={setLanguage}
 			setNavigatorOpen={setNavigatorOpen}
 			/>

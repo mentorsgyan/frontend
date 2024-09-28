@@ -72,10 +72,6 @@ const PaymentPage = () => {
 		.then(data => {
 			setActiveCoupons(data);
 		})
-		window.addEventListener('beforeunload', handlePageUnloading);
-		return () => {
-			window.removeEventListener('beforeunload', handlePageUnloading);
-		}
 	}, []);
 	
 	const navigate = useNavigate();

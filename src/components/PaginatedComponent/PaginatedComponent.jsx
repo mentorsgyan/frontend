@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import {useNavigate } from "react-router-dom"; 
-import { BsArrowRight } from "react-icons/bs";
+import { BsArrowRight , BsLock } from "react-icons/bs";
 
 /**
  * This component will render paginated data
  * @returns 
  * @author Mayank Shukla
  */
-const PaginatedComponent = ({paginatedData}) => {
+const PaginatedComponent = ({paginatedData, locked = false}) => {
 
     // React router
     const navigate = useNavigate();
@@ -29,8 +29,8 @@ const PaginatedComponent = ({paginatedData}) => {
         <div className="container dark:bg-gray-800 dark:text-white">
             <h1 className="text-2xl font-bold tracking-tight py-5">{paginatedData.componentHeading}</h1>
             {/* Rendering data begins */}
-            <div className="mx-10">
-                <ul role="list" className="divide-y divide-gray-100">
+            <div>
+                <ul role="list" className={`${locked ? 'bg-gray-100 dark:bg-gray-700 p-2 my-0.5 rounded-xl' : ''} divide-y divide-gray-100`}>
                     {
                         Array.from({length: itemsPerPage}, (_, index) => {
                             try {
@@ -40,20 +40,28 @@ const PaginatedComponent = ({paginatedData}) => {
                                         <div className="flex min-w-0 gap-x-4">
                                             {data.imageUrl !== undefined && <img className="h-12 w-12 flex-none rounded-full" src={data.imageUrl} alt="" />}
                                             <div className="min-w-0 flex flex-col justify-center items-start">
-                                                <p className="text-sm font-semibold leading-6 text-gray-900">{data.primaryInfo}</p>
-                                                {data.secondaryInfo && <p className="mt-1 truncate text-xs leading-5 text-gray-500">{data.secondaryInfo}</p>}
+                                                <p className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-300">{data.primaryInfo}</p>
+                                                {data.secondaryInfo && <p className="mt-1 truncate text-xs leading-5 dark:text-gray-400 text-gray-500">{data.secondaryInfo}</p>}
                                             </div>
                                         </div>
+                                        {
+											locked ? (
+												<div className="flex items-center">
+													<BsLock className="text-xl text-secondary"/>
+												</div>
+											) : (
+												<a className="flex items-center gap-2 text-secondary cursor-pointer text-xl hover:underline hover:underline-offset-2" href={data.url}>
+													<div className="hidden shrink-0 sm:flex sm:items-end  font-bold ">
+													{buttonTitle}
+													</div>
+													<div className="">
+														<BsArrowRight />
+													</div>
+													<span></span>
+												</a>
+											)
+										}
                                         
-                                        <a className="flex items-center gap-2 text-secondary cursor-pointer text-xl hover:underline hover:underline-offset-2" href={data.url}>
-                                            <div className="hidden shrink-0 sm:flex sm:items-end  font-bold ">
-                                            {buttonTitle}
-                                            </div>
-                                            <div className="">
-                                                <BsArrowRight />
-                                            </div>
-                                            <span></span>
-                                        </a>
                                         {/* <div className="flex items-center gap-4">
                                             <p className="hidden sm:text-center sm:block">{buttonTitle}</p>
                                             <FaArrowRight className="text-secondary text-2xl cursor-pointer hover:scale-110 duration-200" onClick={() => {
@@ -73,12 +81,12 @@ const PaginatedComponent = ({paginatedData}) => {
             </div>
             {/* Rendering data begins */}
             {/* Page change area begins */}
-            <div className="relative flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+            <div className="relative flex items-center justify-between border-t border-gray-200 dark:bg-gray-700  bg-white px-4 py-3 sm:px-6">
                 
                 {/* Previous/Next button in case of small widht device */}
                 <div className="flex flex-1 justify-between sm:hidden">
                     <a href="#"
-                        className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                        className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-400 hover:bg-gray-50"
                     >Previous</a>
                     <a href="#"
                         className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
@@ -86,7 +94,7 @@ const PaginatedComponent = ({paginatedData}) => {
                 </div>
                 <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
                     <div>
-                        <p className="text-sm text-gray-700">
+                        <p className="text-sm text-gray-700 dark:text-gray-200">
                             Showing <span className="font-medium">{paginatedData.mainData.length === 0 ? 0 : (currentPage - 1) * itemsPerPage + 1}</span> to <span className="font-medium">{Math.min(currentPage * itemsPerPage, paginatedData.mainData.length)}</span> of{' '}
                             <span className="font-medium">{paginatedData.mainData.length}</span> results
                         </p>
@@ -118,7 +126,7 @@ const PaginatedComponent = ({paginatedData}) => {
 
                             {/* Right arrow */}
                             <a href="#"
-                                className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+                                className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400  ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
                                 onClick={() => setCurrentPage(currentPage + (currentPage != totalPages))}
                             >
                                 <span className="sr-only">Next</span>
