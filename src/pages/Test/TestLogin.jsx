@@ -103,7 +103,7 @@ export default function TestLogin() {
 			<p className="bg-white p-2 border rounded-2xl text-center mt-10 text-red-500">पासवर्ड DDMMYYYY फॉर्मेट में आपकी जन्मतिथि है। (जैसे - 24 June 2001 &rarr; 24062001</p> 
 			<p className="mt-10 text-center text-sm text-gray-500">
 			क्या आपने अभी तक पंजीकरण नहीं कराया है?{' '}
-			  <a href="#" className="font-semibold leading-6 text-secondary hover:text-primary">
+			  <a href="/registration/test" className="font-semibold leading-6 text-secondary hover:text-primary">
 			  यहाँ क्लिक करें
 			  </a>
 			</p>

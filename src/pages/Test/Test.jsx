@@ -2,7 +2,6 @@ import React, { useEffect, useReducer, useState } from "react";
 import TestNavigator from "../../components/Test/TestNavigator";
 import { BACKEND_API, QuestionStatus } from "../../utility/Constants";
 import TestInstructions from "../../components/Test/TestInstructions";
-import axios from "axios";
 import { ClockIcon } from "@heroicons/react/24/outline";
 import { questionsEnglish, questionsHindi } from "../../utility/defaultTest";
 import { Navigate, useLocation, useParams, useSearchParams } from "react-router-dom";

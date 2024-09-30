@@ -88,13 +88,21 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 					<div className="bg-blue-50 dark:bg-gray-800 z-10 flex flex-col justify-between h-full py-4">
 						{/* Heading */}
 						<div className="flex items-center justify-between mx-4">
-						
-							<div className="flex gap-2 items-center md-900:mt-0 mt-10">
-								<LanguageIcon className="dark:text-white h-6"/>
-								<select value={language} onChange={(e) => updateLanguage(e)} className="text-sm">
-									<option value="हिन्दी">हिन्दी</option>
-									<option value="English">English</option>
-								</select>
+							<div className="flex flex-col p-5">
+								<div className="flex gap-2 items-center md-900:mt-0 mt-10">
+									<LanguageIcon className="dark:text-white h-6"/>
+									<select value={language} onChange={(e) => updateLanguage(e)} className="text-sm">
+										<option value="हिन्दी">हिन्दी</option>
+										<option value="English">English</option>
+									</select>
+								</div>
+								<div className="flex items-center mt-4">
+									<p className="dark:text-white">Marking: </p>
+									<div className="flex gap-4 ml-4">
+										<p className="bg-green-500/50 p-2 rounded-lg">+2</p>
+										<p className="bg-red-500/50 p-2 rounded-lg">-2/3</p>
+									</div>
+								</div>
 							</div>
 							<div className="flex justify-end">
 								<button
