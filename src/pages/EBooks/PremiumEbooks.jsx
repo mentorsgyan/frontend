@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
-import { Md10K } from "react-icons/md";
 import { ChevronDownIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { BACKEND_API } from "../../utility/Constants";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +16,6 @@ const PremiumEbooks = () => {
 
     useEffect(() => {
         loadBooks();
-        console.log(bookList.content);
     }, [])
 
     function handleDescriptionToggle(idx, state) {

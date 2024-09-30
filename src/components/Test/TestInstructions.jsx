@@ -1,7 +1,9 @@
 import { LanguageIcon } from "@heroicons/react/24/outline";
+import axios from "axios";
 import React, { useState } from "react";
+import { BACKEND_API } from "../../utility/Constants";
 
-const TestInstructions = ({setInstruction, setAgreedToInstructions, agreedTo, setLanguage, language}) => {
+const TestInstructions = ({setInstruction, setAgreedToInstructions, agreedTo, setLanguage, language, phoneNumber}) => {
 	const [isChecked, setIsChecked] = useState(false);
 	const [currLanguage, setCurrLanguage] = useState(language);
 	const english = currLanguage === "English";
@@ -142,13 +144,25 @@ const TestInstructions = ({setInstruction, setAgreedToInstructions, agreedTo, se
 	const handleCheckboxChange = (event) => {
 		setIsChecked(event.target.checked);
 	};
+
+	async function sendStartTime() {
+		const time = new Date();
+		const data = {
+			phoneNumber: phoneNumber,
+			testId: "0110",
+			time: time.getTime().toString()
+		}
+		await axios.post(BACKEND_API + "/test-series/started", data);
+	}
+
 	function handleContinue() {
 		setInstruction(false);
 		setAgreedToInstructions(true);
 	}
+
 	return (
 		<div>
-			<div className="dark:bg-gray-800 mx-10 mt-10 dark:text-gray-300 md-900:h-[500px] h-[600px] overflow-y-scroll">
+			<div className="dark:bg-gray-800 mx-10 mt-10 dark:text-gray-300 md-900:h-[500px] h-[500px] overflow-y-scroll">
 				<h1 className="text-3xl text-center font-bold mb-5">{instruction}</h1>
 				<div className="dark:bg-gray-400 bg-gray-700 p-0.5 mb-10"/>
 				{
@@ -157,8 +171,8 @@ const TestInstructions = ({setInstruction, setAgreedToInstructions, agreedTo, se
 							<h1 className="text-lg font-bold">{curr.title}</h1>
 							<ul>
 								{
-									curr.data.map((ins) => (
-										<li className="mx-2">
+									curr.data.map((ins, id) => (
+										<li key={id} className="mx-2">
 											{ins.main}
 											{
 												ins.subins?.map((sub, sid) => (
@@ -178,7 +192,7 @@ const TestInstructions = ({setInstruction, setAgreedToInstructions, agreedTo, se
 				<div className="dark:bg-gray-400 bg-gray-700 p-0.5 my-10"/>
 			</div>
 				<div className=" fixed bottom-0 flex flex-col gap-4 justify-center items-center w-full bg-blue-100 py-2">
-					<>
+					
 					<div className="flex flex-row justify-evenly w-full">
 						{
 							!agreedTo &&
@@ -213,7 +227,6 @@ const TestInstructions = ({setInstruction, setAgreedToInstructions, agreedTo, se
 						
 					</div>
 					<button className="bg-primary text-white p-3 rounded-md hover:bg-secondary" onClick={handleContinue} disabled={!agreedTo && !isChecked}>Continue</button>
-					</>
 				</div>
 
 		</div>

@@ -13,7 +13,7 @@ const borderMap = new Map([
 	['MARKED_FOR_REVIEW', 'rounded-lg bg-yellow-400'],
 ])
 
-const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, setQuestionStatus, currentQuestion, setInstructions, setLanguage, setNavigatorOpen, timerStatus, language}) => {
+const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, setQuestionStatus, currentQuestion, setInstructions, setLanguage, setNavigatorOpen, timerStatus, language, setSelectionRequired, phoneNumber}) => {
 	const underReview = questionStatus.filter((status) => status === QuestionStatus.MARKED_FOR_REVIEW).length;
 	const submitted = questionStatus.filter((status) => status === QuestionStatus.SUBMITTED).length;
 	const unvisited = questionStatus.filter((status) => status === QuestionStatus.UNVISITED).length;
@@ -57,7 +57,7 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 	}, []);
 
 	async function handleSubmitAnswers () {
-		const response = await axios.post(BACKEND_API + "/mcq/evaluate", Array.from(userAnswers));
+		const response = await axios.post(BACKEND_API + "/saveAnswers", Array.from(userAnswers));
 		if (response.status === 200) {
 			alert("yay");
 		} else {
@@ -88,13 +88,21 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 					<div className="bg-blue-50 dark:bg-gray-800 z-10 flex flex-col justify-between h-full py-4">
 						{/* Heading */}
 						<div className="flex items-center justify-between mx-4">
-						
-							<div className="flex gap-2 items-center md-900:mt-0 mt-10">
-								<LanguageIcon className="dark:text-white h-6"/>
-								<select value={language} onChange={(e) => updateLanguage(e)} className="text-sm">
-									<option value="हिन्दी">हिन्दी</option>
-									<option value="English">English</option>
-								</select>
+							<div className="flex flex-col p-5">
+								<div className="flex gap-2 items-center md-900:mt-0 mt-10">
+									<LanguageIcon className="dark:text-white h-6"/>
+									<select value={language} onChange={(e) => updateLanguage(e)} className="text-sm">
+										<option value="हिन्दी">हिन्दी</option>
+										<option value="English">English</option>
+									</select>
+								</div>
+								<div className="flex items-center mt-4">
+									<p className="dark:text-white">Marking: </p>
+									<div className="flex gap-4 ml-4">
+										<p className="bg-green-500/50 p-2 rounded-lg">+2</p>
+										<p className="bg-red-500/50 p-2 rounded-lg">-2/3</p>
+									</div>
+								</div>
 							</div>
 							<div className="flex justify-end">
 								<button
@@ -130,6 +138,7 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 												setQuestionStatus(copyStatus);
 											}
 											setCurrentQuestionNumber(idx);
+											setSelectionRequired(false);
 										}} className="cursor-pointer">
 											<Markers number={idx+1} status={status} selected={idx === currentQuestion}/>
 										</button>
@@ -144,15 +153,16 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 					</div>
 					
 				</DialogPanel>
-				{(isOpen || timerStatus === "EXPIRED") && <SubmitPopover submitted={submitted} visited={visited} unvisited={unvisited} underReview={underReview} closeModal={closeModal} language={currLanguage} timerStatus={timerStatus}/>}
+				{(isOpen || timerStatus === "EXPIRED") && <SubmitPopover submitted={submitted} visited={visited} unvisited={unvisited} underReview={underReview} closeModal={closeModal} language={currLanguage} timerStatus={timerStatus} userAnswers={userAnswers} phoneNumber={phoneNumber}/>}
 			</Dialog>
 		</>
 	)
 }
 
-const SubmitPopover = ({submitted, unvisited, underReview, visited, closeModal, language, timerStatus}) => {
+const SubmitPopover = ({submitted, unvisited, underReview, visited, closeModal, language, timerStatus, userAnswers, phoneNumber}) => {
 	const navigate = useNavigate();
 	async function submitTest() {
+		await axios.post(BACKEND_API + `/test-series/saveAnswers?phoneNumber=${phoneNumber}`, Array.from(userAnswers));
 		const dataToSend = {
 			submitted: submitted,
 			unvisited: unvisited, 

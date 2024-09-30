@@ -8,7 +8,7 @@ import { BsArrowRight , BsLock } from "react-icons/bs";
  * @returns 
  * @author Mayank Shukla
  */
-const PaginatedComponent = ({paginatedData, locked = false}) => {
+const PaginatedComponent = ({paginatedData, locked = false, buttonNeeded = false, valid = true}) => {
 
     // React router
     const navigate = useNavigate();
@@ -50,15 +50,7 @@ const PaginatedComponent = ({paginatedData, locked = false}) => {
 													<BsLock className="text-xl text-secondary"/>
 												</div>
 											) : (
-												<a className="flex items-center gap-2 text-secondary cursor-pointer text-xl hover:underline hover:underline-offset-2" href={data.url}>
-													<div className="hidden shrink-0 sm:flex sm:items-end  font-bold ">
-													{buttonTitle}
-													</div>
-													<div className="">
-														<BsArrowRight />
-													</div>
-													<span></span>
-												</a>
+												<ButtonOrATag buttonTitle={buttonTitle} url={data.url} button={buttonNeeded} valid={valid}/>
 											)
 										}
                                         
@@ -85,12 +77,14 @@ const PaginatedComponent = ({paginatedData, locked = false}) => {
                 
                 {/* Previous/Next button in case of small widht device */}
                 <div className="flex flex-1 justify-between sm:hidden">
-                    <a href="#"
+                    <button
+					onClick={() => setCurrentPage(currentPage - (currentPage != 1))}
                         className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-400 hover:bg-gray-50"
-                    >Previous</a>
-                    <a href="#"
+                    >Previous</button>
+                    <button
+					onClick={() => setCurrentPage(currentPage + (currentPage != totalPages))}
                         className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-                    >Next</a>
+                    >Next</button>
                 </div>
                 <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
                     <div>
@@ -104,34 +98,32 @@ const PaginatedComponent = ({paginatedData, locked = false}) => {
                     <div className="flex gap-2">
                         <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
                             {/* Left arrow */}
-                            <a
-                                href="#"
+                            <button
                                 className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
                                 onClick={() => setCurrentPage(currentPage - (currentPage != 1))}
                             >
                                 <span className="sr-only">Previous</span>
                                 <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
-                            </a>
+                            </button>
                             {
                                 Array.from({ length: totalPages }, (_, index) => (
-                                    <a
-                                        href="#"
+                                    <button
                                         key={index}
                                         aria-current="page"
                                         className={`${pageCommonClass} ${currentPage === index + 1 ? pageSelectedClass : pageNotSelectedClass} `}
                                         onClick={() => { setCurrentPage(index + 1) }}
-                                    >{index + 1}</a>
+                                    >{index + 1}</button>
                                 ))
                             }
 
                             {/* Right arrow */}
-                            <a href="#"
+                            <button
                                 className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400  ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
                                 onClick={() => setCurrentPage(currentPage + (currentPage != totalPages))}
                             >
                                 <span className="sr-only">Next</span>
                                 <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
-                            </a>
+                            </button>
                         </nav>
                     </div>
                 </div>
@@ -139,6 +131,38 @@ const PaginatedComponent = ({paginatedData, locked = false}) => {
             {/* Page change area ends */}
         </div>
     )
+}
+
+const ButtonOrATag = ({url, button, buttonTitle, valid}) => {
+	const navigate = useNavigate();
+	if (!button) {
+		return (
+			<a className="flex items-center gap-2 text-secondary cursor-pointer text-xl hover:underline hover:underline-offset-2" href={url}>
+				<div className="hidden shrink-0 sm:flex sm:items-end  font-bold ">
+				{buttonTitle}
+				</div>
+				<div className="">
+					<BsArrowRight />
+				</div>
+				<span></span>
+			</a>
+		)
+	}
+	return (
+		<button className="flex items-center gap-2 text-secondary cursor-pointer text-xl hover:underline hover:underline-offset-2" 
+		onClick={() => {
+			navigate(url, {state: {valid: valid}});
+		}}>
+			<div className="hidden shrink-0 sm:flex sm:items-end  font-bold ">
+			
+			</div>
+			<div className="flex">
+			{buttonTitle}
+				<BsArrowRight />
+			</div>
+			<span></span>
+		</button>
+	)
 }
 
 

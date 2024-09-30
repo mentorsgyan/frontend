@@ -27,10 +27,10 @@ const PaymentPage = () => {
 	const location = useLocation();
 	const name = location.state ? location.state.data.name : '';
 	const price = location.state ? location.state.data.price : '';
-	
+	const userData = location.state ? location.state.data.userData : '';
 	// For test series data saving.
 	const phoneNumber = location.state ? location.state.data.phoneNumber : undefined;
-	
+
 	const validity = location.state ? location.state.data.validity : -1;
 	
 	// For E-Books
@@ -60,7 +60,6 @@ const PaymentPage = () => {
 		}
 		fetch(BACKEND_API + "/user/unload?phoneNumber=" + query)
 		.then((response) => response.json())
-		.then(console.log);
 		event.returnValue = '';
 	}
 	
@@ -144,7 +143,8 @@ const PaymentPage = () => {
 	const handlePayment = async () => {
 		try {
 			const data = {
-				amount: total
+				amount: total,
+				userData: userData
 			}
 			setPaymentStatus('STARTED');
 			const orderResponse = await axios.post(BACKEND_API + '/createOrder', data);

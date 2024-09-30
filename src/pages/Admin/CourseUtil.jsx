@@ -26,12 +26,10 @@ const CourseUtil = () => {
 			}
 			return module;
 		})
-		console.log("Herer");
 		setModulesList(updatedModules);
 	}
 
 	function handleLectureINputChange(moduleId, lectureId, field, value) {
-		console.log(moduleId, lectureId, field, value);
 		const updatedModules = moduleList.map((module, idx) => {
 			if (idx === moduleId) {
 				const updatedLectures = module.lectures.map((lecture, lectureIdx) => {
@@ -49,7 +47,6 @@ const CourseUtil = () => {
 
 	function deleteModule (moduleId) {
 		const updatedModules = moduleList.filter((module, idx) => idx !== moduleId);
-		console.log(updatedModules);
 		setModulesList(updatedModules);
 	};
 

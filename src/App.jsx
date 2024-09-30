@@ -68,6 +68,7 @@ const App = () => {
 		<Route path="registration/test" element = { <TestSqueeze /> }/>
 		<Route path = "test/completed" element = { <TestCompletion/> } />
 		<Route path = "test/home" element = { <TestLanding />} />
+		<Route path="/test/start/:number" element = { <Test /> }/>
 
         <Route path = "*" element = {<NotFound />} />
       </Routes>

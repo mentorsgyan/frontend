@@ -9,7 +9,6 @@ import { ImBooks } from "react-icons/im";
 * @author Mayank Shukla
 */
 const UserPurchases = ({mentorship, courses, ebook}) => {
-	console.log("Mentorship Data", mentorship);
 	return (
 		<div className="row-start-2 col-span-2 grid grid-cols-1 md-900:grid-cols-2 gap-10 my-10 items-start mx-10">
 			{/* <ServiceLists title={"Mentorship"} data={mentorships}/> */}
@@ -21,7 +20,6 @@ const UserPurchases = ({mentorship, courses, ebook}) => {
 }
 
 const UserMentorshipTile = ({mentorships}) => {
-	console.log("Mentorships: ", mentorships)
 	return (
 		<>
 			{/* common image */}
@@ -67,16 +65,14 @@ const UserMentorshipTile = ({mentorships}) => {
 }
 
 const UserEBooksTile = ({ebook}) => {
-	// console.log("Eboojks: ", ebook[0]);
 	return (
 		<>
 			{/* common image */}
 			{
 				ebook?.map((book, idx) => {
 					const purchaseDate = new Date(book.purchaseDate._seconds * 1000);
-					console.log(purchaseDate);
 					return (
-						<div className="flex gap-10 items-center rounded-3xl shadow-lg shadow-gray-500 p-6 ">
+						<div key={idx} className="flex gap-10 items-center rounded-3xl shadow-lg shadow-gray-500 p-6 ">
 							<div>
 								<ImBooks className="absolute text-5xl z-10 text-secondary"/>
 								<img src="https://www-media.discoveryeducation.com/wp-content/uploads/2024/03/de-science-hp-blob.svg" alt="" className="scale-125"/>

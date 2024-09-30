@@ -19,10 +19,8 @@ export const AuthProvider = ({ children }) => {
   const signOut = () => {
     return firebaseSignOut(auth)
     .then(() => {
-      console.log("Signed out of curr user: ", auth.currentUser);
     })
     .catch((error) => {
-      console.log("error occured. ", error);
     });
   };
 
