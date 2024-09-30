@@ -13,22 +13,21 @@ export default function TestLogin() {
 
 	async function onLoginSubmit (e) {
 		e.preventDefault();
-		const data = {phoneNumber: phoneNumber, password: password}
-		const allow = phoneNumber === "9039130180" && password === "12345678"
-		// const url = BACKEND_API + "/user/test/login";
-		// const response = await axios.post(url, data);
+		const data = {phoneNumber: phoneNumber, dob: password}
+		// const allow = phoneNumber === "9039130180" && password === "12345678"
+		const url = BACKEND_API + "/test-series/validate";
+		const response = await axios.post(url, data);
 		// console.log(response.status);
-		console.log(allow);
-		if (allow) {
+		if (response.status === 200) {
 			// Move to test page
-			navigate("/test/home");
+			navigate(`/test/home?phoneNumber=${phoneNumber}`, {state: {loggedIn: true}});
 		} else {
 			setInvalidPassword(true);
 		}
 	}
 
 	return (
-		<div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+		<div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-white">
 		  <div className="sm:mx-auto sm:w-full sm:max-w-sm">
 			<img
 			  alt="MentorsGyan"

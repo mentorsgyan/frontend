@@ -29,11 +29,12 @@ const UserForm = ({ email , squeeze = false }) => {
 
 	const handleSqueezeSubmit = async (e) => {
 		e.preventDefault();
-		await axios.post(BACKEND_API + `/user/saveUserData?testSeries=${squeeze}`, formData);
+		// await axios.post(BACKEND_API + `/user/saveUserData?testSeries=${squeeze}`, formData);
 		const data = {
 			price: 999,
 			name: 'TEST-PRELIMS-1',
-			phoneNumber: formData.phoneNumber
+			phoneNumber: formData.phoneNumber,
+			userData: formData
 		}
 		navigate("/checkout", {state: {data: data}});
 	}

@@ -13,7 +13,7 @@ const borderMap = new Map([
 	['MARKED_FOR_REVIEW', 'rounded-lg bg-yellow-400'],
 ])
 
-const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, setQuestionStatus, currentQuestion, setInstructions, setLanguage, setNavigatorOpen, timerStatus, language}) => {
+const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, setQuestionStatus, currentQuestion, setInstructions, setLanguage, setNavigatorOpen, timerStatus, language, setSelectionRequired, phoneNumber}) => {
 	const underReview = questionStatus.filter((status) => status === QuestionStatus.MARKED_FOR_REVIEW).length;
 	const submitted = questionStatus.filter((status) => status === QuestionStatus.SUBMITTED).length;
 	const unvisited = questionStatus.filter((status) => status === QuestionStatus.UNVISITED).length;
@@ -57,7 +57,7 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 	}, []);
 
 	async function handleSubmitAnswers () {
-		const response = await axios.post(BACKEND_API + "/mcq/evaluate", Array.from(userAnswers));
+		const response = await axios.post(BACKEND_API + "/saveAnswers", Array.from(userAnswers));
 		if (response.status === 200) {
 			alert("yay");
 		} else {
@@ -130,6 +130,7 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 												setQuestionStatus(copyStatus);
 											}
 											setCurrentQuestionNumber(idx);
+											setSelectionRequired(false);
 										}} className="cursor-pointer">
 											<Markers number={idx+1} status={status} selected={idx === currentQuestion}/>
 										</button>
@@ -144,15 +145,16 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 					</div>
 					
 				</DialogPanel>
-				{(isOpen || timerStatus === "EXPIRED") && <SubmitPopover submitted={submitted} visited={visited} unvisited={unvisited} underReview={underReview} closeModal={closeModal} language={currLanguage} timerStatus={timerStatus}/>}
+				{(isOpen || timerStatus === "EXPIRED") && <SubmitPopover submitted={submitted} visited={visited} unvisited={unvisited} underReview={underReview} closeModal={closeModal} language={currLanguage} timerStatus={timerStatus} userAnswers={userAnswers} phoneNumber={phoneNumber}/>}
 			</Dialog>
 		</>
 	)
 }
 
-const SubmitPopover = ({submitted, unvisited, underReview, visited, closeModal, language, timerStatus}) => {
+const SubmitPopover = ({submitted, unvisited, underReview, visited, closeModal, language, timerStatus, userAnswers, phoneNumber}) => {
 	const navigate = useNavigate();
 	async function submitTest() {
+		await axios.post(BACKEND_API + `/test-series/saveAnswers?phoneNumber=${phoneNumber}`, Array.from(userAnswers));
 		const dataToSend = {
 			submitted: submitted,
 			unvisited: unvisited, 

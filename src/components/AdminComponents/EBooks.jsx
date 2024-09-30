@@ -60,7 +60,6 @@ const EBooks = () => {
             else
                 alert("Error occured while saving E-Book ", response.status);
         } catch (error) {
-            console.log("error occurred", error);
         }
         
         
