@@ -88,7 +88,6 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 					<div className="bg-blue-50 dark:bg-gray-800 z-10 flex flex-col justify-between h-full py-4">
 						{/* Heading */}
 						<div className="flex items-center justify-between mx-4">
-							<div className="flex flex-col p-5">
 								<div className="flex gap-2 items-center md-900:mt-0 mt-10">
 									<LanguageIcon className="dark:text-white h-6"/>
 									<select value={language} onChange={(e) => updateLanguage(e)} className="text-sm">
@@ -96,14 +95,6 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 										<option value="English">English</option>
 									</select>
 								</div>
-								<div className="flex items-center mt-4">
-									<p className="dark:text-white">Marking: </p>
-									<div className="flex gap-4 ml-4">
-										<p className="bg-green-500/50 p-2 rounded-lg">+2</p>
-										<p className="bg-red-500/50 p-2 rounded-lg">-2/3</p>
-									</div>
-								</div>
-							</div>
 							<div className="flex justify-end">
 								<button
 									type="button"
@@ -128,7 +119,7 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 								<Markers number={underReview} status={QuestionStatus.MARKED_FOR_REVIEW} label={true}/>
 							</div>
 							{/* Question navigator */}
-							<div className="overflow-y-scroll grid grid-cols-3 md-900:grid-cols-4 items-start h-[300px] gap-2 border m-2 p-2">
+							<div className="overflow-y-scroll grid grid-cols-5 h-max-md:grid-cols-6 items-start h-[300px] gap-2 border m-2 p-2">
 								{
 									questionStatus.map((status, idx) => (
 										<button  key={idx} onClick={() => {
@@ -146,9 +137,9 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 								}
 							</div>
 							{/* Submit / instructions */}
-							<div className="container flex flex-col gap-5 mt-4 text-white">
-								<button className="bg-blue-400 w-full p-3 hover:bg-blue-500 rounded-md" onClick={openModal}>Submit</button>
-								<button className="bg-red-500 w-full p-3 hover:bg-red-600 rounded-md mb-2" onClick={setInstructions}>Instructions</button>
+							<div className="container flex h-md:flex-col gap-5 h-md:mt-4 items-center text-white">
+								<button className="bg-blue-400 w-full p-1 h-md:p-3 hover:bg-blue-500 rounded-md" onClick={openModal}>Submit</button>
+								<button className="bg-red-500 w-full p-1 h-md:p-3 hover:bg-red-600 rounded-md h-md:mb-2" onClick={setInstructions}>Instructions</button>
 							</div>
 					</div>
 					
@@ -240,9 +231,9 @@ export const Report = ({submitted, unvisited, underReview, visited}) => {
 
 const Markers = ({ number , status , label=false , selected = false}) => {
 	return (
-		<div className={`flex items-center gap-4 ${label ? '' : ' justify-center'} text-center`}>
-			<p className={`py-1 px-2.5 w-[50px] ${selected ? 'dark:bg-white bg-primary text-gray-600 rounded-full shadow-md dark:shadow-black' : borderMap.get(status)}`}>{number}</p>
-			<p className={`${label ? 'block' : 'hidden'} capitalize dark:text-white text-center text-sm`}>{status.toLowerCase().split('_').join(' ')}</p>
+		<div className={`flex h-max-md:text-xs items-center gap-4 ${label ? '' : ' justify-center'}`}>
+			<p className={`py-1 px-2.5 h-md:w-[50px] ${selected ? 'dark:bg-white bg-primary text-center text-gray-600 rounded-full shadow-md dark:shadow-black' : borderMap.get(status)}`}>{number}</p>
+			<p className={`${label ? 'block' : 'hidden'} capitalize dark:text-white text-sm`}>{status.toLowerCase().split('_').join(' ')}</p>
 		</div>
 	)
 }

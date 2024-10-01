@@ -13,7 +13,10 @@ export default {
 			},
 			screens: {
 				'md-900': '900px',
-				'md-1024': '1024px'
+				'md-1024': '1024px',
+				'h-md': { 'raw': '(min-height: 768px)' },
+				'h-max-md': { 'raw': '(max-height: 768px)' },
+        		'h-lg': { 'raw': '(min-height: 1024px)' },
 			},
 			colors: {
 				primary: "#fea928",

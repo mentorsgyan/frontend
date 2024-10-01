@@ -8,7 +8,7 @@ const TestCompletion = () => {
 	const receivedData = location.state || undefined;
 	const english = receivedData?.language === "English"
 	const title = english ? "Marvelous" : "अद्भुत";
-	const message = english ? "You have successfully submitted the test." : "आपने सफलतापूर्वक परीक्षण सबमिट कर दिया है"
+	const message = english ? "You have successfully submitted the test." : "आपने सफलतापूर्वक परीक्षा सबमिट कर दिया है"
 	const report = english ? "Report Card" : "रिपोर्ट कार्ड"
 	const resultMessage = english ? "Results will be published in the website. Stay tuned on our WhatsApp channel to get the latest updates" : "परिणाम वेबसाइट पर प्रकाशित किये जायेंगे। नवीनतम अपडेट पाने के लिए हमारे व्हाट्सएप चैनल पर बने रहें।";
 	const whatsappMessage = english ? "Click to join" : "क्लिक करें";
