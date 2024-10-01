@@ -144,7 +144,8 @@ const PaymentPage = () => {
 		try {
 			const data = {
 				amount: total,
-				userData: userData
+				userData: userData,
+				phoneNumber: phoneNumber
 			}
 			setPaymentStatus('STARTED');
 			const orderResponse = await axios.post(BACKEND_API + '/createOrder', data);

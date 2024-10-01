@@ -191,7 +191,7 @@ const TestInstructions = ({setInstruction, setAgreedToInstructions, agreedTo, se
 				<p className="text-center"><strong>{english ? "Maximum Marks":"अधिकतम अंक"}</strong>{' '}: 200</p>
 				<div className="dark:bg-gray-400 bg-gray-700 p-0.5 my-10"/>
 			</div>
-				<div className=" fixed bottom-0 flex flex-col gap-4 justify-center items-center w-full bg-blue-100 py-2">
+				<div className="h-md:fixed bottom-0 flex flex-col gap-4 justify-center items-center w-full bg-blue-100">
 					
 					<div className="flex flex-row justify-evenly w-full">
 						{
@@ -220,7 +220,7 @@ const TestInstructions = ({setInstruction, setAgreedToInstructions, agreedTo, se
 							<p className="text-sm font-semibold text-red-500">{english ? "Default Language" : "डिफ़ॉल्ट भाषा चुनें"}*</p>
 							<p className="text-sm">
 								{
-									english ? "Please note all questions will appear in your default language. This language can be changed for a particular question later on" : "कृपया ध्यान दें कि सभी प्रश्न आपकी डिफ़ॉल्ट भाषा में दिखाई देंगे। इस भाषा को आप किसी विशेष प्रश्न के लिए बाद में बदल सकते हैं।"
+									english ? "All questions will appear in your default language. It can be changed for a particular question later" : "सभी प्रश्न आपकी डिफ़ॉल्ट भाषा में दिखाई देंगे। आप किसी विशेष प्रश्न के लिए बाद में भाषा बदल सकते हैं।"
 								}
 							</p>
 						</div>
