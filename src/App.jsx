@@ -21,6 +21,7 @@ import TestLogin from "./pages/Test/TestLogin";
 import TestCompletion from "./pages/Test/TestCompletion";
 import UserListing from "./pages/Admin/UserListing";
 import TestLanding from "./pages/Test/TestLanding";
+import AnswerDisplay from "./pages/Test/AnswerDisplay";
 
 const App = () => {
   React.useEffect(() => {
@@ -69,6 +70,9 @@ const App = () => {
 		<Route path = "test/completed" element = { <TestCompletion/> } />
 		<Route path = "test/home" element = { <TestLanding />} />
 		<Route path="/test/start/:number" element = { <Test /> }/>
+
+		{/* Test answer */}
+		<Route path="/test/result" element = { < AnswerDisplay />}/>
 
         <Route path = "*" element = {<NotFound />} />
       </Routes>
