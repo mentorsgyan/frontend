@@ -13,7 +13,7 @@ const borderMap = new Map([
 	['MARKED_FOR_REVIEW', 'rounded-lg bg-yellow-400'],
 ])
 
-const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, setQuestionStatus, currentQuestion, setInstructions, setLanguage, setNavigatorOpen, timerStatus, language, setSelectionRequired, phoneNumber}) => {
+const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, setQuestionStatus, currentQuestion, setInstructions, setLanguage, setNavigatorOpen, timerStatus, language, setSelectionRequired, phoneNumber, setAllQuestions}) => {
 	const underReview = questionStatus.filter((status) => status === QuestionStatus.MARKED_FOR_REVIEW).length;
 	const submitted = questionStatus.filter((status) => status === QuestionStatus.SUBMITTED).length;
 	const unvisited = questionStatus.filter((status) => status === QuestionStatus.UNVISITED).length;
@@ -141,6 +141,7 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 								<button className="bg-blue-400 w-full p-1 h-md:p-3 hover:bg-blue-500 rounded-md" onClick={openModal}>Submit</button>
 								<button className="bg-red-500 w-full p-1 h-md:p-3 hover:bg-red-600 rounded-md h-md:mb-2" onClick={setInstructions}>Instructions</button>
 							</div>
+							<button className="bg-green-500 container w-full p-1 h-md:p-3 hover:bg-green-400 rounded-md h-md:mb-2" onClick={setAllQuestions}>Show All Questions</button>
 					</div>
 					
 				</DialogPanel>
@@ -231,7 +232,7 @@ export const Report = ({submitted, unvisited, underReview, visited}) => {
 
 const Markers = ({ number , status , label=false , selected = false}) => {
 	return (
-		<div className={`flex h-max-md:text-xs items-center gap-4 ${label ? '' : ' justify-center'}`}>
+		<div className={`flex h-max-md:text-xs items-center  ${label ? '' : ' justify-center'}`}>
 			<p className={`py-1 px-2.5 h-md:w-[50px] ${selected ? 'dark:bg-white bg-primary text-center text-gray-600 rounded-full shadow-md dark:shadow-black' : borderMap.get(status)}`}>{number}</p>
 			<p className={`${label ? 'block' : 'hidden'} capitalize dark:text-white text-sm`}>{status.toLowerCase().split('_').join(' ')}</p>
 		</div>

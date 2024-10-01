@@ -7,6 +7,7 @@ import { questionsEnglish, questionsHindi } from "../../utility/defaultTest";
 import { Navigate, useLocation, useParams, useSearchParams } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase.config";
+import AllQuestions from "./AllQuestions";
 
 const Test = () => {
 	const { number } = useParams();
@@ -33,6 +34,7 @@ const Test = () => {
 	const questionList = english ? questionJson.english : questionJson.hindi;
 	const question = questionList[currentQuestionIndex % questionList.length];
 	const [instructionOpen, setInstructionOpen] = useState(false);
+	const [allQuestions, setAllQuestions] = useState(false);
 	const [userResponse, setUserResponse] = useState(null);
 	const [remainingTime, setRemainingTime] = useState(7200);
 	const [isMdOrGreater, setIsMdOrGreater] = useState(false);
@@ -239,6 +241,10 @@ const Test = () => {
 	// 	return () => clearInterval(intervalId);
 	// }, []);
 
+	if (allQuestions) {
+		return (<AllQuestions questions={questionList} setAllQuestions={setAllQuestions}/>)
+	}
+
 	if (instructionOpen || !agreedToInstructions) {
 		return (
 			<>
@@ -322,6 +328,7 @@ const Test = () => {
 						setNavigatorOpen={setNavigatorOpen}
 						language={english ? "English" : "हिन्दी"}
 						setSelectionRequired={setSelectionRequired}
+						setAllQuestions={setAllQuestions}
 						phoneNumber={phoneNumber}
 						/>
 						{/* Small media question floater */}
