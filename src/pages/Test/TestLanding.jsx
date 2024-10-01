@@ -12,12 +12,6 @@ const TestLanding = () => {
 	const arr = {
 			data: {
 				mainData: [
-					{
-						primaryInfo: "छ.ग. भुगोल 1",
-						secondaryInfo: "परिचय, नामकरण सें कषि तक @ - 01/10/2024",
-						url: `/test/start/1?phoneNumber=${phoneNumber}`,
-						imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
-					},
 				],
 				componentHeading: "वर्तमान परीक्षा",
 				buttonTitle: "प्रारंभ करें"
@@ -26,13 +20,13 @@ const TestLanding = () => {
 
 	const past = {
 		mainData: [
-			// {
-			// 	primaryInfo: "छ.ग. भुगोल 1",
-			// 	secondaryInfo: "परिचय, नामकरण सें कषि तक @ - 01/10/2024",
-			// 	url: `/test/start/1?phoneNumber=${phoneNumber}`,
-			// 	urlForAnswerKey: `http://localhost:5173/test/result?phoneNumber=${phoneNumber}&testId=0110`,
-			// 	imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
-			// },
+			{
+				primaryInfo: "छ.ग. भुगोल 1",
+				secondaryInfo: "परिचय, नामकरण सें कषि तक @ - 01/10/2024",
+				url: `/test/start/1?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `http://localhost:5173/test/result?phoneNumber=${phoneNumber}&testId=0110`,
+				imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
+			},
 		],
 		componentHeading: "विगत परीक्षा",
 		buttonTitle: "प्रारंभ करें"
