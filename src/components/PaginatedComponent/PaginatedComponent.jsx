@@ -8,7 +8,7 @@ import { BsArrowRight , BsLock } from "react-icons/bs";
  * @returns 
  * @author Mayank Shukla
  */
-const PaginatedComponent = ({paginatedData, locked = false, buttonNeeded = false, valid = true}) => {
+const PaginatedComponent = ({paginatedData, locked = false, buttonNeeded = false, valid = true, subtitle = false}) => {
 
     // React router
     const navigate = useNavigate();
@@ -36,32 +36,35 @@ const PaginatedComponent = ({paginatedData, locked = false, buttonNeeded = false
                             try {
                                 const data = paginatedData.mainData[index +  itemsPerPage * (currentPage - 1)];
                                 return (<div key={data.secondaryInfo}>
-                                    <li className="flex justify-between gap-x-6 py-5">
-                                        <div className="flex min-w-0 gap-x-4">
-                                            {data.imageUrl !== undefined && <img className="h-12 w-12 flex-none rounded-full" src={data.imageUrl} alt="" />}
-                                            <div className="min-w-0 flex flex-col justify-center items-start">
-                                                <p className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-300">{data.primaryInfo}</p>
-                                                {data.secondaryInfo && <p className="mt-1 truncate text-xs leading-5 dark:text-gray-400 text-gray-500">{data.secondaryInfo}</p>}
-                                            </div>
-                                        </div>
-                                        {
-											locked ? (
-												<div className="flex items-center">
-													<BsLock className="text-xl text-secondary"/>
+									<li className="flex flex-col">
+										<div className="flex justify-between gap-x-6 py-5">
+											<div className="flex min-w-0 gap-x-4">
+												{data.imageUrl !== undefined && <img className="h-12 w-12 flex-none rounded-full" src={data.imageUrl} alt="" />}
+												<div className="min-w-0 flex flex-col justify-center items-start">
+													<p className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-300">{data.primaryInfo}</p>
+													{data.secondaryInfo && <p className="mt-1 truncate text-xs leading-5 dark:text-gray-400 text-gray-500">{data.secondaryInfo}</p>}
 												</div>
-											) : (
-												<ButtonOrATag buttonTitle={buttonTitle} url={data.url} button={buttonNeeded} valid={valid}/>
-											)
-										}
-                                        
-                                        {/* <div className="flex items-center gap-4">
-                                            <p className="hidden sm:text-center sm:block">{buttonTitle}</p>
-                                            <FaArrowRight className="text-secondary text-2xl cursor-pointer hover:scale-110 duration-200" onClick={() => {
-                                                navigate(data.primaryInfo)
-                                            }}/>
-                                        </div> */}
-
-                                    </li>
+											</div>
+											{
+												locked ? (
+													<div className="flex items-center">
+														<BsLock className="text-xl text-secondary"/>
+													</div>
+												) : (
+													<ButtonOrATag buttonTitle={buttonTitle} url={data.url} button={buttonNeeded} valid={valid}/>
+												)
+											}
+											
+											{/* <div className="flex items-center gap-4">
+												<p className="hidden sm:text-center sm:block">{buttonTitle}</p>
+												<FaArrowRight className="text-secondary text-2xl cursor-pointer hover:scale-110 duration-200" onClick={() => {
+													navigate(data.primaryInfo)
+												}}/>
+											</div> */}
+										
+										</div>
+										{subtitle && <a href={data.urlForAnswerKey} className="text-center text-secondary">Answer Key</a> }
+									</li>
                                 </div>)
                             } catch (error) {
 
