@@ -24,7 +24,7 @@ const TestLanding = () => {
 				primaryInfo: "छ.ग. भुगोल 1",
 				secondaryInfo: "परिचय, नामकरण सें कषि तक @ - 01/10/2024",
 				url: `/test/start/1?phoneNumber=${phoneNumber}`,
-				urlForAnswerKey: `http://localhost:5173/test/result?phoneNumber=${phoneNumber}&testId=0110`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0110`,
 				imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
 			},
 		],
@@ -38,7 +38,7 @@ const TestLanding = () => {
 				primaryInfo: "छ.ग. भुगोल 2",
 				secondaryInfo: `वन एवं वन्य जीव से जनगणना तक| @ - 04/10/2024`,
 				url: `/test/start/2?phoneNumber=${phoneNumber}`,
-				urlForAnswerKey: `http://localhost:5173/test/result?phoneNumber=${phoneNumber}&testId=0410`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0410`,
 				imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
 			}
 		],
