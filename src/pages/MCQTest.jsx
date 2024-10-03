@@ -143,7 +143,6 @@ const SampleTests = () => {
             primaryInfo: test.testName,
             secondaryInfo: test.testDescription,
             url: url,
-            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
           }
           testList.push(testData);
         })
