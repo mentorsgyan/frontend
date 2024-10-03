@@ -156,13 +156,15 @@ const SubmitPopover = ({submitted, unvisited, underReview, visited, closeModal, 
 	async function submitTest() {
 		await axios.post(BACKEND_API + `/test-series/saveAnswers?phoneNumber=${phoneNumber}`, Array.from(userAnswers));
 		const dataToSend = {
-			submitted: submitted,
-			unvisited: unvisited, 
-			underReview: underReview, 
-			visited: visited,
-			language: language
+			submitted,
+			unvisited, 
+			underReview, 
+			visited,
+			language,
+			userAnswers
 		}
-		navigate("/test/completed", {state: dataToSend});
+		navigate("/test/completed/2", {state: {userAnswers, language}});
+		// navigate()
 	}
 	  return (
 			<div className="fixed inset-0 flex items-center justify-center z-50">
