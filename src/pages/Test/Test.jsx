@@ -275,7 +275,7 @@ const Test = () => {
 								<div className={`md-900:mx-10 mt-10 overflow-y-scroll text-justify px-10 md-900:h-[500px] h-[500px] pb-2`}>
 									<h2 className="text-lg font-bold mb-3">{english ? "Question No. " : "प्रश्न क्रमांक "} {currentQuestionIndex + 1}</h2>
 									{
-										question.quetionDescription.split('\n').map((line, idx) => (
+										question?.quetionDescription.split('\n').map((line, idx) => (
 											<p key={idx} className={`dark:text-gray-200 text-gray-800 `}>
 												{line}
 											</p>
@@ -283,7 +283,7 @@ const Test = () => {
 									}
 									<div className="flex flex-col mt-10 gap-2 w-full">
 											{
-												question.options.map((option, idx) => (
+												question?.options.map((option, idx) => (
 													<label key={idx} className="inline-flex gap-4 px-2 py-1 items-center hover:bg-gray-200 dark:hover:bg-gray-600">
 														<input
 														type="radio"

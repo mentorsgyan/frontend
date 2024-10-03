@@ -20,7 +20,7 @@ const CourseHelper = () => {
 				</select>
 			</div>
 			<div>
-				<textarea name="description" id="" cols="70" rows="10" className="dark:bg-gray-700 my-3" placeholder="Enter course description"></textarea>
+				<textarea nme="description" id="" cols="70" rows="10" className="dark:bg-gray-700 my-3" placeholder="Enter course description"></textarea>
 			</div>
 			{/* Course module lister */}
 			<button className="font-semibold leading-6 text-primary text-lg flex gap-2 items-center">Add Module <span aria-hidden="true"><FaCirclePlus /></span></button>
