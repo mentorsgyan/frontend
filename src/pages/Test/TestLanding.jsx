@@ -25,7 +25,6 @@ const TestLanding = () => {
 				secondaryInfo: "परिचय, नामकरण सें कषि तक @ - 01/10/2024",
 				url: `/test/start/1?phoneNumber=${phoneNumber}`,
 				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0110`,
-				imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
 			},
 		],
 		componentHeading: "विगत परीक्षा",
@@ -39,7 +38,6 @@ const TestLanding = () => {
 				secondaryInfo: `वन एवं वन्य जीव से जनगणना तक| @ - 04/10/2024`,
 				url: `/test/start/2?phoneNumber=${phoneNumber}`,
 				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0410`,
-				imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg'
 			}
 		],
 		componentHeading: "आगामी परीक्षा",

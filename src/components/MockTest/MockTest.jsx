@@ -11,7 +11,6 @@ const MockTest = () => {
 
     // Data
     const MockTestData = {
-        tileImage: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Coat_of_arms_of_Chhattisgarh.svg',
         backgroundImage: 'https://cache.careers360.mobi/media/article_images/2022/3/25/How-to-attempt-your-exams-well.webp',
         highlights: [
             "इंटरएक्टिव MCQ प्रश्न",
@@ -44,9 +43,9 @@ const MockTestCard = ({MockTestData}) => {
     return (
         <div className="flex md-900:flex-row flex-col items-center justify-center gap-4 font-mukta">
             {/* Image */}
-            <div className="w-full flex justify-center">
-                <img src={MockTestData.tileImage} alt="" className="w-1/2 rounded-full shadow-2xl"/>
-            </div>
+            {/* <div className="w-full flex justify-center">
+                <img  alt="" className="w-1/2 rounded-full shadow-2xl"/>
+            </div> */}
             {/* Text Section */}
             <div className="text-justify flex flex-col gap-4">
                 <h2 className="text-2xl font-bold tracking-wider text-secondary ">अपनी परीक्षाओं के लिए अभी से तैयार हो जाइए!</h2>
