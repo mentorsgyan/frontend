@@ -80,9 +80,6 @@ const UserResponse = () => {
 		.then((response) => response.json())
 		.then((data) => {
 			setQuestionJson(data);
-			console.log(data.english[0].questionId);
-			console.log(userResponse.get(data.english[0].questionId));
-			console.log(userResponse);
 		});
 	}, [])
 

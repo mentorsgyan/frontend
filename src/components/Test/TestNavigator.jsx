@@ -56,15 +56,6 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 		};
 	}, []);
 
-	async function handleSubmitAnswers () {
-		const response = await axios.post(BACKEND_API + "/saveAnswers", Array.from(userAnswers));
-		if (response.status === 200) {
-			alert("yay");
-		} else {
-			alert("noo")
-		}
-	}
-
 	return (
 		<>
 			<button className="fixed -right-3 px-4 py-4 top-1/2 rounded-full bg-gray-200 text-gray-600" 
@@ -154,7 +145,6 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 const SubmitPopover = ({submitted, unvisited, underReview, visited, closeModal, language, timerStatus, userAnswers, phoneNumber}) => {
 	const { number } = useParams();
 	const [submitStarted, setSubmitStarted] = useState(false);
-	console.log(number);
 	const navigate = useNavigate();
 	async function submitTest() {
 		setSubmitStarted(true);
@@ -196,7 +186,7 @@ const SubmitPopover = ({submitted, unvisited, underReview, visited, closeModal, 
 					<button 
 					disabled={submitStarted}
 					onClick={submitTest}
-					className="px-4 py-2 bg-red-500 text-white rounded"
+					className={`px-4 py-2 bg-red-500 text-white rounded ${submitStarted ? 'animate-pulse' : ''}`}
 					>
 					{submitStarted ? 'Saving Answers...' : 'End Test'}
 					</button>
