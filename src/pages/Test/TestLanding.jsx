@@ -12,6 +12,12 @@ const TestLanding = () => {
 	const arr = {
 			data: {
 				mainData: [
+					{
+						primaryInfo: "छ.ग. भुगोल 2",
+						secondaryInfo: `वन एवं वन्य जीव से जनगणना तक | @ - 04/10/2024`,
+						url: `/test/start/2?phoneNumber=${phoneNumber}`,
+						urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0410&test=2`,
+					},
 				],
 				componentHeading: "वर्तमान परीक्षा",
 				buttonTitle: "प्रारंभ करें"
@@ -33,12 +39,7 @@ const TestLanding = () => {
 
 	const upcoming = {
 		mainData: [
-			{
-				primaryInfo: "छ.ग. भुगोल 2",
-				secondaryInfo: `वन एवं वन्य जीव से जनगणना तक | @ - 04/10/2024`,
-				url: `/test/start/2?phoneNumber=${phoneNumber}`,
-				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0410&test=2`,
-			},
+			
 			{
 				primaryInfo: "छीसगढ़ का भूगोल मेगा टेट",
 				secondaryInfo: `छत्तीसगढ़ भुगोल सम्पूर्ण @ - 06/10/2024`,
