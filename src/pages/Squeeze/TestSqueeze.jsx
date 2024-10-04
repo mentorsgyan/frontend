@@ -21,7 +21,6 @@ const TestSqueeze = () => {
 		.then((response) => response.json())
 		.then((data) => {
 			setTarget((prev) => prev + data);
-			console.log(data);
 		});
 	}, []);
 

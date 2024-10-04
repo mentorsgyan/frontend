@@ -39,7 +39,6 @@ const TestLanding = () => {
 
 	const upcoming = {
 		mainData: [
-			
 			{
 				primaryInfo: "छीसगढ़ का भूगोल मेगा टेट",
 				secondaryInfo: `छत्तीसगढ़ भुगोल सम्पूर्ण @ - 06/10/2024`,
