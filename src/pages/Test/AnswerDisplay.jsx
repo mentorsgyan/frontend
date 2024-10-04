@@ -17,6 +17,7 @@ const AnswerDisplay = () => {
 
 	const phoneNumber = searchParams.get('phoneNumber');
 	const testId = searchParams.get("testId");
+	const testNumber = searchParams.get("test");
 
 	const [userAnsers, setUserAnswers] = useState(undefined);
 
@@ -32,20 +33,16 @@ const AnswerDisplay = () => {
 
 	async function fetchAnswers() {
 		const data = {
-			phoneNumber, testId
+			phoneNumber, testId, testNumber
 		}
 		const response = await axios.post(BACKEND_API + "/test-series/fetchAnswers", data);
 		if (response.status === 200) {
-			setUserAnswers(response.data.userResp);
-			setEnglishQuestions(response.data.questions.englishQuestions);
-			setHindiQuestions(response.data.questions.hindiQuestions)
-			setTotalCorrect(response.data.correct);
-			setTotalIncorrect(response.data.incorrect);
-			setTotalMarks(response.data.totalMarks);
-		} else {
-			setEnglishQuestions(response.data.questions.englishQuestions);
-			setHindiQuestions(response.data.questions.hindiQuestions);
+			setTotalCorrect(response.data.score.correct);
+			setTotalIncorrect(response.data.score.incorrect);
+			setTotalMarks(response.data.score.totalMarks);
 		}
+		setEnglishQuestions(response.data.questions.englishAns);
+		setHindiQuestions(response.data.questions.hindiAns);
 	}
 
 	useEffect(() => {
@@ -53,15 +50,15 @@ const AnswerDisplay = () => {
 	}, []);
 
 	return (
-		<div className="h-screen overflow-y-scroll container dark:text-white">
-			<div className="flex gap-2 items-center mt-10">
+		<div className="h-screen overflow-y-scroll dark:text-white">
+			<div className="flex gap-2 items-center mt-10 container">
 				<LanguageIcon className="dark:text-white h-6"/>
 				<select value={english === true ? "English" : "हिन्दी"} onChange={(e) => setEnglish(e.target.value === "English")} className="text-sm dark:bg-gray-700">
 					<option value="हिन्दी">हिन्दी</option>
 					<option value="English">English</option>
 				</select>
 			</div>
-				<div className="mt-10 dark:text-black">
+				<div className="mt-10 dark:text-black container">
 					<div className="hidden md:grid grid-cols-3 items-center justify-center text-center border-2 ">
 						<h1 className="font-bold dark:border-gray-700 bg-green-200 p-2 border border-gray-200">Correct (+2)</h1>
 						<h1 className="font-bold dark:border-gray-700 bg-red-200 p-2 border border-gray-200">Incorrect(-2/3)</h1>
@@ -81,16 +78,18 @@ const AnswerDisplay = () => {
 						<h1 className="col-span-2 bg-blue-100 p-2 border-t-2 border-gray-300">Marks Obtained: {totalMarks}</h1>
 					</div>
 				</div> 
+				
 				<div className="container mt-10">
+					<h1 className="text-center font-bold text-3xl">Answer Key</h1>
 					
 					{ questions.length !== 0 && 
-						questions.map((question, idx) => (
+						questions?.map((question, idx) => (
 							<>
 								<div key={idx} className="flex gap-4 my-2 border-t-2">
 									<h1>{idx + 1}.</h1>
 									<div>
 										{
-											question?.quetionDescription.split('\n').map((line, qId) => (
+											question?.quetionDescription?.split('\n').map((line, qId) => (
 													<p key={qId} className={`dark:text-gray-200 text-gray-800 `}>
 														{line}
 													</p>
@@ -100,14 +99,14 @@ const AnswerDisplay = () => {
 								</div>
 								<div key={(idx+1) * 31} className="flex flex-col mt-10 gap-2 w-full">
 									{
-										question?.options.map((option, oidx) => {
+										question?.options?.map((option, oidx) => {
 											const qId = hindiQuestions[idx].questionId;
 											const markedCorrect = userAnsers !== undefined ? userAnsers[qId] === hindiQuestions[idx].options[oidx] || userAnsers[qId] === englishQuestions[idx].options[oidx] : false;
 											const correctAnswer = option === question.correct;
 											return (
 												<label key={oidx} className="inline-flex gap-4 px-2 py-1 items-center">
 													
-													<p className={`${correctAnswer ? 'bg-green-300 rounded-md' : ''} px-2 py-1`}>{ returnOption(oidx)}. {option}</p>
+													<p className={`${correctAnswer ? 'bg-green-300 dark:bg-green-600/70 rounded-md' : ''} px-2 py-1`}>{ returnOption(oidx)}. {option}</p>
 													{
 														markedCorrect && <p>✔</p>
 													}
