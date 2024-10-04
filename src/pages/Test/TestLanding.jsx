@@ -24,7 +24,7 @@ const TestLanding = () => {
 				primaryInfo: "छ.ग. भुगोल 1",
 				secondaryInfo: "परिचय, नामकरण सें कषि तक @ - 01/10/2024",
 				url: `/test/start/1?phoneNumber=${phoneNumber}`,
-				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0110`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0110&test=1`,
 			},
 		],
 		componentHeading: "विगत परीक्षा",
@@ -35,10 +35,23 @@ const TestLanding = () => {
 		mainData: [
 			{
 				primaryInfo: "छ.ग. भुगोल 2",
-				secondaryInfo: `वन एवं वन्य जीव से जनगणना तक| @ - 04/10/2024`,
+				secondaryInfo: `वन एवं वन्य जीव से जनगणना तक | @ - 04/10/2024`,
 				url: `/test/start/2?phoneNumber=${phoneNumber}`,
-				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0410`,
-			}
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0410&test=2`,
+			},
+			{
+				primaryInfo: "छीसगढ़ का भूगोल मेगा टेट",
+				secondaryInfo: `छत्तीसगढ़ भुगोल सम्पूर्ण @ - 06/10/2024`,
+				url: `/test/start/3?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0610&test=3`,
+			},
+			{
+				primaryInfo: "भारत भूगोल 1",
+				secondaryInfo: `स्थिति विस्तार, भूगार्भिक संरचना, मिट्टी नदी, पर्वत, सिंचाई, कृषि समसामायिक | @ - 09/10/2024`,
+				url: `/test/start/4?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0910&test=4`,
+			},
+			
 		],
 		componentHeading: "आगामी परीक्षा",
 		buttonTitle: "प्रारंभ करें"

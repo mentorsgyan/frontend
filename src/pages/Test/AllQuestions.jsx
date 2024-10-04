@@ -21,7 +21,7 @@ const AllQuestions = ({questions=[], setAllQuestions}) => {
 					{
 						questions.map((question, idx) => (
 							<>
-								<div key={idx} className="flex gap-4 my-2 border-t-2">
+								<div key={idx} className="flex gap-4 my-2 border-t-2 dark:text-gray-200">
 									<h1>{idx + 1}.</h1>
 									<div>
 										{
@@ -36,7 +36,7 @@ const AllQuestions = ({questions=[], setAllQuestions}) => {
 								<div className="flex flex-col mt-10 gap-2 w-full">
 									{
 										question.options.map((option, oidx) => (
-											<label key={oidx} className="inline-flex gap-4 px-2 py-1 items-center">
+											<label key={oidx} className="inline-flex gap-4 px-2 py-1 items-center dark:text-gray-200">
 												
 												{ returnOption(oidx)}. {option}
 											</label>

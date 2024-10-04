@@ -9,9 +9,11 @@ export default function TestLogin() {
 	const [phoneNumber, setPhoneNumber] = useState('');
 	const [password, setPassword] = useState('');
 	const [invalidPassword, setInvalidPassword] = useState(false);
+	const [loginStarted, setLoginStarted] = useState(false);
 	const navigate = useNavigate();
 
 	async function onLoginSubmit (e) {
+		setLoginStarted(true);
 		e.preventDefault();
 		const data = {phoneNumber: phoneNumber, dob: password}
 		// const allow = phoneNumber === "9039130180" && password === "12345678"
@@ -23,6 +25,7 @@ export default function TestLogin() {
 			navigate(`/test/home?phoneNumber=${phoneNumber}`, {state: {loggedIn: true}});
 		} else {
 			setInvalidPassword(true);
+			setLoginStarted(false);
 		}
 	}
 
@@ -70,37 +73,30 @@ export default function TestLogin() {
 				</div>
 			  </div>
   
-			  <div>
-				<div className="flex items-center gap-2">
-				  <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-					Password
-				  </label>
-				</div>
-				<div className="mt-2">
-				  <input
-					id="password"
-					name="password"
-					type="password"
-					required
-					
-					autoComplete="current-password"
-					value={password}
-					onChange={(e) => {setPassword(e.target.value);}}
-					className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-secondary sm:text-sm sm:leading-6"
-				  />
-				</div>
-			  </div>
+			<div className="mb-4">
+				<label htmlFor="password" className="block text-gray-700">जन्म तिथि:</label>
+				<input
+				id="password"
+				name='password'
+				value={password}
+				onChange={(e) => {setPassword(e.target.value);}}
+				type='date'
+				max={"2006-01-01"}
+				className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-secondary focus:border-secondary"
+				required
+				/>
+			</div>
   
 			  <div>
 				<button
+				disabled={loginStarted}
 					onClick={onLoginSubmit}
-				  className="flex w-full justify-center rounded-md bg-secondary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+				  className={`${loginStarted ? 'bg-primary' : ''} flex w-full justify-center rounded-md bg-secondary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary`}
 				>
-				  Sign in
+				{loginStarted ? 'Signing in...' : 'Sign in'}
 				</button>
 			  </div>
 			</div>
-			<p className="bg-white p-2 border rounded-2xl text-center mt-10 text-red-500">पासवर्ड DDMMYYYY फॉर्मेट में आपकी जन्मतिथि है। (जैसे - 24 June 2001 &rarr; 24062001</p> 
 			<p className="mt-10 text-center text-sm text-gray-500">
 			क्या आपने अभी तक पंजीकरण नहीं कराया है?{' '}
 			  <a href="/registration/test" className="font-semibold leading-6 text-secondary hover:text-primary">

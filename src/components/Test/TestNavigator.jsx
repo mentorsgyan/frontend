@@ -4,7 +4,7 @@ import axios from "axios";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import {Dialog,DialogPanel} from '@headlessui/react'
 import { LanguageIcon } from "@heroicons/react/24/solid";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const borderMap = new Map([
 	['UNVISITED', 'rounded-t-md bg-gray-300'],
@@ -152,9 +152,13 @@ const TestNavigator = ({userAnswers, setCurrentQuestionNumber, questionStatus, s
 }
 
 const SubmitPopover = ({submitted, unvisited, underReview, visited, closeModal, language, timerStatus, userAnswers, phoneNumber}) => {
+	const { number } = useParams();
+	const [submitStarted, setSubmitStarted] = useState(false);
+	console.log(number);
 	const navigate = useNavigate();
 	async function submitTest() {
-		await axios.post(BACKEND_API + `/test-series/saveAnswers?phoneNumber=${phoneNumber}`, Array.from(userAnswers));
+		setSubmitStarted(true);
+		await axios.post(BACKEND_API + `/test-series/saveAnswers?phoneNumber=${phoneNumber}&testNumber=${number}`, Array.from(userAnswers));
 		const dataToSend = {
 			submitted,
 			unvisited, 
@@ -163,7 +167,7 @@ const SubmitPopover = ({submitted, unvisited, underReview, visited, closeModal, 
 			language,
 			userAnswers
 		}
-		navigate("/test/completed/2", {state: {userAnswers, language}});
+		navigate(`/test/completed/${number}`, {state: dataToSend});
 		// navigate()
 	}
 	  return (
@@ -190,10 +194,11 @@ const SubmitPopover = ({submitted, unvisited, underReview, visited, closeModal, 
 						</button>
 					}
 					<button 
+					disabled={submitStarted}
 					onClick={submitTest}
 					className="px-4 py-2 bg-red-500 text-white rounded"
 					>
-					End Test
+					{submitStarted ? 'Saving Answers...' : 'End Test'}
 					</button>
 				</div>
 			  </div>

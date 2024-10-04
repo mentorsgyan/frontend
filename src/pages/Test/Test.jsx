@@ -68,15 +68,6 @@ const Test = () => {
 	// 	}
 	// }
 
-	// Fetching question papers & start time
-	useEffect(() => {
-		fetch(`${BACKEND_API}/test-series?testNumber=${number}`)
-		.then((response) => response.json())
-		.then((data) => {
-			setQuestionJson(data);
-		});
-	}, [])
-
 	// User fetching from e-mail
 	useEffect(() => {
         const subscription = onAuthStateChanged(auth, (user) => {
@@ -88,18 +79,62 @@ const Test = () => {
         })
         return () => subscription();
     }, [auth])
+
+	const handlePopState = (event) => {
+		// Show confirmation dialog
+		const userConfirmed = confirm("कृपया रीफ़्रेश न करें या बैक बटन न दबाएँ। आपके उत्तर सहेजे नहीं जायेंगे।");
+		
+		if (userConfirmed) {
+		  // Allow navigation (popstate is executed automatically)
+		  console.log("hello");
+		} else {
+		  // Prevent navigation by pushing the current state back
+		  console.log("hello2");
+		  // Push the same route back to "undo" the popstate
+		  history.go(1);  // Moves the user forward, effectively canceling the back navigation
+		}
+	  };
   
 	useEffect(() => {
+		// Fetching question papers & start time
+		fetch(`${BACKEND_API}/test-series?testNumber=${number}`)
+		.then((response) => response.json())
+		.then((data) => {
+			setQuestionJson(data);
+		});
+
 	  // Check the window size on initial load
 		checkWindowSize();
 		setNavigatorOpen(!isMdOrGreater);
   
 	  // Add an event listener for window resize
 		window.addEventListener('resize', checkWindowSize);
-  
+
+		const unloadCallback = (event) => {
+			
+			let interval = setInterval(() => {
+				setRemainingTime((prev) => prev - 1);
+					if (remainingTime <= 0) {
+						setTimerStatus("EXPIRED");
+						return clearInterval(interval);
+					}
+					else if (remainingTime <= 300)
+						setTimerStatus("LAST_FIVE");
+				}, 1000);
+		  event.preventDefault();
+		  event.returnValue = "कृपया रीफ़्रेश न करें या बैक बटन न दबाएँ। आपके उत्तर सहेजे नहीं जायेंगे।";
+		  return "";
+		};
+
+
+	  
+		window.addEventListener("beforeunload", unloadCallback);
+		window.addEventListener('popstate', handlePopState);
 	  // Clean up the event listener on component unmount
 		return () => {
 		window.removeEventListener('resize', checkWindowSize);
+		window.removeEventListener('popstate', handlePopState);
+		window.removeEventListener("beforeunload", unloadCallback);
 		};
 	}, []);
 	const [navigatorOpen, setNavigatorOpen] = useState(!isMdOrGreater);
@@ -207,27 +242,6 @@ const Test = () => {
 		}, 1000);
 		return () => clearInterval(interval);
 	}, [remainingTime]);
-
-	useEffect(() => {
-		const unloadCallback = (event) => {
-			
-			let interval = setInterval(() => {
-				setRemainingTime((prev) => prev - 1);
-					if (remainingTime <= 0) {
-						setTimerStatus("EXPIRED");
-						return clearInterval(interval);
-					}
-					else if (remainingTime <= 300)
-						setTimerStatus("LAST_FIVE");
-				}, 1000);
-		  event.preventDefault();
-		  event.returnValue = "";
-		  return "";
-		};
-	  
-		window.addEventListener("beforeunload", unloadCallback);
-		return () => window.removeEventListener("beforeunload", unloadCallback);
-	}, []);
 
 	// Saving answers in local storage
 	// useEffect(() => {
