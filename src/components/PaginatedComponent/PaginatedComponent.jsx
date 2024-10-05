@@ -10,9 +10,31 @@ import { BsArrowRight , BsLock } from "react-icons/bs";
  */
 const PaginatedComponent = ({paginatedData, locked = false, buttonNeeded = false, valid = true, subtitle = false}) => {
 
-    // React router
-    const navigate = useNavigate();
+	const currDate = new Date();
 
+	function getTimerLocked() {
+		if (paginatedData.componentHeading === "वर्तमान परीक्षा" && paginatedData.mainData.length === 1) {
+			const testDate = new Date(paginatedData.mainData[0].releaseDate); 
+				return currDate < testDate;
+		}
+		return false;
+	}
+
+	function getTimeDifference() {
+			const date2 = new Date(paginatedData.mainData[0].releaseDate);
+		  
+			// Calculate the difference in milliseconds
+			const differenceInMs = Math.abs(currDate - date2);
+		  
+			// Convert milliseconds to hours and minutes
+			const hours = Math.floor(differenceInMs / (1000 * 60 * 60));
+			const minutes = Math.floor((differenceInMs % (1000 * 60 * 60)) / (1000 * 60));
+			if (hours === 0)	
+				return `${minutes} मिनट में`;
+			return `${hours} घंटे ${minutes} मिनट में`;
+	}
+
+	console.log("Timer lockedL: ", getTimerLocked());
     // Tailwind properties
     const pageCommonClass = "relative inline-flex items-center px-4 py-2 text-sm";
     const pageSelectedClass = "z-10 bg-secondary text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
@@ -30,7 +52,7 @@ const PaginatedComponent = ({paginatedData, locked = false, buttonNeeded = false
             <h1 className="text-2xl font-bold tracking-tight py-5">{paginatedData.componentHeading}</h1>
             {/* Rendering data begins */}
             <div>
-                <ul role="list" className={`${locked ? 'bg-gray-100 dark:bg-gray-700 p-2 my-0.5 rounded-xl' : ''} divide-y divide-gray-100`}>
+                <ul role="list" className={`${locked || getTimerLocked() ? 'bg-gray-100 dark:bg-gray-700 p-2 my-0.5 rounded-xl' : ''} divide-y divide-gray-100`}>
                     {
                         Array.from({length: itemsPerPage}, (_, index) => {
                             try {
@@ -42,13 +64,15 @@ const PaginatedComponent = ({paginatedData, locked = false, buttonNeeded = false
 												{data.imageUrl !== undefined && <img className="h-12 w-12 flex-none rounded-full" src={data.imageUrl} alt="" />}
 												<div className="min-w-0 flex flex-col justify-center items-start">
 													<p className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-300">{data.primaryInfo}</p>
-													{data.secondaryInfo && <p className="mt-1 truncate text-xs leading-5 dark:text-gray-400 text-gray-500">{data.secondaryInfo}</p>}
+													{data.secondaryInfo && <p className="mt-1 text-xs leading-5 dark:text-gray-400 text-gray-500">{data.secondaryInfo}</p>}
 												</div>
 											</div>
 											{
-												locked ? (
+												locked || getTimerLocked() ? (
 													<div className="flex items-center">
-														<BsLock className="text-xl text-secondary"/>
+														{
+															getTimerLocked() ? (<p className="text-secondary">{getTimeDifference()}!</p>) : (<BsLock className="text-xl text-secondary"/>)
+														}
 													</div>
 												) : (
 													<ButtonOrATag buttonTitle={buttonTitle} url={data.url} button={buttonNeeded} valid={valid}/>
