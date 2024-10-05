@@ -23,6 +23,7 @@ import UserListing from "./pages/Admin/UserListing";
 import TestLanding from "./pages/Test/TestLanding";
 import AnswerDisplay from "./pages/Test/AnswerDisplay";
 import UserResponse from "./pages/Test/UserResponse";
+import RankList from "./pages/Test/RankList";
 
 const App = () => {
   React.useEffect(() => {
@@ -75,6 +76,7 @@ const App = () => {
 
 		{/* Test answer */}
 		<Route path="/test/result" element = { < AnswerDisplay />}/>
+		<Route path="/test/ranks/" element = { < RankList />}/>
 
         <Route path = "*" element = {<NotFound />} />
       </Routes>

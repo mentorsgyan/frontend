@@ -12,12 +12,7 @@ const TestLanding = () => {
 	const arr = {
 			data: {
 				mainData: [
-					{
-						primaryInfo: "छ.ग. भुगोल 2",
-						secondaryInfo: `वन एवं वन्य जीव से जनगणना तक | @ - 04/10/2024`,
-						url: `/test/start/2?phoneNumber=${phoneNumber}`,
-						urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0410&test=2`,
-					},
+					
 				],
 				componentHeading: "वर्तमान परीक्षा",
 				buttonTitle: "प्रारंभ करें"
@@ -26,6 +21,12 @@ const TestLanding = () => {
 
 	const past = {
 		mainData: [
+			{
+				primaryInfo: "छ.ग. भुगोल 2",
+				secondaryInfo: `वन एवं वन्य जीव से जनगणना तक | @ - 04/10/2024`,
+				url: `/test/start/2?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0410&test=2`,
+			},
 			{
 				primaryInfo: "छ.ग. भुगोल 1",
 				secondaryInfo: "परिचय, नामकरण सें कषि तक @ - 01/10/2024",

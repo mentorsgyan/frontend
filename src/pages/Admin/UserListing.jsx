@@ -7,7 +7,6 @@ const UserListing = () => {
 	const [collection, setCollection] = useState(UploadDirectory.TEST_SERIES_ENROLLMENT);
 
 	useEffect(() => {
-		console.log("Triggered");
 		fetch(BACKEND_API + "/user/getAllUsers?collection=" + collection)
 		.then((response) => response.json())
 		.then((data) => setUserData(data))

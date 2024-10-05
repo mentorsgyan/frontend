@@ -86,10 +86,8 @@ const Test = () => {
 		
 		if (userConfirmed) {
 		  // Allow navigation (popstate is executed automatically)
-		  console.log("hello");
 		} else {
 		  // Prevent navigation by pushing the current state back
-		  console.log("hello2");
 		  // Push the same route back to "undo" the popstate
 		  history.go(1);  // Moves the user forward, effectively canceling the back navigation
 		}
