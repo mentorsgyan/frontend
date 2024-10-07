@@ -12,13 +12,6 @@ const TestLanding = () => {
 
 	const present = {
 		mainData: [
-			{
-				primaryInfo: "छीसगढ़ का भूगोल मेगा टेट",
-				secondaryInfo: `छत्तीसगढ़ भुगोल सम्पूर्ण @ - 06/10/2024`,
-				url: `/test/start/3?phoneNumber=${phoneNumber}`,
-				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0610&test=3`,
-				releaseDate: "2024-10-06T02:30:00.000Z",
-			},
 		],
 		componentHeading: "वर्तमान परीक्षा",
 		buttonTitle: "प्रारंभ करें"
@@ -26,6 +19,13 @@ const TestLanding = () => {
 
 	const past = {
 		mainData: [
+			{
+				primaryInfo: "छीसगढ़ का भूगोल मेगा टेट",
+				secondaryInfo: `छत्तीसगढ़ भुगोल सम्पूर्ण @ - 06/10/2024`,
+				url: `/test/start/3?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0610&test=3`,
+				releaseDate: "2024-10-06T02:30:00.000Z",
+			},
 			{
 				primaryInfo: "छ.ग. भुगोल 2",
 				secondaryInfo: `वन एवं वन्य जीव से जनगणना तक | @ - 04/10/2024`,
