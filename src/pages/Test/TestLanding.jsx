@@ -13,11 +13,11 @@ const TestLanding = () => {
 	const present = {
 		mainData: [
 			{
-				primaryInfo: "भारत भूगोल 1",
-				secondaryInfo: `स्थिति विस्तार, भूगार्भिक संरचना, मिट्टी नदी, पर्वत, सिंचाई, कृषि समसामायिक | @ - 09/10/2024`,
-				url: `/test/start/4?phoneNumber=${phoneNumber}`,
-				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0910&test=4`,
-				releaseDate: "2024-10-09T02:30:00.000Z",
+				primaryInfo: "भारत भूगोल 2",
+				secondaryInfo: `वन एवं वन्य जीव, खनिज, उद्योग, ऊर्जा, परिवहन, जनगणना आदि | @ - 11/10/2024`,
+				url: `/test/start/5?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=1110&test=5`,
+				releaseDate: "2024-10-11T02:30:00.000Z",
 			},
 		],
 		componentHeading: "वर्तमान परीक्षा",
@@ -26,6 +26,13 @@ const TestLanding = () => {
 
 	const past = {
 		mainData: [
+			{
+				primaryInfo: "भारत भूगोल 1",
+				secondaryInfo: `स्थिति विस्तार, भूगार्भिक संरचना, मिट्टी नदी, पर्वत, सिंचाई, कृषि समसामायिक | @ - 09/10/2024`,
+				url: `/test/start/4?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0910&test=4`,
+				releaseDate: "2024-10-09T02:30:00.000Z",
+			},
 			{
 				primaryInfo: "छीसगढ़ का भूगोल मेगा टेट",
 				secondaryInfo: `छत्तीसगढ़ भुगोल सम्पूर्ण @ - 06/10/2024`,
@@ -55,13 +62,7 @@ const TestLanding = () => {
 
 	const upcoming = {
 		mainData: [
-			{
-				primaryInfo: "भारत भूगोल 2",
-				secondaryInfo: `वन एवं वन्य जीव, खनिज, उद्योग, ऊर्जा, परिवहन, जनगणना आदि | @ - 11/10/2024`,
-				url: `/test/start/5?phoneNumber=${phoneNumber}`,
-				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=1110&test=5`,
-				releaseDate: "2024-10-11T02:30:00.000Z",
-			},
+			
 			{
 				primaryInfo: "भारत भूगोल का मेगा टेस्ट",
 				secondaryInfo: `भारत भुगोल सम्पूर्ण | @ - 13/10/2024`,
