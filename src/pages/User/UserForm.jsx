@@ -16,6 +16,8 @@ const UserForm = ({ email , squeeze = false }) => {
         city: hindiCities[0],
 		medium: "हिन्दी"
     });
+
+	const [uploaded, setUploaded] = useState(false);
     
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -41,21 +43,18 @@ const UserForm = ({ email , squeeze = false }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-			const userDataResponse = await axios.post(BACKEND_API + `/user/saveUserData?testSeries=${squeeze}`, formData);
-            if (userDataResponse.status === 201) {
-				alert("Your data is saved");
-			} else {
-				alert("Cannot save your data. Please follow the onscreen instructions.");
-			}
-		} catch (error) {
-			alert("Some error occurred. Please follow the onscreen instructions.");
+		if (uploaded === true) {
+			history.go(-1);
+			return;
 		}
-		history.back();
+		const response = await axios.post(BACKEND_API + `/user/saveUserData?testSeries=${squeeze}`, formData);
+		if (response.status === 201)
+			setUploaded(true);
+		history.go(-1);
     }
-    
+
     return (
-        <form onSubmit={squeeze ? handleSqueezeSubmit : handleSubmit} className="mt-10 max-w-lg mx-auto p-4 bg-white dark:bg-gray-700  shadow-md rounded-md">
+        <form onSubmit={squeeze ? handleSqueezeSubmit : handleSubmit} method='POST' className="mt-10 max-w-lg mx-auto p-4 bg-white dark:bg-gray-700  shadow-md rounded-md">
             {/* Personal Info */}
             <div className=' flex flex-col sm:flex-row gap-4 dark:text-white'>
                 <div className="mb-4">
@@ -212,7 +211,9 @@ const UserForm = ({ email , squeeze = false }) => {
 						type="submit"
 						className="w-full text-xl font-bold bg-secondary text-white py-2 px-4 rounded-md shadow-sm hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary"
 						>
-						जमा करें
+						{
+							uploaded ? 'खरीदारी जारी रखें' : 'जमा करें'
+						}
 						</button>
 					)
 				}

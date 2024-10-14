@@ -42,7 +42,7 @@ const PaginatedComponent = ({paginatedData, locked = false, buttonNeeded = false
     
     // Pagination properties
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = Math.max(Math.floor(paginatedData.mainData.length / 2) , Math.min(paginatedData.mainData.length, 10));
+    const itemsPerPage = Math.max(Math.floor(paginatedData.mainData.length / 2) , Math.min(paginatedData.mainData.length, 4));
     const totalPages = Math.ceil(paginatedData.mainData.length / itemsPerPage);
 
     const buttonTitle = paginatedData.buttonTitle;

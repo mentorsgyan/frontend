@@ -8,7 +8,7 @@ const MentorshipSM = ({MentorshipPrograms}) => {
         <div className="grid md-900:grid-cols-3 grid-cols-1 gap-16 p-5">
             {
                 MentorshipPrograms.map(program => (
-                    <MentorshipCard program={program} key={program.id}/>
+                    <MentorshipCard program={program}/>
                 ))
             }
         </div>
@@ -25,7 +25,7 @@ const MentorshipCard = ({program}) => {
 	    validity: program.renewal
     }
     return (
-        <div /*data-aos = "flip-down" data-aos-easing="ease-out-cubic" data-aos-duration="8000" */ className="hover:scale-105 duration-200">
+        <div /*data-aos = "flip-down" data-aos-easing="ease-out-cubic" data-aos-duration="8000" */ key={program.id} className="hover:scale-105 duration-200">
             {/* New arrival banner */}
             {/* <NewArrivalBanner /> */}
 
