@@ -12,7 +12,6 @@ const TestLanding = () => {
 
 	const present = {
 		mainData: [
-			
 		],
 		componentHeading: "वर्तमान परीक्षा",
 		buttonTitle: "प्रारंभ करें"
