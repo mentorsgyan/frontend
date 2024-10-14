@@ -12,13 +12,7 @@ const TestLanding = () => {
 
 	const present = {
 		mainData: [
-			{
-				primaryInfo: "भारत भूगोल का मेगा टेस्ट",
-				secondaryInfo: `भारत भुगोल सम्पूर्ण | @ - 13/10/2024`,
-				url: `/test/start/6?phoneNumber=${phoneNumber}`,
-				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=1310&test=6`,
-				releaseDate: "2024-10-13T02:30:00.000Z",
-			},
+			
 		],
 		componentHeading: "वर्तमान परीक्षा",
 		buttonTitle: "प्रारंभ करें"
@@ -26,6 +20,13 @@ const TestLanding = () => {
 
 	const past = {
 		mainData: [
+			{
+				primaryInfo: "भारत भूगोल का मेगा टेस्ट",
+				secondaryInfo: `भारत भुगोल सम्पूर्ण | @ - 13/10/2024`,
+				url: `/test/start/6?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=1310&test=6`,
+				releaseDate: "2024-10-13T02:30:00.000Z",
+			},
 			{
 				primaryInfo: "भारत भूगोल 2",
 				secondaryInfo: `वन एवं वन्य जीव, खनिज, उद्योग, ऊर्जा, परिवहन, जनगणना आदि | @ - 11/10/2024`,
