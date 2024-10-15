@@ -13,9 +13,8 @@ const AdminControls = () => {
     return (
         <div className="font-mukta">
 			<AdminNavbar />
-
-			<button className="mt-32 mx-20 bg-secondary w-fit p-5" onClick={() => {navigate("/test/start/5?phoneNumber=9179263530", {state: {valid: true}})}}>Go to test 1</button>
-			<button className="mt-32 mx-20 bg-secondary w-fit p-5" onClick={() => {navigate("/test/result?phoneNumber=9179263530&testId=1310&test=5", {state: {valid: true}})}}>Go to test 1 Answer Key</button>
+			<button className="mt-32 mx-20 bg-secondary w-fit p-5" onClick={() => {navigate("/test/start/7?phoneNumber=9179263530", {state: {valid: true}})}}>Go to test 1</button>
+			<button className="mt-32 mx-20 bg-secondary w-fit p-5" onClick={() => {navigate("/test/result?phoneNumber=9179263530&testId=1610&test=7", {state: {valid: true}})}}>Go to test 1 Answer Key</button>
 			
 			{/* Mentorship updating section */}
 			<AdminMentorship />
