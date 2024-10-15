@@ -44,7 +44,7 @@ const PaymentPage = () => {
 	const [total, setTotal] = useState(price);
 	const [paymentStatus, setPaymentStatus] = useState('NOT_STARTED');  // NOT_STARTED, STARTED, SUCCESSFUL, FAILED, WAITING
 	const [activeCoupons, setActiveCoupons] = useState([]);
-	const [userDataFetchStatus, setUserDataFetchStatus] = useState('FOUND'); // WAITING, FOUND, NOT_FOUND
+	const [userDataFetchStatus, setUserDataFetchStatus] = useState('WAITING'); // WAITING, FOUND, NOT_FOUND
 	
 	const handleCouponChange = (e) => {
 		setCoupon(e.target.value);
@@ -62,36 +62,8 @@ const PaymentPage = () => {
 		.then((response) => response.json())
 		event.returnValue = '';
 	}
-	
-	useEffect(() => {
-		fetch(BACKEND_API + "/getCoupons")
-		.then(response => {
-			return response.json()
-		})
-		.then(data => {
-			setActiveCoupons(data);
-		})
-	}, []);
-	
+
 	const navigate = useNavigate();
-	
-	useEffect(() => {
-		const handlePopState = (event) => {
-			const confirmLeave = window.confirm('Are you sure you want to leave this page?');
-			if (!confirmLeave) {
-				// Prevent navigation by pushing the current location again
-				navigate(window.location.pathname, { replace: true });
-			} else {
-				handlePageUnloading();
-			}
-		};
-		
-		window.addEventListener('popstate', handlePopState);
-		
-		return () => {
-			window.removeEventListener('popstate', handlePopState);
-		};
-	}, [navigate]);
 	
 	async function handleUserExists() {
 		fetch(BACKEND_API + "/user/fetchUserData/" + auth.currentUser.email)
@@ -110,6 +82,33 @@ const PaymentPage = () => {
 	}
 	
 	useEffect(() => {
+		const handlePopState = (event) => {
+			const confirmLeave = window.confirm('Are you sure you want to leave this page?');
+			if (!confirmLeave) {
+				// Prevent navigation by pushing the current location again
+				navigate(window.location.pathname, { replace: true });
+			} else {
+				handlePageUnloading();
+			}
+		};
+		
+		window.addEventListener('popstate', handlePopState);
+		
+		return () => {
+			window.removeEventListener('popstate', handlePopState);
+		};
+	}, [navigate]);
+
+	useEffect(() => {
+
+		fetch(BACKEND_API + "/getCoupons")
+		.then(response => {
+			return response.json()
+		})
+		.then(data => {
+			setActiveCoupons(data);
+		})
+
 		const subscribe = onAuthStateChanged(auth, (user) => {
 			if (user) {
 				handleUserExists();
