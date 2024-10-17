@@ -12,13 +12,6 @@ const TestLanding = () => {
 
 	const present = {
 		mainData: [
-			{
-				primaryInfo: "छ.ग. जनजाति",
-				secondaryInfo: `संपूर्ण जनजाति समुदाय एवं उनकी संस्कृति | @ - 16/10/2024`,
-				url: `/test/start/7?phoneNumber=${phoneNumber}`,
-				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=1610&test=7`,
-				releaseDate: "2024-10-16T02:30:00.000Z",
-			},
 		],
 		componentHeading: "वर्तमान परीक्षा",
 		buttonTitle: "प्रारंभ करें"
@@ -26,6 +19,13 @@ const TestLanding = () => {
 
 	const past = {
 		mainData: [
+			{
+				primaryInfo: "छ.ग. जनजाति",
+				secondaryInfo: `संपूर्ण जनजाति समुदाय एवं उनकी संस्कृति | @ - 16/10/2024`,
+				url: `/test/start/7?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=1610&test=7`,
+				releaseDate: "2024-10-16T02:30:00.000Z",
+			},
 			{
 				primaryInfo: "भारत भूगोल का मेगा टेस्ट",
 				secondaryInfo: `भारत भुगोल सम्पूर्ण | @ - 13/10/2024`,
