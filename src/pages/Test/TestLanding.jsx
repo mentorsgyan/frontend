@@ -11,13 +11,6 @@ const TestLanding = () => {
 
 	const present = {
 		mainData: [
-			{
-				primaryInfo: "छ.ग. की कला संस्कृति",
-				secondaryInfo: `छत्तीसगढ़ी लोकगीत, लोकनाट्य, पर्व एवं त्यौहार इत्यादि | @ - 19/10/2024`,
-				url: `/test/start/8?phoneNumber=${phoneNumber}`,
-				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=1910&test=8`,
-				releaseDate: "2024-10-19T02:30:00.000Z",
-			},
 		],
 		componentHeading: "वर्तमान परीक्षा",
 		buttonTitle: "प्रारंभ करें"
@@ -25,6 +18,13 @@ const TestLanding = () => {
 
 	const past = {
 		mainData: [
+			{
+				primaryInfo: "छ.ग. की कला संस्कृति",
+				secondaryInfo: `छत्तीसगढ़ी लोकगीत, लोकनाट्य, पर्व एवं त्यौहार इत्यादि | @ - 19/10/2024`,
+				url: `/test/start/8?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=1910&test=8`,
+				releaseDate: "2024-10-19T02:30:00.000Z",
+			},
 			{
 				primaryInfo: "छ.ग. जनजाति",
 				secondaryInfo: `संपूर्ण जनजाति समुदाय एवं उनकी संस्कृति | @ - 16/10/2024`,
