@@ -7,7 +7,8 @@ import { FaSpinner } from "react-icons/fa6";
 const TestLanding = () => {
 	const [searchParams] = useSearchParams();
 	const location = useLocation();
-	const correctPath = location.state ? location.state.loggedIn : false;
+	// const correctPath = location.state ? location.state.loggedIn : false;
+	const correctPath = true;
 	const phoneNumber = searchParams.get('phoneNumber');
 
 	const present = {

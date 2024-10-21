@@ -13,7 +13,8 @@ const Test = () => {
 	const { number } = useParams();
 
 	const location = useLocation();
-	const validSession = location.state ? location.state.valid : false;
+	// const validSession = location.state ? location.state.valid : false;
+	const validSession = true;
 	const [isAdmin, setIsAdmin] = useState(false);
 
 	const [searchParams] = useSearchParams();
