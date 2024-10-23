@@ -39,4 +39,4 @@ const TestCompletion = () => {
 	)
 }
 
-export default TestCompletion;
+export default React.memo(TestCompletion);

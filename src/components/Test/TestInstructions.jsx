@@ -3,11 +3,9 @@ import axios from "axios";
 import React, { useState } from "react";
 import { BACKEND_API } from "../../utility/Constants";
 
-const TestInstructions = ({setInstruction, setAgreedToInstructions, agreedTo, setLanguage, language, phoneNumber}) => {
+const TestInstructions = ({state, dispatch}) => {
 	const [isChecked, setIsChecked] = useState(false);
-	const [currLanguage, setCurrLanguage] = useState(language);
-	const english = currLanguage === "English";
-	const instruction = english ? "INSTRUCTIONS" : "निर्देश";
+	const instruction = state.english ? "INSTRUCTIONS" : "निर्देश";
 
 	const instructionHindi = [
 		{
@@ -135,11 +133,12 @@ const TestInstructions = ({setInstruction, setAgreedToInstructions, agreedTo, se
 		}
 	]
 	
-	const instructions = english ? instructionsEnglish : instructionHindi;
+	const instructions = state.english ? instructionsEnglish : instructionHindi;
 
 	const updateLanguage = (e) => {
-		setLanguage(e.target.value === "English");
-		setCurrLanguage(e.target.value);
+		// setLanguage(e.target.value === "English");
+		dispatch({type: "LANGUAGE"})
+		// setCurrLanguage(e.target.value);
 	}
 	const handleCheckboxChange = (event) => {
 		setIsChecked(event.target.checked);
@@ -156,8 +155,12 @@ const TestInstructions = ({setInstruction, setAgreedToInstructions, agreedTo, se
 	}
 
 	function handleContinue() {
-		setInstruction(false);
-		setAgreedToInstructions(true);
+		// setInstruction(false);
+		if (state.agreedToInstructions === false) {
+			dispatch({type: "AGREED_TO_INSTRUCTIONS"});
+			dispatch({type: "REMAINING_TIME", payload: 7200})
+		}
+		dispatch({type: "TOGGLE_INSTRUCTIONS"});
 	}
 
 	return (
@@ -187,15 +190,15 @@ const TestInstructions = ({setInstruction, setAgreedToInstructions, agreedTo, se
 					))
 				}
 				<div className="dark:bg-gray-400 bg-gray-700 p-0.5 mb-10 mt-4"/>
-				<p className="text-center"><strong>{english ? "Duration":"समयावधि"}</strong>{' '}: 120 {english ? "Minute":"मिनट"}</p>
-				<p className="text-center"><strong>{english ? "Maximum Marks":"अधिकतम अंक"}</strong>{' '}: 200</p>
+				<p className="text-center"><strong>{state.english ? "Duration":"समयावधि"}</strong>{' '}: 120 {state.english ? "Minute":"मिनट"}</p>
+				<p className="text-center"><strong>{state.english ? "Maximum Marks":"अधिकतम अंक"}</strong>{' '}: 200</p>
 				<div className="dark:bg-gray-400 bg-gray-700 p-0.5 my-10"/>
 			</div>
 				<div className="h-md:fixed bottom-0 flex flex-col gap-4 justify-center items-center w-full bg-blue-100">
 					
 					<div className="flex flex-row justify-evenly w-full">
 						{
-							!agreedTo &&
+							!state.agreedToInstructions &&
 							<div className="flex flex-col w-2/5 justify-center">
 								<label className="text-red-500 flex items-center">
 									<input
@@ -204,33 +207,33 @@ const TestInstructions = ({setInstruction, setAgreedToInstructions, agreedTo, se
 										onChange={handleCheckboxChange}
 										className="mr-2"
 									/>
-									<p className="font-bold">{english ? "Declaration" : "घोषणा"}*</p>
+									<p className="font-bold">{state.english ? "Declaration" : "घोषणा"}*</p>
 								</label>
 								
-								<p className="text-sm text-justify">{english ? "I have read all the instructions carefully and have understood them. I agree not to cheat or use unfair means in this examination. I understand that using unfair means of any sort will lead to my immediate disqualification" : "मैंने सभी निर्देशों को ध्यानपूर्वक पढ़ा और समझ लिया है। मैं यह वचन देता हूँ कि परीक्षा में नकल या अनुचित साधनों का उपयोग नहीं करूँगा।"}</p>
+								<p className="text-sm text-justify">{state.english ? "I have read all the instructions carefully and have understood them. I agree not to cheat or use unfair means in this examination. I understand that using unfair means of any sort will lead to my immediate disqualification" : "मैंने सभी निर्देशों को ध्यानपूर्वक पढ़ा और समझ लिया है। मैं यह वचन देता हूँ कि परीक्षा में नकल या अनुचित साधनों का उपयोग नहीं करूँगा।"}</p>
 							</div>
 						}
 						<div className="flex flex-col justify-center w-1/3">
 							<div className="flex gap-2 items-center md-900:mt-0 mt-10">
-								<select value={currLanguage} onChange={(e) => updateLanguage(e)} className="text-sm">
+								<select value={state.english ? "English" : "हिन्दी"} onChange={(e) => updateLanguage(e)} className="text-sm">
 									<option value="हिन्दी">हिन्दी</option>
 									<option value="English">English</option>
 								</select>
 							</div>
-							<p className="text-sm font-semibold text-red-500">{english ? "Default Language" : "डिफ़ॉल्ट भाषा चुनें"}*</p>
+							<p className="text-sm font-semibold text-red-500">{state.english ? "Default Language" : "डिफ़ॉल्ट भाषा चुनें"}*</p>
 							<p className="text-sm">
 								{
-									english ? "All questions will appear in your default language. It can be changed for a particular question later" : "सभी प्रश्न आपकी डिफ़ॉल्ट भाषा में दिखाई देंगे। आप किसी विशेष प्रश्न के लिए बाद में भाषा बदल सकते हैं।"
+									state.english ? "All questions will appear in your default language. It can be changed for a particular question later" : "सभी प्रश्न आपकी डिफ़ॉल्ट भाषा में दिखाई देंगे। आप किसी विशेष प्रश्न के लिए बाद में भाषा बदल सकते हैं।"
 								}
 							</p>
 						</div>
 						
 					</div>
-					<button className="bg-primary text-white p-3 rounded-md hover:bg-secondary" onClick={handleContinue} disabled={!agreedTo && !isChecked}>Continue</button>
+					<button className="bg-primary text-white p-3 rounded-md hover:bg-secondary" onClick={handleContinue} disabled={!state.agreedToInstructions && !isChecked}>Continue</button>
 				</div>
 
 		</div>
 	)
 }
 
-export default TestInstructions;
+export default React.memo(TestInstructions);
