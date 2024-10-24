@@ -18,7 +18,6 @@ import CourseUtil from "./pages/Admin/CourseUtil";
 import TestSqueeze from "./pages/Squeeze/TestSqueeze";
 import Test from "./pages/Test/Test";
 import TestLogin from "./pages/Test/TestLogin";
-import TestCompletion from "./pages/Test/TestCompletion";
 import UserListing from "./pages/Admin/UserListing";
 import TestLanding from "./pages/Test/TestLanding";
 import AnswerDisplay from "./pages/Test/AnswerDisplay";

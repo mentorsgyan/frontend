@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import PaginatedComponent from "../../components/PaginatedComponent/PaginatedComponent";
 import { Navigate, useLocation, useSearchParams } from "react-router-dom";
@@ -11,7 +11,13 @@ const TestLanding = () => {
 
 	const present = {
 		mainData: [
-			
+			{
+				primaryInfo: "भारत का प्राचीन इतिहास ",
+				secondaryInfo: `प्रागैतिहासिक, सिंधूघाटी, वैदिक सभ्यता, बौद्ध, जैन, मौर्य, गुप्त साम्राज्य तक | @ - 25/10/2024`,
+				url: `/test/start/10?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=2510&test=10`,
+				releaseDate: "2024-10-25T02:30:00.000Z",
+			},
 		],
 		componentHeading: "वर्तमान परीक्षा",
 		buttonTitle: "प्रारंभ करें"
@@ -91,11 +97,18 @@ const TestLanding = () => {
 	const upcoming = {
 		mainData: [
 			{
-				primaryInfo: "भारत का प्राचीन इतिहास ",
-				secondaryInfo: `प्रागैतिहासिक, सिंधूघाटी, वैदिक सभ्यता, बौद्ध, जैन, मौर्य, गुप्त साम्राज्य तक | @ - 25/10/2024`,
-				url: `/test/start/10?phoneNumber=${phoneNumber}`,
-				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=25510&test=7`,
-				releaseDate: "2024-10-25T02:30:00.000Z",
+				primaryInfo: "भारत का मध्यकालीन इतिहास ",
+				secondaryInfo: `विदेशी आक्रमण, दिल्ली सल्तनत, सूफी भक्ति आंदोलन, मुगलकाल, मराठा तक | @ - 28/10/2024`,
+				url: `/test/start/11?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=2810&test=11`,
+				releaseDate: "2024-10-28T02:30:00.000Z",
+			},
+			{
+				primaryInfo: "भारत का मध्यकालीन इतिहास ",
+				secondaryInfo: `विदेशी आक्रमण, दिल्ली सल्तनत, सूफी भक्ति आंदोलन, मुगलकाल, मराठा तक | @ - 03/11/2024`,
+				url: `/test/start/12?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0311&test=12`,
+				releaseDate: "2024-11-03T02:30:00.000Z",
 			},
 		],
 		componentHeading: "आगामी परीक्षा",
