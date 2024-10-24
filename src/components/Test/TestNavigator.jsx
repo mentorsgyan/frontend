@@ -162,7 +162,7 @@ const SubmitPopover = ({submitted, unvisited, underReview, visited, closeModal, 
 		}
 		navigate(`/test/completed/${number}`, {state: dataToSend});
 	}
-	  return React.memo(
+	  return (
 			<div className="fixed inset-0 flex items-center justify-center z-50">
 			  {/* Backdrop */}
 			  <div 
@@ -199,7 +199,7 @@ const SubmitPopover = ({submitted, unvisited, underReview, visited, closeModal, 
 }
 
 export const Report = ({submitted, unvisited, underReview, visited}) => {
-	return React.memo(
+	return (
 		<>
 			<div className="md-900:grid grid-cols-5 text-center my-4 hidden bg-white">
 				<h1 className="bg-blue-100 p-2 font-semibold">Total Questions</h1>
