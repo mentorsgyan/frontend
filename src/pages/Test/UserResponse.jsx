@@ -142,4 +142,4 @@ const UserResponse = () => {
 	)
 }
 
-export default UserResponse;
+export default React.memo(UserResponse);

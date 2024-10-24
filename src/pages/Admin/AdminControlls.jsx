@@ -19,6 +19,8 @@ const AdminControls = () => {
 					<option value="-">Please select from below</option>
 					<option value="9-2210">22/10</option>
 					<option value="10-2510">25/10</option>
+					<option value="11-2810">28/10</option>
+					<option value="12-0311">03/11</option>
 				</select>
 				<button className=" bg-green-300 w-fit p-5 rounded-2xl" 
 				onClick={() => {

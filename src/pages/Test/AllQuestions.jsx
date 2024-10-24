@@ -52,4 +52,4 @@ const AllQuestions = ({questions=[], setAllQuestions}) => {
 	)
 }
 
-export default AllQuestions;
+export default React.memo(AllQuestions);

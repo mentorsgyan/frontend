@@ -33,7 +33,6 @@ const PaginatedComponent = ({paginatedData, locked = false, buttonNeeded = false
 				return `${minutes} मिनट में`;
 			return `${hours} घंटे ${minutes} मिनट में`;
 	}
-
     // Tailwind properties
     const pageCommonClass = "relative inline-flex items-center px-4 py-2 text-sm";
     const pageSelectedClass = "z-10 bg-secondary text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
