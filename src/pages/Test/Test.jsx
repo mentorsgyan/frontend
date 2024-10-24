@@ -9,11 +9,11 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase.config";
 import AllQuestions from "./AllQuestions";
 
-const Test2 = () => {
+const Test = () => {
 	const { number } = useParams();
 
 	const location = useLocation();
-	const validSession = location.state ? location.state.valid : false;
+	const validSession = location.state ? location.state.valid : false || window.location.pathname.endsWith("/test/onboarding");
 	const [isAdmin, setIsAdmin] = useState(false);
 
 	const [searchParams] = useSearchParams();
@@ -142,10 +142,6 @@ const Test2 = () => {
 
 	const [state, dispatch] = useReducer(windowReducer, windowState);
 
-	if (window.location.pathname.endsWith("/test/onboarding")) {
-		dispatch({type: "QUESTION_JSON", payload: {english: questionsEnglish, hindi: questionsHindi}});
-	}
-
 	const questionList = useMemo(() => {return state.english ? state.questionJson.english : state.questionJson.hindi}, [state.english, state.questionJson]);
 	const question = useMemo(() => {return questionList[state.currentQuestionIndex]}, [state.currentQuestionIndex, questionList]);
 
@@ -185,11 +181,17 @@ const Test2 = () => {
   
 	useEffect(() => {
 		// Fetching question papers & start time
-		fetch(`${BACKEND_API}/test-series?testNumber=${number}`)
-		.then((response) => response.json())
-		.then((data) => {
-			dispatch({type: "QUESTION_JSON", payload: data})
-		});
+		if (window.location.pathname.endsWith("/test/onboarding")) {
+			dispatch({type: "QUESTION_JSON", payload: {english: questionsEnglish, hindi: questionsHindi}});
+		}
+		else {
+			fetch(`${BACKEND_API}/test-series?testNumber=${number}`)
+			.then((response) => response.json())
+			.then((data) => {
+				dispatch({type: "QUESTION_JSON", payload: data})
+			});
+		}
+		
 
 	  // Check the window size on initial load
 		checkWindowSize();
@@ -213,8 +215,6 @@ const Test2 = () => {
 		  event.returnValue = "कृपया रीफ़्रेश न करें या बैक बटन न दबाएँ। आपके उत्तर सहेजे नहीं जायेंगे।";
 		  return "";
 		};
-
-
 	  
 		window.addEventListener("beforeunload", unloadCallback);
 		window.addEventListener('popstate', handlePopState);
@@ -225,6 +225,7 @@ const Test2 = () => {
 		window.removeEventListener("beforeunload", unloadCallback);
 		};
 	}, []);
+	
 	const [navigatorOpen, setNavigatorOpen] = useState(!state.isMdOrGreater);
 	
 	const getMapFromLocalStorage = () => {
@@ -423,4 +424,4 @@ const Test2 = () => {
 	)
 }
 
-export default React.memo(Test2);
+export default React.memo(Test);

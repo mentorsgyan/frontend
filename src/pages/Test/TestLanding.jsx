@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import PaginatedComponent from "../../components/PaginatedComponent/PaginatedComponent";
 import { Navigate, useLocation, useSearchParams } from "react-router-dom";
-import { FaSpinner } from "react-icons/fa6";
 
 const TestLanding = () => {
 	const [searchParams] = useSearchParams();
