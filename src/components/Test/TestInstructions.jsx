@@ -136,9 +136,7 @@ const TestInstructions = ({state, dispatch}) => {
 	const instructions = state.english ? instructionsEnglish : instructionHindi;
 
 	const updateLanguage = (e) => {
-		// setLanguage(e.target.value === "English");
 		dispatch({type: "LANGUAGE"})
-		// setCurrLanguage(e.target.value);
 	}
 	const handleCheckboxChange = (event) => {
 		setIsChecked(event.target.checked);
@@ -155,7 +153,6 @@ const TestInstructions = ({state, dispatch}) => {
 	}
 
 	function handleContinue() {
-		// setInstruction(false);
 		if (state.agreedToInstructions === false) {
 			dispatch({type: "AGREED_TO_INSTRUCTIONS"});
 			dispatch({type: "REMAINING_TIME", payload: 7200})

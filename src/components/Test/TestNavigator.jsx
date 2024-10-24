@@ -61,14 +61,11 @@ const TestNavigator = ({state, dispatch, setNavigatorOpen, setSelectionRequired,
 				setNavigatorOpen(true);
 				setIsOpen(false);
 			}}>&larr;</button>
-			{/* state.isMdOrGreater || (!state.isMdOrGreater && mobileMenuOpen) */}
 			<Dialog static={state.isMdOrGreater || (!state.isMdOrGreater && isOpen)} open={mobileMenuOpen} 
 			onClose={() => {
-				// if ()
 					setMobileMenuOpen(false);
 					if (!state.isMdOrGreater)
 						setNavigatorOpen(false);
-					// setIsOpen(false);
 				}}>
 				<div className="fixed z-10 inset-0 pointer-events-none" />
 				<DialogPanel className="fixed inset-y-0 right-0 w-fit overflow-y-auto bg-blue-100 dark:bg-gray-900 px-2  sm:max-w-sm">

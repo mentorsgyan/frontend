@@ -15,8 +15,6 @@ const UserResponse = () => {
 
 	const language = location.state ? location.state.language : "हिन्दी";
 	const userResponse = location.state ? location.state.userAnswers : undefined
-
-	console.log("UserResp: ", language);
 	
 	const { number } = useParams();
 	

@@ -19,7 +19,6 @@ export default function TestLogin() {
 		// const allow = phoneNumber === "9039130180" && password === "12345678"
 		const url = BACKEND_API + "/test-series/validate";
 		const response = await axios.post(url, data);
-		console.log(response.status);
 		if (response.status === 200) {
 			// Move to test page
 			navigate(`/test/home?phoneNumber=${phoneNumber}`, {state: {loggedIn: true}});
