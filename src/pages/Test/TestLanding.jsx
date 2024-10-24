@@ -13,11 +13,11 @@ const TestLanding = () => {
 	const present = {
 		mainData: [
 			{
-				primaryInfo: "छ.ग. की कला संस्कृति",
-				secondaryInfo: `छत्तीसगढ़ी लोकगीत, लोकनाट्य, पर्व एवं त्यौहार इत्यादि | @ - 19/10/2024`,
-				url: `/test/start/8?phoneNumber=${phoneNumber}`,
-				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=1910&test=8`,
-				releaseDate: "2024-10-19T02:30:00.000Z",
+				primaryInfo: "भारत का प्राचीन इतिहास ",
+				secondaryInfo: `प्रागैतिहासिक, सिंधूघाटी, वैदिक सभ्यता, बौद्ध, जैन, मौर्य, गुप्त साम्राज्य तक | @ - 25/10/2024`,
+				url: `/test/start/10?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=2510&test=10`,
+				releaseDate: "2024-10-25T02:30:00.000Z",
 			},
 		],
 		componentHeading: "वर्तमान परीक्षा",
@@ -26,6 +26,20 @@ const TestLanding = () => {
 
 	const past = {
 		mainData: [
+			{
+				primaryInfo: "जनजाति एवं कला संस्कृति मेगा टेस्ट",
+				secondaryInfo: `जनजाति एवं कला संस्कृति सम्पूर्ण | @ - 22/10/2024`,
+				url: `/test/start/9?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=2210&test=9`,
+				releaseDate: "2024-10-22T02:30:00.000Z",
+			},
+			{
+				primaryInfo: "छ.ग. की कला संस्कृति",
+				secondaryInfo: `छत्तीसगढ़ी लोकगीत, लोकनाट्य, पर्व एवं त्यौहार इत्यादि | @ - 19/10/2024`,
+				url: `/test/start/8?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=1910&test=8`,
+				releaseDate: "2024-10-19T02:30:00.000Z",
+			},
 			{
 				primaryInfo: "छ.ग. जनजाति",
 				secondaryInfo: `संपूर्ण जनजाति समुदाय एवं उनकी संस्कृति | @ - 16/10/2024`,
@@ -84,18 +98,18 @@ const TestLanding = () => {
 	const upcoming = {
 		mainData: [
 			{
-				primaryInfo: "जनजाति एवं कला संस्कृति मेगा टेस्ट",
-				secondaryInfo: `जनजाति एवं कला संस्कृति सम्पूर्ण | @ - 22/10/2024`,
-				url: `/test/start/9?phoneNumber=${phoneNumber}`,
-				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=2210&test=9`,
-				releaseDate: "2024-10-22T02:30:00.000Z",
+				primaryInfo: "भारत का मध्यकालीन इतिहास ",
+				secondaryInfo: `विदेशी आक्रमण, दिल्ली सल्तनत, सूफी भक्ति आंदोलन, मुगलकाल, मराठा तक | @ - 28/10/2024`,
+				url: `/test/start/11?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=2810&test=11`,
+				releaseDate: "2024-10-28T02:30:00.000Z",
 			},
 			{
-				primaryInfo: "भारत का प्राचीन इतिहास ",
-				secondaryInfo: `प्रागैतिहासिक, सिंधूघाटी, वैदिक सभ्यता, बौद्ध, जैन, मौर्य, गुप्त साम्राज्य तक | @ - 25/10/2024`,
-				url: `/test/start/10?phoneNumber=${phoneNumber}`,
-				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=25510&test=7`,
-				releaseDate: "2024-10-25T02:30:00.000Z",
+				primaryInfo: "भारत का मध्यकालीन इतिहास ",
+				secondaryInfo: `विदेशी आक्रमण, दिल्ली सल्तनत, सूफी भक्ति आंदोलन, मुगलकाल, मराठा तक | @ - 03/11/2024`,
+				url: `/test/start/12?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0311&test=12`,
+				releaseDate: "2024-11-03T02:30:00.000Z",
 			},
 		],
 		componentHeading: "आगामी परीक्षा",
