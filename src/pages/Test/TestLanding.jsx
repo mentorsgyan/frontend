@@ -12,11 +12,11 @@ const TestLanding = () => {
 	const present = {
 		mainData: [
 			{
-				primaryInfo: "भारत का प्राचीन इतिहास ",
-				secondaryInfo: `प्रागैतिहासिक, सिंधूघाटी, वैदिक सभ्यता, बौद्ध, जैन, मौर्य, गुप्त साम्राज्य तक | @ - 25/10/2024`,
-				url: `/test/start/10?phoneNumber=${phoneNumber}`,
-				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=2510&test=10`,
-				releaseDate: "2024-10-25T02:30:00.000Z",
+				primaryInfo: "भारत का मध्यकालीन इतिहास ",
+				secondaryInfo: `विदेशी आक्रमण, दिल्ली सल्तनत, सूफी भक्ति आंदोलन, मुगलकाल, मराठा तक | @ - 28/10/2024`,
+				url: `/test/start/11?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=2810&test=11`,
+				releaseDate: "2024-10-28T02:30:00.000Z",
 			},
 		],
 		componentHeading: "वर्तमान परीक्षा",
@@ -25,6 +25,13 @@ const TestLanding = () => {
 
 	const past = {
 		mainData: [
+			{
+				primaryInfo: "भारत का प्राचीन इतिहास ",
+				secondaryInfo: `प्रागैतिहासिक, सिंधूघाटी, वैदिक सभ्यता, बौद्ध, जैन, मौर्य, गुप्त साम्राज्य तक | @ - 25/10/2024`,
+				url: `/test/start/10?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=2510&test=10`,
+				releaseDate: "2024-10-25T02:30:00.000Z",
+			},
 			{
 				primaryInfo: "जनजाति एवं कला संस्कृति मेगा टेस्ट",
 				secondaryInfo: `जनजाति एवं कला संस्कृति सम्पूर्ण | @ - 22/10/2024`,
@@ -96,13 +103,7 @@ const TestLanding = () => {
 
 	const upcoming = {
 		mainData: [
-			{
-				primaryInfo: "भारत का मध्यकालीन इतिहास ",
-				secondaryInfo: `विदेशी आक्रमण, दिल्ली सल्तनत, सूफी भक्ति आंदोलन, मुगलकाल, मराठा तक | @ - 28/10/2024`,
-				url: `/test/start/11?phoneNumber=${phoneNumber}`,
-				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=2810&test=11`,
-				releaseDate: "2024-10-28T02:30:00.000Z",
-			},
+			
 			{
 				primaryInfo: "भारत का मध्यकालीन इतिहास ",
 				secondaryInfo: `विदेशी आक्रमण, दिल्ली सल्तनत, सूफी भक्ति आंदोलन, मुगलकाल, मराठा तक | @ - 03/11/2024`,
