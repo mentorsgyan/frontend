@@ -12,7 +12,7 @@ const TestLanding = () => {
 	const present = {
 		mainData: [
 			{
-				primaryInfo: "भारत का मध्यकालीन इतिहास ",
+				primaryInfo: "भारत का आधुनिक इतिहास ",
 				secondaryInfo: `विदेशी आक्रमण, दिल्ली सल्तनत, सूफी भक्ति आंदोलन, मुगलकाल, मराठा तक | @ - 03/11/2024`,
 				url: `/test/start/12?phoneNumber=${phoneNumber}`,
 				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0311&test=12`,
