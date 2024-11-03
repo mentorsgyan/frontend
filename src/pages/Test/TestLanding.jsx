@@ -11,7 +11,13 @@ const TestLanding = () => {
 
 	const present = {
 		mainData: [
-			
+			{
+				primaryInfo: "भारत का मध्यकालीन इतिहास ",
+				secondaryInfo: `विदेशी आक्रमण, दिल्ली सल्तनत, सूफी भक्ति आंदोलन, मुगलकाल, मराठा तक | @ - 03/11/2024`,
+				url: `/test/start/12?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0311&test=12`,
+				releaseDate: "2024-11-03T02:30:00.000Z",
+			},
 		],
 		componentHeading: "वर्तमान परीक्षा",
 		buttonTitle: "प्रारंभ करें"
@@ -105,14 +111,6 @@ const TestLanding = () => {
 	const upcoming = {
 		mainData: [
 			
-			
-			{
-				primaryInfo: "भारत का मध्यकालीन इतिहास ",
-				secondaryInfo: `विदेशी आक्रमण, दिल्ली सल्तनत, सूफी भक्ति आंदोलन, मुगलकाल, मराठा तक | @ - 03/11/2024`,
-				url: `/test/start/12?phoneNumber=${phoneNumber}`,
-				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0311&test=12`,
-				releaseDate: "2024-11-03T02:30:00.000Z",
-			},
 		],
 		componentHeading: "आगामी परीक्षा",
 		buttonTitle: "प्रारंभ करें"
