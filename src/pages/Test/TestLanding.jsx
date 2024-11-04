@@ -11,7 +11,13 @@ const TestLanding = () => {
 
 	const present = {
 		mainData: [
-			
+			{
+				primaryInfo: "भारत का इतिहास मेगा टेस्ट",
+				secondaryInfo: `भारत का इतिहास सम्पूर्ण | @ - 05/11/2024`,
+				url: `/test/start/13?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0511&test=13`,
+				releaseDate: "2024-11-05T02:30:00.000Z",
+			}
 		],
 		componentHeading: "वर्तमान परीक्षा",
 		buttonTitle: "प्रारंभ करें"
@@ -19,6 +25,13 @@ const TestLanding = () => {
 
 	const past = {
 		mainData: [
+			{
+				primaryInfo: "भारत का आधुनिक इतिहास ",
+				secondaryInfo: `यूरोपीय आगमन से भारत की स्वतंत्रता तक | @ - 03/11/2024`,
+				url: `/test/start/12?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0311&test=12`,
+				releaseDate: "2024-11-03T02:30:00.000Z",
+			},
 			{
 				primaryInfo: "भारत का मध्यकालीन इतिहास ",
 				secondaryInfo: `विदेशी आक्रमण, दिल्ली सल्तनत, सूफी भक्ति आंदोलन, मुगलकाल, मराठा तक | @ - 28/10/2024`,
@@ -104,14 +117,26 @@ const TestLanding = () => {
 
 	const upcoming = {
 		mainData: [
-			
-			
 			{
-				primaryInfo: "भारत का मध्यकालीन इतिहास ",
-				secondaryInfo: `विदेशी आक्रमण, दिल्ली सल्तनत, सूफी भक्ति आंदोलन, मुगलकाल, मराठा तक | @ - 03/11/2024`,
-				url: `/test/start/12?phoneNumber=${phoneNumber}`,
-				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0311&test=12`,
-				releaseDate: "2024-11-03T02:30:00.000Z",
+				primaryInfo: "छ.ग. प्राचीनं, मध्यकालीन इतिहास",
+				secondaryInfo: `प्रागैतिहासिक काल से काकतीय वंश तक  | @ - 08/11/2024`,
+				url: `/test/start/14?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0811&test=14`,
+				releaseDate: "2024-11-08T02:30:00.000Z",
+			},
+			{
+				primaryInfo: "छ.ग. का आधुनिक इतिहास",
+				secondaryInfo: `मराठा शासन से देशी रियासत तक | @ - 12/11/2024`,
+				url: `/test/start/15?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=1211&test=15`,
+				releaseDate: "2024-11-12T02:30:00.000Z",
+			},
+			{
+				primaryInfo: "छत्तीसगढ़ का इतिहास मेगा टेस्ट",
+				secondaryInfo: `छत्तीसगढ़ का इतिहास सम्पूर्ण | @ - 15/11/2024`,
+				url: `/test/start/16?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=1511&test=16`,
+				releaseDate: "2024-11-16T02:30:00.000Z",
 			},
 		],
 		componentHeading: "आगामी परीक्षा",

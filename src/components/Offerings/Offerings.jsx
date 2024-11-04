@@ -70,7 +70,7 @@ const ServiceCards = ({Data}) => {
             <img 
                 src="https://www-media.discoveryeducation.com/wp-content/uploads/2024/03/de-science-hp-blob.svg" 
                 alt="" 
-                className={`text-center absolute  ${detailsVisibility ? 'md-900:w-[200px] md-900:translate-y-16' : ''} w-[75px] transition-transform duration-300 dark:invert dark:saturate-50`}
+                className={`text-center absolute ${detailsVisibility ? 'md-900:w-[200px] md-900:translate-y-16' : ''} w-[75px] transition-transform duration-300 dark:invert dark:saturate-50`}
                 />
             <div className="relative flex flex-col gap-4 items-center justify-center">
                 {Data.icon}
