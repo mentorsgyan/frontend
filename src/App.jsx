@@ -24,6 +24,10 @@ import AnswerDisplay from "./pages/Test/AnswerDisplay";
 import UserResponse from "./pages/Test/UserResponse";
 import RankList from "./pages/Test/RankList";
 
+
+//Changes are made here:
+import LogIn from "./pages/LogIn/LogIn";
+
 const App = () => {
   React.useEffect(() => {
     Aos.init({
@@ -39,12 +43,18 @@ const App = () => {
       <BrowserRouter>
       <Routes >
         <Route path="/" element = {<Home />}>
-          <Route 
+          <Route
             index
             element={<Home />}
             loader={heroDataLoader}
           />
         </Route>
+        {/* Changes are in commented */}
+        <Route path = "/login" element = {<LogIn/>}></Route>
+
+
+
+        {/* Till here the changes are made */}
         <Route path = "/checkout" element = {<PaymentPage />}></Route>
         <Route path = "/user-profile" element = {<UserProfile />} />
         <Route path = "/e-library" element = {<BlogPage />} />
