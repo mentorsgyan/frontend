@@ -42,8 +42,8 @@ const TestingMode = Object.freeze({
 	PRODUCTION: "PRODUCTION"
 });
 
-// const mode = TestingMode.LOCAL_BACKEND;
-const mode = TestingMode.PRODUCTION;
+const mode = TestingMode.LOCAL_BACKEND;
+// const mode = TestingMode.PRODUCTION;
 // const mode = TestingMode.HEROKU_BACKEND;
 
 export const BACKEND_API = mode === TestingMode.LOCAL_BACKEND ? "http://localhost:5000" : "https://mentorsgyan-backend-a58bdc6d7b98.herokuapp.com";

@@ -23,6 +23,7 @@ import TestLanding from "./pages/Test/TestLanding";
 import AnswerDisplay from "./pages/Test/AnswerDisplay";
 import UserResponse from "./pages/Test/UserResponse";
 import RankList from "./pages/Test/RankList";
+import PreviousYearsQuestions from "./components/ELibrary/PreviousYearsQuestions";
 
 const App = () => {
   React.useEffect(() => {
@@ -48,6 +49,7 @@ const App = () => {
         <Route path = "/checkout" element = {<PaymentPage />}></Route>
         <Route path = "/user-profile" element = {<UserProfile />} />
         <Route path = "/e-library" element = {<BlogPage />} />
+        <Route path = "/e-library/previousyearsquestions" element = {<PreviousYearsQuestions />} />
         <Route path = "/mock-test" element = {<SampleTests />} />
         <Route path = "/mock-test/:testTitle" element = {<QuestionPaper />}/>
 		{/* Admin routes */}
