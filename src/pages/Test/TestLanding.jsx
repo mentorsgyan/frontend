@@ -11,13 +11,7 @@ const TestLanding = () => {
 
 	const present = {
 		mainData: [
-			{
-				primaryInfo: "छ.ग. प्राचीनं, मध्यकालीन इतिहास",
-				secondaryInfo: `प्रागैतिहासिक काल से काकतीय वंश तक  | @ - 08/11/2024`,
-				url: `/test/start/14?phoneNumber=${phoneNumber}`,
-				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0811&test=14`,
-				releaseDate: "2024-11-08T02:30:00.000Z",
-			},
+			
 		],
 		componentHeading: "वर्तमान परीक्षा",
 		buttonTitle: "प्रारंभ करें"
@@ -25,6 +19,13 @@ const TestLanding = () => {
 
 	const past = {
 		mainData: [
+			{
+				primaryInfo: "छ.ग. प्राचीनं, मध्यकालीन इतिहास",
+				secondaryInfo: `प्रागैतिहासिक काल से काकतीय वंश तक  | @ - 08/11/2024`,
+				url: `/test/start/14?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=0811&test=14`,
+				releaseDate: "2024-11-08T02:30:00.000Z",
+			},
 			{
 				primaryInfo: "भारत का इतिहास मेगा टेस्ट",
 				secondaryInfo: `भारत का इतिहास सम्पूर्ण | @ - 05/11/2024`,
