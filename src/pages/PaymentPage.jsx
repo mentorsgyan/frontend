@@ -9,7 +9,6 @@ import { BACKEND_API, RAZORPAY_KEY } from "../utility/Constants";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase.config";
 import { FaSpinner } from "react-icons/fa";
-
 /**
 * This page is responsible for the entire payment checkout
 * for mentorsgyan
@@ -186,6 +185,10 @@ const PaymentPage = () => {
 				},
 				notes: {
 					address: userAddress,
+					phone: userContact,
+					name: user ? user.displayName : '',
+					email: user ? user.email : '',
+					plan: name
 				},
 				theme: {
 					color: '#ed8900',
