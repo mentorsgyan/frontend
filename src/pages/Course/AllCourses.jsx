@@ -112,7 +112,7 @@ const CourseCard = ({ course }) => {
     <div className="bg-white rounded-3xl shadow-lg dark:shadow-slate-900 min-h-[450px] relative dark:bg-gray-800 dark:text-white">
       {/* section which shows the no of enrolled students */}
       {enrollmentCount > 0 && (
-        <div className="bg-zinc-100 dark:bg-gray-700 w-3/4 font-light absolute h-10 top-[25%] md:top-[28%] left-[50%] -translate-x-[50%] rounded-full flex justify-center items-center gap-2">
+        <div className="bg-zinc-100 dark:bg-gray-700 w-3/4 font-light absolute h-10 top-[28%] md:top-[30%] left-[50%] -translate-x-[50%] rounded-full flex justify-center items-center gap-2">
           <span className="font-inter font-semibold flex gap-2 items-center">
             <FaPeopleGroup className="w-5 h-5" />
             {enrollmentCount}
