@@ -69,7 +69,10 @@ const AllCourses = () => {
       <div className="px-4 text-center pt-28">
         <h1 className="text-[#fd661f] text-xl md:text-3xl font-semibold font-inter">
           Courses by{" "}
-          <span className="dark:text-gray-100 text-xl md:text-3xl text-gray-900">Mentors</span>Gyan
+          <span className="dark:text-gray-100 text-xl md:text-3xl text-gray-900">
+            Mentors
+          </span>
+          Gyan
         </h1>
       </div>
 
@@ -97,8 +100,12 @@ const CourseCard = ({ course }) => {
 
   const navigate = useNavigate();
 
-  const handleThumbnailClick = (courseName) => {
+  const handleThumbnailClick = () => {
     navigate(`/course/${courseName}`);
+  };
+
+  const handleCheckoutClick = () => {
+    navigate("/checkout", { state: { course } });
   };
 
   return (
@@ -116,9 +123,9 @@ const CourseCard = ({ course }) => {
 
       {/* If a card has more content and exceeds 500px, it will grow to fit its content, but for less data , the card will atleast be 500px so that the visual uniformity is maintained */}
 
-      {/* image / thumbnail */}
+      {/* image / thumbnail , replace this div with the image url provided in the DTO */}
       <div
-        onClick={() => handleThumbnailClick(courseName)}
+        onClick={handleThumbnailClick}
         className="w-full cursor-pointer h-40 bg-cyan-300 object-cover object-center rounded-tl-3xl rounded-tr-3xl"
       ></div>
 
@@ -150,7 +157,10 @@ const CourseCard = ({ course }) => {
           )}
         </div>
 
-        <button className="bg-[#0B7077] hover:bg-[#30767b] text-white px-6 py-3 rounded-lg">
+        <button
+          onClick={handleCheckoutClick}
+          className="bg-[#0B7077] hover:bg-[#30767b] text-white px-6 py-3 rounded-lg"
+        >
           Enroll Now
         </button>
       </div>
