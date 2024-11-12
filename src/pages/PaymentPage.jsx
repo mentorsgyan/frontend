@@ -181,11 +181,11 @@ const PaymentPage = () => {
 				prefill: {
 					name: user ? user.displayName : '',
 					email: user ? user.email : '',
-					contact: userContact,
+					contact: phoneNumber,
 				},
 				notes: {
 					address: userAddress,
-					phone: userContact,
+					phone: phoneNumber,
 					name: user ? user.displayName : '',
 					email: user ? user.email : '',
 					plan: name
