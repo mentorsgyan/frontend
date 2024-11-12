@@ -11,7 +11,13 @@ const TestLanding = () => {
 
 	const present = {
 		mainData: [
-			
+			{
+				primaryInfo: "छ.ग. का आधुनिक इतिहास",
+				secondaryInfo: `मराठा शासन से देशी रियासत तक | @ - 12/11/2024`,
+				url: `/test/start/15?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=1211&test=15`,
+				releaseDate: "2024-11-12T02:30:00.000Z",
+			},
 		],
 		componentHeading: "वर्तमान परीक्षा",
 		buttonTitle: "प्रारंभ करें"
@@ -126,13 +132,7 @@ const TestLanding = () => {
 	const upcoming = {
 		mainData: [
 			
-			{
-				primaryInfo: "छ.ग. का आधुनिक इतिहास",
-				secondaryInfo: `मराठा शासन से देशी रियासत तक | @ - 12/11/2024`,
-				url: `/test/start/15?phoneNumber=${phoneNumber}`,
-				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=1211&test=15`,
-				releaseDate: "2024-11-12T02:30:00.000Z",
-			},
+			
 			{
 				primaryInfo: "छत्तीसगढ़ का इतिहास मेगा टेस्ट",
 				secondaryInfo: `छत्तीसगढ़ का इतिहास सम्पूर्ण | @ - 15/11/2024`,
