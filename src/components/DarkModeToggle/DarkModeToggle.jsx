@@ -1,7 +1,5 @@
-import { button } from "@material-tailwind/react";
 import React, { useEffect, useState } from "react";
-import { ImSun , ImIcoMoon } from "react-icons/im";
-import { MdOutlineShieldMoon } from "react-icons/md";
+import { ImSun } from "react-icons/im";
 import { FaMoon } from "react-icons/fa6";
 
 const DarkModeToggle = () => {

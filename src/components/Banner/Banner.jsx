@@ -1,6 +1,5 @@
 import { XMarkIcon } from '@heroicons/react/20/solid';
 import { useState } from 'react';
-import India from "../../assets/india.png";
 
 export default function Banner() {
     const [hideBanner, setHideBanner] = useState(false);

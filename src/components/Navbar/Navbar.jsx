@@ -1,4 +1,3 @@
-'use client'
 import React, { useState, useRef, useEffect } from "react";
 import Logo from "../../assets/logo/logo.png";
 import DarkLogo from "../../assets/logo/footer_logo.png";
