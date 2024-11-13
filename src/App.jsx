@@ -1,6 +1,6 @@
 import React from "react";
 import Aos from "aos";
-import "aos/dist/aos.css"
+import "aos/dist/aos.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import PaymentPage from "./pages/PaymentPage";
@@ -24,6 +24,7 @@ import AnswerDisplay from "./pages/Test/AnswerDisplay";
 import UserResponse from "./pages/Test/UserResponse";
 import RankList from "./pages/Test/RankList";
 import PreviousYearsQuestions from "./components/ELibrary/PreviousYearsQuestions";
+import QuestionsManager from "./components/AdminComponents/QuestionsManager";
 
 const App = () => {
   React.useEffect(() => {
@@ -31,59 +32,63 @@ const App = () => {
       offset: 100,
       duration: 800,
       easing: "ease-in-sine",
-      delay: 100
+      delay: 100,
     });
-    Aos.refresh
+    Aos.refresh;
   }, []);
   return (
     <div>
       <BrowserRouter>
-      <Routes >
-        <Route path="/" element = {<Home />}>
-          <Route 
-            index
-            element={<Home />}
-            loader={heroDataLoader}
+        <Routes>
+          <Route path="/" element={<Home />}>
+            <Route index element={<Home />} loader={heroDataLoader} />
+          </Route>
+          <Route path="/checkout" element={<PaymentPage />}></Route>
+          <Route path="/user-profile" element={<UserProfile />} />
+          <Route path="/e-library" element={<BlogPage />} />
+          <Route
+            path="/e-library/previousyearsquestions"
+            element={<PreviousYearsQuestions />}
           />
-        </Route>
-        <Route path = "/checkout" element = {<PaymentPage />}></Route>
-        <Route path = "/user-profile" element = {<UserProfile />} />
-        <Route path = "/e-library" element = {<BlogPage />} />
-        <Route path = "/e-library/previousyearsquestions" element = {<PreviousYearsQuestions />} />
-        <Route path = "/mock-test" element = {<SampleTests />} />
-        <Route path = "/mock-test/:testTitle" element = {<QuestionPaper />}/>
-		{/* Admin routes */}
-        <Route path="/admin" element = {<Admin />} />
-		<Route path="/admin/course" element = { < CourseUtil /> }/>
-		<Route path="/admin/students" element = { <UserListing /> }/>
+          <Route path="/mock-test" element={<SampleTests />} />
+          <Route path="/mock-test/:testTitle" element={<QuestionPaper />} />
+          {/* Admin routes */}
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/course" element={<CourseUtil />} />
+          <Route path="/admin/students" element={<UserListing />} />
 
-        <Route path="/policy" element = {<PolicyPage />} />
+          <Route path="/policy" element={<PolicyPage />} />
 
-		{/* Ebook routes */}
-        <Route path="/special-12" element = {<PremiumELibraryPage/>} />
-        <Route path="/premium-ebooks" element = {<PremiumEbooks />} />
+          {/* Ebook routes */}
+          <Route path="/special-12" element={<PremiumELibraryPage />} />
+          <Route path="/premium-ebooks" element={<PremiumEbooks />} />
 
-		<Route path="/course/:courseName" element = { <CourseLanding />} />
-		{/* <Route path = "/video" element = { <CourseVideoPlayer /> } /> */}
+          <Route path="/course/:courseName" element={<CourseLanding />} />
+          {/* <Route path = "/video" element = { <CourseVideoPlayer /> } /> */}
 
-		{/* Test Routes */}
-		<Route path="/test/onboarding" element = { <Test /> }/>
-		<Route path = "/test/login" element = {<TestLogin />} />
-		<Route path="registration/test" element = { <TestSqueeze /> }/>
-		<Route path = "test/completed/:number" element = { <UserResponse/> } />
-		<Route path = "test/home" element = { <TestLanding />} />
-		<Route path="/test/start/:number" element = { <Test /> }/>
-		{/* <Route path="/test/start/:number" element = { <Test /> }/> */}
+          {/* Test Routes */}
+          <Route path="/test/onboarding" element={<Test />} />
+          <Route path="/test/login" element={<TestLogin />} />
+          <Route path="registration/test" element={<TestSqueeze />} />
+          <Route path="test/completed/:number" element={<UserResponse />} />
+          <Route path="test/home" element={<TestLanding />} />
+          <Route path="/test/start/:number" element={<Test />} />
+          {/* <Route path="/test/start/:number" element = { <Test /> }/> */}
 
-		{/* Test answer */}
-		<Route path="/test/result" element = { < AnswerDisplay />}/>
-		<Route path="/test/ranks/" element = { < RankList />}/>
+          {/* Test answer */}
+          <Route path="/test/result" element={<AnswerDisplay />} />
+          <Route path="/test/ranks/" element={<RankList />} />
 
-        <Route path = "*" element = {<NotFound />} />
-      </Routes>
+          <Route path="*" element={<NotFound />} />
+
+          {/* Admin Components */}
+          <Route path="/admin/questions" element={<QuestionsManager />} />
+
+
+        </Routes>
       </BrowserRouter>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

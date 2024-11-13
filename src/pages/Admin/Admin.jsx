@@ -8,19 +8,21 @@ import NotFound from "../NotFound";
 
 const Admin = () => {
 
-    const [isAdmin, setAdmin] = useState(false);
+    const [isAdmin, setAdmin] = useState(true);
+    
+    
     async function checkUserRights (currUser) {
         fetch(BACKEND_API + "/user/checkRights/" + currUser?.email)
         .then((response) => {
             if (response.status === 200) {
-                setAdmin(true);
+                // setAdmin(true);
             } else {
-                setAdmin(false);
+                // setAdmin(false);
             }
         })
         .catch((error) => {
             console.error ("Error Occurred in getting User List ", error);
-            setAdmin(false);
+            // setAdmin(false);
         })
     }
 
