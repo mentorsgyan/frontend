@@ -11,13 +11,7 @@ const TestLanding = () => {
 
 	const present = {
 		mainData: [
-			{
-				primaryInfo: "छ.ग. का आधुनिक इतिहास",
-				secondaryInfo: `मराठा शासन से देशी रियासत तक | @ - 12/11/2024`,
-				url: `/test/start/15?phoneNumber=${phoneNumber}`,
-				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=1211&test=15`,
-				releaseDate: "2024-11-12T02:30:00.000Z",
-			},
+			
 		],
 		componentHeading: "वर्तमान परीक्षा",
 		buttonTitle: "प्रारंभ करें"
@@ -25,6 +19,13 @@ const TestLanding = () => {
 
 	const past = {
 		mainData: [
+			{
+				primaryInfo: "छ.ग. का आधुनिक इतिहास",
+				secondaryInfo: `मराठा शासन से देशी रियासत तक | @ - 12/11/2024`,
+				url: `/test/start/15?phoneNumber=${phoneNumber}`,
+				urlForAnswerKey: `/test/result?phoneNumber=${phoneNumber}&testId=1211&test=15`,
+				releaseDate: "2024-11-12T02:30:00.000Z",
+			},
 			{
 				primaryInfo: "छ.ग. प्राचीनं, मध्यकालीन इतिहास",
 				secondaryInfo: `प्रागैतिहासिक काल से काकतीय वंश तक  | @ - 08/11/2024`,
