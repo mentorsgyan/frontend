@@ -5,7 +5,7 @@ import { CheckBadgeIcon } from "@heroicons/react/24/solid";
 
 const MentorshipSM = ({MentorshipPrograms}) => {
     return (
-        <div className="grid md-900:grid-cols-3 grid-cols-1 gap-16 p-5">
+        <div className="grid md-900:grid-cols-2 grid-cols-1 gap-16 p-5">
             {
                 MentorshipPrograms.map(program => (
                     <MentorshipCard program={program}/>

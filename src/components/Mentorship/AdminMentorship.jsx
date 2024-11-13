@@ -91,7 +91,7 @@ const AdminMentorship = () => {
 	return (
 		<div className="mt-32 text-gray-700 dark:text-gray-200 container section rounded-3xl shadow-2xl dark:shadow-gray-600" id="mentorship-update">
 			<h1 className="text-3xl font-bold text-secondary text-center pb-4 underline">Mentorship</h1>
-			<div className=" grid grid-cols-3 gap-5">
+			<div className=" grid grid-cols-2 gap-5">
 				{mentorshipData.length !== 0 && mentorshipData.map((item, index) => (
 					<div key={index} className="mb-4 p-4 border rounded-lg shadow grid gap-2">
 						<label className="block text-sm font-medium ">Name</label>
@@ -154,13 +154,12 @@ const AdminMentorship = () => {
 			{/*  */}
 			
 			
-			<div className="grid grid-cols-5 gap-3 items-center justify-center text-xl text-center mb-2">
+			<div className="grid grid-cols-4 gap-3 items-center justify-center text-xl text-center mb-2">
 				<h1>Feature</h1>
-				<h1>Saar</h1>
 				<h1>Plus</h1>
 				<h1>Ultra</h1>
 			</div>
-			<div className="grid grid-cols-5 gap-3 ">
+			<div className="grid grid-cols-4 gap-3 ">
 				{
 					features.map((feature, index) => (
 						<Fragment key={index}>
