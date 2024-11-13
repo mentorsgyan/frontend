@@ -1,6 +1,7 @@
 import React from "react";
 
 const PreviousYearsQuestions = () => {
+  
   // This is just Tailwindcss just to make the code looks cleaner
     const styles = {
         titlesStyle: "border border-black text-center font-bold text-base font-bold md:text-xl whitespace-normal break-words",
