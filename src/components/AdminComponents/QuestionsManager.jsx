@@ -1,39 +1,80 @@
-import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
-
-axios.defaults.baseURL = 'http://localhost:3000';
+import React, { useState, useEffect } from 'react';
+import { BACKEND_API } from '../../utility/Constants';
 
 const QuestionsManager = () => {
 
   const startYear = 2010;
   const currentYear = new Date().getFullYear();
   const yearsArray = Array.from({ length: currentYear - startYear + 1 }, (_, i) => startYear + i);
-
-  const [yearsList, setYearsList] = useState([]);
-  const [year, setyear]= useState();
+  const initState = {
+	year : 2021,
+	csat : "",
+	gs : "",
+	language: "",
+	essay: "",
+	gs1: "",
+	gs2: "",
+	gs3: "",
+	gs4: "",
+	gs5: ""
+}
+  const [yearsList, setYearsList] = useState(initState);
+  const [year, setYear]= useState();
 
   useEffect(() => {
-    fetchData();
+	if (year === undefined) {
+		return;
+	}
+	fetch(`${BACKEND_API}/e-library/pyq?year=${year}`, {method: "GET"})
+	.then((resp) => resp.json())
+	.then((data) => {
+		if (data === "No entry found") {
+			// There's no data
+		} else {
+			setYearsList(data);
+		}
+	}).catch((error) => {
+		setYearsList(initState);
+	});
   }, [year])
 
 
-  // Fetch years from the server
-  const fetchData = async () => {
-    try {
-      const {data} = await axios.get(`/years`);
-      console.log(data);
-      setYearsList(data);
-    } catch (error) {
-      console.error("Error fetching years", error);
-    }
-  };
-
-
-  
-
   const styles = {
-    input: 'bg-gray-200 outline-none border-none w-[150px] h-6',
+    input: 'mt-1 block w-full px-3 py-2 border rounded-md dark:bg-gray-700',
     columns: 'flex lg:gap-20 gap-2 lg:flex-row flex-col',
+  }
+
+  function handleChange(e) {
+	const {name, value} = e.target
+	// setYear(value);
+	setYearsList({
+		...yearsList,
+		[name]: value
+	})
+  }
+
+  async function handleDelete() {
+	fetch(`${BACKEND_API}/e-library/pyq?year=${year}`, {method: "DELETE"})
+	.then((resp) => {
+		if (resp.status === 200) {
+			alert("Successfully Deleted the entry");
+		} else {
+			alert("Cannot delete the entry");
+		}
+	});
+  }
+
+  async function handleSave() {
+	fetch(`${BACKEND_API}/e-library/pyq`, {method: "POST", body: yearsList})
+	.then((resp) => {
+		if (resp.status === 200) {
+			alert("Created entry for the year ", year);
+		} else {
+			alert("Cannot save the entry for ", year);
+		}
+	}).catch((error) => {
+		alert("Contact developer: ", error);
+	})
   }
   
   return (
@@ -41,32 +82,33 @@ const QuestionsManager = () => {
        <h1 className='font-bold text-4xl text-center'>Previous Years Question</h1>
         <div className='grid grid-cols-1 gap-6 w-4/5 h-auto p-10 mb-10 border-black border rounded-lg shadow-[rgba(0,0,15,0.5)_-3px_5px_4px_0px]'>
           {/* Form for the input */}
-          <form action="" className="flex gap-10 sm:flex-row flex-col">
+          <div className="flex gap-10 sm:flex-row flex-col">
             <div className='flex gap-1 sm:justify-center sm:items-center'>
               <label htmlFor="year" className="font-bold text-xl">Year</label>
-              <select onChange={(e) => setyear(e.target.value)} defaultValue="" name="year" id="year" className="outline-none border-none text-center bg-gray-200 ">
+              <select onChange={(e) => setYear(e.target.value)} defaultValue="" name="year" id="year" className="mt-1 block w-full px-3 py-2 border rounded-md dark:bg-gray-700">
                 <option value="" disabled >Select year</option>
                 {yearsArray.map((yr, index) => (
-                  <option onChange={(e)=>setyear(e.target.value)} key={index} value={yr}>{yr}</option>
+                  <option onChange={handleChange} name = "year" key={index} value={yr}>{yr}</option>
                   
                 ))}
               </select>
-              <pre>
-                {JSON.stringify(year)}
-              </pre>
             </div>
-          <button type="submit" className="bg-red-600 sm:col-span-2 col-span-1 sm:text-center text-white font-bold p-1 rounded-md w-[100px] h-9">Delete</button>
-          </form>
+          <button 
+		  type="submit" 
+		  className="bg-red-600 sm:col-span-2 col-span-1 sm:text-center text-white font-bold p-1 rounded-md w-[100px] h-9"
+		  onClick={handleDelete}
+		  >Delete</button>
+          </div>
 
           {/* 2nd Colunm */}
           <div className={`${styles.columns}`}>
             <div className='flex flex-col'>
-              <label htmlFor="">Prelims-1</label>
-              <input className={`${styles.input}`} type="text" />
+              <label htmlFor="">C-SAT</label>
+              <input className={`${styles.input}`} name='csat' onChange={handleChange} type="text" value={yearsList.csat}/>
             </div>
             <div className='flex flex-col'>
-              <label htmlFor="">Prelims-2</label>
-              <input className={`${styles.input}`} type="text" />
+              <label htmlFor="">GS</label>
+              <input className={`${styles.input}`} type="text" value={yearsList.gs}/>
             </div>
             
           </div>
@@ -74,39 +116,42 @@ const QuestionsManager = () => {
           <div className={`${styles.columns}`}>
             <div className='flex flex-col'>
               <label htmlFor="">Languange</label>
-              <input className={`${styles.input}`} type="text" />
+              <input className={`${styles.input}`} type="text" value={yearsList.language} />
             </div>
             <div className='flex flex-col'>
               <label htmlFor="">Essay</label>
-              <input className={`${styles.input}`} type="text" />
+              <input className={`${styles.input}`} type="text" value={yearsList.language} />
             </div>
             
           </div>
           <div className={`${styles.columns}`}>
             <div className='flex flex-col'>
               <label htmlFor="">GS-1</label>
-              <input className={`${styles.input}`} type="text" />
+              <input className={`${styles.input}`} type="text"  value={yearsList.gs1} />
             </div>
             <div className='flex flex-col'>
               <label htmlFor="">GS-2</label>
-              <input className={`${styles.input}`} type="text" />
+              <input className={`${styles.input}`} type="text" value={yearsList.gs2} />
             </div>
             <div className='flex flex-col'>
               <label htmlFor="">GS-3</label>
-              <input className={`${styles.input}`} type="text" />
+              <input className={`${styles.input}`} type="text"  value={yearsList.gs3}  />
             </div>
             
           </div>
           <div className={`${styles.columns}`}>
             <div className='flex flex-col'>
               <label htmlFor="">GS-4</label>
-              <input className={`${styles.input}`} type="text" />
+              <input className={`${styles.input}`} type="text"   value={yearsList.gs4} />
             </div>
             <div className='flex flex-col'>
               <label htmlFor="">GS-5</label>
-              <input className={`${styles.input}`} type="text" />
+              <input className={`${styles.input}`} type="text"  value={yearsList.gs5} />
             </div>
-            <button className='bg-blue-500 h-8 w-[100px] font-bold p-1 sm:text-center rounded-md'>Save</button>
+            <button 
+			className='bg-blue-500 h-8 w-[100px] font-bold p-1 sm:text-center rounded-md'
+			onClick={handleSave}
+			>Save</button>
             
           </div>
         </div>
