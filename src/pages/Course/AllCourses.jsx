@@ -1,90 +1,83 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import { FaPeopleGroup } from "react-icons/fa6";
+import Logo from "../../assets/logo/white_bg.jpg";
+import DarkLogo from "../../assets/logo/footer_logo.png";
 
 const AllCourses = () => {
   //sample data for CourseCardInfoDto
   // the logic of useEffect to fetch all the courses will be implemented here and the state will be updated appropriately
 
-  let CourseCardInfoDtos = [
-    {
-      courseName: "Name1",
-      price: "2000",
-      //   offerPrice: 4000,
-      headline: "One liner headline of the course",
-      courseThumbnail: "URL of the course thumbnail",
-      enrollmentCount: 10, //display only if count > 0
-    },
-    {
-      courseName: "Name2",
-      price: "3000",
-      offerPrice: "2000",
-      headline: "One liner headline of the course",
-      courseThumbnail: "URL of the course thumbnail",
-      enrollmentCount: 10, //display only if count > 0
-    },
-    {
-      courseName: "Name3",
-      price: "3000",
-      offerPrice: "2000",
-      headline: "One liner headline of the course",
-      courseThumbnail: "URL of the course thumbnail",
-      enrollmentCount: 10, //display only if count > 0
-    },
-    {
-      courseName: "Mathematics for MAINS",
-      price: "3000",
-      //   offerPrice: "2000",
-      headline:
-        "One liner course summary provided when an API call is made to the backend is it is ibig it will look like thi , can you handle this case? aslo will iy overlgov",
-      courseThumbnail: "URL of the course thumbnail",
-      enrollmentCount: 10, //display only if count > 0
-    },
-    {
-      courseName: "Name4",
-      price: "3000",
-      offerPrice: "2000",
-      headline:
-        "One liner course summary provided when an API call is made to the backend",
-      courseThumbnail: "URL of the course thumbnail",
-    },
-    {
-      courseName: "Name4",
-      price: "3000",
-      offerPrice: "2000",
-      headline:
-        "One liner course summary provided when an API call is made to the backend",
-      courseThumbnail: "URL of the course thumbnail",
-      enrollmentCount: 240, //display only if count > 0
-    },
-  ];
+  const [CourseCardInfoDtos, setCourseCardInfoDtos] = useState([]);
+  const [isEmpty, setIsEmpty] = useState(false);
+  const [isError, setIsError] = useState(false);
 
+  // useEffect to fetch the data from the backend and the loading section can be used to show a spinner  
+  useEffect(() => {
+    fetch("http://localhost:5050/course/fetchAllCourses")
+      
+    .then((res) => {
+        if (res.status == 200) return res.json();
+        else if (res.status == 204) setIsEmpty(true);
+        else setIsError(true);
+    })
+      
+    .then((data) => setCourseCardInfoDtos(data))
+
+    .catch((error) => {
+        console.log(error);
+        setIsError(true);
+    })
+  
+}, []);
+
+  
   return (
-    <div className="bg-gray-100 dark:bg-gray-800 dark:text-white">
-      <Navbar sticky={true} />
-      {/* <h1 className="text-center font-inter font-semibold text-[#fd661f] text-5xl pt-16 pb-3">Courses by <span className="text-black">Mentors</span>Gyan</h1> */}
+    <>
+        {/* if 204 is returned display the no courses message */}
+        
+        {
+            isEmpty && 
+            <AnomalyDisplay msg={'No Courses Available'}/>
+        }
 
-      {/* Title - Courses by MentorsGyan */}
-      <div className="px-4 text-center pt-28">
-        <h1 className="text-[#fd661f] text-xl md:text-3xl font-semibold font-inter">
-          Courses by{" "}
-          <span className="dark:text-gray-100 text-xl md:text-3xl text-gray-900">
-            Mentors
-          </span>
-          Gyan
-        </h1>
-      </div>
+        {/* if 4xx/5xx is returned display the error message */}
 
-      <div
-        id="header-component"
-        className="relative dark:bg-gray-800 dark:text-white px-6 pt-14 pb-10 w-full grid grid-cols-1 xl:grid-cols-4 md:grid-cols-2 gap-8 bg-gray-100"
-      >
-        {CourseCardInfoDtos.map((CourseCardInfoDto, index) => (
-          <CourseCard course={CourseCardInfoDto} key={index} />
-        ))}
-      </div>
-    </div>
+        {
+            isError &&
+            <AnomalyDisplay msg={'Error while fetching the courses'}/>
+        }
+
+        {/* if 200 is returned , proceed to render the component */}
+
+        { !isEmpty && !isError &&
+            <div className="bg-gray-100 dark:bg-gray-800 dark:text-white">
+                <Navbar sticky={true} />
+                {/* <h1 className="text-center font-inter font-semibold text-[#fd661f] text-5xl pt-16 pb-3">Courses by <span className="text-black">Mentors</span>Gyan</h1> */}
+
+                {/* Title - Courses by MentorsGyan */}
+                <div className="px-4 text-center pt-28">
+                <h1 className="text-[#fd661f] text-xl md:text-3xl font-semibold font-inter">
+                    Courses by{" "}
+                    <span className="dark:text-gray-100 text-xl md:text-3xl text-gray-900">
+                    Mentors
+                    </span>
+                    Gyan
+                </h1>
+                </div>
+
+                <div
+                id="header-component"
+                className="relative dark:bg-gray-800 dark:text-white px-6 pt-14 pb-10 w-full grid grid-cols-1 xl:grid-cols-4 md:grid-cols-2 gap-8 bg-gray-100"
+                >
+                {CourseCardInfoDtos.map((CourseCardInfoDto, index) => (
+                    <CourseCard course={CourseCardInfoDto} key={index} />
+                ))}
+                </div>
+            </div>
+        }
+    </>
   );
 };
 
@@ -111,6 +104,7 @@ const CourseCard = ({ course }) => {
   return (
     <div className="bg-white rounded-3xl shadow-lg dark:shadow-slate-900 min-h-[450px] relative dark:bg-gray-800 dark:text-white">
       {/* section which shows the no of enrolled students */}
+      
       {enrollmentCount > 0 && (
         <div className="bg-zinc-100 dark:bg-gray-700 w-3/4 font-light absolute h-10 top-[28%] md:top-[30%] left-[50%] -translate-x-[50%] rounded-full flex justify-center items-center gap-2">
           <span className="font-inter font-semibold flex gap-2 items-center">
@@ -127,17 +121,17 @@ const CourseCard = ({ course }) => {
       <div
         onClick={handleThumbnailClick}
         className="w-full cursor-pointer h-40 bg-cyan-300 object-cover object-center rounded-tl-3xl rounded-tr-3xl"
-      ></div>
-
-      {/* date and title */}
-      <div className="px-7 pt-16 flex flex-col gap-4">
-        <h3 className="text-[#0B7077] dark:text-[#4bb8c0] font-semibold text-lg">
-          {courseName}
-        </h3>
+      >
+        {/* courseThumbnail */}
       </div>
 
+      {/*title */}
+        <h3 className="text-[#0B7077] px-7 pt-16 dark:text-[#4bb8c0] font-semibold text-lg">
+          {courseName}
+        </h3>
+
       {/* headline */}
-      <div className="px-7 pt-10 h-28  overflow-hidden">
+      <div className="px-7 pt-8 h-28  overflow-hidden">
         {/* if the headline is too big, truncate it , for now keep the harcoded value as 80 */}
         <span className="font-light tracking-tighter ">
           {headline.length > 100 ? `${headline.slice(0, 80)} ...` : headline}
@@ -167,5 +161,22 @@ const CourseCard = ({ course }) => {
     </div>
   );
 };
+
+const AnomalyDisplay = ({msg}) => {
+    return(
+        <div>
+            <Navbar />
+            <div className="flex h-screen items-center justify-center dark:bg-gray-800">
+				<img src={Logo} alt="" className=" absolute blur dark:hidden block" />
+                <img src={DarkLogo} alt="" className=" absolute blur hidden dark:block" />
+
+                <div className="p-12 z-10 bg-white bg-opacity-70 shadow-2xl rounded-3xl flex flex-col gap-5">
+                    <p className="text-2xl text-center font-bold">{msg}</p>
+                    <p className="text-xl">Please click <a className="hover:underline text-secondary" href="/">here</a> to go to the home page.</p>
+                </div>
+            </div> 
+        </div>
+    )
+}
 
 export default AllCourses;
