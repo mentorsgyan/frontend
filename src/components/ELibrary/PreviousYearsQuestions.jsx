@@ -60,12 +60,11 @@ const PreviousYearsQuestions = () => {
       },
     ];
   return (
-      <div className="flex sm:justify-center overflow-x-auto h-[90vh] w-full items-start">
-          <div className={`grid grid-cols-10 w-full min-w-[800px] border-2 mt-4 border-gray-700 bg-white dark:bg-gray-800 md:w-4/5 rounded-md`}>
-            <>
+      <div className="overflow-x-scroll w-screen">
+        <h1 className="text-2xl font-bold tracking-tight py-5">मेंटर्सज्ञान द्वारा पिछले वर्षों के प्रश्न</h1>
+          <div className={`grid grid-cols-10 border-2 w-fit mt-4 border-gray-700 bg-white dark:bg-gray-800 rounded-md`}>
             <h1 className={`${styles.mainHeaderText} col-start-2 col-span-2 p-4 border-r-2`}>Prelims</h1>
             <h1 className={`${styles.mainHeaderText} col-span-7 p-4`}>Mains</h1>
-            </>
           {/* Column headers */}
           <h1 className={`${styles.titlesStyle}`}>Year</h1>
           <h1 className={`${styles.titlesStyle}`}>C-SAT</h1>
