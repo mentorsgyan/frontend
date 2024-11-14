@@ -46,16 +46,13 @@ const App = () => {
           <Route path="/checkout" element={<PaymentPage />}></Route>
           <Route path="/user-profile" element={<UserProfile />} />
           <Route path="/e-library" element={<BlogPage />} />
-          <Route
-            path="/e-library/previousyearsquestions"
-            element={<PreviousYearsQuestions />}
-          />
           <Route path="/mock-test" element={<SampleTests />} />
           <Route path="/mock-test/:testTitle" element={<QuestionPaper />} />
           {/* Admin routes */}
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/course" element={<CourseUtil />} />
           <Route path="/admin/students" element={<UserListing />} />
+		  <Route path="/admin/questions" element={<QuestionsManager />} />
 
           <Route path="/policy" element={<PolicyPage />} />
 
@@ -80,10 +77,6 @@ const App = () => {
           <Route path="/test/ranks/" element={<RankList />} />
 
           <Route path="*" element={<NotFound />} />
-
-          {/* Admin Components */}
-          <Route path="/admin/questions" element={<QuestionsManager />} />
-
 
         </Routes>
       </BrowserRouter>
