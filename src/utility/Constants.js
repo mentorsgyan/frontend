@@ -47,4 +47,4 @@ const mode = TestingMode.PRODUCTION;
 // const mode = TestingMode.HEROKU_BACKEND;
 
 export const BACKEND_API = mode === TestingMode.LOCAL_BACKEND ? "http://localhost:5000" : "https://mentorsgyan-backend-a58bdc6d7b98.herokuapp.com";
-export const RAZORPAY_KEY = mode === TestingMode.PRODUCTION ? 'rzp_live_Xv2gJDseLminWd' : 'rzp_test_YxRzwHzrJ4PIkW';
+export const RAZORPAY_KEY = mode === TestingMode.PRODUCTION ? 'rzp_live_om0ACQp22VLc10' : 'rzp_test_gGmPldM4Jax4yo';
